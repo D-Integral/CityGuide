@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Aquarium</key>
+	<integer>0</integer>
+	<key>Armstrong</key>
+	<integer>0</integer>
+	<key>Audubon_Zoo</key>
+	<integer>0</integer>
+	<key>Beauregard_House</key>
+	<real>0</real>
+	<key>Besthoff</key>
+	<real>0</real>
+	<key>Cabildo</key>
+	<integer>0</integer>
+	<key>City_Park</key>
+	<integer>0</integer>
+	<key>Fort_Pike</key>
+	<real>0</real>
+	<key>French_Quater</key>
+	<real>0</real>
+	<key>Garden_District</key>
+	<real>0</real>
+	<key>Immaculate_Church</key>
+	<real>0</real>
+	<key>Jackson_Square</key>
+	<integer>0</integer>
+	<key>Jamie_Hayes_Gallery</key>
+	<real>0</real>
+	<key>Jean_Lafitte</key>
+	<real>0</real>
+	<key>Mardi_Gras</key>
+	<integer>0</integer>
+	<key>Mississippi</key>
+	<integer>0</integer>
+	<key>NOMA</key>
+	<integer>0</integer>
+	<key>Preservation_Hall</key>
+	<real>0</real>
+	<key>Saenger_Theatre</key>
+	<real>0</real>
+	<key>Spotted_Cat</key>
+	<real>0</real>
+	<key>St_Louis</key>
+	<integer>0</integer>
+	<key>Streetcar</key>
+	<real>0</real>
+	<key>Superdome</key>
+	<real>0</real>
+	<key>Voodoo</key>
+	<integer>0</integer>
+	<key>WWII_Museum</key>
+	<real>0</real>
+</dict>
+</plist>

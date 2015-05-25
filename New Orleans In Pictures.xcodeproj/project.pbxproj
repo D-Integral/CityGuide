@@ -7,13 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C6D2AD01AEF649100651CCF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 		8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
 		8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */; };
-		8CE2CAE21AEA2BC60032F74D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE11AEA2BC60032F74D /* ViewController.swift */; };
 		8CE2CAE51AEA2BC60032F74D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE31AEA2BC60032F74D /* Main.storyboard */; };
 		8CE2CAE71AEA2BC60032F74D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 		8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE81AEA2BC60032F74D /* LaunchScreen.xib */; };
 		8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CAF51AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift */; };
+		8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */; };
+		8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */; };
+		8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB021AEA2F7F0032F74D /* PictureCell.swift */; };
+		8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB021AEA2F7F0032F74D /* PictureCell.swift */; };
+		8CE2CB061AEA5A090032F74D /* SightsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CB051AEA5A090032F74D /* SightsList.plist */; };
+		8CE2CB071AEA5A090032F74D /* SightsList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CB051AEA5A090032F74D /* SightsList.plist */; };
+		8CE2CB0A1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */; };
+		8CE2CB0B1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */; };
+		8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */; };
+		8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */; };
+		8CE2CB4F1AEE242D0032F74D /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */; };
+		8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */; };
+		8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
+		8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
+		8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,13 +46,19 @@
 		8CE2CADB1AEA2BC60032F74D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CE2CADF1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = New_Orleans_In_Pictures.xcdatamodel; sourceTree = "<group>"; };
-		8CE2CAE11AEA2BC60032F74D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8CE2CAE41AEA2BC60032F74D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CE2CAE61AEA2BC60032F74D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8CE2CAE91AEA2BC60032F74D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8CE2CAEF1AEA2BC60032F74D /* New Orleans In PicturesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "New Orleans In PicturesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CE2CAF41AEA2BC60032F74D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CE2CAF51AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = New_Orleans_In_PicturesTests.swift; sourceTree = "<group>"; };
+		8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
+		8CE2CB021AEA2F7F0032F74D /* PictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
+		8CE2CB051AEA5A090032F74D /* SightsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SightsList.plist; path = "New Orleans Images/SightsList.plist"; sourceTree = "<group>"; };
+		8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightsListKeeper.swift; sourceTree = "<group>"; };
+		8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Model/PointOfInterest.swift; sourceTree = "<group>"; };
+		8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataObjectAccessor.swift; path = Model/DataObjectAccessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
-				8CE2CAE11AEA2BC60032F74D /* ViewController.swift */,
+				8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */,
+				8CE2CB0D1AEA5DF80032F74D /* View */,
+				8CE2CB0C1AEA5DEB0032F74D /* Model */,
+				8CE2CB081AEA5A0D0032F74D /* New Orleans Images */,
 				8CE2CAE31AEA2BC60032F74D /* Main.storyboard */,
 				8CE2CAE61AEA2BC60032F74D /* Images.xcassets */,
 				8CE2CAE81AEA2BC60032F74D /* LaunchScreen.xib */,
@@ -113,6 +137,33 @@
 				8CE2CAF41AEA2BC60032F74D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8CE2CB081AEA5A0D0032F74D /* New Orleans Images */ = {
+			isa = PBXGroup;
+			children = (
+				8CE2CB051AEA5A090032F74D /* SightsList.plist */,
+			);
+			name = "New Orleans Images";
+			sourceTree = "<group>";
+		};
+		8CE2CB0C1AEA5DEB0032F74D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */,
+				8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */,
+				8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8CE2CB0D1AEA5DF80032F74D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CE2CB021AEA2F7F0032F74D /* PictureCell.swift */,
+				8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE2CB061AEA5A090032F74D /* SightsList.plist in Resources */,
 				8CE2CAE51AEA2BC60032F74D /* Main.storyboard in Resources */,
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
 				8CE2CAE71AEA2BC60032F74D /* Images.xcassets in Resources */,
@@ -205,6 +257,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE2CB071AEA5A090032F74D /* SightsList.plist in Resources */,
+				8C6D2AD01AEF649100651CCF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +269,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CE2CAE21AEA2BC60032F74D /* ViewController.swift in Sources */,
+				8CE2CB4F1AEE242D0032F74D /* PointOfInterest.swift in Sources */,
+				8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */,
+				8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */,
+				8CE2CB0A1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
+				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
+				8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +284,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */,
+				8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */,
+				8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */,
+				8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
+				8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
+				8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */,
+				8CE2CB0B1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +481,7 @@
 				8CE2CAFB1AEA2BC60032F74D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8CE2CAFC1AEA2BC60032F74D /* Build configuration list for PBXNativeTarget "New Orleans In PicturesTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +490,7 @@
 				8CE2CAFE1AEA2BC60032F74D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
