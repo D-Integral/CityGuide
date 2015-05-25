@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N9P-zc-8ov">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -57,6 +58,7 @@
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="imageView" destination="G9l-US-Nzv" id="d5i-4V-aP0"/>
+                                    <segue destination="3h3-Hv-pMm" kind="show" id="pC0-dW-M3U"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -90,6 +92,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7U-k5-GlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="325" y="463"/>
+        </scene>
+        <!--DetailVC-->
+        <scene sceneID="ZgW-e8-Dor">
+            <objects>
+                <viewController id="3h3-Hv-pMm" customClass="DetailVC" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rnq-Su-IuY"/>
+                        <viewControllerLayoutGuide type="bottom" id="aSQ-lz-kwA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tmz-gg-QeZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfs-Xw-rai">
+                                <rect key="frame" x="169" y="295" width="263" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="1so-om-xfU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1so-om-xfU"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="1so-om-xfU"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vLo-NG-vuG">
+                                <rect key="frame" x="169" y="324" width="263" height="256"/>
+                            </mapView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FTP-y1-vER">
+                                <rect key="frame" x="169" y="72" width="263" height="215"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="215" id="kgQ-Ro-KOe"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kgQ-Ro-KOe"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="kgQ-Ro-KOe"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="bfs-Xw-rai" secondAttribute="centerX" id="27i-PK-iil"/>
+                            <constraint firstItem="FTP-y1-vER" firstAttribute="top" secondItem="Rnq-Su-IuY" secondAttribute="bottom" constant="8" symbolic="YES" id="8GD-u9-vW2"/>
+                            <constraint firstAttribute="bottom" secondItem="vLo-NG-vuG" secondAttribute="bottom" constant="20" symbolic="YES" id="ENm-2T-rm7"/>
+                            <constraint firstItem="bfs-Xw-rai" firstAttribute="top" secondItem="FTP-y1-vER" secondAttribute="bottom" constant="8" symbolic="YES" id="H9n-jo-fkX"/>
+                            <constraint firstItem="FTP-y1-vER" firstAttribute="leading" secondItem="bfs-Xw-rai" secondAttribute="leading" id="HRq-eA-oAO"/>
+                            <constraint firstItem="FTP-y1-vER" firstAttribute="leading" secondItem="tmz-gg-QeZ" secondAttribute="leadingMargin" constant="53" id="Nd6-5b-dQf"/>
+                            <constraint firstItem="vLo-NG-vuG" firstAttribute="leading" secondItem="tmz-gg-QeZ" secondAttribute="leadingMargin" id="NdW-zY-QkQ"/>
+                            <constraint firstItem="vLo-NG-vuG" firstAttribute="top" secondItem="bfs-Xw-rai" secondAttribute="bottom" constant="8" symbolic="YES" id="ayt-aA-OP3"/>
+                            <constraint firstAttribute="centerX" secondItem="vLo-NG-vuG" secondAttribute="centerX" id="dTm-9P-v4n"/>
+                            <constraint firstAttribute="centerX" secondItem="FTP-y1-vER" secondAttribute="centerX" id="vy3-Me-9cv"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8GD-u9-vW2"/>
+                                <exclude reference="HRq-eA-oAO"/>
+                                <exclude reference="Nd6-5b-dQf"/>
+                                <exclude reference="vy3-Me-9cv"/>
+                                <exclude reference="27i-PK-iil"/>
+                                <exclude reference="H9n-jo-fkX"/>
+                                <exclude reference="ENm-2T-rm7"/>
+                                <exclude reference="NdW-zY-QkQ"/>
+                                <exclude reference="ayt-aA-OP3"/>
+                                <exclude reference="dTm-9P-v4n"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="8GD-u9-vW2"/>
+                                <include reference="HRq-eA-oAO"/>
+                                <include reference="Nd6-5b-dQf"/>
+                                <include reference="vy3-Me-9cv"/>
+                                <include reference="27i-PK-iil"/>
+                                <include reference="H9n-jo-fkX"/>
+                                <include reference="ENm-2T-rm7"/>
+                                <include reference="NdW-zY-QkQ"/>
+                                <include reference="ayt-aA-OP3"/>
+                                <include reference="dTm-9P-v4n"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="V1a-Se-9oe"/>
+                    <connections>
+                        <outlet property="imageView" destination="FTP-y1-vER" id="KFl-Tk-w70"/>
+                        <outlet property="mapView" destination="vLo-NG-vuG" id="rpX-7n-YC4"/>
+                        <outlet property="titleLabel" destination="bfs-Xw-rai" id="gyX-ex-g7g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q3a-CB-gH9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048.5" y="463"/>
         </scene>
     </scenes>
 </document>

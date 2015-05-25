@@ -29,6 +29,12 @@
 		8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
+		C0A0A5221B134DFD0009E04A /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */; };
+		C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
+		C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
+		C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
+		C0DCB7D11B13185F00ED5DCF /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */; };
+		C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +65,9 @@
 		8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Model/PointOfInterest.swift; sourceTree = "<group>"; };
 		8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataObjectAccessor.swift; path = Model/DataObjectAccessor.swift; sourceTree = "<group>"; };
+		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
+		C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +111,9 @@
 			children = (
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
 				8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */,
+				C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */,
+				C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */,
+				C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */,
 				8CE2CB0D1AEA5DF80032F74D /* View */,
 				8CE2CB0C1AEA5DEB0032F74D /* Model */,
 				8CE2CB081AEA5A0D0032F74D /* New Orleans Images */,
@@ -269,11 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */,
 				8CE2CB4F1AEE242D0032F74D /* PointOfInterest.swift in Sources */,
+				C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */,
 				8CE2CB0A1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
+				C0DCB7D11B13185F00ED5DCF /* DetailVC.swift in Sources */,
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
 				8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
@@ -284,11 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */,
 				8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */,
+				C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */,
 				8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */,
 				8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
+				C0A0A5221B134DFD0009E04A /* DetailVC.swift in Sources */,
 				8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				8CE2CB0B1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,

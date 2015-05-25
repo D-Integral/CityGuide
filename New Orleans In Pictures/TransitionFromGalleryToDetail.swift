@@ -1,0 +1,51 @@
+//
+//  TransitionFromGaleryToDetail.swift
+//  New Orleans In Pictures
+//
+//  Created by Александр Нужный on 25.05.15.
+//  Copyright (c) 2015 D Integralas. All rights reserved.
+//
+
+import UIKit
+
+class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitioning {
+    
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        return 1
+    }
+    
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! GalleryVC
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! DetailVC
+        
+        var containerView = transitionContext.containerView()
+        var duration = self.transitionDuration(transitionContext)
+        
+        var indexPaths = fromViewController.collectionView?.indexPathsForSelectedItems()
+        var cell = fromViewController.collectionView?.cellForItemAtIndexPath((indexPaths as! [NSIndexPath])[0]) as! PictureCell
+        
+        var cellImageSnapshot: UIView = cell.imageView.snapshotViewAfterScreenUpdates(false)
+        cellImageSnapshot.frame = containerView.convertRect(cell.imageView.frame, fromView: cell.imageView.superview)
+        cell.imageView.hidden = true
+        
+        toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
+        toViewController.view.alpha = 0
+        toViewController.imageView.hidden = true
+        
+        containerView.addSubview(toViewController.view)
+        containerView.addSubview(cellImageSnapshot)
+        
+        UIView.animateWithDuration(duration, animations: {
+            toViewController.view.alpha = 1.0
+            var frame = containerView.convertRect(toViewController.imageView.frame, fromView: toViewController.view)
+            cellImageSnapshot.frame = frame
+            }, completion: {(finished: Bool) in
+                toViewController.imageView.hidden = false
+                cell.hidden = false
+                //cellImageSnapshot.removeFromSuperview()
+                
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+        })
+    }
+}

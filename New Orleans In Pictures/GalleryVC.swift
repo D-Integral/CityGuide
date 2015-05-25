@@ -12,7 +12,7 @@ import CoreData
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
 
     override func viewDidLoad()
     {
@@ -122,6 +122,24 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(150.0, 150.0)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.delegate = self
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        if self.navigationController?.delegate === self {
+            self.navigationController?.delegate = nil
+        }
+    }
+
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if fromVC == self && toVC.isKindOfClass(DetailVC) {
+            return TransitionFromGalleryToDetail()
+        } else {
+            return nil
+        }
     }
 
 }
