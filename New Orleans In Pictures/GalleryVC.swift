@@ -63,7 +63,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
     
         cell.imageView.image = UIImage(named: sightNames()[indexPath.row] as! String)
-    
+        
         return cell
     }
     
@@ -86,7 +86,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        println("a picture selected")
+        //println("a picture selected")
     }
     
     /*
@@ -135,11 +135,23 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
         if fromVC == self && toVC.isKindOfClass(DetailVC) {
             return TransitionFromGalleryToDetail()
         } else {
             return nil
         }
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let detailVC = segue.destinationViewController as! DetailVC
+        var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
+        var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
+        detailVC.chosenCellIndexPath = indexPath
+        var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
+        
+        detailVC.image = cell.imageView.image!
+        detailVC.titleLabelText = (sightNames()[indexPath.row] as? String)!
+    }
 }

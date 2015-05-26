@@ -11,7 +11,7 @@ import UIKit
 class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
-        return 1
+        return 0.3
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
@@ -37,13 +37,18 @@ class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitio
         containerView.addSubview(cellImageSnapshot)
         
         UIView.animateWithDuration(duration, animations: {
+            
             toViewController.view.alpha = 1.0
+            
+            //move snapshot to DetailVC.imageView
             var frame = containerView.convertRect(toViewController.imageView.frame, fromView: toViewController.view)
             cellImageSnapshot.frame = frame
+            
             }, completion: {(finished: Bool) in
+                
                 toViewController.imageView.hidden = false
                 cell.hidden = false
-                //cellImageSnapshot.removeFromSuperview()
+                cellImageSnapshot.removeFromSuperview()
                 
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         })
