@@ -14,11 +14,17 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     
     var chosenCellIndexPath: NSIndexPath!
+    
     var image: UIImage = UIImage()
     var titleLabelText = String()
+    
+    var selectedPOI: CLLocation = CLLocation()
+    var userLocation: MKUserLocation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +86,15 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         
         let annotation = SightAnnotation(coordinate: coords, image: image)
         self.mapView.addAnnotation(annotation)
+        
+        selectedPOI = CLLocation(latitude: latitude, longitude: longitude)
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         mapView.centerCoordinate = userLocation.location.coordinate
+        
+        self.userLocation = userLocation
+        self.setMapViewRegionBetweenUserLocation(mapView.userLocation.location, andPOI: selectedPOI)
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -102,36 +113,21 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         
         let sightAnnotation = annotation as! SightAnnotation
         annotationView.image = sightAnnotation.image
-        annotationView.frame.size.width = 40.0
-        annotationView.frame.size.height = 40.0
+        annotationView.frame.size.width = 60.0
+        annotationView.frame.size.height = 60.0
         
         return annotationView
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func setMapViewRegionBetweenUserLocation (userLocation: CLLocation, andPOI POI: CLLocation) {
+        
+        var distance = userLocation.distanceFromLocation(POI)
+        var distanceInt = Int(distance)
+        
+        distanceLabel.text = "\(distanceInt) meters to \(titleLabelText)"
+        var additionalSpace = distance * 0.2
+        
+        var region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, distance * 2 + additionalSpace, distance * 2 + additionalSpace)
+        mapView.setRegion(region, animated: true)
+    }
 }
