@@ -25,6 +25,8 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
     
     var selectedPOI: CLLocation = CLLocation()
     var userLocation: MKUserLocation!
+
+    var destination: MKMapItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +39,12 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
+        
         self.navigationController?.delegate = self
     }
     
     override func viewWillDisappear(animated: Bool) {
+        
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
@@ -56,6 +60,7 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
     }
     
     func mapViewSetup() {
+        
         mapView.delegate = self
         mapView.showsUserLocation = true
     }
@@ -88,16 +93,22 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         self.mapView.addAnnotation(annotation)
         
         selectedPOI = CLLocation(latitude: latitude, longitude: longitude)
+
+        var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
+        destination = MKMapItem(placemark: placemark)
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        
         mapView.centerCoordinate = userLocation.location.coordinate
         
         self.userLocation = userLocation
         self.setMapViewRegionBetweenUserLocation(mapView.userLocation.location, andPOI: selectedPOI)
+        self.getDirections()
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
         if !(annotation is SightAnnotation) {
             return nil
         }
@@ -122,12 +133,52 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
     func setMapViewRegionBetweenUserLocation (userLocation: CLLocation, andPOI POI: CLLocation) {
         
         var distance = userLocation.distanceFromLocation(POI)
-        var distanceInt = Int(distance)
-        
-        distanceLabel.text = "\(distanceInt) meters to \(titleLabelText)"
         var additionalSpace = distance * 0.2
         
         var region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, distance * 2 + additionalSpace, distance * 2 + additionalSpace)
+        
         mapView.setRegion(region, animated: true)
+    }
+    
+    func getDirections() {
+        
+        let request = MKDirectionsRequest()
+        request.setSource(MKMapItem.mapItemForCurrentLocation())
+        request.setDestination(destination!)
+        request.requestsAlternateRoutes = false
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
+            if error != nil {
+                println("Error getting directions")
+            } else {
+                self.showRoute(response)
+            }
+        })
+    }
+    
+    func showRoute(response: MKDirectionsResponse) {
+        
+        for route in response.routes as! [MKRoute] {
+            
+            mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
+            
+            var realDistanceInt = Int(route.distance)
+            distanceLabel.text = "\(realDistanceInt) meters to \(titleLabelText)"
+            
+            for step in route.steps {
+                println(step.instructions)
+            }
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .blueColor()
+        renderer.lineWidth = 7.0
+        
+        return renderer
     }
 }
