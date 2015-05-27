@@ -86,6 +86,28 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         mapView.centerCoordinate = userLocation.location.coordinate
     }
     
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if !(annotation is SightAnnotation) {
+            return nil
+        }
+        
+        let reuseId = "sight"
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("sight")
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+        }
+        else {
+            annotationView.annotation = annotation
+        }
+        
+        let sightAnnotation = annotation as! SightAnnotation
+        annotationView.image = sightAnnotation.image
+        annotationView.frame.size.width = 40.0
+        annotationView.frame.size.height = 40.0
+        
+        return annotationView
+    }
+    
     
     
     
