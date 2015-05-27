@@ -103,7 +103,7 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         mapView.centerCoordinate = userLocation.location.coordinate
         
         self.userLocation = userLocation
-        self.setMapViewRegionBetweenUserLocation(mapView.userLocation.location, andPOI: selectedPOI)
+        self.zoomToFitMapItems()
         self.getDirections()
     }
     
@@ -128,16 +128,6 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         annotationView.frame.size.height = 60.0
         
         return annotationView
-    }
-    
-    func setMapViewRegionBetweenUserLocation (userLocation: CLLocation, andPOI POI: CLLocation) {
-        
-        var distance = userLocation.distanceFromLocation(POI)
-        var additionalSpace = distance * 0.2
-        
-        var region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, distance * 2 + additionalSpace, distance * 2 + additionalSpace)
-        
-        mapView.setRegion(region, animated: true)
     }
     
     func getDirections() {
@@ -180,5 +170,27 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         renderer.lineWidth = 7.0
         
         return renderer
+    }
+    
+    func zoomToFitMapItems() {
+        
+        var topLeftCoord = CLLocationCoordinate2D()
+        var bottomRightCoord = CLLocationCoordinate2D()
+
+        topLeftCoord.longitude = fmin(userLocation.coordinate.longitude, selectedPOI.coordinate.longitude)
+        topLeftCoord.latitude = fmax(userLocation.coordinate.latitude, selectedPOI.coordinate.latitude)
+        
+        bottomRightCoord.longitude = fmax(userLocation.coordinate.longitude, selectedPOI.coordinate.longitude)
+        bottomRightCoord.latitude = fmin(userLocation.coordinate.latitude, selectedPOI.coordinate.latitude)
+        
+        var region = MKCoordinateRegion()
+        region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
+        region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5
+        
+        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1
+        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1
+        
+        region = mapView.regionThatFits(region)
+        mapView.setRegion(region, animated: true)
     }
 }
