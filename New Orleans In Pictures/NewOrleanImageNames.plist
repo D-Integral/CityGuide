@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Voodoo</string>
+	<string>Spotted_Cat</string>
+	<string>Mississippi</string>
+	<string>Jean_Lafitte</string>
+	<string>Jamie_Hayes_Gallery</string>
+	<string>Aquarium</string>
+	<string>Armstrong</string>
+	<string>Audubon_Zoo</string>
+	<string>Cabildo</string>
+	<string>French_Quater</string>
+	<string>Mardi_Gras</string>
+	<string>St_Louis</string>
+	<string>Streetcar</string>
+	<string>Superdome</string>
+	<string>WWII_Museum</string>
+	<string>Beauregard_House</string>
+	<string>Besthoff</string>
+	<string>City_Park</string>
+	<string>Fort_Pike</string>
+	<string>Garden_District</string>
+	<string>Immaculate_Church</string>
+	<string>Jackson_Square</string>
+	<string>NOMA</string>
+	<string>Preservation_Hall</string>
+	<string>Saenger_Theatre</string>
+</array>
+</plist>

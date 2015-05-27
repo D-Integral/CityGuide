@@ -27,6 +27,7 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         titleLabel.text = self.titleLabelText
         
         self.mapViewSetup()
+        self.showSelectedSightAnnotation()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,6 +52,34 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
     func mapViewSetup() {
         mapView.delegate = self
         mapView.showsUserLocation = true
+    }
+    
+    func sightsImagesNames () -> NSArray {
+        
+        let pListFile = NSBundle.mainBundle().pathForResource("NewOrleanImageNames", ofType: "plist")
+        let array = NSArray(contentsOfFile: pListFile!)
+        return array!
+    }
+    
+    func sightsLocations () -> [AnyObject] {
+        
+        let pListFile = NSBundle.mainBundle().pathForResource("NewOrleanSightsLocations", ofType: "plist")
+        let array = NSArray(contentsOfFile: pListFile!)
+        return array! as [AnyObject]
+    }
+    
+    func showSelectedSightAnnotation() {
+        
+        var selectedSightIndex = sightsImagesNames().indexOfObject(titleLabelText)
+        var sightsCoords = sightsLocations()
+        
+        var latitude = CLLocationDegrees((sightsCoords[selectedSightIndex][0] as! NSString).doubleValue)
+        var longitude = CLLocationDegrees((sightsCoords[selectedSightIndex][1] as! NSString).doubleValue)
+        var coords = CLLocationCoordinate2DMake(latitude, longitude)
+        var image = self.image
+        
+        let annotation = SightAnnotation(coordinate: coords, image: image)
+        self.mapView.addAnnotation(annotation)
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
