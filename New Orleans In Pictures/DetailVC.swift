@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class DetailVC: UIViewController, UINavigationControllerDelegate {
+class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -25,6 +25,8 @@ class DetailVC: UIViewController, UINavigationControllerDelegate {
         
         imageView.image = self.image
         titleLabel.text = self.titleLabelText
+        
+        self.mapViewSetup()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -45,4 +47,40 @@ class DetailVC: UIViewController, UINavigationControllerDelegate {
             return nil
         }
     }
+    
+    func mapViewSetup() {
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+    }
+    
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        mapView.centerCoordinate = userLocation.location.coordinate
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
