@@ -28,14 +28,44 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
 
     var destination: MKMapItem?
     
+    var interactivePopTransition: UIPercentDrivenInteractiveTransition!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = self.image
-        titleLabel.text = self.titleLabelText
-        
+        self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
+        
+        var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
+        popRecognizer.edges = UIRectEdge.Left
+        self.view.addGestureRecognizer(popRecognizer)
+    }
+    
+    func receiveDataFromGalleryVC() {
+        
+        imageView.image = self.image
+        titleLabel.text = self.titleLabelText
+    }
+    
+    func handlePopRecognizer(recognizer: UIScreenEdgePanGestureRecognizer) {
+        
+        var progress = recognizer.translationInView(self.view).x / self.view.bounds.size.width * 1.0
+        progress = min(1.0, max(0.0, progress))
+        
+        if recognizer.state == UIGestureRecognizerState.Began {
+            self.interactivePopTransition = UIPercentDrivenInteractiveTransition()
+            self.navigationController?.popViewControllerAnimated(true)
+        } else if recognizer.state == UIGestureRecognizerState.Changed {
+            self.interactivePopTransition.updateInteractiveTransition(progress)
+        } else if recognizer.state == UIGestureRecognizerState.Ended || recognizer.state == UIGestureRecognizerState.Cancelled {
+            if progress > 0.5 {
+                self.interactivePopTransition.finishInteractiveTransition()
+            } else {
+                self.interactivePopTransition.cancelInteractiveTransition()
+            }
+            self.interactivePopTransition = nil
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -54,6 +84,15 @@ class DetailVC: UIViewController, UINavigationControllerDelegate, MKMapViewDeleg
         
         if fromVC === self && toVC.isKindOfClass(GalleryVC) {
             return TransitionFromDetailToGallery()
+        } else {
+            return nil
+        }
+    }
+    
+    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        if animationController.isKindOfClass(TransitionFromDetailToGallery) {
+            return self.interactivePopTransition
         } else {
             return nil
         }
