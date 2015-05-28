@@ -16,7 +16,7 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailVC
+        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! TableViewController
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! GalleryVC
         
         var containerView = transitionContext.containerView()
@@ -26,7 +26,7 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
         imageSnapshot.frame = containerView.convertRect(fromViewController.imageView.frame, fromView: fromViewController.imageView.superview)
         fromViewController.imageView.hidden = true
         
-        var cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.chosenCellIndexPath) as! PictureCell
+        var cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
         cell.imageView.hidden = true
         
         toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)

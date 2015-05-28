@@ -38,11 +38,17 @@
 		C07759091B15A4EF00F76ECA /* SightAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07759071B15A4EF00F76ECA /* SightAnnotation.swift */; };
 		C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
 		C077590C1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
-		C0A0A5221B134DFD0009E04A /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */; };
+		C07820091B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
+		C078200A1B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
+		C078200C1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078200B1B171EDA002C95CB /* ImageTableViewCell.swift */; };
+		C078200D1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078200B1B171EDA002C95CB /* ImageTableViewCell.swift */; };
+		C078200F1B171F09002C95CB /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078200E1B171F09002C95CB /* TitleTableViewCell.swift */; };
+		C07820101B171F09002C95CB /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078200E1B171F09002C95CB /* TitleTableViewCell.swift */; };
+		C07820121B171F1D002C95CB /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820111B171F1D002C95CB /* MapTableViewCell.swift */; };
+		C07820131B171F1D002C95CB /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820111B171F1D002C95CB /* MapTableViewCell.swift */; };
 		C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 		C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
 		C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
-		C0DCB7D11B13185F00ED5DCF /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */; };
 		C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,8 +85,11 @@
 		C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanSightsLocations.plist; sourceTree = "<group>"; };
 		C07759071B15A4EF00F76ECA /* SightAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotation.swift; sourceTree = "<group>"; };
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
+		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
+		C078200B1B171EDA002C95CB /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		C078200E1B171F09002C95CB /* TitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		C07820111B171F1D002C95CB /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
-		C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,11 +136,14 @@
 			children = (
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
 				8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */,
-				C0DCB7D01B13185F00ED5DCF /* DetailVC.swift */,
+				C07820081B170486002C95CB /* TableViewController.swift */,
 				C07759071B15A4EF00F76ECA /* SightAnnotation.swift */,
 				C077590A1B15A53700F76ECA /* SightAnnotationView.swift */,
 				C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */,
 				C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */,
+				C078200B1B171EDA002C95CB /* ImageTableViewCell.swift */,
+				C078200E1B171F09002C95CB /* TitleTableViewCell.swift */,
+				C07820111B171F1D002C95CB /* MapTableViewCell.swift */,
 				C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */,
 				C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */,
 				8CE2CB0D1AEA5DF80032F74D /* View */,
@@ -305,17 +317,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07820121B171F1D002C95CB /* MapTableViewCell.swift in Sources */,
 				C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */,
+				C07820091B170486002C95CB /* TableViewController.swift in Sources */,
 				8CE2CB4F1AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */,
 				8CE2CB0A1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 				C07759081B15A4EF00F76ECA /* SightAnnotation.swift in Sources */,
+				C078200F1B171F09002C95CB /* TitleTableViewCell.swift in Sources */,
 				C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
-				C0DCB7D11B13185F00ED5DCF /* DetailVC.swift in Sources */,
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
+				C078200C1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */,
 				8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
 				8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
 			);
@@ -325,17 +340,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C07820131B171F1D002C95CB /* MapTableViewCell.swift in Sources */,
 				C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */,
+				C078200A1B170486002C95CB /* TableViewController.swift in Sources */,
 				8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */,
 				C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */,
 				8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */,
 				C07759091B15A4EF00F76ECA /* SightAnnotation.swift in Sources */,
+				C07820101B171F09002C95CB /* TitleTableViewCell.swift in Sources */,
 				C077590C1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
 				8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
-				C0A0A5221B134DFD0009E04A /* DetailVC.swift in Sources */,
 				8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
+				C078200D1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */,
 				8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				8CE2CB0B1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 			);
