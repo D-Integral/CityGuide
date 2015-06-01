@@ -36,6 +36,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.view.addGestureRecognizer(popRecognizer)
 
         
+        self.setupTableView()
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -225,8 +226,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
         region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5
         
-        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1
-        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1
+        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.2
+        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.2
         
         region = mapView.regionThatFits(region)
         mapView.setRegion(region, animated: true)
@@ -239,4 +240,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return 1
     }
+    
+    func setupTableView() {
+        
+    }    
 }
