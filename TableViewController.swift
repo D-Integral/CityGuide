@@ -251,4 +251,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             destinationVC.steps = self.routeSteps
         }
     }
+    
+    @IBAction func toStepsVC(sender: AnyObject) {
+        self.performSegueWithIdentifier("toSteps", sender: self)
+    }
+    
 }

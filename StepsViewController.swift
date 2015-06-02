@@ -11,10 +11,13 @@ import UIKit
 class StepsViewController: UITableViewController {
     
     var steps: [AnyObject]!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
+        popRecognizer.edges = UIRectEdge.Left
+        self.view.addGestureRecognizer(popRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +36,7 @@ class StepsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! StepTableViewCell
-        cell.instructionLabel.text = self.steps[indexPath.row].instructions
+        cell.instructionLabel.text = "\(indexPath.row + 1). \(self.steps[indexPath.row].instructions)"
         
         return cell
     }
@@ -57,7 +60,7 @@ class StepsViewController: UITableViewController {
         
         for a in cells {
             let cell: UITableViewCell = a as! UITableViewCell
-            UIView.animateWithDuration(1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
+            UIView.animateWithDuration(0.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: nil, animations: {
                 cell.transform = CGAffineTransformMakeTranslation(0, 0);
                 }, completion: nil)
             index += 1
