@@ -197,10 +197,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             titleLabel.text = "\(realDistanceInt) meters to \(titleLabelText)"
             
             self.routeSteps = route.steps
-            
-            for step in route.steps {
-                println(step.instructions)
-            }
         }
     }
     
