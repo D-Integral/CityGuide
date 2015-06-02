@@ -27,6 +27,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var interactivePopTransition: UIPercentDrivenInteractiveTransition!
     
     var selectedCellIndexPath: NSIndexPath!
+    
+    var routeSteps: [AnyObject]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +37,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
 
-        
-        self.setupTableView()
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -163,8 +163,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         let sightAnnotation = annotation as! SightAnnotation
         annotationView.image = sightAnnotation.image
-        annotationView.frame.size.width = 60.0
-        annotationView.frame.size.height = 60.0
+        annotationView.frame.size.width = 100.0
+        annotationView.frame.size.height = 100.0
         
         return annotationView
     }
@@ -196,6 +196,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             var realDistanceInt = Int(route.distance)
             titleLabel.text = "\(realDistanceInt) meters to \(titleLabelText)"
             
+            self.routeSteps = route.steps
+            
             for step in route.steps {
                 println(step.instructions)
             }
@@ -226,8 +228,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
         region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5
         
-        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.2
-        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.2
+        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.3
+        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.3
         
         region = mapView.regionThatFits(region)
         mapView.setRegion(region, animated: true)
@@ -241,7 +243,16 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
        return 1
     }
     
-    func setupTableView() {
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         
-    }    
+        self.performSegueWithIdentifier("toSteps", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toSteps" {
+            var destinationVC = segue.destinationViewController as! StepsViewController
+            destinationVC.steps = self.routeSteps
+        }
+    }
 }

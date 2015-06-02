@@ -184,11 +184,83 @@
                         <outlet property="imageView" destination="6ks-ur-5Qj" id="m82-ci-Be6"/>
                         <outlet property="mapView" destination="4ID-x3-ywN" id="Ms6-pd-Ajx"/>
                         <outlet property="titleLabel" destination="CVe-JP-1ZB" id="goP-VO-wpI"/>
+                        <segue destination="xmy-Yr-1ja" kind="show" identifier="toSteps" id="GMt-eG-IXv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMn-gz-SR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="970.5" y="462"/>
+        </scene>
+        <!--Steps View Controller-->
+        <scene sceneID="L4K-iA-pgH">
+            <objects>
+                <tableViewController id="xmy-Yr-1ja" customClass="StepsViewController" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9bo-T8-phg">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="o5s-LK-g6g" customClass="StepTableViewCell" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o5s-LK-g6g" id="E8J-g2-BUJ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGZ-3B-sAc">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="iGZ-3B-sAc" secondAttribute="bottom" id="DHV-re-VbF"/>
+                                        <constraint firstItem="iGZ-3B-sAc" firstAttribute="top" secondItem="E8J-g2-BUJ" secondAttribute="top" id="Ja7-bh-wVc"/>
+                                        <constraint firstAttribute="trailing" secondItem="iGZ-3B-sAc" secondAttribute="trailing" id="SZ0-fu-tIo"/>
+                                        <constraint firstAttribute="centerY" secondItem="iGZ-3B-sAc" secondAttribute="centerY" id="USZ-Sz-V4P"/>
+                                        <constraint firstItem="iGZ-3B-sAc" firstAttribute="leading" secondItem="E8J-g2-BUJ" secondAttribute="leading" id="avz-Xq-FJ1"/>
+                                        <constraint firstAttribute="centerX" secondItem="iGZ-3B-sAc" secondAttribute="centerX" id="oa4-i3-9eT"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="iGZ-3B-sAc"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <exclude reference="DHV-re-VbF"/>
+                                            <exclude reference="Ja7-bh-wVc"/>
+                                            <exclude reference="SZ0-fu-tIo"/>
+                                            <exclude reference="USZ-Sz-V4P"/>
+                                            <exclude reference="avz-Xq-FJ1"/>
+                                            <exclude reference="oa4-i3-9eT"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="iGZ-3B-sAc"/>
+                                        </mask>
+                                        <mask key="constraints">
+                                            <include reference="DHV-re-VbF"/>
+                                            <include reference="Ja7-bh-wVc"/>
+                                            <include reference="SZ0-fu-tIo"/>
+                                            <include reference="USZ-Sz-V4P"/>
+                                            <include reference="avz-Xq-FJ1"/>
+                                            <include reference="oa4-i3-9eT"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="instructionLabel" destination="iGZ-3B-sAc" id="6qE-LA-VdR"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xmy-Yr-1ja" id="DYd-bt-UAA"/>
+                            <outlet property="delegate" destination="xmy-Yr-1ja" id="6ye-1J-5GI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Mhj-qm-vg8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FhB-tp-ZEs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="462"/>
         </scene>
     </scenes>
 </document>

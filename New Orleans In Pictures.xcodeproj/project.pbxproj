@@ -29,6 +29,10 @@
 		8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
+		C0044DB81B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
+		C0044DB91B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
+		C0044DBB1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */; };
+		C0044DBC1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */; };
 		C07759001B159FBA00F76ECA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07758FF1B159FBA00F76ECA /* MapKit.framework */; };
 		C07759021B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */; };
 		C07759031B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */; };
@@ -80,6 +84,8 @@
 		8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Model/PointOfInterest.swift; sourceTree = "<group>"; };
 		8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataObjectAccessor.swift; path = Model/DataObjectAccessor.swift; sourceTree = "<group>"; };
+		C0044DB71B1D925600D1FE2C /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepsViewController.swift; path = ../StepsViewController.swift; sourceTree = "<group>"; };
+		C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		C07758FF1B159FBA00F76ECA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanImageNames.plist; sourceTree = "<group>"; };
 		C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanSightsLocations.plist; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
 				8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */,
 				C07820081B170486002C95CB /* TableViewController.swift */,
+				C0044DB71B1D925600D1FE2C /* StepsViewController.swift */,
 				C07759071B15A4EF00F76ECA /* SightAnnotation.swift */,
 				C077590A1B15A53700F76ECA /* SightAnnotationView.swift */,
 				C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */,
@@ -144,6 +151,7 @@
 				C078200B1B171EDA002C95CB /* ImageTableViewCell.swift */,
 				C078200E1B171F09002C95CB /* TitleTableViewCell.swift */,
 				C07820111B171F1D002C95CB /* MapTableViewCell.swift */,
+				C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */,
 				C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */,
 				C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */,
 				8CE2CB0D1AEA5DF80032F74D /* View */,
@@ -326,11 +334,13 @@
 				8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */,
 				8CE2CB0A1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 				C07759081B15A4EF00F76ECA /* SightAnnotation.swift in Sources */,
+				C0044DB81B1D925600D1FE2C /* StepsViewController.swift in Sources */,
 				C078200F1B171F09002C95CB /* TitleTableViewCell.swift in Sources */,
 				C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				C078200C1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */,
+				C0044DBB1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */,
 				8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
 				8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
 			);
@@ -349,11 +359,13 @@
 				8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */,
 				C07759091B15A4EF00F76ECA /* SightAnnotation.swift in Sources */,
+				C0044DB91B1D925600D1FE2C /* StepsViewController.swift in Sources */,
 				C07820101B171F09002C95CB /* TitleTableViewCell.swift in Sources */,
 				C077590C1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
 				8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
 				8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				C078200D1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */,
+				C0044DBC1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */,
 				8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				8CE2CB0B1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */,
 			);
