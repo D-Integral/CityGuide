@@ -25,7 +25,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
     func sightNames() -> NSArray
@@ -68,9 +68,17 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
-    
-        cell.imageView.image = UIImage(named: sightNames()[indexPath.row] as! String)
         
+        switch indexPath.section {
+        case 0:
+            cell.imageView.image = UIImage(named: wantToSeeSights()[indexPath.row] as! String)
+        case 1:
+            cell.imageView.image = UIImage(named: sightNames()[indexPath.row] as! String)
+        case 2:
+            cell.imageView.image = UIImage(named: alreadySeenSights()[indexPath.row] as! String)
+        default: break
+        }
+    
         return cell
     }
     
@@ -86,14 +94,20 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             case 0:
                 if 0 == self.wantToSeeSights().count {
                     header?.headerLabel.text = headerTexts[indexPath.section] + ": (you didn't add any sight yet)"
+                } else {
+                    header?.headerLabel.text = headerTexts[indexPath.section]
                 }
             case 1:
                 if 0 == self.sightNames().count {
                 header?.headerLabel.text = headerTexts[indexPath.section] + ": (empty)"
+                } else {
+                    header?.headerLabel.text = headerTexts[indexPath.section]
                 }
             case 2:
-                if 0 == self.alreadySeenSights().count {
+            if 0 == self.alreadySeenSights().count {
                     header?.headerLabel.text = headerTexts[indexPath.section] + ": (you haven't visited any sight yet)"
+            } else {
+                header?.headerLabel.text = headerTexts[indexPath.section]
                 }
             default: header?.headerLabel.text = headerTexts[indexPath.section]
             }
@@ -108,7 +122,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(150.0, 150.0)
+        return CGSizeMake(75.0, 75.0)
     }
     
     override func viewDidAppear(animated: Bool) {
