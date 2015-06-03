@@ -15,7 +15,7 @@ let headerReuseIdentifier = "standardHeader"
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
     
     let headerTexts = ["I want to see", "What To See In New Orleans", "Already Seen"]
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -43,11 +43,23 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     func wantToSeeSights() -> NSArray {
         var wantToSeeSights = [String]()
         
+        for pointOfInterest in SightsListKeeper.sharedKeeper.pointsOfInterest {
+            if true == pointOfInterest.valueForKey("planned") as? Bool {
+                wantToSeeSights += [pointOfInterest.valueForKey("name") as! String]
+            }
+        }
+        
         return wantToSeeSights
     }
     
     func alreadySeenSights() -> NSArray {
         var alreadySeenSights = [String]()
+        
+        for pointOfInterest in SightsListKeeper.sharedKeeper.pointsOfInterest {
+            if true == pointOfInterest.valueForKey("seen") as? Bool {
+                alreadySeenSights += [pointOfInterest.valueForKey("name") as! String]
+            }
+        }
         
         return alreadySeenSights
     }
@@ -118,7 +130,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        
+        self.performSegueWithIdentifier("toTable", sender: self)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -127,6 +139,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
+        self.collectionView?.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -134,6 +147,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             self.navigationController?.delegate = nil
         }
     }
+    
 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
@@ -154,5 +168,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         tableVC.image = cell.imageView.image!
         tableVC.titleLabelText = (sightNames()[indexPath.row] as? String)!
+        tableVC.sightName = (sightNames()[indexPath.row] as? String)!
     }
 }

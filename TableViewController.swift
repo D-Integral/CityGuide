@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreData
 
 class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate {
     
@@ -32,6 +33,11 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var selectedCellIndexPath: NSIndexPath!
     
     var routeSteps: [AnyObject]!
+    
+    var sightName: String!
+    
+    var managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var currentManagedObject: NSManagedObject!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +46,15 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
-        self.initialSwitchSetup()
+        self.initialSwitchesSetup()
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
+    }
+    
+    func initialSwitchesSetup() {
+        wantSeeSwitch.on = false
+        seenSwitch.on = false
     }
     
     func receiveDataFromGalleryVC() {
@@ -264,14 +275,52 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.performSegueWithIdentifier("toSteps", sender: self)
     }
     
-    func initialSwitchSetup() {
-        wantSeeSwitch.on = false
-        seenSwitch.on = false
-    }
-    
     @IBAction func wantToSee(sender: AnyObject) {
+        
+        var currentObject = self.managedObjectForSelectedItem()
+        
+        if true == (sender as! UISwitch).on {
+            currentObject.setValue(true, forKey: "planned")
+            self.saveManagedObjectContext()
+        } else {
+            currentObject.setValue(false, forKey: "planned")
+            self.saveManagedObjectContext()
+        }
     }
     
     @IBAction func alreadySeen(sender: AnyObject) {
+        
+        var currentObject = self.managedObjectForSelectedItem()
+        
+        if true == (sender as! UISwitch).on {
+            currentObject.setValue(true, forKey: "seen")
+            self.saveManagedObjectContext()
+        } else {
+            currentObject.setValue(false, forKey: "seen")
+            self.saveManagedObjectContext()
+        }
+    }
+    
+    func managedObjectForSelectedItem() -> NSManagedObject {
+        
+        var currentObject: NSManagedObject!
+        var objects = SightsListKeeper.sharedKeeper.pointsOfInterest
+        
+        for object in objects as! [NSManagedObject] {
+            if self.sightName == object.valueForKey("name") as? String {
+                currentObject = object
+            }
+        }
+        
+        return currentObject
+    }
+    
+    func saveManagedObjectContext() {
+        var error: NSError?
+        managedObjectContext?.save(&error)
+        
+        if let err = error {
+            println(err.localizedFailureReason)
+        }
     }
 }

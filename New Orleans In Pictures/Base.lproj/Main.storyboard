@@ -61,7 +61,6 @@
                                 <size key="customSize" width="150" height="150"/>
                                 <connections>
                                     <outlet property="imageView" destination="G9l-US-Nzv" id="d5i-4V-aP0"/>
-                                    <segue destination="yLL-KC-aSf" kind="show" id="wTy-nt-zkP"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -91,6 +90,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="3u5-QG-6Pl"/>
+                    <connections>
+                        <segue destination="yLL-KC-aSf" kind="show" identifier="toTable" id="Op3-Rc-QMf"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7U-k5-GlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
