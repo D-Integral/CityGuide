@@ -13,6 +13,8 @@ let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
+    
+    let headerTexts = ["I want to see", "What To See In New Orleans", "Already Seen"]
 
     override func viewDidLoad()
     {
@@ -37,26 +39,31 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         return sightNames
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func wantToSeeSights() -> NSArray {
+        var wantToSeeSights = [String]()
+        
+        return wantToSeeSights
     }
-    */
-
-    // MARK: UICollectionViewDataSource
+    
+    func alreadySeenSights() -> NSArray {
+        var alreadySeenSights = [String]()
+        
+        return alreadySeenSights
+    }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return 3
     }
 
-
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sightNames().count
+        
+        switch section {
+        case 0: return self.wantToSeeSights().count
+        case 1: return self.sightNames().count
+        case 2: return self.alreadySeenSights().count
+        default: return 0
+        }
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -74,51 +81,31 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         if UICollectionElementKindSectionHeader == kind
         {
             header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier, forIndexPath: indexPath) as? HeaderView
-            header?.headerLabel.text = headerTexts[indexPath.row]
+            
+            switch indexPath.section {
+            case 0:
+                if 0 == self.wantToSeeSights().count {
+                    header?.headerLabel.text = headerTexts[indexPath.section] + ": (you didn't add any sight yet)"
+                }
+            case 1:
+                if 0 == self.sightNames().count {
+                header?.headerLabel.text = headerTexts[indexPath.section] + ": (empty)"
+                }
+            case 2:
+                if 0 == self.alreadySeenSights().count {
+                    header?.headerLabel.text = headerTexts[indexPath.section] + ": (you haven't visited any sight yet)"
+                }
+            default: header?.headerLabel.text = headerTexts[indexPath.section]
+            }
         }
         
         return header!
     }
-    
-    let headerTexts = ["What To See In New Orleans", "Already Seen"]
-
-    // MARK: UICollectionViewDelegate
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        //println("a picture selected")
+        
     }
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-    
-    // MARK: UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(150.0, 150.0)
