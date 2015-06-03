@@ -15,6 +15,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var wantSeeSwitch: UISwitch!
+    @IBOutlet weak var seenSwitch: UISwitch!
+    
     
     var image: UIImage = UIImage()
     var titleLabelText = String()
@@ -36,7 +39,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
-
+        
+        self.initialSwitchSetup()
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -232,11 +236,15 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-       return 3
+        return 4
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 1
+        if section == 3 {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
@@ -256,4 +264,14 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.performSegueWithIdentifier("toSteps", sender: self)
     }
     
+    func initialSwitchSetup() {
+        wantSeeSwitch.on = false
+        seenSwitch.on = false
+    }
+    
+    @IBAction func wantToSee(sender: AnyObject) {
+    }
+    
+    @IBAction func alreadySeen(sender: AnyObject) {
+    }
 }
