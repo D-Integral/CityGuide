@@ -46,15 +46,27 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
-        self.initialSwitchesSetup()
+        self.currentManagedObject = self.managedObjectForSelectedItem()
+        
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
+        self.initialSwitchesSetup()
     }
     
     func initialSwitchesSetup() {
-        wantSeeSwitch.on = false
-        seenSwitch.on = false
+        
+        if true == currentManagedObject.valueForKey("planned") as? Bool {
+            wantSeeSwitch.on = true
+        } else {
+            wantSeeSwitch.on = false
+        }
+        
+        if true == currentManagedObject.valueForKey("seen") as? Bool {
+            seenSwitch.on = true
+        } else {
+            seenSwitch.on = false
+        }
     }
     
     func receiveDataFromGalleryVC() {
@@ -309,6 +321,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         for object in objects as! [NSManagedObject] {
             if self.sightName == object.valueForKey("name") as? String {
                 currentObject = object
+                break
             }
         }
         

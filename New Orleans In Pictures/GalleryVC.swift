@@ -41,6 +41,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func wantToSeeSights() -> NSArray {
+        
         var wantToSeeSights = [String]()
         
         for pointOfInterest in SightsListKeeper.sharedKeeper.pointsOfInterest {
@@ -53,6 +54,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func alreadySeenSights() -> NSArray {
+        
         var alreadySeenSights = [String]()
         
         for pointOfInterest in SightsListKeeper.sharedKeeper.pointsOfInterest {
@@ -105,21 +107,21 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             switch indexPath.section {
             case 0:
                 if 0 == self.wantToSeeSights().count {
-                    header?.headerLabel.text = headerTexts[indexPath.section] + ": (you didn't add any sight yet)"
+                    header?.headerLabel.text = ""
                 } else {
                     header?.headerLabel.text = headerTexts[indexPath.section]
                 }
             case 1:
                 if 0 == self.sightNames().count {
-                header?.headerLabel.text = headerTexts[indexPath.section] + ": (empty)"
+                    header?.headerLabel.text = ""
                 } else {
                     header?.headerLabel.text = headerTexts[indexPath.section]
                 }
             case 2:
-            if 0 == self.alreadySeenSights().count {
-                    header?.headerLabel.text = headerTexts[indexPath.section] + ": (you haven't visited any sight yet)"
-            } else {
-                header?.headerLabel.text = headerTexts[indexPath.section]
+                if 0 == self.alreadySeenSights().count {
+                    header?.headerLabel.text = ""
+                } else {
+                    header?.headerLabel.text = headerTexts[indexPath.section]
                 }
             default: header?.headerLabel.text = headerTexts[indexPath.section]
             }
@@ -148,7 +150,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if fromVC == self && toVC.isKindOfClass(TableViewController) {
