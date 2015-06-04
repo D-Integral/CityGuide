@@ -36,7 +36,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         for pointOfInterest in SightsListKeeper.sharedKeeper.pointsOfInterest
         {
-            sightNames += [pointOfInterest.valueForKey("name") as! String]
+            if true != pointOfInterest.valueForKey("seen") as? Bool && true != pointOfInterest.valueForKey("planned") as? Bool {
+                sightNames += [pointOfInterest.valueForKey("name") as! String]
+            }
         }
         
         return sightNames
