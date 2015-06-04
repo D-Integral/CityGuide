@@ -202,12 +202,23 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         let tableVC = segue.destinationViewController as! TableViewController
         var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
         var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
-        tableVC.selectedCellIndexPath = indexPath
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
+        tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!
-        tableVC.titleLabelText = (sightNames()[indexPath.row] as? String)!
-        tableVC.sightName = (sightNames()[indexPath.row] as? String)!
         tableVC.currentManagedObject = self.currentManagedObject
+        
+        switch indexPath.section {
+        case 0:
+            tableVC.titleLabelText = (wantToSeeSights()[indexPath.row] as? String)!
+            tableVC.sightName = (wantToSeeSights()[indexPath.row] as? String)!
+        case 1:
+            tableVC.titleLabelText = (sightNames()[indexPath.row] as? String)!
+            tableVC.sightName = (sightNames()[indexPath.row] as? String)!
+        case 2:
+            tableVC.titleLabelText = (alreadySeenSights()[indexPath.row] as? String)!
+            tableVC.sightName = (alreadySeenSights()[indexPath.row] as? String)!
+        default: break
+        }
     }
 }
