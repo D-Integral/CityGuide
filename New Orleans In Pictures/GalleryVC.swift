@@ -134,7 +134,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(75.0, 75.0)
+        return CGSizeMake(150.0, 150.0)
     }
     
     override func viewDidAppear(animated: Bool) {
