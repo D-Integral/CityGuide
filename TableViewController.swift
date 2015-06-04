@@ -299,6 +299,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     @IBAction func alreadySeen(sender: AnyObject) {
         
         if true == (sender as! UISwitch).on {
+            wantSeeSwitch.on = false
+            currentManagedObject.setValue(false, forKey: "planned")
             currentManagedObject.setValue(true, forKey: "seen")
             self.saveManagedObjectContext()
         } else {

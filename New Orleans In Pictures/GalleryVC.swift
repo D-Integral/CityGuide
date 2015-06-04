@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
