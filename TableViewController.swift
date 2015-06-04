@@ -46,8 +46,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
-        self.currentManagedObject = self.managedObjectForSelectedItem()
-        
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -289,43 +287,24 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     @IBAction func wantToSee(sender: AnyObject) {
         
-        var currentObject = self.managedObjectForSelectedItem()
-        
         if true == (sender as! UISwitch).on {
-            currentObject.setValue(true, forKey: "planned")
+            currentManagedObject.setValue(true, forKey: "planned")
             self.saveManagedObjectContext()
         } else {
-            currentObject.setValue(false, forKey: "planned")
+            currentManagedObject.setValue(false, forKey: "planned")
             self.saveManagedObjectContext()
         }
     }
     
     @IBAction func alreadySeen(sender: AnyObject) {
         
-        var currentObject = self.managedObjectForSelectedItem()
-        
         if true == (sender as! UISwitch).on {
-            currentObject.setValue(true, forKey: "seen")
+            currentManagedObject.setValue(true, forKey: "seen")
             self.saveManagedObjectContext()
         } else {
-            currentObject.setValue(false, forKey: "seen")
+            currentManagedObject.setValue(false, forKey: "seen")
             self.saveManagedObjectContext()
         }
-    }
-    
-    func managedObjectForSelectedItem() -> NSManagedObject {
-        
-        var currentObject: NSManagedObject!
-        var objects = SightsListKeeper.sharedKeeper.pointsOfInterest
-        
-        for object in objects as! [NSManagedObject] {
-            if self.sightName == object.valueForKey("name") as? String {
-                currentObject = object
-                break
-            }
-        }
-        
-        return currentObject
     }
     
     func saveManagedObjectContext() {

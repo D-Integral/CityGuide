@@ -16,6 +16,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     let headerTexts = ["I want to see", "What To See In New Orleans", "Already Seen"]
     
+    var currentManagedObject: NSManagedObject!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -132,7 +134,41 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+        self.currentManagedObject = self.managedObjectForSelecteditemAtIndexPath(indexPath)
         self.performSegueWithIdentifier("toTable", sender: self)
+    }
+    
+    func managedObjectForSelecteditemAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject {
+        
+        var selectedObject: NSManagedObject!
+        var objects = SightsListKeeper.sharedKeeper.pointsOfInterest
+        
+        switch indexPath.section {
+        case 0:
+            for object in objects as! [NSManagedObject] {
+                if self.wantToSeeSights()[indexPath.row] as? String == object.valueForKey("name") as? String {
+                    selectedObject = object
+                    break
+                }
+            }
+        case 1:
+            for object in objects as! [NSManagedObject] {
+                if self.sightNames()[indexPath.row] as? String == object.valueForKey("name") as? String {
+                    selectedObject = object
+                    break
+                }
+            }
+        case 2:
+            for object in objects as! [NSManagedObject] {
+                if self.alreadySeenSights()[indexPath.row] as? String == object.valueForKey("name") as? String {
+                    selectedObject = object
+                    break
+                }
+            }
+        default: break
+        }
+        
+        return selectedObject
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -170,5 +206,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         tableVC.image = cell.imageView.image!
         tableVC.titleLabelText = (sightNames()[indexPath.row] as? String)!
         tableVC.sightName = (sightNames()[indexPath.row] as? String)!
+        tableVC.currentManagedObject = self.currentManagedObject
     }
 }
