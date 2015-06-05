@@ -18,6 +18,8 @@ class StepsViewController: UITableViewController {
         var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
+        
+        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +39,7 @@ class StepsViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! StepTableViewCell
         cell.instructionLabel.text = "\(indexPath.row + 1). \(self.steps[indexPath.row].instructions)"
+        cell.contentView.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_1.png")!)
         
         return cell
     }
@@ -65,5 +68,10 @@ class StepsViewController: UITableViewController {
                 }, completion: nil)
             index += 1
         }
+    }
+    
+    func setBackgroundImage(image: UIImage, forView view: UIView) {
+        self.view.backgroundColor = UIColor(patternImage: image)
+        view.backgroundColor = UIColor(patternImage: image)
     }
 }

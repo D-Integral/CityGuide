@@ -246,17 +246,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         }
     }
     
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        
-//        var cell = self.tableView.cellForRowAtIndexPath(indexPath)
-//        var height: CGFloat!
-//        if cell is MapTableViewCell {
-//            height = 300
-//        }
-//        
-//        return height
-//    }
-    
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         
         self.performSegueWithIdentifier("toSteps", sender: self)
