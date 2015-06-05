@@ -70,7 +70,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     func receiveDataFromGalleryVC() {
         
         imageView.image = self.image
-        titleLabel.text = self.titleLabelText
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -196,6 +195,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
             
             var realDistanceInt = Int(route.distance)
+            self.setupTitleLabel()
             titleLabel.text = "\(realDistanceInt) meters to \(titleLabelText)"
             
             self.routeSteps = route.steps
@@ -293,5 +293,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         if let err = error {
             println(err.localizedFailureReason)
         }
+    }
+    
+    func setupTitleLabel() {
+        titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
     }
 }

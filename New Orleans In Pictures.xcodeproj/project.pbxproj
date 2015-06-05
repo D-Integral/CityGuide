@@ -53,6 +53,10 @@
 		C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 		C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
 		C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
+		C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */; };
+		C0D0984A1B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */; };
+		C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
+		C0D0984C1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
 		C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +100,8 @@
 		C078200E1B171F09002C95CB /* TitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		C07820111B171F1D002C95CB /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
+		C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_1.png; sourceTree = "<group>"; };
+		C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_2.png; sourceTree = "<group>"; };
 		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +175,8 @@
 		8CE2CADA1AEA2BC60032F74D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */,
+				C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */,
 				8CE2CADB1AEA2BC60032F74D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -300,9 +308,11 @@
 			files = (
 				8CE2CB061AEA5A090032F74D /* SightsList.plist in Resources */,
 				C07759051B15A38600F76ECA /* NewOrleanSightsLocations.plist in Resources */,
+				C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */,
 				8CE2CAE51AEA2BC60032F74D /* Main.storyboard in Resources */,
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
 				C07759021B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */,
+				C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
 				8CE2CAE71AEA2BC60032F74D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,10 +321,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0D0984C1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */,
 				C07759031B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */,
 				C07759061B15A38600F76ECA /* NewOrleanSightsLocations.plist in Resources */,
 				8CE2CB071AEA5A090032F74D /* SightsList.plist in Resources */,
 				8C6D2AD01AEF649100651CCF /* Images.xcassets in Resources */,
+				C0D0984A1B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -23,6 +23,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         
         self.clearsSelectionOnViewWillAppear = false
+        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_2.png")!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -223,5 +224,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-
+    func setBackgroundImage(image: UIImage) {
+        self.collectionView?.frame = self.view.frame
+        self.collectionView?.backgroundColor = UIColor(patternImage: image)
+    }
 }

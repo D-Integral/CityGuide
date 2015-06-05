@@ -137,7 +137,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6wo-PE-sjo" id="Y3p-Ah-gDv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVe-JP-1ZB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVe-JP-1ZB">
                                                     <rect key="frame" x="14" y="11" width="372" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="372" id="0Wq-C6-6Yk"/>
@@ -146,12 +146,46 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <exclude reference="0Wq-C6-6Yk"/>
+                                                            <exclude reference="bnY-fr-aIN"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="CVe-JP-1ZB" secondAttribute="bottom" id="0Pf-X3-kFI"/>
+                                                <constraint firstAttribute="trailing" secondItem="CVe-JP-1ZB" secondAttribute="trailing" id="4kl-X3-1jf"/>
                                                 <constraint firstAttribute="centerY" secondItem="CVe-JP-1ZB" secondAttribute="centerY" id="50d-nu-0jy"/>
+                                                <constraint firstItem="CVe-JP-1ZB" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="5uz-Md-IRp"/>
+                                                <constraint firstAttribute="centerY" secondItem="CVe-JP-1ZB" secondAttribute="centerY" id="84j-bu-eeG"/>
                                                 <constraint firstAttribute="centerX" secondItem="CVe-JP-1ZB" secondAttribute="centerX" id="88L-9O-McM"/>
+                                                <constraint firstAttribute="centerX" secondItem="CVe-JP-1ZB" secondAttribute="centerX" id="LMi-BW-WgX"/>
+                                                <constraint firstItem="CVe-JP-1ZB" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="dKU-Bl-ZFT"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="0Pf-X3-kFI"/>
+                                                    <exclude reference="4kl-X3-1jf"/>
+                                                    <exclude reference="5uz-Md-IRp"/>
+                                                    <exclude reference="84j-bu-eeG"/>
+                                                    <exclude reference="LMi-BW-WgX"/>
+                                                    <exclude reference="dKU-Bl-ZFT"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="0Pf-X3-kFI"/>
+                                                    <include reference="4kl-X3-1jf"/>
+                                                    <exclude reference="50d-nu-0jy"/>
+                                                    <include reference="5uz-Md-IRp"/>
+                                                    <include reference="84j-bu-eeG"/>
+                                                    <exclude reference="88L-9O-McM"/>
+                                                    <include reference="LMi-BW-WgX"/>
+                                                    <include reference="dKU-Bl-ZFT"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
