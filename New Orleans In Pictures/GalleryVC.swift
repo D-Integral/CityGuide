@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Foundation
 
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
@@ -180,6 +179,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
+        
         self.collectionView?.reloadData()
     }
     
@@ -222,4 +222,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         default: break
         }
     }
+    
+
 }
