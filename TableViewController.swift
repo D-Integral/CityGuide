@@ -171,29 +171,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.getDirections()
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-        
-        if !(annotation is SightAnnotation) {
-            return nil
-        }
-        
-        let reuseId = "sight"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("sight")
-        if annotationView == nil {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-        }
-        else {
-            annotationView.annotation = annotation
-        }
-        
-        let sightAnnotation = annotation as! SightAnnotation
-        annotationView.image = sightAnnotation.image
-        annotationView.frame.size.width = 100.0
-        annotationView.frame.size.height = 100.0
-        
-        return annotationView
-    }
-    
     func getDirections() {
         
         let request = MKDirectionsRequest()
@@ -249,8 +226,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
         region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5
         
-        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.3
-        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.3
+        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1
+        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1
         
         region = mapView.regionThatFits(region)
         mapView.setRegion(region, animated: true)
