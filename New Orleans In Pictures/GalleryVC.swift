@@ -23,7 +23,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         
         self.clearsSelectionOnViewWillAppear = false
-        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_2.png")!)
+        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,11 +111,17 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             
             switch indexPath.section {
             case 0:
-                    header?.headerLabel.text = headerTexts[indexPath.section]
+                header?.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
+                header?.headerLabel.text = headerTexts[indexPath.section]
+                header?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
             case 1:
-                    header?.headerLabel.text = headerTexts[indexPath.section]
+                header?.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
+                header?.headerLabel.text = headerTexts[indexPath.section]
+                header?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
             case 2:
-                    header?.headerLabel.text = headerTexts[indexPath.section]
+                header?.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
+                header?.headerLabel.text = headerTexts[indexPath.section]
+                header?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
             default: break
             }
         }
@@ -268,5 +274,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     func setBackgroundImage(image: UIImage) {
         self.collectionView?.frame = self.view.frame
         self.collectionView?.backgroundColor = UIColor(patternImage: image)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
     }
 }

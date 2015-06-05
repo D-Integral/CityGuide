@@ -46,6 +46,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
+        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
         self.receiveDataFromGalleryVC()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -238,12 +239,23 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 3 {
+        if section == 2 {
             return 2
         } else {
             return 1
         }
     }
+    
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        
+//        var cell = self.tableView.cellForRowAtIndexPath(indexPath)
+//        var height: CGFloat!
+//        if cell is MapTableViewCell {
+//            height = 300
+//        }
+//        
+//        return height
+//    }
     
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
         
@@ -297,5 +309,10 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     func setupTitleLabel() {
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
+    }
+    
+    func setBackgroundImage(image: UIImage, forView view: UIView) {
+        self.view.backgroundColor = UIColor(patternImage: image)
+        view.backgroundColor = UIColor(patternImage: image)
     }
 }
