@@ -175,7 +175,60 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(150.0, 150.0)
+        
+        var size: CGSize!
+        
+        switch indexPath.section {
+        case 0:
+            if 0 == self.wantToSeeSights().count {
+                size = CGSizeZero
+            } else {
+                size = CGSizeMake(150.0, 150.0)
+            }
+        case 1:
+            if 0 == self.sightNames().count {
+                size = CGSizeZero
+            } else {
+                size = CGSizeMake(150.0, 150.0)
+            }
+        case 2:
+            if 0 == self.alreadySeenSights().count {
+                size = CGSizeZero
+            } else {
+                size = CGSizeMake(150.0, 150.0)
+            }
+        default: break
+        }
+        
+        return size
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        var size: CGSize!
+        
+        switch section {
+        case 0:
+            if 0 == self.wantToSeeSights().count {
+                size = CGSizeZero
+            } else {
+                size = CGSizeMake(50.0, 50.0)
+            }
+        case 1:
+            if 0 == self.sightNames().count {
+                size = CGSizeZero
+            } else {
+                size = CGSizeMake(50.0, 50.0)
+            }
+        case 2:
+            if 0 == self.alreadySeenSights().count {
+                size = CGSizeZero
+            } else {
+                size = CGSizeMake(50.0, 50.0)
+            }
+        default: break
+        }
+        
+        return size
     }
     
     override func viewDidAppear(animated: Bool) {
