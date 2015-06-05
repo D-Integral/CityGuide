@@ -111,24 +111,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             
             switch indexPath.section {
             case 0:
-                if 0 == self.wantToSeeSights().count {
-                    header?.headerLabel.text = ""
-                } else {
                     header?.headerLabel.text = headerTexts[indexPath.section]
-                }
             case 1:
-                if 0 == self.sightNames().count {
-                    header?.headerLabel.text = ""
-                } else {
                     header?.headerLabel.text = headerTexts[indexPath.section]
-                }
             case 2:
-                if 0 == self.alreadySeenSights().count {
-                    header?.headerLabel.text = ""
-                } else {
                     header?.headerLabel.text = headerTexts[indexPath.section]
-                }
-            default: header?.headerLabel.text = headerTexts[indexPath.section]
+            default: break
             }
         }
         
