@@ -177,6 +177,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         if self.isUserInTheCity() {
             self.zoomToFitMapItems()
             self.getDirections()
+        } else {
+            showSelectedSightAnnotation()
         }
     }
     
