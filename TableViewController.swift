@@ -158,6 +158,12 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         let annotation = SightAnnotation(coordinate: coords, image: image)
         self.mapView.addAnnotation(annotation)
         
+        let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
+        mapView.setRegion(region, animated: true)
+        
+        self.setupTitleLabel()
+        titleLabel.text = titleLabelText
+        
         selectedPOI = CLLocation(latitude: latitude, longitude: longitude)
         
         var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
@@ -166,11 +172,32 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         
-        mapView.centerCoordinate = userLocation.location.coordinate
-        
         self.userLocation = userLocation
-        self.zoomToFitMapItems()
-        self.getDirections()
+        
+        if self.isUserInTheCity() {
+            self.zoomToFitMapItems()
+            self.getDirections()
+        }
+    }
+    
+    func isUserInTheCity() -> Bool {
+        var isInTheCity: Bool!
+        
+        let rightCityEdge: CLLocationDegrees = -89.90
+        let leftCityEdge: CLLocationDegrees = -90.29
+        let topCityEdge: CLLocationDegrees = 30.08
+        let bottomCityEdge:CLLocationDegrees = 29.82
+        
+        let userLongitude = userLocation.location.coordinate.longitude
+        let userLatitude = userLocation.location.coordinate.latitude
+        
+        if userLongitude < rightCityEdge && userLongitude > leftCityEdge && userLatitude < topCityEdge && userLatitude > bottomCityEdge {
+            isInTheCity = true
+        } else {
+            isInTheCity = false
+        }
+        
+        return isInTheCity
     }
     
     func getDirections() {
