@@ -13,13 +13,12 @@ import CoreData
 
 class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate {
     
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
     
-    
+    var imageView: UIImageView!
     var image: UIImage = UIImage()
     var titleLabelText = String()
     
@@ -47,7 +46,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.view.addGestureRecognizer(popRecognizer)
         
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
-        self.receiveDataFromGalleryVC()
+        self.imageViewInitialize()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
         self.initialSwitchesSetup()
@@ -68,9 +67,12 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         }
     }
     
-    func receiveDataFromGalleryVC() {
-        
+    func imageViewInitialize() {
+        let x: CGFloat = (self.view.frame.size.width - 150) / 2
+        let frame = CGRectMake(x, 0, 150, 150)
+        imageView = UIImageView(frame: frame)
         imageView.image = self.image
+        self.view.addSubview(imageView)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -244,23 +246,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         } else {
             return 1
         }
-    }
-    
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
-        
-        self.performSegueWithIdentifier("toSteps", sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "toSteps" {
-            var destinationVC = segue.destinationViewController as! StepsViewController
-            destinationVC.steps = self.routeSteps
-        }
-    }
-    
-    @IBAction func toStepsVC(sender: AnyObject) {
-        self.performSegueWithIdentifier("toSteps", sender: self)
     }
     
     @IBAction func wantToSee(sender: AnyObject) {

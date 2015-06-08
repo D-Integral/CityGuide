@@ -42,7 +42,7 @@ class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitio
             
             //move snapshot to DetailVC.imageView
             var frame = containerView.convertRect(toViewController.imageView.frame, fromView: toViewController.view)
-            cellImageSnapshot.frame = frame
+            cellImageSnapshot.frame =  frame
             
             }, completion: {(finished: Bool) in
                 

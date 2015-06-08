@@ -96,7 +96,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7U-k5-GlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="242.8125" y="461.0915492957746"/>
+            <point key="canvasLocation" x="242.8125" y="461.09154929577454"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="Xpf-Bf-1lv">
@@ -113,19 +113,6 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ioc-Td-cyw" id="kyC-a4-8mR">
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ks-ur-5Qj">
-                                                    <rect key="frame" x="112.5" y="0.0" width="150" height="150"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="8j3-aO-TJp"/>
-                                                        <constraint firstAttribute="height" constant="150" id="wTE-im-1B8"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="6ks-ur-5Qj" secondAttribute="centerX" id="8ST-tB-f8n"/>
-                                                <constraint firstAttribute="centerY" secondItem="6ks-ur-5Qj" secondAttribute="centerY" id="PGo-q0-Gmg"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -253,7 +240,6 @@
                     <navigationItem key="navigationItem" id="lXW-Hu-uOU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="imageView" destination="6ks-ur-5Qj" id="m82-ci-Be6"/>
                         <outlet property="mapView" destination="hhA-SS-Mpv" id="KE8-II-ngV"/>
                         <outlet property="seenSwitch" destination="cTK-kk-F1c" id="eAy-vv-USJ"/>
                         <outlet property="titleLabel" destination="CVe-JP-1ZB" id="goP-VO-wpI"/>
@@ -262,7 +248,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMn-gz-SR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1045.3125" y="462.14788732394362"/>
+            <point key="canvasLocation" x="731.5" y="460.5"/>
         </scene>
     </scenes>
 </document>
