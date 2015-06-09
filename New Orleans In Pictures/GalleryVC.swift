@@ -106,78 +106,48 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
 
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
+        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
         
         var sightsCoords = sightsLocations()
         
         switch indexPath.section {
         case 0:
             var sightName = wantToSeeSights()[indexPath.row] as! String
-            cell.imageView.image = UIImage(named: sightName)
-            
-            cell.nameLabel.text = sightName
-            
-            var index = sightsImagesNames().indexOfObject(sightName)
-            var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
-            var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
-            var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
-            if locationTracker.currentLocation != nil {
-                var distance = locationTracker.distanceToLocation(sightLocation)
-                if distance > 999.0 {
-                    distance = distance / 1000
-                    cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
-                } else {
-                    cell.distanceLabel.text = "\(distance) meters"
-                }
-            } else {
-                cell.distanceLabel.text = "Distance..."
-            }
+            setupCell(&cell, forSightWithName: sightName)
         case 1:
             var sightName = sightNames()[indexPath.row] as! String
-            cell.imageView.image = UIImage(named: sightName)
-            
-            cell.nameLabel.text = sightName
-            
-            var index = sightsImagesNames().indexOfObject(sightName)
-            var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
-            var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
-            var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
-            if locationTracker.currentLocation != nil {
-                var distance = locationTracker.distanceToLocation(sightLocation)
-                if distance > 999.0 {
-                    distance = distance / 1000
-                    cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
-                } else {
-                    cell.distanceLabel.text = "\(distance) meters"
-                }
-            } else {
-                cell.distanceLabel.text = "Distance..."
-            }
+            setupCell(&cell, forSightWithName: sightName)
         case 2:
             var sightName = alreadySeenSights()[indexPath.row] as! String
-            cell.imageView.image = UIImage(named: sightName)
-            
-            cell.nameLabel.text = sightName
-            
-            var index = sightsImagesNames().indexOfObject(sightName)
-            var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
-            var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
-            var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
-            if locationTracker.currentLocation != nil {
-                var distance = locationTracker.distanceToLocation(sightLocation)
-                if distance > 999.0 {
-                    distance = distance / 1000
-                    cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
-                } else {
-                    cell.distanceLabel.text = "\(distance) meters"
-                }
-            } else {
-                cell.distanceLabel.text = "Distance..."
-            }
+            setupCell(&cell, forSightWithName: sightName)
         default: break
         }
     
         return cell
+    }
+    
+    func setupCell(inout cell: PictureCell, forSightWithName sightName: String) {
+        var sightsCoords = sightsLocations()
+        
+        cell.imageView.image = UIImage(named: sightName)
+        
+        cell.nameLabel.text = sightName
+        
+        var index = sightsImagesNames().indexOfObject(sightName)
+        var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
+        var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
+        var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
+        if locationTracker.currentLocation != nil {
+            var distance = locationTracker.distanceToLocation(sightLocation)
+            if distance > 999.0 {
+                distance = distance / 1000
+                cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
+            } else {
+                cell.distanceLabel.text = "\(Int(distance)) m"
+            }
+        } else {
+            cell.distanceLabel.text = "Distance..."
+        }
     }
     
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
@@ -190,22 +160,22 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             
             switch indexPath.section {
             case 0:
-                header?.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
-                header?.headerLabel.text = headerTexts[indexPath.section]
-                header?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
+                setupHeader(&header!, inSection: indexPath.section)
             case 1:
-                header?.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
-                header?.headerLabel.text = headerTexts[indexPath.section]
-                header?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
+                setupHeader(&header!, inSection: indexPath.section)
             case 2:
-                header?.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
-                header?.headerLabel.text = headerTexts[indexPath.section]
-                header?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
+                setupHeader(&header!, inSection: indexPath.section)
             default: break
             }
         }
         
         return header!
+    }
+    
+    func setupHeader(inout header: HeaderView, inSection section: Int) {
+        header.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
+        header.headerLabel.text = headerTexts[section]
+        header.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
     }
 
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
