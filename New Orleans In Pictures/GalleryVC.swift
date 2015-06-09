@@ -8,15 +8,18 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate {
+class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate {
     
     let headerTexts = ["I want to see", "What To See In New Orleans", "Already Seen"]
     
     var currentManagedObject: NSManagedObject!
+    
+    var locationTracker: LocationTracker!
     
     override func viewDidLoad()
     {
@@ -24,11 +27,13 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         self.clearsSelectionOnViewWillAppear = false
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
         
+        locationTracker = LocationTracker()
+        locationTracker.delegate = self
+    }
+    
+    func locationUpdated(tracker: LocationTracker) {
+        locationTracker = tracker
     }
     
     func sightNames() -> NSArray
@@ -84,20 +89,77 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         default: return 0
         }
     }
+    
+    func sightsLocations () -> [AnyObject] {
+        
+        let pListFile = NSBundle.mainBundle().pathForResource("NewOrleanSightsLocations", ofType: "plist")
+        let array = NSArray(contentsOfFile: pListFile!)
+        return array! as [AnyObject]
+    }
+    
+    func sightsImagesNames () -> NSArray {
+        
+        let pListFile = NSBundle.mainBundle().pathForResource("NewOrleanImageNames", ofType: "plist")
+        let array = NSArray(contentsOfFile: pListFile!)
+        return array!
+    }
+
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
         
+        var sightsCoords = sightsLocations()
+        
         switch indexPath.section {
         case 0:
-            cell.imageView.image = UIImage(named: wantToSeeSights()[indexPath.row] as! String)
-            cell.nameLabel.text = (wantToSeeSights()[indexPath.row] as! String)
+            var sightName = wantToSeeSights()[indexPath.row] as! String
+            cell.imageView.image = UIImage(named: sightName)
+            
+            cell.nameLabel.text = sightName
+            
+            var index = sightsImagesNames().indexOfObject(sightName)
+            var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
+            var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
+            var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
+            if locationTracker.currentLocation != nil {
+                var distance = locationTracker.distanceToLocation(sightLocation)
+                cell.distanceLabel.text = "\(distance) meters"
+            } else {
+                cell.distanceLabel.text = ""
+            }
         case 1:
-            cell.imageView.image = UIImage(named: sightNames()[indexPath.row] as! String)
-            cell.nameLabel.text = (sightNames()[indexPath.row] as! String)
+            var sightName = sightNames()[indexPath.row] as! String
+            cell.imageView.image = UIImage(named: sightName)
+            
+            cell.nameLabel.text = sightName
+            
+            var index = sightsImagesNames().indexOfObject(sightName)
+            var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
+            var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
+            var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
+            if locationTracker.currentLocation != nil {
+                var distance = locationTracker.distanceToLocation(sightLocation)
+                cell.distanceLabel.text = "\(distance) meters"
+            } else {
+                cell.distanceLabel.text = ""
+            }
         case 2:
-            cell.imageView.image = UIImage(named: alreadySeenSights()[indexPath.row] as! String)
-            cell.nameLabel.text = (alreadySeenSights()[indexPath.row] as! String)
+            var sightName = alreadySeenSights()[indexPath.row] as! String
+            cell.imageView.image = UIImage(named: sightName)
+            
+            cell.nameLabel.text = sightName
+            
+            var index = sightsImagesNames().indexOfObject(sightName)
+            var latitude = CLLocationDegrees((sightsCoords[index][0] as! NSString).doubleValue)
+            var longitude = CLLocationDegrees((sightsCoords[index][1] as! NSString).doubleValue)
+            var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
+            if locationTracker.currentLocation != nil {
+                var distance = locationTracker.distanceToLocation(sightLocation)
+                cell.distanceLabel.text = "\(distance) meters"
+            } else {
+                cell.distanceLabel.text = ""
+            }
+
         default: break
         }
     

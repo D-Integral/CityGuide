@@ -228,7 +228,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             
             var realDistanceInt = Int(route.distance)
             self.setupTitleLabel()
-            titleLabel.text = "\(realDistanceInt) meters to \(titleLabelText)"
+            titleLabel.text = "Route distance: \(realDistanceInt) meters"
             
             self.routeSteps = route.steps
         }
