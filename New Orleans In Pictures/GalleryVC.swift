@@ -91,10 +91,13 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         switch indexPath.section {
         case 0:
             cell.imageView.image = UIImage(named: wantToSeeSights()[indexPath.row] as! String)
+            cell.nameLabel.text = (wantToSeeSights()[indexPath.row] as! String)
         case 1:
             cell.imageView.image = UIImage(named: sightNames()[indexPath.row] as! String)
+            cell.nameLabel.text = (sightNames()[indexPath.row] as! String)
         case 2:
             cell.imageView.image = UIImage(named: alreadySeenSights()[indexPath.row] as! String)
+            cell.nameLabel.text = (alreadySeenSights()[indexPath.row] as! String)
         default: break
         }
     
@@ -177,19 +180,19 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             if 0 == self.wantToSeeSights().count {
                 size = CGSizeZero
             } else {
-                size = CGSizeMake(150.0, 150.0)
+                size = CGSizeMake(150.0, 300.0)
             }
         case 1:
             if 0 == self.sightNames().count {
                 size = CGSizeZero
             } else {
-                size = CGSizeMake(150.0, 150.0)
+                size = CGSizeMake(150.0, 300.0)
             }
         case 2:
             if 0 == self.alreadySeenSights().count {
                 size = CGSizeZero
             } else {
-                size = CGSizeMake(150.0, 150.0)
+                size = CGSizeMake(150.0, 300.0)
             }
         default: break
         }
