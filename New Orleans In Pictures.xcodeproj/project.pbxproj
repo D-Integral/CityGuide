@@ -29,6 +29,7 @@
 		8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
+		98ECD7B81B2725B200FF8D3F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */; };
 		C0044DB81B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
 		C0044DB91B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
 		C0044DBB1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */; };
@@ -92,6 +93,7 @@
 		8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Model/PointOfInterest.swift; sourceTree = "<group>"; };
 		8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataObjectAccessor.swift; path = Model/DataObjectAccessor.swift; sourceTree = "<group>"; };
+		98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C0044DB71B1D925600D1FE2C /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepsViewController.swift; path = ../StepsViewController.swift; sourceTree = "<group>"; };
 		C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		C04918251B26EC1200638F90 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */,
 				8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */,
 				8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */,
+				98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98ECD7B81B2725B200FF8D3F /* CoreDataStack.swift in Sources */,
 				C07820121B171F1D002C95CB /* MapTableViewCell.swift in Sources */,
 				C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */,
 				C07820091B170486002C95CB /* TableViewController.swift in Sources */,
