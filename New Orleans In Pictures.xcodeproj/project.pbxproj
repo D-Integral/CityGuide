@@ -29,6 +29,15 @@
 		8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
+		9873DF4F1B276A6C008FE5EF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */; };
+		9873DF5A1B276C1F008FE5EF /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF591B276C1F008FE5EF /* InterfaceController.swift */; };
+		9873DF5C1B276C1F008FE5EF /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF5B1B276C1F008FE5EF /* NotificationController.swift */; };
+		9873DF5E1B276C1F008FE5EF /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF5D1B276C1F008FE5EF /* GlanceController.swift */; };
+		9873DF601B276C1F008FE5EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9873DF5F1B276C1F008FE5EF /* Images.xcassets */; };
+		9873DF641B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 9873DF631B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app */; };
+		9873DF6C1B276C1F008FE5EF /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9873DF6A1B276C1F008FE5EF /* Interface.storyboard */; };
+		9873DF6E1B276C1F008FE5EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9873DF6D1B276C1F008FE5EF /* Images.xcassets */; };
+		9873DF711B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		98ECD7B81B2725B200FF8D3F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */; };
 		C0044DB81B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
 		C0044DB91B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
@@ -73,7 +82,35 @@
 			remoteGlobalIDString = 8CE2CAD61AEA2BC60032F74D;
 			remoteInfo = "New Orleans In Pictures";
 		};
+		9873DF651B276C1F008FE5EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE2CACF1AEA2BC60032F74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9873DF621B276C1F008FE5EF;
+			remoteInfo = "New Orleans In Pictures WatchKit App";
+		};
+		9873DF6F1B276C1F008FE5EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE2CACF1AEA2BC60032F74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9873DF531B276C1E008FE5EF;
+			remoteInfo = "New Orleans In Pictures WatchKit Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9873DF781B276C1F008FE5EF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9873DF711B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8CE2CAD71AEA2BC60032F74D /* New Orleans In Pictures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "New Orleans In Pictures.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +130,20 @@
 		8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Model/PointOfInterest.swift; sourceTree = "<group>"; };
 		8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataObjectAccessor.swift; path = Model/DataObjectAccessor.swift; sourceTree = "<group>"; };
+		9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "New Orleans In Pictures WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9873DF571B276C1F008FE5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9873DF581B276C1F008FE5EF /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		9873DF591B276C1F008FE5EF /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		9873DF5B1B276C1F008FE5EF /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		9873DF5D1B276C1F008FE5EF /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		9873DF5F1B276C1F008FE5EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9873DF631B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "New Orleans In Pictures WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9873DF691B276C1F008FE5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9873DF6B1B276C1F008FE5EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		9873DF6D1B276C1F008FE5EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9873DF791B276C60008FE5EF /* New Orleans In Pictures WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "New Orleans In Pictures WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		98ECD7B91B272CF400FF8D3F /* New Orleans In Pictures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "New Orleans In Pictures.entitlements"; sourceTree = "<group>"; };
 		C0044DB71B1D925600D1FE2C /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepsViewController.swift; path = ../StepsViewController.swift; sourceTree = "<group>"; };
 		C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		C04918251B26EC1200638F90 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
@@ -129,6 +179,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9873DF511B276C1E008FE5EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -138,6 +195,8 @@
 				C07758FF1B159FBA00F76ECA /* MapKit.framework */,
 				8CE2CAD91AEA2BC60032F74D /* New Orleans In Pictures */,
 				8CE2CAF21AEA2BC60032F74D /* New Orleans In PicturesTests */,
+				9873DF551B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension */,
+				9873DF671B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */,
 				8CE2CAD81AEA2BC60032F74D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -147,6 +206,8 @@
 			children = (
 				8CE2CAD71AEA2BC60032F74D /* New Orleans In Pictures.app */,
 				8CE2CAEF1AEA2BC60032F74D /* New Orleans In PicturesTests.xctest */,
+				9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */,
+				9873DF631B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -154,6 +215,7 @@
 		8CE2CAD91AEA2BC60032F74D /* New Orleans In Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				98ECD7B91B272CF400FF8D3F /* New Orleans In Pictures.entitlements */,
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
 				8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */,
 				C07820081B170486002C95CB /* TableViewController.swift */,
@@ -237,6 +299,46 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		9873DF551B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF791B276C60008FE5EF /* New Orleans In Pictures WatchKit Extension.entitlements */,
+				9873DF591B276C1F008FE5EF /* InterfaceController.swift */,
+				9873DF5B1B276C1F008FE5EF /* NotificationController.swift */,
+				9873DF5D1B276C1F008FE5EF /* GlanceController.swift */,
+				9873DF5F1B276C1F008FE5EF /* Images.xcassets */,
+				9873DF561B276C1F008FE5EF /* Supporting Files */,
+			);
+			path = "New Orleans In Pictures WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		9873DF561B276C1F008FE5EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF571B276C1F008FE5EF /* Info.plist */,
+				9873DF581B276C1F008FE5EF /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9873DF671B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF6A1B276C1F008FE5EF /* Interface.storyboard */,
+				9873DF6D1B276C1F008FE5EF /* Images.xcassets */,
+				9873DF681B276C1F008FE5EF /* Supporting Files */,
+			);
+			path = "New Orleans In Pictures WatchKit App";
+			sourceTree = "<group>";
+		};
+		9873DF681B276C1F008FE5EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF691B276C1F008FE5EF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,10 +349,12 @@
 				8CE2CAD31AEA2BC60032F74D /* Sources */,
 				8CE2CAD41AEA2BC60032F74D /* Frameworks */,
 				8CE2CAD51AEA2BC60032F74D /* Resources */,
+				9873DF781B276C1F008FE5EF /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9873DF701B276C1F008FE5EF /* PBXTargetDependency */,
 			);
 			name = "New Orleans In Pictures";
 			productName = "New Orleans In Pictures";
@@ -275,6 +379,39 @@
 			productReference = 8CE2CAEF1AEA2BC60032F74D /* New Orleans In PicturesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9873DF531B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9873DF751B276C1F008FE5EF /* Build configuration list for PBXNativeTarget "New Orleans In Pictures WatchKit Extension" */;
+			buildPhases = (
+				9873DF501B276C1E008FE5EF /* Sources */,
+				9873DF511B276C1E008FE5EF /* Frameworks */,
+				9873DF521B276C1E008FE5EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9873DF661B276C1F008FE5EF /* PBXTargetDependency */,
+			);
+			name = "New Orleans In Pictures WatchKit Extension";
+			productName = "New Orleans In Pictures WatchKit Extension";
+			productReference = 9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		9873DF621B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9873DF721B276C1F008FE5EF /* Build configuration list for PBXNativeTarget "New Orleans In Pictures WatchKit App" */;
+			buildPhases = (
+				9873DF611B276C1F008FE5EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "New Orleans In Pictures WatchKit App";
+			productName = "New Orleans In Pictures WatchKit App";
+			productReference = 9873DF631B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,10 +423,28 @@
 				TargetAttributes = {
 					8CE2CAD61AEA2BC60032F74D = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = EYWEP6YJP9;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					8CE2CAEE1AEA2BC60032F74D = {
 						CreatedOnToolsVersion = 6.3.1;
 						TestTargetID = 8CE2CAD61AEA2BC60032F74D;
+					};
+					9873DF531B276C1E008FE5EF = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = EYWEP6YJP9;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					9873DF621B276C1F008FE5EF = {
+						CreatedOnToolsVersion = 6.3.2;
 					};
 				};
 			};
@@ -308,6 +463,8 @@
 			targets = (
 				8CE2CAD61AEA2BC60032F74D /* New Orleans In Pictures */,
 				8CE2CAEE1AEA2BC60032F74D /* New Orleans In PicturesTests */,
+				9873DF531B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension */,
+				9873DF621B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */,
 			);
 		};
 /* End PBXProject section */
@@ -338,6 +495,24 @@
 				8CE2CB071AEA5A090032F74D /* SightsList.plist in Resources */,
 				8C6D2AD01AEF649100651CCF /* Images.xcassets in Resources */,
 				C0D0984A1B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9873DF521B276C1E008FE5EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DF601B276C1F008FE5EF /* Images.xcassets in Resources */,
+				9873DF641B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9873DF611B276C1F008FE5EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DF6C1B276C1F008FE5EF /* Interface.storyboard in Resources */,
+				9873DF6E1B276C1F008FE5EF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9873DF4F1B276A6C008FE5EF /* CoreDataStack.swift in Sources */,
 				C07820131B171F1D002C95CB /* MapTableViewCell.swift in Sources */,
 				C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */,
 				C078200A1B170486002C95CB /* TableViewController.swift in Sources */,
@@ -399,6 +575,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9873DF501B276C1E008FE5EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DF5C1B276C1F008FE5EF /* NotificationController.swift in Sources */,
+				9873DF5A1B276C1F008FE5EF /* InterfaceController.swift in Sources */,
+				9873DF5E1B276C1F008FE5EF /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -406,6 +592,16 @@
 			isa = PBXTargetDependency;
 			target = 8CE2CAD61AEA2BC60032F74D /* New Orleans In Pictures */;
 			targetProxy = 8CE2CAF01AEA2BC60032F74D /* PBXContainerItemProxy */;
+		};
+		9873DF661B276C1F008FE5EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9873DF621B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */;
+			targetProxy = 9873DF651B276C1F008FE5EF /* PBXContainerItemProxy */;
+		};
+		9873DF701B276C1F008FE5EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9873DF531B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension */;
+			targetProxy = 9873DF6F1B276C1F008FE5EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -424,6 +620,14 @@
 				8CE2CAE91AEA2BC60032F74D /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		9873DF6A1B276C1F008FE5EF /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9873DF6B1B276C1F008FE5EF /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -516,9 +720,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "New Orleans In Pictures/New Orleans In Pictures.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "New Orleans In Pictures/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -526,9 +734,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "New Orleans In Pictures/New Orleans In Pictures.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "New Orleans In Pictures/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -566,6 +778,70 @@
 			};
 			name = Release;
 		};
+		9873DF731B276C1F008FE5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = New_Orleans_In_Pictures_WatchKit_Extension;
+				INFOPLIST_FILE = "New Orleans In Pictures WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		9873DF741B276C1F008FE5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				IBSC_MODULE = New_Orleans_In_Pictures_WatchKit_Extension;
+				INFOPLIST_FILE = "New Orleans In Pictures WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		9873DF761B276C1F008FE5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "New Orleans In Pictures WatchKit Extension/New Orleans In Pictures WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "New Orleans In Pictures WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9873DF771B276C1F008FE5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "New Orleans In Pictures WatchKit Extension/New Orleans In Pictures WatchKit Extension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "New Orleans In Pictures WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -595,6 +871,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9873DF721B276C1F008FE5EF /* Build configuration list for PBXNativeTarget "New Orleans In Pictures WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9873DF731B276C1F008FE5EF /* Debug */,
+				9873DF741B276C1F008FE5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9873DF751B276C1F008FE5EF /* Build configuration list for PBXNativeTarget "New Orleans In Pictures WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9873DF761B276C1F008FE5EF /* Debug */,
+				9873DF771B276C1F008FE5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 

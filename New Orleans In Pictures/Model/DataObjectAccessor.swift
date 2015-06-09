@@ -18,13 +18,13 @@ class DataObjectAccessor: NSObject {
     
     // MARK: Private
     
-    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    let managedObjectContext = CoreDataStack.sharedInstance.managedObjectContext
     
     func restoreObjects() -> [AnyObject]?
     {
         var error: NSError?
         
-        if let objects = managedObjectContext?.executeFetchRequest(self.request(), error: &error)
+        if let objects = managedObjectContext!.executeFetchRequest(self.request(), error: &error)
         {
             if 0 < objects.count
             {

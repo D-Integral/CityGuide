@@ -35,7 +35,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var sightName: String!
     
-    var managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+    var managedObjectContext = CoreDataStack.sharedInstance.managedObjectContext
     var currentManagedObject: NSManagedObject!
 
     override func viewDidLoad() {
