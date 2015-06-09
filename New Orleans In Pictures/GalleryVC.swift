@@ -123,9 +123,14 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
             if locationTracker.currentLocation != nil {
                 var distance = locationTracker.distanceToLocation(sightLocation)
-                cell.distanceLabel.text = "\(distance) meters"
+                if distance > 999.0 {
+                    distance = distance / 1000
+                    cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
+                } else {
+                    cell.distanceLabel.text = "\(distance) meters"
+                }
             } else {
-                cell.distanceLabel.text = ""
+                cell.distanceLabel.text = "Distance..."
             }
         case 1:
             var sightName = sightNames()[indexPath.row] as! String
@@ -139,9 +144,14 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
             if locationTracker.currentLocation != nil {
                 var distance = locationTracker.distanceToLocation(sightLocation)
-                cell.distanceLabel.text = "\(distance) meters"
+                if distance > 999.0 {
+                    distance = distance / 1000
+                    cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
+                } else {
+                    cell.distanceLabel.text = "\(distance) meters"
+                }
             } else {
-                cell.distanceLabel.text = ""
+                cell.distanceLabel.text = "Distance..."
             }
         case 2:
             var sightName = alreadySeenSights()[indexPath.row] as! String
@@ -155,11 +165,15 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             var sightLocation = CLLocation(latitude: latitude, longitude: longitude)
             if locationTracker.currentLocation != nil {
                 var distance = locationTracker.distanceToLocation(sightLocation)
-                cell.distanceLabel.text = "\(distance) meters"
+                if distance > 999.0 {
+                    distance = distance / 1000
+                    cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
+                } else {
+                    cell.distanceLabel.text = "\(distance) meters"
+                }
             } else {
-                cell.distanceLabel.text = ""
+                cell.distanceLabel.text = "Distance..."
             }
-
         default: break
         }
     
