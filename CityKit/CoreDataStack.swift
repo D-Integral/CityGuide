@@ -11,8 +11,7 @@ import CoreData
 
 public class CoreDataStack {
     
-    //TODO: add sharedAppGroup
-    //let sharedAppGroup: String = "group.com.1lastday.timeslower2.documents"
+    let sharedAppGroup: String = "group.com.1lastday.timeslower2.documents"
     
     public class var sharedInstance: CoreDataStack {
         struct Static {
@@ -33,13 +32,10 @@ public class CoreDataStack {
         }()
     
     public lazy var managedObjectModel: NSManagedObjectModel = {
-        //TODO: add kit bundle id and modelURL
-        //let bundle = NSBundle(identifier: "oneLastDay.TimeSlowerKit")
-        //let modelURL = bundle?.URLForResource("TimeSlower2", withExtension: "momd")
-        
-        let modelURL = NSBundle.mainBundle().URLForResource("New_Orleans_In_Pictures", withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
-        }()
+        let bundle = NSBundle(identifier: "d-integral.CityKit")
+        let modelURL = bundle?.URLForResource("New_Orleans_In_Pictures", withExtension: "momd")
+        return NSManagedObjectModel(contentsOfURL: modelURL!)!
+    }()
     
     public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         var error: NSError? = nil

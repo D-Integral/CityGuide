@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8C6D2AD01AEF649100651CCF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 		8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
-		8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */; };
 		8CE2CAE51AEA2BC60032F74D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE31AEA2BC60032F74D /* Main.storyboard */; };
-		8CE2CAE71AEA2BC60032F74D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 		8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE81AEA2BC60032F74D /* LaunchScreen.xib */; };
 		8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CAF51AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift */; };
 		8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CAFF1AEA2D6B0032F74D /* GalleryVC.swift */; };
@@ -24,12 +21,9 @@
 		8CE2CB0B1AEA5DE10032F74D /* SightsListKeeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */; };
 		8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */; };
 		8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */; };
-		8CE2CB4F1AEE242D0032F74D /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */; };
-		8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */; };
 		8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB531AEE50400032F74D /* DataObjectAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */; };
 		8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */; };
-		9873DF4F1B276A6C008FE5EF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */; };
 		9873DF5A1B276C1F008FE5EF /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF591B276C1F008FE5EF /* InterfaceController.swift */; };
 		9873DF5C1B276C1F008FE5EF /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF5B1B276C1F008FE5EF /* NotificationController.swift */; };
 		9873DF5E1B276C1F008FE5EF /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF5D1B276C1F008FE5EF /* GlanceController.swift */; };
@@ -38,7 +32,22 @@
 		9873DF6C1B276C1F008FE5EF /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9873DF6A1B276C1F008FE5EF /* Interface.storyboard */; };
 		9873DF6E1B276C1F008FE5EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9873DF6D1B276C1F008FE5EF /* Images.xcassets */; };
 		9873DF711B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		98ECD7B81B2725B200FF8D3F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */; };
+		9873DF901B27A9A3008FE5EF /* CityKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9873DF8F1B27A9A3008FE5EF /* CityKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9873DF961B27A9A3008FE5EF /* CityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9873DF8B1B27A9A3008FE5EF /* CityKit.framework */; };
+		9873DF9F1B27A9A3008FE5EF /* CityKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DF9E1B27A9A3008FE5EF /* CityKitTests.swift */; };
+		9873DFA21B27A9A3008FE5EF /* CityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9873DF8B1B27A9A3008FE5EF /* CityKit.framework */; };
+		9873DFA31B27A9A3008FE5EF /* CityKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9873DF8B1B27A9A3008FE5EF /* CityKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9873DFB01B27AA4B008FE5EF /* CityManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFAC1B27AA4B008FE5EF /* CityManage.swift */; };
+		9873DFB21B27AA4B008FE5EF /* PointOfInterestManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFAE1B27AA4B008FE5EF /* PointOfInterestManage.swift */; };
+		9873DFB31B27AA53008FE5EF /* New_Orleans_In_Pictures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */; };
+		9873DFB41B27AA59008FE5EF /* NewOrleanImageNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */; };
+		9873DFB51B27AA5F008FE5EF /* NewOrleanSightsLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */; };
+		9873DFB71B27AA7E008FE5EF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFB61B27AA7E008FE5EF /* CoreDataStack.swift */; };
+		9873DFBA1B27B14B008FE5EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
+		9873DFF01B27CEEC008FE5EF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFEF1B27CEEC008FE5EF /* City.swift */; };
+		9873DFF21B27CEED008FE5EF /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFF11B27CEED008FE5EF /* Coordinates.swift */; };
+		9873DFF41B27CEED008FE5EF /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFF31B27CEED008FE5EF /* PointOfInterest.swift */; };
+		9873DFF61B27CF49008FE5EF /* CoordinatesManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873DFF51B27CF49008FE5EF /* CoordinatesManage.swift */; };
 		C0044DB81B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
 		C0044DB91B1D925600D1FE2C /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DB71B1D925600D1FE2C /* StepsViewController.swift */; };
 		C0044DBB1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */; };
@@ -48,10 +57,6 @@
 		C04918291B26EC2100638F90 /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04918281B26EC2100638F90 /* Compass.swift */; };
 		C049182A1B26EC2100638F90 /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04918281B26EC2100638F90 /* Compass.swift */; };
 		C07759001B159FBA00F76ECA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07758FF1B159FBA00F76ECA /* MapKit.framework */; };
-		C07759021B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */; };
-		C07759031B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */; };
-		C07759051B15A38600F76ECA /* NewOrleanSightsLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */; };
-		C07759061B15A38600F76ECA /* NewOrleanSightsLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */; };
 		C07759081B15A4EF00F76ECA /* SightAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07759071B15A4EF00F76ECA /* SightAnnotation.swift */; };
 		C07759091B15A4EF00F76ECA /* SightAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07759071B15A4EF00F76ECA /* SightAnnotation.swift */; };
 		C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
@@ -96,6 +101,27 @@
 			remoteGlobalIDString = 9873DF531B276C1E008FE5EF;
 			remoteInfo = "New Orleans In Pictures WatchKit Extension";
 		};
+		9873DF971B27A9A3008FE5EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE2CACF1AEA2BC60032F74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9873DF8A1B27A9A2008FE5EF;
+			remoteInfo = CityKit;
+		};
+		9873DF991B27A9A3008FE5EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE2CACF1AEA2BC60032F74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CE2CAD61AEA2BC60032F74D;
+			remoteInfo = "New Orleans In Pictures";
+		};
+		9873DFA01B27A9A3008FE5EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE2CACF1AEA2BC60032F74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9873DF8A1B27A9A2008FE5EF;
+			remoteInfo = CityKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -108,6 +134,17 @@
 				9873DF711B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9873DFA71B27A9A3008FE5EF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9873DFA31B27A9A3008FE5EF /* CityKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -128,7 +165,6 @@
 		8CE2CB051AEA5A090032F74D /* SightsList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SightsList.plist; path = "New Orleans Images/SightsList.plist"; sourceTree = "<group>"; };
 		8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightsListKeeper.swift; sourceTree = "<group>"; };
 		8CE2CB0E1AEA800F0032F74D /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointOfInterest.swift; path = Model/PointOfInterest.swift; sourceTree = "<group>"; };
 		8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataObjectAccessor.swift; path = Model/DataObjectAccessor.swift; sourceTree = "<group>"; };
 		9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "New Orleans In Pictures WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9873DF571B276C1F008FE5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,15 +178,27 @@
 		9873DF6B1B276C1F008FE5EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		9873DF6D1B276C1F008FE5EF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9873DF791B276C60008FE5EF /* New Orleans In Pictures WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "New Orleans In Pictures WatchKit Extension.entitlements"; sourceTree = "<group>"; };
-		98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		9873DF8B1B27A9A3008FE5EF /* CityKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CityKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9873DF8E1B27A9A3008FE5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9873DF8F1B27A9A3008FE5EF /* CityKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CityKit.h; sourceTree = "<group>"; };
+		9873DF951B27A9A3008FE5EF /* CityKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CityKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9873DF9D1B27A9A3008FE5EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9873DF9E1B27A9A3008FE5EF /* CityKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityKitTests.swift; sourceTree = "<group>"; };
+		9873DFAC1B27AA4B008FE5EF /* CityManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityManage.swift; sourceTree = "<group>"; };
+		9873DFAE1B27AA4B008FE5EF /* PointOfInterestManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestManage.swift; sourceTree = "<group>"; };
+		9873DFB61B27AA7E008FE5EF /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		9873DFEF1B27CEEC008FE5EF /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		9873DFF11B27CEED008FE5EF /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		9873DFF31B27CEED008FE5EF /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		9873DFF51B27CF49008FE5EF /* CoordinatesManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatesManage.swift; sourceTree = "<group>"; };
 		98ECD7B91B272CF400FF8D3F /* New Orleans In Pictures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "New Orleans In Pictures.entitlements"; sourceTree = "<group>"; };
 		C0044DB71B1D925600D1FE2C /* StepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepsViewController.swift; path = ../StepsViewController.swift; sourceTree = "<group>"; };
 		C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTableViewCell.swift; sourceTree = "<group>"; };
 		C04918251B26EC1200638F90 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
 		C04918281B26EC2100638F90 /* Compass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
 		C07758FF1B159FBA00F76ECA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanImageNames.plist; sourceTree = "<group>"; };
-		C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanSightsLocations.plist; sourceTree = "<group>"; };
+		C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NewOrleanImageNames.plist; path = "../New Orleans In Pictures/NewOrleanImageNames.plist"; sourceTree = "<group>"; };
+		C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = NewOrleanSightsLocations.plist; path = "../New Orleans In Pictures/NewOrleanSightsLocations.plist"; sourceTree = "<group>"; };
 		C07759071B15A4EF00F76ECA /* SightAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotation.swift; sourceTree = "<group>"; };
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
 		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9873DFA21B27A9A3008FE5EF /* CityKit.framework in Frameworks */,
 				C07759001B159FBA00F76ECA /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,18 +235,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9873DF871B27A9A2008FE5EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9873DF921B27A9A3008FE5EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DF961B27A9A3008FE5EF /* CityKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		8CE2CACE1AEA2BC60032F74D = {
 			isa = PBXGroup;
 			children = (
-				C07758FF1B159FBA00F76ECA /* MapKit.framework */,
+				9873DF8C1B27A9A3008FE5EF /* CityKit */,
 				8CE2CAD91AEA2BC60032F74D /* New Orleans In Pictures */,
 				8CE2CAF21AEA2BC60032F74D /* New Orleans In PicturesTests */,
 				9873DF551B276C1F008FE5EF /* New Orleans In Pictures WatchKit Extension */,
 				9873DF671B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */,
+				9873DF9B1B27A9A3008FE5EF /* CityKitTests */,
 				8CE2CAD81AEA2BC60032F74D /* Products */,
+				C07758FF1B159FBA00F76ECA /* MapKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,6 +274,8 @@
 				8CE2CAEF1AEA2BC60032F74D /* New Orleans In PicturesTests.xctest */,
 				9873DF541B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension.appex */,
 				9873DF631B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app */,
+				9873DF8B1B27A9A3008FE5EF /* CityKit.framework */,
+				9873DF951B27A9A3008FE5EF /* CityKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -230,15 +298,12 @@
 				C0044DBA1B1D95CA00D1FE2C /* StepTableViewCell.swift */,
 				C04918251B26EC1200638F90 /* LocationTracker.swift */,
 				C04918281B26EC2100638F90 /* Compass.swift */,
-				C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */,
-				C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */,
 				8CE2CB0D1AEA5DF80032F74D /* View */,
-				8CE2CB0C1AEA5DEB0032F74D /* Model */,
+				8CE2CB0C1AEA5DEB0032F74D /* Old Model */,
 				8CE2CB081AEA5A0D0032F74D /* New Orleans Images */,
 				8CE2CAE31AEA2BC60032F74D /* Main.storyboard */,
 				8CE2CAE61AEA2BC60032F74D /* Images.xcassets */,
 				8CE2CAE81AEA2BC60032F74D /* LaunchScreen.xib */,
-				8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */,
 				8CE2CADA1AEA2BC60032F74D /* Supporting Files */,
 			);
 			path = "New Orleans In Pictures";
@@ -279,15 +344,13 @@
 			name = "New Orleans Images";
 			sourceTree = "<group>";
 		};
-		8CE2CB0C1AEA5DEB0032F74D /* Model */ = {
+		8CE2CB0C1AEA5DEB0032F74D /* Old Model */ = {
 			isa = PBXGroup;
 			children = (
-				8CE2CB4E1AEE242D0032F74D /* PointOfInterest.swift */,
 				8CE2CB511AEE50400032F74D /* DataObjectAccessor.swift */,
 				8CE2CB091AEA5DE10032F74D /* SightsListKeeper.swift */,
-				98ECD7B71B2725B200FF8D3F /* CoreDataStack.swift */,
 			);
-			name = Model;
+			name = "Old Model";
 			sourceTree = "<group>";
 		};
 		8CE2CB0D1AEA5DF80032F74D /* View */ = {
@@ -339,7 +402,78 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		9873DF8C1B27A9A3008FE5EF /* CityKit */ = {
+			isa = PBXGroup;
+			children = (
+				9873DFB61B27AA7E008FE5EF /* CoreDataStack.swift */,
+				9873DFF71B27D58C008FE5EF /* Objects */,
+				9873DFF81B27D5B9008FE5EF /* Managing Objects */,
+				8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */,
+				C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */,
+				C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */,
+				9873DF8F1B27A9A3008FE5EF /* CityKit.h */,
+				9873DF8D1B27A9A3008FE5EF /* Supporting Files */,
+			);
+			path = CityKit;
+			sourceTree = "<group>";
+		};
+		9873DF8D1B27A9A3008FE5EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF8E1B27A9A3008FE5EF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9873DF9B1B27A9A3008FE5EF /* CityKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF9E1B27A9A3008FE5EF /* CityKitTests.swift */,
+				9873DF9C1B27A9A3008FE5EF /* Supporting Files */,
+			);
+			path = CityKitTests;
+			sourceTree = "<group>";
+		};
+		9873DF9C1B27A9A3008FE5EF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9873DF9D1B27A9A3008FE5EF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9873DFF71B27D58C008FE5EF /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				9873DFF11B27CEED008FE5EF /* Coordinates.swift */,
+				9873DFEF1B27CEEC008FE5EF /* City.swift */,
+				9873DFF31B27CEED008FE5EF /* PointOfInterest.swift */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		9873DFF81B27D5B9008FE5EF /* Managing Objects */ = {
+			isa = PBXGroup;
+			children = (
+				9873DFAC1B27AA4B008FE5EF /* CityManage.swift */,
+				9873DFF51B27CF49008FE5EF /* CoordinatesManage.swift */,
+				9873DFAE1B27AA4B008FE5EF /* PointOfInterestManage.swift */,
+			);
+			name = "Managing Objects";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9873DF881B27A9A2008FE5EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DF901B27A9A3008FE5EF /* CityKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		8CE2CAD61AEA2BC60032F74D /* New Orleans In Pictures */ = {
@@ -350,11 +484,13 @@
 				8CE2CAD41AEA2BC60032F74D /* Frameworks */,
 				8CE2CAD51AEA2BC60032F74D /* Resources */,
 				9873DF781B276C1F008FE5EF /* Embed App Extensions */,
+				9873DFA71B27A9A3008FE5EF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				9873DF701B276C1F008FE5EF /* PBXTargetDependency */,
+				9873DFA11B27A9A3008FE5EF /* PBXTargetDependency */,
 			);
 			name = "New Orleans In Pictures";
 			productName = "New Orleans In Pictures";
@@ -412,6 +548,43 @@
 			productReference = 9873DF631B276C1F008FE5EF /* New Orleans In Pictures WatchKit App.app */;
 			productType = "com.apple.product-type.application.watchapp";
 		};
+		9873DF8A1B27A9A2008FE5EF /* CityKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9873DFA41B27A9A3008FE5EF /* Build configuration list for PBXNativeTarget "CityKit" */;
+			buildPhases = (
+				9873DF861B27A9A2008FE5EF /* Sources */,
+				9873DF871B27A9A2008FE5EF /* Frameworks */,
+				9873DF881B27A9A2008FE5EF /* Headers */,
+				9873DF891B27A9A2008FE5EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CityKit;
+			productName = CityKit;
+			productReference = 9873DF8B1B27A9A3008FE5EF /* CityKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9873DF941B27A9A3008FE5EF /* CityKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9873DFA81B27A9A3008FE5EF /* Build configuration list for PBXNativeTarget "CityKitTests" */;
+			buildPhases = (
+				9873DF911B27A9A3008FE5EF /* Sources */,
+				9873DF921B27A9A3008FE5EF /* Frameworks */,
+				9873DF931B27A9A3008FE5EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9873DF981B27A9A3008FE5EF /* PBXTargetDependency */,
+				9873DF9A1B27A9A3008FE5EF /* PBXTargetDependency */,
+			);
+			name = CityKitTests;
+			productName = CityKitTests;
+			productReference = 9873DF951B27A9A3008FE5EF /* CityKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -446,6 +619,14 @@
 					9873DF621B276C1F008FE5EF = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
+					9873DF8A1B27A9A2008FE5EF = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = EYWEP6YJP9;
+					};
+					9873DF941B27A9A3008FE5EF = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 8CE2CAD61AEA2BC60032F74D;
+					};
 				};
 			};
 			buildConfigurationList = 8CE2CAD21AEA2BC60032F74D /* Build configuration list for PBXProject "New Orleans In Pictures" */;
@@ -465,6 +646,8 @@
 				8CE2CAEE1AEA2BC60032F74D /* New Orleans In PicturesTests */,
 				9873DF531B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension */,
 				9873DF621B276C1F008FE5EF /* New Orleans In Pictures WatchKit App */,
+				9873DF8A1B27A9A2008FE5EF /* CityKit */,
+				9873DF941B27A9A3008FE5EF /* CityKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -475,13 +658,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CE2CB061AEA5A090032F74D /* SightsList.plist in Resources */,
-				C07759051B15A38600F76ECA /* NewOrleanSightsLocations.plist in Resources */,
 				C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */,
 				8CE2CAE51AEA2BC60032F74D /* Main.storyboard in Resources */,
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
-				C07759021B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */,
 				C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
-				8CE2CAE71AEA2BC60032F74D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,10 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D0984C1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */,
-				C07759031B15A37900F76ECA /* NewOrleanImageNames.plist in Resources */,
-				C07759061B15A38600F76ECA /* NewOrleanSightsLocations.plist in Resources */,
 				8CE2CB071AEA5A090032F74D /* SightsList.plist in Resources */,
-				8C6D2AD01AEF649100651CCF /* Images.xcassets in Resources */,
 				C0D0984A1B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +693,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9873DF891B27A9A2008FE5EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DFBA1B27B14B008FE5EF /* Images.xcassets in Resources */,
+				9873DFB41B27AA59008FE5EF /* NewOrleanImageNames.plist in Resources */,
+				9873DFB51B27AA5F008FE5EF /* NewOrleanSightsLocations.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9873DF931B27A9A3008FE5EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -523,11 +717,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				98ECD7B81B2725B200FF8D3F /* CoreDataStack.swift in Sources */,
 				C07820121B171F1D002C95CB /* MapTableViewCell.swift in Sources */,
 				C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */,
 				C07820091B170486002C95CB /* TableViewController.swift in Sources */,
-				8CE2CB4F1AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */,
@@ -542,7 +734,6 @@
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				C078200C1B171EDA002C95CB /* ImageTableViewCell.swift in Sources */,
 				C0044DBB1B1D95CA00D1FE2C /* StepTableViewCell.swift in Sources */,
-				8CE2CAE01AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
 				8CE2CB521AEE50400032F74D /* DataObjectAccessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,14 +742,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9873DF4F1B276A6C008FE5EF /* CoreDataStack.swift in Sources */,
 				C07820131B171F1D002C95CB /* MapTableViewCell.swift in Sources */,
 				C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */,
 				C078200A1B170486002C95CB /* TableViewController.swift in Sources */,
 				8CE2CB541AEE53F60032F74D /* AppDelegate.swift in Sources */,
 				C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */,
-				8CE2CB501AEE242D0032F74D /* PointOfInterest.swift in Sources */,
 				8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */,
 				C04918271B26EC1200638F90 /* LocationTracker.swift in Sources */,
 				C07759091B15A4EF00F76ECA /* SightAnnotation.swift in Sources */,
@@ -585,6 +774,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9873DF861B27A9A2008FE5EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DFF41B27CEED008FE5EF /* PointOfInterest.swift in Sources */,
+				9873DFB21B27AA4B008FE5EF /* PointOfInterestManage.swift in Sources */,
+				9873DFF21B27CEED008FE5EF /* Coordinates.swift in Sources */,
+				9873DFF01B27CEEC008FE5EF /* City.swift in Sources */,
+				9873DFB71B27AA7E008FE5EF /* CoreDataStack.swift in Sources */,
+				9873DFB01B27AA4B008FE5EF /* CityManage.swift in Sources */,
+				9873DFF61B27CF49008FE5EF /* CoordinatesManage.swift in Sources */,
+				9873DFB31B27AA53008FE5EF /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9873DF911B27A9A3008FE5EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9873DF9F1B27A9A3008FE5EF /* CityKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -602,6 +814,21 @@
 			isa = PBXTargetDependency;
 			target = 9873DF531B276C1E008FE5EF /* New Orleans In Pictures WatchKit Extension */;
 			targetProxy = 9873DF6F1B276C1F008FE5EF /* PBXContainerItemProxy */;
+		};
+		9873DF981B27A9A3008FE5EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9873DF8A1B27A9A2008FE5EF /* CityKit */;
+			targetProxy = 9873DF971B27A9A3008FE5EF /* PBXContainerItemProxy */;
+		};
+		9873DF9A1B27A9A3008FE5EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CE2CAD61AEA2BC60032F74D /* New Orleans In Pictures */;
+			targetProxy = 9873DF991B27A9A3008FE5EF /* PBXContainerItemProxy */;
+		};
+		9873DFA11B27A9A3008FE5EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9873DF8A1B27A9A2008FE5EF /* CityKit */;
+			targetProxy = 9873DFA01B27A9A3008FE5EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -842,6 +1069,85 @@
 			};
 			name = Release;
 		};
+		9873DFA51B27A9A3008FE5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CityKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9873DFA61B27A9A3008FE5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CityKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9873DFA91B27A9A3008FE5EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CityKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/New Orleans In Pictures.app/New Orleans In Pictures";
+			};
+			name = Debug;
+		};
+		9873DFAA1B27A9A3008FE5EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = CityKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/New Orleans In Pictures.app/New Orleans In Pictures";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -888,6 +1194,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 		};
+		9873DFA41B27A9A3008FE5EF /* Build configuration list for PBXNativeTarget "CityKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9873DFA51B27A9A3008FE5EF /* Debug */,
+				9873DFA61B27A9A3008FE5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9873DFA81B27A9A3008FE5EF /* Build configuration list for PBXNativeTarget "CityKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9873DFA91B27A9A3008FE5EF /* Debug */,
+				9873DFAA1B27A9A3008FE5EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
@@ -897,7 +1219,8 @@
 				8CE2CADF1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodel */,
 			);
 			currentVersion = 8CE2CADF1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodel */;
-			path = New_Orleans_In_Pictures.xcdatamodeld;
+			name = New_Orleans_In_Pictures.xcdatamodeld;
+			path = "../New Orleans In Pictures/New_Orleans_In_Pictures.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
