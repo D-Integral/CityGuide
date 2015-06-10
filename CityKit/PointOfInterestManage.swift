@@ -22,6 +22,14 @@ extension PointOfInterest {
         return pointOfInterest
     }
     
+    public func isPlanned() -> Bool {
+        return planned.boolValue
+    }
+    
+    public func isSeen() -> Bool {
+        return seen.boolValue
+    }
+    
     public func image() -> UIImage {
         return UIImage(named: name)!
     }
@@ -30,4 +38,5 @@ extension PointOfInterest {
     public func locationOnMap() -> CLLocation {
         return coordinates.locationOnMap()
     }
+
 }

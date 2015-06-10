@@ -29,4 +29,5 @@ extension Coordinates {
         let longitude = CLLocationDegrees(self.longitude.doubleValue)
         return CLLocation(latitude: latitude, longitude: longitude)
     }
+    
 }

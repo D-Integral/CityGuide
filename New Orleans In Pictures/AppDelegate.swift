@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import CityKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import CoreData
+import CityKit
 
 class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate {
     
@@ -21,6 +22,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var imageView: UIImageView!
     var image: UIImage = UIImage()
     var titleLabelText = String()
+    
+    var pointOfInterest: PointOfInterest!
     
     var selectedPOI: CLLocation = CLLocation()
     var userLocation: MKUserLocation!
@@ -148,10 +151,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     func showSelectedSightAnnotation() {
         
         var selectedSightIndex = sightsImagesNames().indexOfObject(titleLabelText)
-        var sightsCoords = sightsLocations()
         
-        var latitude = CLLocationDegrees((sightsCoords[selectedSightIndex][0] as! NSString).doubleValue)
-        var longitude = CLLocationDegrees((sightsCoords[selectedSightIndex][1] as! NSString).doubleValue)
+        var latitude = CLLocationDegrees(pointOfInterest.coordinates.latitude.doubleValue)
+        var longitude = CLLocationDegrees(pointOfInterest.coordinates.longitude.doubleValue)
         var coords = CLLocationCoordinate2DMake(latitude, longitude)
         var image = self.image
         

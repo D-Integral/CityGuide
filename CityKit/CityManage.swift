@@ -6,12 +6,31 @@
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
+
 import Foundation
 import CoreData
 
+
 extension City {
     
-    public class func createCityWithName(name: String) {
+    public class func fetchCity() -> City? {
+        let cityFetch = NSFetchRequest(entityName: "City")
+        var error: NSError?
+        let context = CoreDataStack.sharedInstance.managedObjectContext
+        
+        var city: City?
+        let results = context?.executeFetchRequest(cityFetch, error: &error) as! [City]
+        if results.count == 0 {
+            return nil
+        } else {
+            city = results[0] as City
+            println("\(city?.allSights)")
+        }
+        
+        return city
+    }
+    
+    public class func createCityWithName(name: String) -> City {
         
         let context = CoreDataStack.sharedInstance.managedObjectContext!
         let entityDescription = NSEntityDescription.entityForName("City", inManagedObjectContext: context)
@@ -20,30 +39,31 @@ extension City {
         loadPointsOfInterestForCity(newCity)
 
         CoreDataStack.sharedInstance.saveContext()
+        return newCity
     }
 
     private class func loadPointsOfInterestForCity(city: City) {
         if city.allSights.count == 0 {
-            let names = sightsNames()
-            let coordinates = sightsCoordinates()
+            let names = allSightsNames()
+            let coordinates = allSightsCoordinates()
             
             for var i = 0; i < names.count; i++ {
                 var pointOfInterest = PointOfInterest.newPointInCity(city)
                 pointOfInterest.name = names[i]
-                pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, stringCoordinates: sightsCoordinates()[i])
+                pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, stringCoordinates: allSightsCoordinates()[i])
                 pointOfInterest.seen = NSNumber(bool: false)
                 pointOfInterest.planned = NSNumber(bool: false)
             }
         }
     }
     
-    private class func sightsCoordinates () -> [[String]] {
+    private class func allSightsCoordinates() -> [[String]] {
         let filePath = cityKitBundle()?.pathForResource("NewOrleanSightsLocations", ofType: "plist")
         let array = NSArray(contentsOfFile: filePath!)
         return array as! [[String]]
     }
     
-    private class func sightsNames () -> [String] {
+    private class func allSightsNames() -> [String] {
 
         let filePath = cityKitBundle()?.pathForResource("NewOrleanImageNames", ofType: "plist")
         let array = NSArray(contentsOfFile: filePath!)
@@ -53,4 +73,21 @@ extension City {
     private class func cityKitBundle() -> NSBundle? {
         return NSBundle(identifier: "d-integral.CityKit")
     }
+    
+    public func pointsInCity() -> [PointOfInterest] {
+        return allSights.allObjects as! [PointOfInterest]
+    }
+    
+    public func uncheckedSights() -> [PointOfInterest] {
+        return pointsInCity().filter { $0.isPlanned() == false && $0.isSeen() == false }
+    }
+
+    public func wantToSeeSights() -> [PointOfInterest] {
+        return pointsInCity().filter{ $0.isPlanned() }
+    }
+    
+    public func alreadySeenSights() -> [PointOfInterest] {
+        return pointsInCity().filter { $0.isSeen() }
+    }
+    
 }

@@ -11,7 +11,7 @@ import CoreData
 
 public class CoreDataStack {
     
-    let sharedAppGroup: String = "group.com.1lastday.timeslower2.documents"
+    let sharedAppGroup: String = "group.com.d-integral.New-Orleans-In-Pictures.documents"
     
     public class var sharedInstance: CoreDataStack {
         struct Static {
@@ -31,6 +31,7 @@ public class CoreDataStack {
         return urls[0]
         }()
     
+    
     public lazy var managedObjectModel: NSManagedObjectModel = {
         let bundle = NSBundle(identifier: "d-integral.CityKit")
         let modelURL = bundle?.URLForResource("New_Orleans_In_Pictures", withExtension: "momd")
@@ -40,15 +41,13 @@ public class CoreDataStack {
     public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         var error: NSError? = nil
         
-        //TODO: add sharedAppGroup
-        //let sharedContainerURL: NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(self.sharedAppGroup)
-        //if let sharedConteinerURL = sharedContainerURL {
-            //let storeURL = sharedContainerURL?.URLByAppendingPathComponent("TimeSlower2")
+        let sharedContainerURL: NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(self.sharedAppGroup)
         
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("New_Orleans_In_Pictures.sqlite") // delete later
+        if let sharedConteinerURL = sharedContainerURL {
+            let storeURL = sharedContainerURL?.URLByAppendingPathComponent("New_Orleans_In_Pictures")
 
             var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+            if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error) == nil {
                 var dict = [String: AnyObject]()
                 dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
                 dict[NSLocalizedFailureReasonErrorKey] = "There was an error creating or loading the application's saved data."
@@ -56,8 +55,8 @@ public class CoreDataStack {
                 println("Unresolved error \(error), \(error!.userInfo)")
             }
             return coordinator
-//        }
-//        return nil
+        }
+        return nil
         }()
     
     public lazy var managedObjectContext: NSManagedObjectContext? = {
@@ -78,22 +77,4 @@ public class CoreDataStack {
             }
         }
     }
-    
-    //TODO: Implement fetch main list
-    
-//    public func fetchProfile() -> Profile? {
-//        let profileFetch = NSFetchRequest(entityName: "Profile")
-//        var error: NSError?
-//        let results = managedObjectContext?.executeFetchRequest(profileFetch, error: &error)
-//        
-//        var userProfile: Profile?
-//        if let profiles = results {
-//            if profiles.count == 0 {
-//                return nil
-//            } else {
-//                userProfile = profiles[0] as? Profile
-//            }
-//        }
-//        return userProfile
-//    }
 }
