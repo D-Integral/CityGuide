@@ -11,6 +11,7 @@ import CoreLocation
 
 protocol LocationTrackerDelegate {
     func locationUpdated(tracker: LocationTracker)
+    func headingUpdated(tracker: LocationTracker)
 }
 
 class LocationTracker: NSObject, CLLocationManagerDelegate {
@@ -18,6 +19,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     // MARK: public
     
     var currentLocation: CLLocation?
+    var currentHeading: CLHeading?
     var delegate: LocationTrackerDelegate?
     
     func distanceToLocation(aLocation : CLLocation) -> CLLocationDistance {
@@ -36,9 +38,11 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     func setupLocationManager() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 20.0
+        locationManager.distanceFilter = 100.0
+        locationManager.headingFilter = 1
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -46,8 +50,51 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         delegate?.locationUpdated(self)
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
+        currentHeading = newHeading
+        delegate?.headingUpdated(self)
+    }
+    
+    func angleToLocation(sightLocation: CLLocation) -> Double {
+        var angle: Double = 0.0
         
+        if let userLocation = currentLocation {
+            
+            let x1 = userLocation.coordinate.longitude
+            let y1 = userLocation.coordinate.latitude
+            
+            let x2 = sightLocation.coordinate.longitude
+            let y2 = sightLocation.coordinate.latitude
+            
+            let a = abs(x1 - x2)
+            let b = abs(y1-y2)
+            let c = sqrt(a*a + b*b)
+            
+            if x1 > x2 && y1 < y2 {
+                angle = acos((b*b + c*c - a*a) / (2*b*c))
+            }
+            
+            if x1 > x2 && y1 > y2 {
+                angle = M_PI - acos((b*b + c*c - a*a) / (2*b*c))
+            }
+            
+            if x1 < x2 && y1 > y2 {
+                angle = M_PI + acos((b*b + c*c - a*a) / (2*b*c))
+            }
+            
+            if x1 < x2 && y1 < y2 {
+                angle = 2 * M_PI - acos((b*b + c*c - a*a) / (2*b*c))
+            }
+        }
+        
+        if let heading = currentHeading {
+            var degrees = heading.magneticHeading
+            var radians = (degrees * M_PI / 180)
+            angle = angle + radians // + or - needs to be tested on the device
+        }
+        
+        return angle
     }
 }
+
 

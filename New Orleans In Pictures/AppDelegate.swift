@@ -15,13 +15,13 @@ import CityKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var locationManger: CLLocationManager?
+    var locationManager: CLLocationManager?
     var coreDataStack = CoreDataStack.sharedInstance
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        locationManger = CLLocationManager()
-        locationManger?.requestWhenInUseAuthorization()
+        locationManager = CLLocationManager()
+        locationManager?.requestWhenInUseAuthorization()
         
         return true
     }

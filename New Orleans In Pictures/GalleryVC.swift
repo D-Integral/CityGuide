@@ -17,7 +17,7 @@ let headerReuseIdentifier = "standardHeader"
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate {
     
     struct Constants {
-        static let sizeForCell = CGSizeMake(150.0, 300.0)
+        static let sizeForCell = CGSizeMake(150.0, 195.0)
         static let headerSize = CGSizeMake(50.0, 50.0)
     }
     
@@ -26,6 +26,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
     var uncheckedSights: [PointOfInterest]!
+    
     var selectedPoint: PointOfInterest!
     
     let headerTexts = ["I want to see", "What To See In New Orleans", "Already Seen"]
@@ -44,7 +45,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         uncheckedSights = city.uncheckedSights()
     }
     
-    
     //MARK: - Lifecycle
     override func viewDidLoad()
     {
@@ -61,6 +61,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         self.collectionView?.reloadData()
+        
+        locationTracker.locationManager.startUpdatingLocation()
+        locationTracker.locationManager.startUpdatingHeading()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -69,14 +72,59 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    func locationUpdated(tracker: LocationTracker) {
-        locationTracker = tracker
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        selectedPoint = pointForIndexPath(indexPath)
+        self.performSegueWithIdentifier("toTable", sender: self)
+        
+        locationTracker.locationManager.stopUpdatingLocation()
+        locationTracker.locationManager.stopUpdatingHeading()
     }
     
+    func pointForIndexPath(indexPath: NSIndexPath) -> PointOfInterest {
+        
+        var selectedObject: PointOfInterest!
+        
+        switch indexPath.section {
+        case 0: selectedObject = wantToSee[indexPath.row]
+        case 1: selectedObject = uncheckedSights[indexPath.row]
+        case 2: selectedObject = alreadySeen[indexPath.row]
+        default: break
+        }
+        
+        return selectedObject
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let tableVC = segue.destinationViewController as! TableViewController
+        var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
+        var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
+        var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
+        
+        tableVC.pointOfInterest = selectedPoint
+        tableVC.selectedCellIndexPath = indexPath
+        tableVC.image = cell.imageView.image!
+        tableVC.currentManagedObject = selectedPoint
+        tableVC.sightName = selectedPoint.name
+    }
+    
+    func setBackgroundImage(image: UIImage) {
+        self.collectionView?.frame = self.view.frame
+        self.collectionView?.backgroundColor = UIColor(patternImage: image)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
+    }
+}
+
+
+//MARK:  UICollectionViewDatasource
+
+extension GalleryVC {
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 3
     }
-
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         switch section {
@@ -86,17 +134,35 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         default: return 0
         }
     }
+}
 
+//MARK: LocationTrackerDelegate
+
+extension GalleryVC {
+    func locationUpdated(tracker: LocationTracker) {
+        locationTracker = tracker
+        collectionView?.reloadData()
+    }
+    
+    func headingUpdated(tracker: LocationTracker) {
+        locationTracker = tracker
+        collectionView?.reloadData()
+    }
+}
+
+//MARK: cell setup
+
+extension GalleryVC {
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
-
+        
         switch indexPath.section {
         case 0: setupCell(&cell, forPoint: wantToSee[indexPath.row])
         case 1: setupCell(&cell, forPoint: uncheckedSights[indexPath.row])
         case 2: setupCell(&cell, forPoint: alreadySeen[indexPath.row])
         default: break
         }
-    
+        
         return cell
     }
     
@@ -110,15 +176,41 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             var distance = locationTracker.distanceToLocation(sightLocation)
             if distance > 999.0 {
                 distance = distance / 1000
-                cell.distanceLabel.text = String(format: "%.2f", distance) + " km"
+                if distance < 99.9 {
+                    let string = point.name + "\n" + String(format: "%.1f", distance) + " km"
+                    cell.nameLabel.text = string
+                } else {
+                    cell.nameLabel.text = point.name
+                }
+                
             } else {
-                cell.distanceLabel.text = "\(Int(distance)) m"
+                let string = point.name + "\n" + "\(Int(distance)) m"
+                cell.nameLabel.text = string
             }
-        } else {
-            cell.distanceLabel.text = "Distance..."
         }
+        
+        let angle = CGFloat(locationTracker.angleToLocation(sightLocation))
+        cell.compassImage.image = UIImage(named: "arrow_up.png")
+        cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)
     }
     
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        var size: CGSize!
+        switch indexPath.section {
+        case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.sizeForCell
+        case 1: size = (uncheckedSights.count == 0) ? CGSizeZero : Constants.sizeForCell
+        case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.sizeForCell
+        default: break
+        }
+        
+        return size
+    }
+}
+
+//MARK: header setup
+
+extension GalleryVC {
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
         var header: HeaderView?
@@ -143,39 +235,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         header.headerLabel.text = headerTexts[section]
         header.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
     }
-
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
-        selectedPoint = pointForIndexPath(indexPath)
-        self.performSegueWithIdentifier("toTable", sender: self)
-    }
-    
-    func pointForIndexPath(indexPath: NSIndexPath) -> PointOfInterest {
-        
-        var selectedObject: PointOfInterest!
-        
-        switch indexPath.section {
-        case 0: selectedObject = wantToSee[indexPath.row]
-        case 1: selectedObject = uncheckedSights[indexPath.row]
-        case 2: selectedObject = alreadySeen[indexPath.row]
-        default: break
-        }
-        
-        return selectedObject
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        var size: CGSize!
-        switch indexPath.section {
-        case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 1: size = (uncheckedSights.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.sizeForCell
-        default: break
-        }
-        
-        return size
-    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         var size: CGSize!
@@ -189,8 +248,11 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         return size
     }
-    
-    
+}
+
+//MARK: animation
+
+extension GalleryVC {
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if fromVC == self && toVC.isKindOfClass(TableViewController) {
@@ -198,26 +260,5 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         } else {
             return nil
         }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        let tableVC = segue.destinationViewController as! TableViewController
-        var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
-        var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
-        var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
-        
-        tableVC.pointOfInterest = selectedPoint
-        tableVC.selectedCellIndexPath = indexPath
-        tableVC.image = cell.imageView.image!
-        tableVC.currentManagedObject = selectedPoint
-        tableVC.sightName = selectedPoint.name
-    }
-    
-    func setBackgroundImage(image: UIImage) {
-        self.collectionView?.frame = self.view.frame
-        self.collectionView?.backgroundColor = UIColor(patternImage: image)
-        
-        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
     }
 }
