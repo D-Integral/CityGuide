@@ -21,6 +21,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         static let headerSize = CGSizeMake(50.0, 50.0)
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var city: City!
     
     var wantToSee: [PointOfInterest]!
@@ -29,7 +31,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     var selectedPoint: PointOfInterest!
     
-    let headerTexts = ["I want to see", "What To See In New Orleans", "Already Seen"]
+    let headerTexts = ["I Want To See", "What To See In New Orleans", "Already Seen"]
     var locationTracker: LocationTracker!
     
     
@@ -45,15 +47,23 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         uncheckedSights = city.uncheckedSights()
     }
     
+    func distanceToPOI (POI: PointOfInterest) -> CLLocationDistance {
+            return locationTracker.distanceToLocation(POI.locationOnMap())
+    }
+    
     //MARK: - Lifecycle
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        collectionView?.alpha = 0.5
+        activityIndicator.startAnimating()
+        
         sightsSetup()
         
         self.clearsSelectionOnViewWillAppear = false
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
+        
         locationTracker = LocationTracker()
         locationTracker.delegate = self
     }
@@ -102,11 +112,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
-        tableVC.pointOfInterest = selectedPoint
+        tableVC.POI = selectedPoint
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!
-        tableVC.currentManagedObject = selectedPoint
-        tableVC.sightName = selectedPoint.name
     }
     
     func setBackgroundImage(image: UIImage) {
@@ -141,7 +149,15 @@ extension GalleryVC {
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+        
+        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        uncheckedSights = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        
         collectionView?.reloadData()
+        
+        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
+        activityIndicator.stopAnimating()
     }
     
     func headingUpdated(tracker: LocationTracker) {
@@ -182,7 +198,6 @@ extension GalleryVC {
                 } else {
                     cell.nameLabel.text = point.name
                 }
-                
             } else {
                 let string = point.name + "\n" + "\(Int(distance)) m"
                 cell.nameLabel.text = string

@@ -23,9 +23,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var image: UIImage = UIImage()
     var titleLabelText = String()
     
-    var pointOfInterest: PointOfInterest!
+    var POI: PointOfInterest!
     
-    var selectedPOI: CLLocation = CLLocation()
     var userLocation: MKUserLocation!
     
     var destination: MKMapItem?
@@ -34,13 +33,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var selectedCellIndexPath: NSIndexPath!
     
-    var routeSteps: [AnyObject]!
+    //MARK: Lifecycle
     
-    var sightName: String!
-    
-    var managedObjectContext = CoreDataStack.sharedInstance.managedObjectContext
-    var currentManagedObject: NSManagedObject!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,19 +49,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.initialSwitchesSetup()
     }
     
-    func initialSwitchesSetup() {
-        
-        if true == currentManagedObject.valueForKey("planned") as? Bool {
-            wantSeeSwitch.on = true
-        } else {
-            wantSeeSwitch.on = false
-        }
-        
-        if true == currentManagedObject.valueForKey("seen") as? Bool {
-            seenSwitch.on = true
-        } else {
-            seenSwitch.on = false
-        }
+    func setBackgroundImage(image: UIImage, forView view: UIView) {
+        self.view.backgroundColor = UIColor(patternImage: image)
+        view.backgroundColor = UIColor(patternImage: image)
     }
     
     func imageViewInitialize() {
@@ -78,18 +62,59 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.view.addSubview(imageView)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    func initialSwitchesSetup() {
         
+        if POI.isPlanned() {
+            wantSeeSwitch.on = true
+        } else {
+            wantSeeSwitch.on = false
+        }
+        
+        if POI.isSeen() {
+            seenSwitch.on = true
+        } else {
+            seenSwitch.on = false
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
     }
     
+    @IBAction func wantToSee(sender: AnyObject) {
+        
+        if true == (sender as! UISwitch).on {
+            POI.planned = NSNumber(bool: true)
+            CoreDataStack.sharedInstance.saveContext()
+        } else {
+            POI.planned = NSNumber(bool: false)
+            CoreDataStack.sharedInstance.saveContext()
+        }
+    }
+    
+    @IBAction func alreadySeen(sender: AnyObject) {
+        
+        if true == (sender as! UISwitch).on {
+            wantSeeSwitch.on = false
+            POI.planned = NSNumber(bool: false)
+            POI.seen = NSNumber(bool: true)
+            CoreDataStack.sharedInstance.saveContext()
+        } else {
+            POI.seen = NSNumber(bool: false)
+            CoreDataStack.sharedInstance.saveContext()
+        }
+    }
+}
+
+//MARK: Animations
+
+extension TableViewController {
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if fromVC === self && toVC.isKindOfClass(GalleryVC) {
@@ -127,33 +152,21 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             return nil
         }
     }
-    
+}
+
+//MARK: Map methods
+
+extension TableViewController {
     func mapViewSetup() {
         
         mapView.delegate = self
         mapView.showsUserLocation = true
     }
     
-    func sightsImagesNames () -> NSArray {
-        
-        let pListFile = NSBundle.mainBundle().pathForResource("NewOrleanImageNames", ofType: "plist")
-        let array = NSArray(contentsOfFile: pListFile!)
-        return array!
-    }
-    
-    func sightsLocations () -> [AnyObject] {
-        
-        let pListFile = NSBundle.mainBundle().pathForResource("NewOrleanSightsLocations", ofType: "plist")
-        let array = NSArray(contentsOfFile: pListFile!)
-        return array! as [AnyObject]
-    }
-    
     func showSelectedSightAnnotation() {
         
-        var selectedSightIndex = sightsImagesNames().indexOfObject(titleLabelText)
-        
-        var latitude = CLLocationDegrees(pointOfInterest.coordinates.latitude.doubleValue)
-        var longitude = CLLocationDegrees(pointOfInterest.coordinates.longitude.doubleValue)
+        var latitude = CLLocationDegrees(POI.coordinates.latitude.doubleValue)
+        var longitude = CLLocationDegrees(POI.coordinates.longitude.doubleValue)
         var coords = CLLocationCoordinate2DMake(latitude, longitude)
         var image = self.image
         
@@ -166,10 +179,12 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.setupTitleLabel()
         titleLabel.text = titleLabelText
         
-        selectedPOI = CLLocation(latitude: latitude, longitude: longitude)
-        
         var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
         destination = MKMapItem(placemark: placemark)
+    }
+    
+    func setupTitleLabel() {
+        titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
@@ -231,8 +246,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             var realDistanceInt = Int(route.distance)
             self.setupTitleLabel()
             titleLabel.text = "Route distance: \(realDistanceInt) meters"
-            
-            self.routeSteps = route.steps
         }
     }
     
@@ -250,11 +263,11 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         var topLeftCoord = CLLocationCoordinate2D()
         var bottomRightCoord = CLLocationCoordinate2D()
         
-        topLeftCoord.longitude = fmin(userLocation.coordinate.longitude, selectedPOI.coordinate.longitude)
-        topLeftCoord.latitude = fmax(userLocation.coordinate.latitude, selectedPOI.coordinate.latitude)
+        topLeftCoord.longitude = fmin(userLocation.coordinate.longitude, POI.coordinates.longitude.doubleValue)
+        topLeftCoord.latitude = fmax(userLocation.coordinate.latitude, POI.coordinates.latitude.doubleValue)
         
-        bottomRightCoord.longitude = fmax(userLocation.coordinate.longitude, selectedPOI.coordinate.longitude)
-        bottomRightCoord.latitude = fmin(userLocation.coordinate.latitude, selectedPOI.coordinate.latitude)
+        bottomRightCoord.longitude = fmax(userLocation.coordinate.longitude, POI.coordinates.longitude.doubleValue)
+        bottomRightCoord.latitude = fmin(userLocation.coordinate.latitude, POI.coordinates.latitude.doubleValue)
         
         var region = MKCoordinateRegion()
         region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
@@ -266,58 +279,20 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         region = mapView.regionThatFits(region)
         mapView.setRegion(region, animated: true)
     }
+}
 
+//MARK: TableView
+
+extension TableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 2 {
             return 2
         } else {
             return 1
         }
-    }
-    
-    @IBAction func wantToSee(sender: AnyObject) {
-        
-        if true == (sender as! UISwitch).on {
-            currentManagedObject.setValue(true, forKey: "planned")
-            self.saveManagedObjectContext()
-        } else {
-            currentManagedObject.setValue(false, forKey: "planned")
-            self.saveManagedObjectContext()
-        }
-    }
-    
-    @IBAction func alreadySeen(sender: AnyObject) {
-        
-        if true == (sender as! UISwitch).on {
-            wantSeeSwitch.on = false
-            currentManagedObject.setValue(false, forKey: "planned")
-            currentManagedObject.setValue(true, forKey: "seen")
-            self.saveManagedObjectContext()
-        } else {
-            currentManagedObject.setValue(false, forKey: "seen")
-            self.saveManagedObjectContext()
-        }
-    }
-    
-    func saveManagedObjectContext() {
-        var error: NSError?
-        managedObjectContext?.save(&error)
-        
-        if let err = error {
-            println(err.localizedFailureReason)
-        }
-    }
-    
-    func setupTitleLabel() {
-        titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
-    }
-    
-    func setBackgroundImage(image: UIImage, forView view: UIView) {
-        self.view.backgroundColor = UIColor(patternImage: image)
-        view.backgroundColor = UIColor(patternImage: image)
     }
 }

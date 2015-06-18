@@ -18,7 +18,7 @@ extension Coordinates {
         
         coordinates.pointOfInterest = point
         coordinates.latitude = NSNumber(double: (stringCoordinates[0] as NSString).doubleValue)
-        coordinates.longitude = NSNumber(double: (stringCoordinates[0] as NSString).doubleValue)
+        coordinates.longitude = NSNumber(double: (stringCoordinates[1] as NSString).doubleValue)
         CoreDataStack.sharedInstance.saveContext()
 
         return coordinates
@@ -29,5 +29,4 @@ extension Coordinates {
         let longitude = CLLocationDegrees(self.longitude.doubleValue)
         return CLLocation(latitude: latitude, longitude: longitude)
     }
-    
 }

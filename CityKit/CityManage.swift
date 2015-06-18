@@ -47,10 +47,10 @@ extension City {
             let names = allSightsNames()
             let coordinates = allSightsCoordinates()
             
-            for var i = 0; i < names.count; i++ {
+            for i in 0..<names.count {
                 var pointOfInterest = PointOfInterest.newPointInCity(city)
                 pointOfInterest.name = names[i]
-                pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, stringCoordinates: allSightsCoordinates()[i])
+                pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, stringCoordinates: coordinates[i])
                 pointOfInterest.seen = NSNumber(bool: false)
                 pointOfInterest.planned = NSNumber(bool: false)
             }
@@ -89,5 +89,4 @@ extension City {
     public func alreadySeenSights() -> [PointOfInterest] {
         return pointsInCity().filter { $0.isSeen() }
     }
-    
 }
