@@ -27,7 +27,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
-    var uncheckedSights: [PointOfInterest]!
+    var unchecked: [PointOfInterest]!
     
     var selectedPoint: PointOfInterest!
     
@@ -44,7 +44,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         wantToSee = city.wantToSeeSights()
         alreadySeen = city.alreadySeenSights()
-        uncheckedSights = city.uncheckedSights()
+        unchecked = city.uncheckedSights()
     }
     
     func distanceToPOI (POI: PointOfInterest) -> CLLocationDistance {
@@ -94,7 +94,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         switch indexPath.section {
         case 0: selectedObject = wantToSee[indexPath.row]
-        case 1: selectedObject = uncheckedSights[indexPath.row]
+        case 1: selectedObject = unchecked[indexPath.row]
         case 2: selectedObject = alreadySeen[indexPath.row]
         default: break
         }
@@ -133,7 +133,7 @@ extension GalleryVC {
         
         switch section {
         case 0: return wantToSee.count
-        case 1: return uncheckedSights.count
+        case 1: return unchecked.count
         case 2: return alreadySeen.count
         default: return 0
         }
@@ -148,7 +148,7 @@ extension GalleryVC {
         
         wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
         alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        uncheckedSights = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
         
         collectionView?.reloadData()
         
@@ -170,7 +170,7 @@ extension GalleryVC {
         
         switch indexPath.section {
         case 0: setupCell(&cell, forPoint: wantToSee[indexPath.row])
-        case 1: setupCell(&cell, forPoint: uncheckedSights[indexPath.row])
+        case 1: setupCell(&cell, forPoint: unchecked[indexPath.row])
         case 2: setupCell(&cell, forPoint: alreadySeen[indexPath.row])
         default: break
         }
@@ -189,9 +189,11 @@ extension GalleryVC {
             cell.nameLabel.text = setupNameLabel(distance, fromPoint: point)
         }
         
-        let angle = CGFloat(locationTracker.angleToLocation(sightLocation))
         cell.compassImage.image = UIImage(named: "arrow_up.png")
-        UIView.animateWithDuration(1, animations: {cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)}, completion: nil)
+        UIView.animateWithDuration(1, animations: {
+            let angle = CGFloat(self.locationTracker.angleToLocation(sightLocation))
+            cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)
+        }, completion: nil)
     }
     
     func setupNameLabel(var distance: CLLocationDistance, fromPoint point: PointOfInterest) -> String {
@@ -216,7 +218,7 @@ extension GalleryVC {
         var size: CGSize!
         switch indexPath.section {
         case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 1: size = (uncheckedSights.count == 0) ? CGSizeZero : Constants.sizeForCell
+        case 1: size = (unchecked.count == 0) ? CGSizeZero : Constants.sizeForCell
         case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.sizeForCell
         default: break
         }
@@ -258,7 +260,7 @@ extension GalleryVC {
         
         switch section {
         case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.headerSize
-        case 1: size = (uncheckedSights.count == 0) ? CGSizeZero : Constants.headerSize
+        case 1: size = (unchecked.count == 0) ? CGSizeZero : Constants.headerSize
         case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.headerSize
         default: break
         }

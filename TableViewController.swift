@@ -158,13 +158,11 @@ extension TableViewController {
 
 extension TableViewController {
     func mapViewSetup() {
-        
         mapView.delegate = self
         mapView.showsUserLocation = true
     }
     
     func showSelectedSightAnnotation() {
-        
         var latitude = CLLocationDegrees(POI.coordinates.latitude.doubleValue)
         var longitude = CLLocationDegrees(POI.coordinates.longitude.doubleValue)
         var coords = CLLocationCoordinate2DMake(latitude, longitude)
@@ -188,12 +186,11 @@ extension TableViewController {
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-        
         self.userLocation = userLocation
         
-        if self.isUserInTheCity() {
-            self.zoomToFitMapItems()
-            self.getDirections()
+        if isUserInTheCity() {
+            zoomToFitMapItems()
+            getDirections()
         } else {
             showSelectedSightAnnotation()
         }
