@@ -71,8 +71,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         
-        locationTracker.locationManager.startUpdatingLocation()
-        locationTracker.locationManager.startUpdatingHeading()
+        locationTracker.startUpdating()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -86,8 +85,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         selectedPoint = pointForIndexPath(indexPath)
         self.performSegueWithIdentifier("toTable", sender: self)
         
-        locationTracker.locationManager.stopUpdatingLocation()
-        locationTracker.locationManager.stopUpdatingHeading()
+        locationTracker.stopUpdating()
     }
     
     func pointForIndexPath(indexPath: NSIndexPath) -> PointOfInterest {

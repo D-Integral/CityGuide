@@ -35,14 +35,23 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         self.setupLocationManager()
     }
     
-    func setupLocationManager() {
+    private func setupLocationManager() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 100.0
         locationManager.headingFilter = 1
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        startUpdating()
+    }
+    
+    func startUpdating() {
         locationManager.startUpdatingHeading()
+        locationManager.startUpdatingLocation()
+    }
+    
+    func stopUpdating() {
+        locationManager.stopUpdatingHeading()
+        locationManager.stopUpdatingLocation()
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
