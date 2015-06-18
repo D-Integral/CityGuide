@@ -124,7 +124,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
 }
 
-
 //MARK:  UICollectionViewDatasource
 
 extension GalleryVC {
@@ -189,23 +188,29 @@ extension GalleryVC {
         
         if locationTracker.currentLocation != nil {
             var distance = locationTracker.distanceToLocation(sightLocation)
-            if distance > 999.0 {
-                distance = distance / 1000
-                if distance < 99.9 {
-                    let string = point.name + "\n" + String(format: "%.1f", distance) + " km"
-                    cell.nameLabel.text = string
-                } else {
-                    cell.nameLabel.text = point.name
-                }
-            } else {
-                let string = point.name + "\n" + "\(Int(distance)) m"
-                cell.nameLabel.text = string
-            }
+            cell.nameLabel.text = setupNameLabel(distance, fromPoint: point)
         }
         
         let angle = CGFloat(locationTracker.angleToLocation(sightLocation))
         cell.compassImage.image = UIImage(named: "arrow_up.png")
         UIView.animateWithDuration(1, animations: {cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)}, completion: nil)
+    }
+    
+    func setupNameLabel(var distance: CLLocationDistance, fromPoint point: PointOfInterest) -> String {
+        var string: String!
+        
+        if distance > 999.0 {
+            distance = distance / 1000
+            if distance < 99.9 {
+                string = point.name + "\n" + String(format: "%.1f", distance) + " km"
+            } else {
+                string = point.name
+            }
+        } else {
+            string = point.name + "\n" + "\(Int(distance)) m"
+        }
+        
+        return string
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
