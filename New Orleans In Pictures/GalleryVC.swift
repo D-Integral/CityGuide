@@ -206,7 +206,7 @@ extension GalleryVC {
         
         let angle = CGFloat(locationTracker.angleToLocation(sightLocation))
         cell.compassImage.image = UIImage(named: "arrow_up.png")
-        cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)
+        UIView.animateWithDuration(1, animations: {cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)}, completion: nil)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
