@@ -58,7 +58,7 @@ extension City {
     }
     
     private class func allSightsCoordinates() -> [[String]] {
-        let filePath = cityKitBundle()?.pathForResource("NewOrleanSightsLocations", ofType: "plist")
+        let filePath = cityKitBundle()?.pathForResource("RigaSightsLocations", ofType: "plist")
         let array = NSArray(contentsOfFile: filePath!)
         return array as! [[String]]
     }
