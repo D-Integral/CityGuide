@@ -59,6 +59,8 @@
 		C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 		C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
 		C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
+		C0B390B01B34176700248630 /* RigaSightsLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0B390AF1B34176700248630 /* RigaSightsLocations.plist */; };
+		C0B390B11B34176700248630 /* RigaSightsLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0B390AF1B34176700248630 /* RigaSightsLocations.plist */; };
 		C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */; };
 		C0D0984A1B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */; };
 		C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
@@ -190,6 +192,7 @@
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
 		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
 		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
+		C0B390AF1B34176700248630 /* RigaSightsLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RigaSightsLocations.plist; sourceTree = "<group>"; };
 		C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_1.png; sourceTree = "<group>"; };
 		C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_2.png; sourceTree = "<group>"; };
 		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
@@ -381,6 +384,7 @@
 				C07759011B15A37900F76ECA /* NewOrleanImageNames.plist */,
 				C07759041B15A38600F76ECA /* NewOrleanSightsLocations.plist */,
 				C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */,
+				C0B390AF1B34176700248630 /* RigaSightsLocations.plist */,
 				9873DF8F1B27A9A3008FE5EF /* CityKit.h */,
 				9873DF8D1B27A9A3008FE5EF /* Supporting Files */,
 			);
@@ -640,6 +644,7 @@
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
 				C03A69641B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */,
 				C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
+				C0B390B01B34176700248630 /* RigaSightsLocations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +684,7 @@
 				9873DFB41B27AA59008FE5EF /* NewOrleanImageNames.plist in Resources */,
 				C03A69651B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */,
 				9873DFB51B27AA5F008FE5EF /* NewOrleanSightsLocations.plist in Resources */,
+				C0B390B11B34176700248630 /* RigaSightsLocations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
