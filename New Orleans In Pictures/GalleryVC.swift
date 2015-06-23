@@ -48,7 +48,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func distanceToPOI (POI: PointOfInterest) -> CLLocationDistance {
-            return locationTracker.distanceToLocation(POI.locationOnMap())
+        return locationTracker.distanceToLocation(POI.locationOnMap())
     }
     
     //MARK: - Lifecycle
@@ -184,9 +184,11 @@ extension GalleryVC {
         cell.nameLabel.text = point.name
         let sightLocation = point.locationOnMap()
         
+        cell.nameLabel.text = point.name
+        
         if locationTracker.currentLocation != nil {
             var distance = locationTracker.distanceToLocation(sightLocation)
-            cell.nameLabel.text = setupNameLabel(distance, fromPoint: point)
+            cell.distanceLabel.text = setupDistanceLabel(distance)
         }
         
         cell.compassImage.image = UIImage(named: "arrow_up.png")
@@ -196,18 +198,16 @@ extension GalleryVC {
         }, completion: nil)
     }
     
-    func setupNameLabel(var distance: CLLocationDistance, fromPoint point: PointOfInterest) -> String {
+    func setupDistanceLabel(var distance: CLLocationDistance) -> String {
         var string: String!
         
         if distance > 999.0 {
             distance = distance / 1000
             if distance < 99.9 {
-                string = point.name + "\n" + String(format: "%.1f", distance) + " km"
-            } else {
-                string = point.name
+                string = String(format: "%.1f", distance) + " km"
             }
         } else {
-            string = point.name + "\n" + "\(Int(distance)) m"
+            string = "\(Int(distance)) m"
         }
         
         return string

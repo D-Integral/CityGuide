@@ -64,15 +64,21 @@
                                                 <constraint firstAttribute="height" constant="45" id="wh8-C5-d8n"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="suG-eb-rR7">
-                                            <rect key="frame" x="0.0" y="150" width="105" height="45"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suG-eb-rR7">
+                                            <rect key="frame" x="0.0" y="150" width="105" height="23"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="Irc-ZZ-lcC"/>
-                                                <constraint firstAttribute="height" constant="45" id="Jbz-tc-ld4"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="23" id="Irc-ZZ-lcC"/>
+                                                <constraint firstAttribute="height" constant="23" id="Jbz-tc-ld4"/>
                                                 <constraint firstAttribute="width" constant="105" id="ovg-hg-p3j"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdf-gC-A3M">
+                                            <rect key="frame" x="0.0" y="173" width="105" height="22"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -82,13 +88,17 @@
                                     <constraint firstItem="suG-eb-rR7" firstAttribute="top" secondItem="G9l-US-Nzv" secondAttribute="bottom" id="IE3-aW-c59"/>
                                     <constraint firstItem="G9l-US-Nzv" firstAttribute="top" secondItem="RnO-2m-dN0" secondAttribute="top" id="L2g-ak-j3W"/>
                                     <constraint firstItem="1c6-1P-Vdl" firstAttribute="top" secondItem="RnO-2m-dN0" secondAttribute="top" constant="149" id="Nc6-hn-0G4"/>
+                                    <constraint firstItem="zdf-gC-A3M" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="RNv-m0-z5o"/>
                                     <constraint firstItem="1c6-1P-Vdl" firstAttribute="leading" secondItem="suG-eb-rR7" secondAttribute="trailing" id="Rzu-XH-r8Z"/>
                                     <constraint firstAttribute="trailing" secondItem="1c6-1P-Vdl" secondAttribute="trailing" id="S7l-ef-1dy"/>
+                                    <constraint firstAttribute="bottom" secondItem="zdf-gC-A3M" secondAttribute="bottom" id="SXR-yd-Qd6"/>
+                                    <constraint firstItem="1c6-1P-Vdl" firstAttribute="leading" secondItem="zdf-gC-A3M" secondAttribute="trailing" id="TKt-n7-OBx"/>
                                     <constraint firstItem="suG-eb-rR7" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="YtW-CI-y4j"/>
                                     <constraint firstItem="suG-eb-rR7" firstAttribute="top" secondItem="G9l-US-Nzv" secondAttribute="bottom" id="csg-jx-nDV"/>
-                                    <constraint firstAttribute="bottom" secondItem="suG-eb-rR7" secondAttribute="bottom" id="ejs-y9-mCM"/>
-                                    <constraint firstAttribute="bottom" secondItem="suG-eb-rR7" secondAttribute="bottom" id="gAW-eI-OwS"/>
+                                    <constraint firstAttribute="bottom" secondItem="suG-eb-rR7" secondAttribute="bottom" constant="22" id="ejs-y9-mCM"/>
+                                    <constraint firstAttribute="bottom" secondItem="suG-eb-rR7" secondAttribute="bottom" constant="22" id="gAW-eI-OwS"/>
                                     <constraint firstItem="suG-eb-rR7" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="j7T-td-2f3"/>
+                                    <constraint firstItem="zdf-gC-A3M" firstAttribute="top" secondItem="suG-eb-rR7" secondAttribute="bottom" id="m72-kY-8Hg"/>
                                     <constraint firstAttribute="trailing" secondItem="G9l-US-Nzv" secondAttribute="trailing" id="puy-hW-bkv"/>
                                     <constraint firstItem="G9l-US-Nzv" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="v41-ko-AmJ"/>
                                     <constraint firstAttribute="bottom" secondItem="1c6-1P-Vdl" secondAttribute="bottom" constant="1" id="zA8-Xx-t4A"/>
@@ -97,6 +107,7 @@
                                 <size key="customSize" width="150" height="195"/>
                                 <connections>
                                     <outlet property="compassImage" destination="1c6-1P-Vdl" id="ydK-nx-i8s"/>
+                                    <outlet property="distanceLabel" destination="zdf-gC-A3M" id="ZKd-te-vlk"/>
                                     <outlet property="imageView" destination="G9l-US-Nzv" id="d5i-4V-aP0"/>
                                     <outlet property="nameLabel" destination="suG-eb-rR7" id="hze-8m-6M9"/>
                                 </connections>
