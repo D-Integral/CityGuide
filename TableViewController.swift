@@ -2,7 +2,7 @@
 //  TableViewController.swift
 //  New Orleans In Pictures
 //
-//  Created by Александр Нужный on 28.05.15.
+//  Created by Alexander Nuzhniy on 28.05.15.
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
@@ -22,6 +22,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var imageView: UIImageView!
     var image: UIImage = UIImage()
     var titleLabelText = String()
+    var backgroundImage = "Texture_New_Orleans_1.png"
     
     var POI: PointOfInterest!
     
@@ -42,6 +43,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
+        self.setupTableViewBackground()
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
         self.imageViewInitialize()
         self.mapViewSetup()
@@ -291,5 +293,35 @@ extension TableViewController {
         } else {
             return 1
         }
+    }
+    
+    func setupTableViewBackground() {
+        for section in 0..<tableView.numberOfSections(){
+            switch section {
+            case 0:
+                setupBackgroundforCellInSection(section)
+            case 1:
+                setupBackgroundforCellInSection(section)
+            case 2:
+                setupBackgroundforCellInSection(section)
+            default: break
+            }
+        }
+    }
+    
+    func setupBackgroundforCellInSection(section: Int) {
+        var cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section))
+        setupBackgroundForCell(&cell!)
+        
+        if section == 2 {
+            for i in 0...1 {
+                var cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: section))
+                setupBackgroundForCell(&cell!)
+            }
+        }
+    }
+    
+    func setupBackgroundForCell(inout cell: UITableViewCell) {
+        cell.contentView.backgroundColor = UIColor(patternImage: UIImage(named: backgroundImage)!)
     }
 }

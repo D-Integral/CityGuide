@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="City" representedClassName="City" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="allSights" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointOfInterest" inverseName="city" inverseEntity="PointOfInterest" syncable="YES"/>
+        <relationship name="pointsOfInterest" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PointOfInterest" inverseName="city" inverseEntity="PointOfInterest" syncable="YES"/>
     </entity>
     <entity name="Coordinates" representedClassName="Coordinates" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -13,12 +13,12 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="planned" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="seen" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="allSights" inverseEntity="City" syncable="YES"/>
+        <relationship name="city" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="City" inverseName="pointsOfInterest" inverseEntity="City" syncable="YES"/>
         <relationship name="coordinates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinates" inverseName="pointOfInterest" inverseEntity="Coordinates" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PointOfInterest" positionX="-54" positionY="-9" width="128" height="118"/>
-        <element name="City" positionX="-299" positionY="36" width="128" height="73"/>
+        <element name="City" positionX="-299" positionY="36" width="128" height="75"/>
         <element name="Coordinates" positionX="178" positionY="9" width="128" height="88"/>
+        <element name="PointOfInterest" positionX="-54" positionY="-9" width="128" height="118"/>
     </elements>
 </model>

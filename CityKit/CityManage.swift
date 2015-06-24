@@ -24,7 +24,7 @@ extension City {
             return nil
         } else {
             city = results[0] as City
-            println("\(city?.allSights)")
+            println("\(city?.pointsOfInterest)")
         }
         
         return city
@@ -43,9 +43,9 @@ extension City {
     }
 
     private class func loadPointsOfInterestForCity(city: City) {
-        if city.allSights.count == 0 {
-            let names = allSightsNames()
-            let coordinates = allSightsCoordinates()
+        if city.pointsOfInterest.count == 0 {
+            let names = pointsOfInterestNames()
+            let coordinates = pointsOfInterestCoordinates()
             
             for i in 0..<names.count {
                 var pointOfInterest = PointOfInterest.newPointInCity(city)
@@ -57,13 +57,15 @@ extension City {
         }
     }
     
-    private class func allSightsCoordinates() -> [[String]] {
+    // rename and create a single arrayFrom file method when a coordinate will be one number instead of two
+    
+    private class func pointsOfInterestCoordinates() -> [[String]] {
         let filePath = cityKitBundle()?.pathForResource("RigaSightsLocations", ofType: "plist")
         let array = NSArray(contentsOfFile: filePath!)
         return array as! [[String]]
     }
     
-    private class func allSightsNames() -> [String] {
+    private class func pointsOfInterestNames() -> [String] {
 
         let filePath = cityKitBundle()?.pathForResource("NewOrleanImageNames", ofType: "plist")
         let array = NSArray(contentsOfFile: filePath!)
@@ -75,7 +77,7 @@ extension City {
     }
     
     public func pointsInCity() -> [PointOfInterest] {
-        return allSights.allObjects as! [PointOfInterest]
+        return pointsOfInterest.allObjects as! [PointOfInterest]
     }
     
     public func uncheckedSights() -> [PointOfInterest] {

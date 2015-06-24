@@ -16,7 +16,7 @@ import CoreData
 public class City: NSManagedObject {
     
     @NSManaged public var name: String
-    @NSManaged public var allSights: NSSet
+    @NSManaged public var pointsOfInterest: NSSet
     
 }
 

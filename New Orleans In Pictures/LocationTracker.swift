@@ -2,7 +2,7 @@
 //  LocationTracker.swift
 //  Watch The World
 //
-//  Authors: Dmytro Skorokhod, Alex Nuzhny. 2015
+//  Authors: Dmytro Skorokhod, Alexander Nuzhniy. 2015
 //  Copyright (c) 2015 D Integralas (Lithuania, EU). All rights reserved.
 //
 
