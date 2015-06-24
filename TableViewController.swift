@@ -21,7 +21,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var imageView: UIImageView!
     var image: UIImage = UIImage()
-    var titleLabelText = String()
+    //var titleLabelText = String()
     var backgroundImage = "Texture_New_Orleans_1.png"
     
     var POI: PointOfInterest!
@@ -177,7 +177,7 @@ extension TableViewController {
         mapView.setRegion(region, animated: true)
         
         self.setupTitleLabel()
-        titleLabel.text = titleLabelText
+        titleLabel.text = POI.name//titleLabelText
         
         var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
         destination = MKMapItem(placemark: placemark)
@@ -242,10 +242,32 @@ extension TableViewController {
             
             mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
             
-            var realDistanceInt = Int(route.distance)
+            let distance = route.distance
+            let formattedDistance = formatDistance(distance)
             self.setupTitleLabel()
-            titleLabel.text = "Route distance: \(realDistanceInt) meters"
+            self.titleLabel.alpha = 0.0
+            self.titleLabel.text = self.POI.name + " : \(formattedDistance)"
+            
+            UIView.animateWithDuration(1, animations: {
+                self.titleLabel.alpha = 1.0
+            }, completion: nil)
+            
         }
+    }
+    
+    func formatDistance(var distance: CLLocationDistance) -> String {
+        var string: String!
+        
+        if distance > 999 {
+            distance = distance / 1000
+            if distance < 99.9 {
+                string = String(format: "%.1f", distance) + " km"
+            }
+        } else {
+            string = "\(Int(distance)) m"
+        }
+        
+        return string
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
