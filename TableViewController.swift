@@ -21,7 +21,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var imageView: UIImageView!
     var image: UIImage = UIImage()
-    //var titleLabelText = String()
     var backgroundImage = "Texture_New_Orleans_1.png"
     
     var POI: PointOfInterest!
@@ -177,7 +176,7 @@ extension TableViewController {
         mapView.setRegion(region, animated: true)
         
         self.setupTitleLabel()
-        titleLabel.text = POI.name//titleLabelText
+        titleLabel.text = POI.name
         
         var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
         destination = MKMapItem(placemark: placemark)
