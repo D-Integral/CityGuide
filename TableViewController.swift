@@ -243,6 +243,7 @@ extension TableViewController {
             
             let distance = route.distance
             let formattedDistance = formatDistance(distance)
+            
             self.setupTitleLabel()
             self.titleLabel.alpha = 0.0
             self.titleLabel.text = self.POI.name + " : \(formattedDistance)"
