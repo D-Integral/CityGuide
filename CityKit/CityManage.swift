@@ -59,18 +59,6 @@ extension City {
     
     // rename and create a single arrayFrom file method when a coordinate will be one number instead of two
     
-//    private class func pointsOfInterestCoordinates() -> [[String]] {
-//        let filePath = cityKitBundle()?.pathForResource("RigaSightsLocations", ofType: "plist")
-//        let array = NSArray(contentsOfFile: filePath!)
-//        return array as! [[String]]
-//    }
-    
-//    private class func pointsOfInterestNames() -> [String] {
-//        let filePath = cityKitBundle()?.pathForResource("NewOrleanImageNames", ofType: "plist")
-//        let array = NSArray(contentsOfFile: filePath!)
-//        return array as! [String]
-//    }
-    
     private class func pointsOfInterestCoordinates() -> [[String]] {
         return arrayFromFile("RigaSightsLocations") as! [[String]]
     }
