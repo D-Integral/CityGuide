@@ -19,19 +19,19 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     // MARK: public
     
-    var response: MKDirectionsResponse!
+    //var response: MKDirectionsResponse!
     
     var currentLocation: CLLocation?
     var currentHeading: CLHeading?
     var delegate: LocationTrackerDelegate?
     
-    func distanceToLocation(aLocation : CLLocation) -> CLLocationDistance {
+    func distanceToLocation(aLocation: CLLocation) -> CLLocationDistance {
         return aLocation.distanceFromLocation(currentLocation!)
     }
     
     // MARK: private
     
-    var locationManager : CLLocationManager = CLLocationManager()
+    var locationManager: CLLocationManager = CLLocationManager()
     
     override init() {
         super.init()
@@ -44,7 +44,6 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.distanceFilter = 100.0
         locationManager.headingFilter = 15
         locationManager.delegate = self
-        startUpdating()
     }
     
     func startUpdating() {

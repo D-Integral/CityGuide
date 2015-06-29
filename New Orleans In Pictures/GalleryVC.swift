@@ -66,6 +66,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
         
         locationTracker = LocationTracker()
+        locationTracker.startUpdating()
         locationTracker.delegate = self
     }
     
