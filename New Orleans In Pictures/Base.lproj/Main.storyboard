@@ -187,19 +187,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here will be the description of the point of interest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-WB-sch">
-                                                    <rect key="frame" x="0.0" y="44" width="375" height="106"/>
+                                                    <rect key="frame" x="0.0" y="44" width="269" height="106"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LZ8-pe-aVG">
+                                                    <rect key="frame" x="269" y="44" width="106" height="106"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="106" id="pS6-xe-gjA"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="LZ8-pe-aVG" secondAttribute="bottom" id="5PU-mS-hlH"/>
                                                 <constraint firstItem="CVe-JP-1ZB" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="HiW-zj-pVY"/>
+                                                <constraint firstItem="LZ8-pe-aVG" firstAttribute="leading" secondItem="sXT-WB-sch" secondAttribute="trailing" id="R1y-pO-Dzq"/>
                                                 <constraint firstAttribute="bottom" secondItem="sXT-WB-sch" secondAttribute="bottom" id="V7Y-xj-Ugd"/>
                                                 <constraint firstItem="CVe-JP-1ZB" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="W4j-ca-YvP"/>
+                                                <constraint firstItem="LZ8-pe-aVG" firstAttribute="top" secondItem="CVe-JP-1ZB" secondAttribute="bottom" id="XBz-Id-ygn"/>
                                                 <constraint firstAttribute="trailing" secondItem="CVe-JP-1ZB" secondAttribute="trailing" id="YUL-uq-yQe"/>
                                                 <constraint firstItem="sXT-WB-sch" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="b8i-Co-UPh"/>
-                                                <constraint firstAttribute="trailing" secondItem="sXT-WB-sch" secondAttribute="trailing" id="tJF-pU-Pw9"/>
+                                                <constraint firstAttribute="trailing" secondItem="LZ8-pe-aVG" secondAttribute="trailing" id="hUW-W4-GfX"/>
                                                 <constraint firstItem="sXT-WB-sch" firstAttribute="top" secondItem="CVe-JP-1ZB" secondAttribute="bottom" id="xVc-tx-l4H"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -305,6 +314,7 @@
                     <navigationItem key="navigationItem" id="lXW-Hu-uOU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="arrowImage" destination="LZ8-pe-aVG" id="rHk-Sl-qNa"/>
                         <outlet property="descriptionLabel" destination="sXT-WB-sch" id="aOu-bx-Blb"/>
                         <outlet property="mapView" destination="hhA-SS-Mpv" id="KE8-II-ngV"/>
                         <outlet property="seenSwitch" destination="cTK-kk-F1c" id="eAy-vv-USJ"/>

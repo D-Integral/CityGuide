@@ -19,6 +19,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
+    @IBOutlet weak var arrowImage: UIImageView!
     
     var imageView: UIImageView!
     var image: UIImage = UIImage()
@@ -45,6 +46,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         self.setupTableViewBackground()
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
+        self.setupArrowImage()
         self.imageViewInitialize()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -54,6 +56,10 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     func setBackgroundImage(image: UIImage, forView view: UIView) {
         self.view.backgroundColor = UIColor(patternImage: image)
         view.backgroundColor = UIColor(patternImage: image)
+    }
+    
+    func setupArrowImage() {
+        arrowImage.image = UIImage(named: "arrow_up.png")
     }
     
     func imageViewInitialize() {
