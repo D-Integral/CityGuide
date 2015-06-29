@@ -16,6 +16,8 @@ class DistanceFormatter {
             distance = distance / 1000
             if distance < 99.9 {
                 string = String(format: "%.1f", distance) + " km"
+            } else {
+                string = "More 100 km"
             }
         } else {
             string = "\(Int(distance)) m"
