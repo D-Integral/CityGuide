@@ -172,25 +172,35 @@
                             </tableViewSection>
                             <tableViewSection id="fX0-Pa-vnG">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6wo-PE-sjo">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="6wo-PE-sjo">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6wo-PE-sjo" id="Y3p-Ah-gDv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVe-JP-1ZB">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="rn9-Wi-hjS"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here will be the description of the point of interest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXT-WB-sch">
+                                                    <rect key="frame" x="0.0" y="44" width="375" height="106"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="CVe-JP-1ZB" secondAttribute="bottom" id="0Pf-X3-kFI"/>
-                                                <constraint firstAttribute="trailing" secondItem="CVe-JP-1ZB" secondAttribute="trailing" id="4kl-X3-1jf"/>
-                                                <constraint firstItem="CVe-JP-1ZB" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="5uz-Md-IRp"/>
-                                                <constraint firstAttribute="centerY" secondItem="CVe-JP-1ZB" secondAttribute="centerY" id="84j-bu-eeG"/>
-                                                <constraint firstAttribute="centerX" secondItem="CVe-JP-1ZB" secondAttribute="centerX" id="LMi-BW-WgX"/>
-                                                <constraint firstItem="CVe-JP-1ZB" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="dKU-Bl-ZFT"/>
+                                                <constraint firstItem="CVe-JP-1ZB" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="HiW-zj-pVY"/>
+                                                <constraint firstAttribute="bottom" secondItem="sXT-WB-sch" secondAttribute="bottom" id="V7Y-xj-Ugd"/>
+                                                <constraint firstItem="CVe-JP-1ZB" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="W4j-ca-YvP"/>
+                                                <constraint firstAttribute="trailing" secondItem="CVe-JP-1ZB" secondAttribute="trailing" id="YUL-uq-yQe"/>
+                                                <constraint firstItem="sXT-WB-sch" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="b8i-Co-UPh"/>
+                                                <constraint firstAttribute="trailing" secondItem="sXT-WB-sch" secondAttribute="trailing" id="tJF-pU-Pw9"/>
+                                                <constraint firstItem="sXT-WB-sch" firstAttribute="top" secondItem="CVe-JP-1ZB" secondAttribute="bottom" id="xVc-tx-l4H"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -263,7 +273,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="n0x-q9-rgm" userLabel="State">
+                            <tableViewSection id="n0x-q9-rgm" userLabel="Map">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="330" id="ccX-qz-iOm">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -295,6 +305,7 @@
                     <navigationItem key="navigationItem" id="lXW-Hu-uOU"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="descriptionLabel" destination="sXT-WB-sch" id="aOu-bx-Blb"/>
                         <outlet property="mapView" destination="hhA-SS-Mpv" id="KE8-II-ngV"/>
                         <outlet property="seenSwitch" destination="cTK-kk-F1c" id="eAy-vv-USJ"/>
                         <outlet property="titleLabel" destination="CVe-JP-1ZB" id="goP-VO-wpI"/>

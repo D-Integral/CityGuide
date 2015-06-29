@@ -256,6 +256,7 @@ extension GalleryVC {
     }
 }
 
+
 //MARK: animation
 
 extension GalleryVC {

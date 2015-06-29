@@ -15,6 +15,7 @@ import CityKit
 class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
