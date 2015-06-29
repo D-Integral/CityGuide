@@ -190,7 +190,7 @@ extension GalleryVC {
         if locationTracker.currentLocation != nil {
             var distance = locationTracker.distanceToLocation(sightLocation)
             //var distance = locationTracker.routeDistanceToPointOfInterestWithCoordinate(sightLocation.coordinate)
-            cell.distanceLabel.text = formattedDistance(distance)
+            cell.distanceLabel.text = DistanceFormatter.formatted(distance)
         }
         
         cell.compassImage.image = UIImage(named: "arrow_up.png")
@@ -198,21 +198,6 @@ extension GalleryVC {
             let angle = CGFloat(self.locationTracker.angleToLocation(sightLocation))
             cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)
         }, completion: nil)
-    }
-    
-    func formattedDistance(var distance: CLLocationDistance) -> String {
-        var string: String!
-        
-        if distance > 999.0 {
-            distance = distance / 1000
-            if distance < 99.9 {
-                string = String(format: "%.1f", distance) + " km"
-            }
-        } else {
-            string = "\(Int(distance)) m"
-        }
-        
-        return string
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

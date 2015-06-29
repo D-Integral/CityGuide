@@ -242,7 +242,7 @@ extension TableViewController {
             mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
             
             let distance = route.distance
-            let formattedDistance = formatDistance(distance)
+            let formattedDistance = DistanceFormatter.formatted(distance)
             
             self.setupTitleLabel()
             self.titleLabel.alpha = 0.0

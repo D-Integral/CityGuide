@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
 
 class CoordinateConverter {
