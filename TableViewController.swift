@@ -200,10 +200,10 @@ extension TableViewController {
     func isUserInTheCity() -> Bool {
         var isInTheCity: Bool!
         
-        let rightCityEdge: CLLocationDegrees = 24.24
-        let leftCityEdge: CLLocationDegrees = 23.95
-        let topCityEdge: CLLocationDegrees = 57.01
-        let bottomCityEdge:CLLocationDegrees = 56.87
+        let rightCityEdge: CLLocationDegrees = -89.90
+        let leftCityEdge: CLLocationDegrees = -90.29
+        let topCityEdge: CLLocationDegrees = 30.08
+        let bottomCityEdge:CLLocationDegrees = 29.82
         
         let userLongitude = userLocation.location.coordinate.longitude
         let userLatitude = userLocation.location.coordinate.latitude

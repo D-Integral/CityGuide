@@ -31,7 +31,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     var selectedPoint: PointOfInterest!
     
-    let headerTexts = ["I Want To See", "What To See In Riga", "Already Seen"]
+    let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     var locationTracker: LocationTracker!
     
     var coordinateConverter = CoordinateConverter()

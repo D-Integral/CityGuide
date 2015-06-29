@@ -43,35 +43,24 @@ extension City {
     }
 
     private class func loadPointsOfInterestForCity(city: City) {
+        var coordinateConverter = CoordinateConverter()
+        
         if city.pointsOfInterest.count == 0 {
-            let names = pointsOfInterestNames()
-            let coordinates = pointsOfInterestCoordinates()
-            
-            for i in 0..<names.count {
+            for (name, coordinate) in packedPointsOfInterest() {
                 var pointOfInterest = PointOfInterest.newPointInCity(city)
-                pointOfInterest.name = names[i]
-                pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, stringCoordinates: coordinates[i])
+                pointOfInterest.name = name
+                let unpackedCoordinates = coordinateConverter.unpackCoordinate(coordinate.unsignedLongLongValue)
+                pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, coordinate: unpackedCoordinates)
                 pointOfInterest.seen = NSNumber(bool: false)
                 pointOfInterest.planned = NSNumber(bool: false)
             }
         }
     }
     
-    // rename and create a single arrayFrom file method when a coordinate will be one number instead of two
-    
-    private class func pointsOfInterestCoordinates() -> [[String]] {
-        return arrayFromFile("RigaSightsLocations") as! [[String]]
-    }
-
-    
-    private class func pointsOfInterestNames() -> [String] {
-        return arrayFromFile("NewOrleanImageNames") as! [String]
-    }
-    
-    private class func arrayFromFile(fileName: String) -> [AnyObject]? {
-        let filePath = cityKitBundle()?.pathForResource(fileName, ofType: "plist")
-        let array = NSArray(contentsOfFile: filePath!)
-        return array as? [AnyObject]
+    private class func packedPointsOfInterest() -> [String : NSNumber] {
+        let filePath = cityKitBundle()?.pathForResource("NewOrleanData", ofType: "plist")
+        let dictionary = NSDictionary(contentsOfFile: filePath!)
+        return dictionary as! [String : NSNumber]
     }
     
     private class func cityKitBundle() -> NSBundle? {
