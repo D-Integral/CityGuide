@@ -43,13 +43,12 @@ extension City {
     }
 
     private class func loadPointsOfInterestForCity(city: City) {
-        var coordinateConverter = CoordinateConverter()
         
         if city.pointsOfInterest.count == 0 {
             for (name, coordinate) in packedPointsOfInterest() {
                 var pointOfInterest = PointOfInterest.newPointInCity(city)
                 pointOfInterest.name = name
-                let unpackedCoordinates = coordinateConverter.unpackCoordinate(coordinate.unsignedLongLongValue)
+                let unpackedCoordinates = CoordinateConverter.unpackCoordinate(coordinate.unsignedLongLongValue)
                 pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, coordinate: unpackedCoordinates)
                 pointOfInterest.seen = NSNumber(bool: false)
                 pointOfInterest.planned = NSNumber(bool: false)

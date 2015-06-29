@@ -24,16 +24,16 @@ class CoordinateConverter {
         return UInt64((coordinate.latitude + 85.0) * 1000000) << Constants.shift | UInt64((coordinate.longitude + 180.0) * 1000000)
     }*/
 
-    func unpackCoordinate(packedCoordinate: UInt64) -> CLLocationCoordinate2D {
+     class func unpackCoordinate(packedCoordinate: UInt64) -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(unpackLatitude(packedCoordinate), unpackLongitude(packedCoordinate))
     }
 
-    func unpackLatitude(packedCoordinate: UInt64) -> CLLocationDegrees {
+    private class func unpackLatitude(packedCoordinate: UInt64) -> CLLocationDegrees {
         let unpackedLatitude = CLLocationDegrees(Double(packedCoordinate >> Constants.shift) / 1000000) - Constants.maxLatitude
         return NSString(format: "%.6f", unpackedLatitude).doubleValue
     }
 
-    func unpackLongitude(packedCoordinate: UInt64) -> CLLocationDegrees {
+    private class func unpackLongitude(packedCoordinate: UInt64) -> CLLocationDegrees {
         let unpackedLongitude = CLLocationDegrees(Double(packedCoordinate & Constants.mask) / 1000000) - Constants.maxLongitude
         return NSString(format: "%.6f", unpackedLongitude).doubleValue
     }
