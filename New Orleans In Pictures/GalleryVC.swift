@@ -34,6 +34,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     let headerTexts = ["I Want To See", "What To See In Riga", "Already Seen"]
     var locationTracker: LocationTracker!
     
+    var coordinateConverter = CoordinateConverter()
     
     func sightsSetup() {
         if let fetchedCity = City.fetchCity() {
