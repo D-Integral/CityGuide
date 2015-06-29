@@ -188,7 +188,8 @@ extension GalleryVC {
         
         if locationTracker.currentLocation != nil {
             var distance = locationTracker.distanceToLocation(sightLocation)
-            cell.distanceLabel.text = setupDistanceLabel(distance)
+            //var distance = locationTracker.routeDistanceToPointOfInterestWithCoordinate(sightLocation.coordinate)
+            cell.distanceLabel.text = formattedDistance(distance)
         }
         
         cell.compassImage.image = UIImage(named: "arrow_up.png")
@@ -198,7 +199,7 @@ extension GalleryVC {
         }, completion: nil)
     }
     
-    func setupDistanceLabel(var distance: CLLocationDistance) -> String {
+    func formattedDistance(var distance: CLLocationDistance) -> String {
         var string: String!
         
         if distance > 999.0 {

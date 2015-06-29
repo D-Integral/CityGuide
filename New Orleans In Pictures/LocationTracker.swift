@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MapKit
 
 protocol LocationTrackerDelegate {
     func locationUpdated(tracker: LocationTracker)
@@ -17,6 +18,8 @@ protocol LocationTrackerDelegate {
 class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     // MARK: public
+    
+    var response: MKDirectionsResponse!
     
     var currentLocation: CLLocation?
     var currentHeading: CLHeading?
@@ -64,7 +67,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         delegate?.headingUpdated(self)
     }
     
-    func angleToLocation(sightLocation: CLLocation) -> Double {
+    func angleToLocation(pointOfInterestLocation: CLLocation) -> Double {
         var angle: Double = 0.0
         
         if let userLocation = currentLocation {
@@ -72,8 +75,8 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
             let x1 = userLocation.coordinate.longitude
             let y1 = userLocation.coordinate.latitude
             
-            let x2 = sightLocation.coordinate.longitude
-            let y2 = sightLocation.coordinate.latitude
+            let x2 = pointOfInterestLocation.coordinate.longitude
+            let y2 = pointOfInterestLocation.coordinate.latitude
             
             let a = abs(x1 - x2)
             let b = abs(y1-y2)
@@ -104,6 +107,48 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         
         return angle
     }
+    
+//    func routeDistanceToPointOfInterestWithCoordinate(pointOfInterestLocation: CLLocationCoordinate2D) -> CLLocationDistance {
+//        var distance: CLLocationDistance!
+//        
+//        getDirectionsToPointOfInterest(pointOfInterestLocation)
+//        distance = routeDistance(response)
+//        
+//        return distance
+//    }
+//    
+//    func getDirectionsToPointOfInterest(pointOfInterestLocation: CLLocationCoordinate2D) {
+//        
+//        let request = MKDirectionsRequest()
+//        request.setSource(MKMapItem.mapItemForCurrentLocation())
+//        request.setDestination(destination(pointOfInterestLocation))
+//        request.requestsAlternateRoutes = false
+//        
+//        let directions = MKDirections(request: request)
+//        
+//        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
+//            if error != nil {
+//                println("Error getting directions")
+//            } else {
+//                //self.showRoute(response)
+//                self.response = response
+//            }
+//        })
+//    }
+//    
+//    func destination(location: CLLocationCoordinate2D) -> MKMapItem {
+//        return MKMapItem(placemark: MKPlacemark(coordinate: location, addressDictionary: nil))
+//    }
+//    
+//    func routeDistance(response: MKDirectionsResponse) -> CLLocationDistance {
+//        var distance: CLLocationDistance!
+//        
+//        for route in response.routes as! [MKRoute] {
+//            distance = route.distance
+//        }
+//        
+//        return distance
+//    }
 }
 
 
