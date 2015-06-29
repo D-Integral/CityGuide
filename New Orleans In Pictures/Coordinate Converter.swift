@@ -18,10 +18,6 @@ class CoordinateConverter {
         static let maxLatitude: CLLocationDegrees = 85.0
     }
     
-    init() {
-        
-    }
-
     //MARK: Packing algorithm
     
     /*
