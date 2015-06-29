@@ -12,7 +12,7 @@ import CoreLocation
 class RouteDistanceCalculator: LocationTrackerDelegate {
     
     var locationTracker: LocationTracker = LocationTracker()
-    
+    var distances: NSDictionary = [String : CLLocationDistance]()
     init() {
         setup()
     }

@@ -12,6 +12,7 @@ import CoreLocation
 class AngleCalculator: LocationTrackerDelegate {
     
     var locationTracker: LocationTracker = LocationTracker()
+    var angles: NSDictionary = [String : Double]()
     
     init(locationTracker: LocationTracker) {
         self.locationTracker = locationTracker
