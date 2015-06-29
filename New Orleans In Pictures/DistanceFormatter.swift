@@ -9,21 +9,16 @@
 import CoreLocation
 
 class DistanceFormatter {
-    class func formatted(var distance: CLLocationDistance) -> String {
-        var string: String!
-        
-        if distance > 999.0 {
-            distance = distance / 1000
-            if distance < 99.9 {
-                string = String(format: "%.1f", distance) + " km"
-            } else {
-                string = "More 100 km"
-            }
-        } else {
-            string = "\(Int(distance)) m"
-        }
-        
-        return string
+    class func formatted(distance: CLLocationDistance) -> String {
+        return distance > 999.0 ? formattedInKilometers(distance) : formattedInMeters(distance)
+    }
+    
+    private class func formattedInKilometers(distance: CLLocationDistance) -> String {
+        return distance < 99999 ? (String(format: "%.1f", distance / 1000) + " km") : "More 100 km"
+    }
+    
+    private class func formattedInMeters(distance: CLLocationDistance) -> String {
+        return "\(Int(distance)) m"
     }
 }
 
