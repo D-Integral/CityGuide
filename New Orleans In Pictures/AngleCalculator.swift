@@ -6,22 +6,27 @@
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
+import CityKit
 
-class AngleCalculator: LocationTrackerDelegate {
+class AngleCalculator {
     
-    var locationTracker: LocationTracker = LocationTracker()
-    var angles: NSDictionary = [String : Double]()
+    var locationTracker: LocationTracker!
+    
+    var city: City {
+        return City.fetchCity() != nil ? City.fetchCity()! : City.createCityWithName("New Orleans")
+    }
+    
+    var angles: [String : Double] {
+        var returnAngles = [String : Double]()
+        for pointOfInterest in city.pointsInCity() {
+            returnAngles[pointOfInterest.name] = angleToLocation(pointOfInterest.locationOnMap())
+        }
+        return returnAngles
+    }
     
     init(locationTracker: LocationTracker) {
         self.locationTracker = locationTracker
-        setup()
-    }
-    
-    func setup() {
-        self.locationTracker.delegate = self
-        self.locationTracker.startUpdating()
     }
     
     func angleToLocation(pointOfInterestLocation: CLLocation) -> Double {
@@ -64,13 +69,4 @@ class AngleCalculator: LocationTrackerDelegate {
         
         return angle
     }
-    
-    func locationUpdated(tracker: LocationTracker) {
-        locationTracker = tracker
-    }
-    
-    func headingUpdated(tracker: LocationTracker) {
-        locationTracker = tracker
-    }
-
 }

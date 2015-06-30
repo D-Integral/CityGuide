@@ -42,7 +42,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 100.0
-        locationManager.headingFilter = 15
+        locationManager.headingFilter = 30
         locationManager.delegate = self
     }
     

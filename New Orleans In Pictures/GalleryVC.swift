@@ -28,12 +28,18 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
+    var compassAngles: [String : Double]!
     
     var selectedPoint: PointOfInterest!
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
-    var locationTracker: LocationTracker!
-    
+    var locationTracker: LocationTracker! {
+        didSet {
+            angleCalculator = AngleCalculator(locationTracker: locationTracker)
+            compassAngles = angleCalculator.angles
+        }
+    }
+    var angleCalculator: AngleCalculator!
     var coordinateConverter = CoordinateConverter()
     
     func sightsSetup() {
@@ -184,20 +190,19 @@ extension GalleryVC {
         
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        let sightLocation = point.locationOnMap()
-        
-        cell.nameLabel.text = point.name
         
         if locationTracker.currentLocation != nil {
-            var distance = locationTracker.distanceToLocation(sightLocation)
-            //var distance = locationTracker.routeDistanceToPointOfInterestWithCoordinate(sightLocation.coordinate)
+            var distance = locationTracker.distanceToLocation(point.locationOnMap())
             cell.distanceLabel.text = DistanceFormatter.formatted(distance)
         }
         
-        cell.compassImage.image = UIImage(named: "arrow_up.png")
+        rotateCompassWithView(cell.compassImage, forPointOfInterest: point)
+    }
+    
+    func rotateCompassWithView(imageView: UIImageView, forPointOfInterest point: PointOfInterest) {
+        imageView.image = UIImage(named: "arrow_up.png")
         UIView.animateWithDuration(1, animations: {
-            let angle = CGFloat(self.locationTracker.angleToLocation(sightLocation))
-            cell.compassImage.transform = CGAffineTransformMakeRotation(-angle)
+            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(self.compassAngles[point.name]!))
         }, completion: nil)
     }
     

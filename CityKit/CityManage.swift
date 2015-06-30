@@ -24,7 +24,6 @@ extension City {
             return nil
         } else {
             city = results[0] as City
-            println("\(city?.pointsOfInterest)")
         }
         
         return city
