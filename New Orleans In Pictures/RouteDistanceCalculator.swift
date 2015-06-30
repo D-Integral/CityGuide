@@ -9,25 +9,14 @@
 import MapKit
 import CoreLocation
 
-class RouteDistanceCalculator: LocationTrackerDelegate {
+class RouteDistanceCalculator {
     
-    var locationTracker: LocationTracker = LocationTracker()
+    var locationTracker: LocationTracker!
+    
     var distances: NSDictionary = [String : CLLocationDistance]()
-    init() {
-        setup()
-    }
     
-    func setup() {
-        locationTracker.delegate = self
-        locationTracker.startUpdating()
-    }
-    
-    func locationUpdated(tracker: LocationTracker) {
-        locationTracker = tracker
-    }
-    
-    func headingUpdated(tracker: LocationTracker) {
-        locationTracker = tracker
+    init(locationTracker: LocationTracker) {
+        self.locationTracker = locationTracker
     }
     
 //    func routeDistanceToPointOfInterestWithCoordinate(pointOfInterestLocation: CLLocationCoordinate2D) -> CLLocationDistance {
