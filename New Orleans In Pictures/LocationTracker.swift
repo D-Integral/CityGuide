@@ -44,6 +44,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.distanceFilter = 100.0
         locationManager.headingFilter = 30
         locationManager.delegate = self
+        startUpdating()
     }
     
     func startUpdating() {
