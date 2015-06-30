@@ -186,15 +186,9 @@ extension GalleryVC {
     }
     
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
-        
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        
-        if locationTracker.currentLocation != nil {
-            var distance = locationTracker.distanceToLocation(point.locationOnMap())
-            cell.distanceLabel.text = DistanceFormatter.formatted(distance)
-        }
-        
+        cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))
         rotateCompassWithView(cell.compassImage, forPointOfInterest: point)
     }
     

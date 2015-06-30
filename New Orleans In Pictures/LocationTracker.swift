@@ -26,7 +26,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     var delegate: LocationTrackerDelegate?
     
     func distanceToLocation(aLocation: CLLocation) -> CLLocationDistance {
-        return aLocation.distanceFromLocation(currentLocation!)
+        return currentLocation != nil ? aLocation.distanceFromLocation(currentLocation!) : CLLocationDistance()
     }
     
     // MARK: private
