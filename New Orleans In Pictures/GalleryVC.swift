@@ -159,20 +159,10 @@ extension GalleryVC {
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
-        
-//        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-//        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-//        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-//        
-//        collectionView?.reloadData()
-//        
-//        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
-//        activityIndicator.stopAnimating()
     }
     
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
-        collectionView?.reloadData()
     }
 }
 

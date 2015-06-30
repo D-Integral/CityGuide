@@ -14,24 +14,27 @@ import CityKit
 
 class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate {
     
+    struct Constants{
+        static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
+    }
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
     @IBOutlet weak var arrowImage: UIImageView!
+    var imageView: UIImageView!
     
+    var pointOfInterest: PointOfInterest!
     var angleToPointOfInterest: Double!
     
-    var imageView: UIImageView!
     var image: UIImage = UIImage()
     var backgroundImage = "Texture_New_Orleans_1.png"
     
-    var pointOfInterest: PointOfInterest!
-    
     var userLocation: MKUserLocation!
     
-    var destination: MKMapItem?
+    var destination: MKMapItem? //needs to be refactored
     
     var interactivePopTransition: UIPercentDrivenInteractiveTransition!
     
@@ -39,13 +42,17 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var locationTracker: LocationTracker! {
         didSet {
-            angleCalculator = AngleCalculator(locationTracker: locationTracker)
-            angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest.locationOnMap())
-            rotateCompassView(arrowImage)
+            reloadData()
         }
     }
     
     var angleCalculator: AngleCalculator!
+    
+    func reloadData() {
+        angleCalculator = AngleCalculator(locationTracker: locationTracker)
+        angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest.locationOnMap())
+        rotateCompassView(arrowImage)
+    }
     
     func rotateCompassView(imageView: UIImageView) {
         UIView.animateWithDuration(1, animations: {
@@ -95,18 +102,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     }
     
     func initialSwitchesSetup() {
-        
-        if pointOfInterest.isPlanned() {
-            wantSeeSwitch.on = true
-        } else {
-            wantSeeSwitch.on = false
-        }
-        
-        if pointOfInterest.isSeen() {
-            seenSwitch.on = true
-        } else {
-            seenSwitch.on = false
-        }
+        wantSeeSwitch.on = pointOfInterest.isPlanned() ? true : false
+        seenSwitch.on = pointOfInterest.isSeen() ? true : false
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -120,27 +117,23 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     }
     
     @IBAction func wantToSee(sender: AnyObject) {
-        
-        if true == (sender as! UISwitch).on {
-            pointOfInterest.planned = NSNumber(bool: true)
-            CoreDataStack.sharedInstance.saveContext()
-        } else {
-            pointOfInterest.planned = NSNumber(bool: false)
-            CoreDataStack.sharedInstance.saveContext()
-        }
+        pointOfInterest.planned = true == (sender as! UISwitch).on ? NSNumber(bool: true) : NSNumber(bool: false)
+        CoreDataStack.sharedInstance.saveContext()
     }
     
     @IBAction func alreadySeen(sender: AnyObject) {
-        
-        if true == (sender as! UISwitch).on {
-            wantSeeSwitch.on = false
-            pointOfInterest.planned = NSNumber(bool: false)
-            pointOfInterest.seen = NSNumber(bool: true)
-            CoreDataStack.sharedInstance.saveContext()
-        } else {
-            pointOfInterest.seen = NSNumber(bool: false)
-            CoreDataStack.sharedInstance.saveContext()
-        }
+        true == (sender as! UISwitch).on ? seenSwitchOn() : seenSwitchOff()
+        CoreDataStack.sharedInstance.saveContext()
+    }
+    
+    func seenSwitchOn() {
+        wantSeeSwitch.on = false
+        pointOfInterest.planned = NSNumber(bool: false)
+        pointOfInterest.seen = NSNumber(bool: true)
+    }
+    
+    func seenSwitchOff() {
+        pointOfInterest.seen = NSNumber(bool: false)
     }
 }
 
@@ -231,33 +224,19 @@ extension TableViewController {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.userLocation = userLocation
-        
-        if isUserInTheCity() {
-            zoomToFitMapItems()
-            getDirections()
-        } else {
-            showSelectedSightAnnotation()
-        }
+        isUserInTheCity() ? userInTheCity() : showSelectedSightAnnotation()
+    }
+    
+    func userInTheCity() {
+        zoomToFitMapItems()
+        getDirections()
     }
     
     func isUserInTheCity() -> Bool {
-        var isInTheCity: Bool!
-        
-        let rightCityEdge: CLLocationDegrees = -89.90
-        let leftCityEdge: CLLocationDegrees = -90.29
-        let topCityEdge: CLLocationDegrees = 30.08
-        let bottomCityEdge:CLLocationDegrees = 29.82
-        
         let userLongitude = userLocation.location.coordinate.longitude
         let userLatitude = userLocation.location.coordinate.latitude
-        
-        if userLongitude < rightCityEdge && userLongitude > leftCityEdge && userLatitude < topCityEdge && userLatitude > bottomCityEdge {
-            isInTheCity = true
-        } else {
-            isInTheCity = false
-        }
-        
-        return isInTheCity
+
+        return (userLongitude < Constants.cityEdges["right"] && userLongitude > Constants.cityEdges["left"] && userLatitude < Constants.cityEdges["top"] && userLatitude > Constants.cityEdges["bottom"]) ? true : false
     }
     
     func getDirections() {
