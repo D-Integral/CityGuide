@@ -27,7 +27,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var image: UIImage = UIImage()
     var backgroundImage = "Texture_New_Orleans_1.png"
     
-    var POI: PointOfInterest!
+    var pointOfInterest: PointOfInterest!
     
     var userLocation: MKUserLocation!
     
@@ -40,7 +40,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var locationTracker: LocationTracker! {
         didSet {
             angleCalculator = AngleCalculator(locationTracker: locationTracker)
-            angleToPointOfInterest = angleCalculator.angleToLocation(POI.locationOnMap())
+            angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest.locationOnMap())
             rotateCompassView(arrowImage)
         }
     }
@@ -96,13 +96,13 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     func initialSwitchesSetup() {
         
-        if POI.isPlanned() {
+        if pointOfInterest.isPlanned() {
             wantSeeSwitch.on = true
         } else {
             wantSeeSwitch.on = false
         }
         
-        if POI.isSeen() {
+        if pointOfInterest.isSeen() {
             seenSwitch.on = true
         } else {
             seenSwitch.on = false
@@ -122,10 +122,10 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     @IBAction func wantToSee(sender: AnyObject) {
         
         if true == (sender as! UISwitch).on {
-            POI.planned = NSNumber(bool: true)
+            pointOfInterest.planned = NSNumber(bool: true)
             CoreDataStack.sharedInstance.saveContext()
         } else {
-            POI.planned = NSNumber(bool: false)
+            pointOfInterest.planned = NSNumber(bool: false)
             CoreDataStack.sharedInstance.saveContext()
         }
     }
@@ -134,11 +134,11 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         if true == (sender as! UISwitch).on {
             wantSeeSwitch.on = false
-            POI.planned = NSNumber(bool: false)
-            POI.seen = NSNumber(bool: true)
+            pointOfInterest.planned = NSNumber(bool: false)
+            pointOfInterest.seen = NSNumber(bool: true)
             CoreDataStack.sharedInstance.saveContext()
         } else {
-            POI.seen = NSNumber(bool: false)
+            pointOfInterest.seen = NSNumber(bool: false)
             CoreDataStack.sharedInstance.saveContext()
         }
     }
@@ -207,8 +207,8 @@ extension TableViewController {
     }
     
     func showSelectedSightAnnotation() {
-        var latitude = CLLocationDegrees(POI.coordinates.latitude.doubleValue)
-        var longitude = CLLocationDegrees(POI.coordinates.longitude.doubleValue)
+        var latitude = CLLocationDegrees(pointOfInterest.coordinates.latitude.doubleValue)
+        var longitude = CLLocationDegrees(pointOfInterest.coordinates.longitude.doubleValue)
         var coords = CLLocationCoordinate2DMake(latitude, longitude)
         var image = self.image
         
@@ -219,7 +219,7 @@ extension TableViewController {
         mapView.setRegion(region, animated: true)
         
         self.setupTitleLabel()
-        titleLabel.text = POI.name
+        titleLabel.text = pointOfInterest.name
         
         var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
         destination = MKMapItem(placemark: placemark)
@@ -289,7 +289,7 @@ extension TableViewController {
             
             self.setupTitleLabel()
             self.titleLabel.alpha = 0.0
-            self.titleLabel.text = self.POI.name + " : \(formattedDistance)"
+            self.titleLabel.text = self.pointOfInterest.name + " : \(formattedDistance)"
             
             UIView.animateWithDuration(1, animations: {
                 self.titleLabel.alpha = 1.0
@@ -327,11 +327,11 @@ extension TableViewController {
         var topLeftCoord = CLLocationCoordinate2D()
         var bottomRightCoord = CLLocationCoordinate2D()
         
-        topLeftCoord.longitude = fmin(userLocation.coordinate.longitude, POI.coordinates.longitude.doubleValue)
-        topLeftCoord.latitude = fmax(userLocation.coordinate.latitude, POI.coordinates.latitude.doubleValue)
+        topLeftCoord.longitude = fmin(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue)
+        topLeftCoord.latitude = fmax(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue)
         
-        bottomRightCoord.longitude = fmax(userLocation.coordinate.longitude, POI.coordinates.longitude.doubleValue)
-        bottomRightCoord.latitude = fmin(userLocation.coordinate.latitude, POI.coordinates.latitude.doubleValue)
+        bottomRightCoord.longitude = fmax(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue)
+        bottomRightCoord.latitude = fmin(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue)
         
         var region = MKCoordinateRegion()
         region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5

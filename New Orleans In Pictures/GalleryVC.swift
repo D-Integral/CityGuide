@@ -53,12 +53,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         activityIndicator.stopAnimating()
     }
     
-    func sightsSetup() {
-        if let fetchedCity = City.fetchCity() {
-            city = fetchedCity
-        } else {
-            city = City.createCityWithName("New Orleans")
-        }
+    func retrievePointsOfInterest() {
+
+        city = City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
         
         wantToSee = city.wantToSeeSights()
         alreadySeen = city.alreadySeenSights()
@@ -77,7 +74,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         collectionView?.alpha = 0.5
         activityIndicator.startAnimating()
         
-        sightsSetup()
+        retrievePointsOfInterest()
         
         self.clearsSelectionOnViewWillAppear = false
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
@@ -126,7 +123,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
-        tableVC.POI = pointForIndexPath(indexPath)
+        tableVC.pointOfInterest = pointForIndexPath(indexPath)
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!
     }
