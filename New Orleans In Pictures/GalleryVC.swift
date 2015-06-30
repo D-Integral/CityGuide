@@ -30,17 +30,28 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var unchecked: [PointOfInterest]!
     var compassAngles: [String : Double]!
     
-    var selectedPoint: PointOfInterest!
-    
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     
     var locationTracker: LocationTracker! {
         didSet {
-            angleCalculator = AngleCalculator(locationTracker: locationTracker)
-            compassAngles = angleCalculator.angles
+            reloadCollectionView()
         }
     }
     var angleCalculator: AngleCalculator!
+    
+    func reloadCollectionView() {
+        angleCalculator = AngleCalculator(locationTracker: locationTracker)
+        compassAngles = angleCalculator.angles
+        
+        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        
+        collectionView?.reloadData()
+        
+        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
+        activityIndicator.stopAnimating()
+    }
     
     func sightsSetup() {
         if let fetchedCity = City.fetchCity() {
@@ -89,7 +100,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        selectedPoint = pointForIndexPath(indexPath)
         self.performSegueWithIdentifier("toTable", sender: self)
         
         locationTracker.stopUpdating()
@@ -116,7 +126,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
-        tableVC.POI = selectedPoint
+        tableVC.POI = pointForIndexPath(indexPath)
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!
     }
@@ -153,14 +163,14 @@ extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        
-        collectionView?.reloadData()
-        
-        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
-        activityIndicator.stopAnimating()
+//        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+//        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+//        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+//        
+//        collectionView?.reloadData()
+//        
+//        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
+//        activityIndicator.stopAnimating()
     }
     
     func headingUpdated(tracker: LocationTracker) {
