@@ -264,32 +264,16 @@ extension TableViewController {
             mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
             
             let distance = route.distance
-            let formattedDistance = DistanceFormatter.formatted(distance)
             
             self.setupTitleLabel()
             self.titleLabel.alpha = 0.0
-            self.titleLabel.text = self.pointOfInterest.name + " : \(formattedDistance)"
+            self.titleLabel.text = self.pointOfInterest.name + " : \(DistanceFormatter.formatted(distance))"
             
             UIView.animateWithDuration(1, animations: {
                 self.titleLabel.alpha = 1.0
             }, completion: nil)
             
         }
-    }
-    
-    func formatDistance(var distance: CLLocationDistance) -> String {
-        var string: String!
-        
-        if distance > 999 {
-            distance = distance / 1000
-            if distance < 99.9 {
-                string = String(format: "%.1f", distance) + " km"
-            }
-        } else {
-            string = "\(Int(distance)) m"
-        }
-        
-        return string
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
@@ -332,11 +316,7 @@ extension TableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return 2
-        } else {
-            return 1
-        }
+        return section == 2 ? 2 : 1
     }
     
     func setupTableViewBackground() {
