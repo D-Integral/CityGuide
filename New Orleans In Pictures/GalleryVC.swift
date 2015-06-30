@@ -33,6 +33,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var selectedPoint: PointOfInterest!
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
+    
     var locationTracker: LocationTracker! {
         didSet {
             angleCalculator = AngleCalculator(locationTracker: locationTracker)
@@ -40,7 +41,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         }
     }
     var angleCalculator: AngleCalculator!
-    var coordinateConverter = CoordinateConverter()
     
     func sightsSetup() {
         if let fetchedCity = City.fetchCity() {
@@ -189,10 +189,10 @@ extension GalleryVC {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
         cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))
-        rotateCompassWithView(cell.compassImage, forPointOfInterest: point)
+        rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
     
-    func rotateCompassWithView(imageView: UIImageView, forPointOfInterest point: PointOfInterest) {
+    func rotateCompassView(imageView: UIImageView, forPointOfInterest point: PointOfInterest) {
         imageView.image = UIImage(named: "arrow_up.png")
         UIView.animateWithDuration(1, animations: {
             imageView.transform = CGAffineTransformMakeRotation(-CGFloat(self.compassAngles[point.name]!))

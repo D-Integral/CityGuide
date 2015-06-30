@@ -12,7 +12,7 @@ import CoreLocation
 import CoreData
 import CityKit
 
-class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate {
+class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -20,6 +20,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
     @IBOutlet weak var arrowImage: UIImageView!
+    
+    var angleToPointOfInterest: Double!
     
     var imageView: UIImageView!
     var image: UIImage = UIImage()
@@ -35,6 +37,22 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var selectedCellIndexPath: NSIndexPath!
     
+    var locationTracker: LocationTracker! {
+        didSet {
+            angleCalculator = AngleCalculator(locationTracker: locationTracker)
+            angleToPointOfInterest = angleCalculator.angleToLocation(POI.locationOnMap())
+            rotateCompassView(arrowImage)
+        }
+    }
+    
+    var angleCalculator: AngleCalculator!
+    
+    func rotateCompassView(imageView: UIImageView) {
+        UIView.animateWithDuration(1, animations: {
+            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(self.angleToPointOfInterest))
+        }, completion: nil)
+    }
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -44,6 +62,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
+        self.setupLocationTracker()
         self.setupTableViewBackground()
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
         self.setupArrowImage()
@@ -51,6 +70,11 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
         self.initialSwitchesSetup()
+    }
+    
+    func setupLocationTracker() {
+        locationTracker = LocationTracker()
+        locationTracker.delegate = self
     }
     
     func setBackgroundImage(image: UIImage, forView view: UIView) {
@@ -117,6 +141,18 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
             POI.seen = NSNumber(bool: false)
             CoreDataStack.sharedInstance.saveContext()
         }
+    }
+}
+
+//MARK: LocationTrackerDelegate
+
+extension TableViewController {
+    func locationUpdated(tracker: LocationTracker) {
+        locationTracker = tracker
+    }
+    
+    func headingUpdated(tracker: LocationTracker) {
+        locationTracker = tracker
     }
 }
 
