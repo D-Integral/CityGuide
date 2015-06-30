@@ -34,7 +34,10 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var userLocation: MKUserLocation!
     
-    var destination: MKMapItem? //needs to be refactored
+    var destination: MKMapItem? {
+        var placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
+        return MKMapItem(placemark: placemark)
+    }
     
     var interactivePopTransition: UIPercentDrivenInteractiveTransition!
     
@@ -200,26 +203,19 @@ extension TableViewController {
     }
     
     func showSelectedSightAnnotation() {
-        var latitude = CLLocationDegrees(pointOfInterest.coordinates.latitude.doubleValue)
-        var longitude = CLLocationDegrees(pointOfInterest.coordinates.longitude.doubleValue)
-        var coords = CLLocationCoordinate2DMake(latitude, longitude)
-        var image = self.image
         
-        let annotation = SightAnnotation(coordinate: coords, image: image)
+        let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate)
         self.mapView.addAnnotation(annotation)
         
         let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
         mapView.setRegion(region, animated: true)
         
         self.setupTitleLabel()
-        titleLabel.text = pointOfInterest.name
-        
-        var placemark = MKPlacemark(coordinate: coords, addressDictionary: nil)
-        destination = MKMapItem(placemark: placemark)
     }
     
     func setupTitleLabel() {
         titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
+        titleLabel.text = pointOfInterest.name
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
@@ -248,12 +244,8 @@ extension TableViewController {
         
         let directions = MKDirections(request: request)
         
-        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            if error != nil {
-                println("Error getting directions")
-            } else {
-                self.showRoute(response)
-            }
+        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in            
+            error != nil ? println("Error getting directions") : self.showRoute(response)
         })
     }
     
