@@ -23,7 +23,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var city: City!
+    var city: City! {
+        return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
+    }
     
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
@@ -59,9 +61,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func retrievePointsOfInterest() {
-
-        city = City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
-        
         wantToSee = city.wantToSeeSights()
         alreadySeen = city.alreadySeenSights()
         unchecked = city.uncheckedSights()
