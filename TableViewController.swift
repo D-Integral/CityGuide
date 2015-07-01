@@ -53,7 +53,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     func reloadData() {
         angleCalculator = AngleCalculator(locationTracker: locationTracker)
-        angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest.locationOnMap())
+        angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest)
         rotateCompassView(arrowImage)
     }
     
