@@ -220,10 +220,10 @@ extension TableViewController {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.userLocation = userLocation
-        isUserInTheCity() ? userInTheCity() : showSelectedSightAnnotation()
+        isUserInTheCity() ? setupMapView() : showSelectedSightAnnotation()
     }
     
-    func userInTheCity() {
+    func setupMapView() {
         zoomToFitMapItems()
         getDirections()
     }
@@ -244,7 +244,7 @@ extension TableViewController {
         
         let directions = MKDirections(request: request)
         
-        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in            
+        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
             error != nil ? println("Error getting directions") : self.showRoute(response)
         })
     }
@@ -252,20 +252,20 @@ extension TableViewController {
     func showRoute(response: MKDirectionsResponse) {
         
         for route in response.routes as! [MKRoute] {
-            
             mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
             
-            let distance = route.distance
-            
-            self.setupTitleLabel()
-            self.titleLabel.alpha = 0.0
-            self.titleLabel.text = self.pointOfInterest.name + " : \(DistanceFormatter.formatted(distance))"
-            
-            UIView.animateWithDuration(1, animations: {
-                self.titleLabel.alpha = 1.0
-            }, completion: nil)
-            
+            addDistanceToTitleLabel(route.distance)
         }
+    }
+    
+    func addDistanceToTitleLabel(distance: CLLocationDistance) {
+        self.setupTitleLabel()
+        self.titleLabel.alpha = 0.0
+        self.titleLabel.text = self.pointOfInterest.name + " : \(DistanceFormatter.formatted(distance))"
+        
+        UIView.animateWithDuration(1, animations: {
+            self.titleLabel.alpha = 1.0
+        }, completion: nil)
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
@@ -314,12 +314,9 @@ extension TableViewController {
     func setupTableViewBackground() {
         for section in 0..<tableView.numberOfSections(){
             switch section {
-            case 0:
-                setupBackgroundforCellInSection(section)
-            case 1:
-                setupBackgroundforCellInSection(section)
-            case 2:
-                setupBackgroundforCellInSection(section)
+            case 0: setupBackgroundforCellInSection(section)
+            case 1: setupBackgroundforCellInSection(section)
+            case 2: setupBackgroundforCellInSection(section)
             default: break
             }
         }

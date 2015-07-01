@@ -20,18 +20,6 @@ class AngleCalculator {
         return returnAngles
     }
 
-    //MARK: private
-    var locationTracker: LocationTracker!
-    
-    var city: City {
-        return City.fetchCity() != nil ? City.fetchCity()! : City.createCityWithName("New Orleans")
-    }
-    
-    init(locationTracker: LocationTracker) {
-        self.locationTracker = locationTracker
-    }
-    
-    //MARK: public
     func angleToLocation(pointOfInterest: PointOfInterest) -> Double {
         var angle: Double = 0.0
         
@@ -72,4 +60,16 @@ class AngleCalculator {
         
         return angle
     }
+    
+    //MARK: private
+    var locationTracker: LocationTracker!
+    
+    var city: City {
+        return City.fetchCity() != nil ? City.fetchCity()! : City.createCityWithName("New Orleans")
+    }
+    
+    init(locationTracker: LocationTracker) {
+        self.locationTracker = locationTracker
+    }
+
 }

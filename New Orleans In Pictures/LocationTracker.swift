@@ -19,8 +19,6 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     // MARK: public
     
-    //var response: MKDirectionsResponse!
-    
     var currentLocation: CLLocation?
     var currentHeading: CLHeading?
     var delegate: LocationTrackerDelegate?

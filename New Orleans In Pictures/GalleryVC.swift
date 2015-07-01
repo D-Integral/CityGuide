@@ -189,8 +189,8 @@ extension GalleryVC {
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))
-                                    //DistanceFormatter.formatted(routeDistances[point.name]!)
+        cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))//DistanceFormatter.formatted(routeDistances[point.name]!)
+            
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
     
