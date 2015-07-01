@@ -29,6 +29,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
     var compassAngles: [String : Double]!
+    //var routeDistances: [String : CLLocationDistance]!
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     
@@ -38,10 +39,14 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         }
     }
     var angleCalculator: AngleCalculator!
+    //var routeDistanceCalculator: RouteDistanceCalculator!
     
     func reloadCollectionView() {
         angleCalculator = AngleCalculator(locationTracker: locationTracker)
         compassAngles = angleCalculator.angles
+        
+        //routeDistanceCalculator = RouteDistanceCalculator(locationTracker: locationTracker)
+        //routeDistances = routeDistanceCalculator.distances
         
         wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
         alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
@@ -186,6 +191,7 @@ extension GalleryVC {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
         cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))
+                                    //DistanceFormatter.formatted(routeDistances[point.name]!)
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
     

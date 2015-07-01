@@ -13,9 +13,17 @@ import CityKit
 class RouteDistanceCalculator {
     
     //MARK: public
-    var distances: NSDictionary = [String : CLLocationDistance]()
+    
+    var distances: [String : CLLocationDistance] {
+        var returnDistances = [String : CLLocationDistance]()
+        for pointOfInterest in city.pointsInCity() {
+            returnDistances[pointOfInterest.name] = distancetoPointOfInterest(pointOfInterest)
+        }
+        return returnDistances
+    }
 
     //MARK: private
+    
     var city: City {
         return City.fetchCity() != nil ? City.fetchCity()! : City.createCityWithName("New Orleans")
     }
@@ -61,7 +69,6 @@ class RouteDistanceCalculator {
         return MKDirections(request: request)
     }
     
-    
     func errorRequestDirections() -> CLLocationDistance {
         println("Error getting directions")
         return CLLocationDistance()
@@ -76,34 +83,4 @@ class RouteDistanceCalculator {
         
         return distance
     }
-
-    
-//    func getDirectionsToPointOfInterest(pointOfInterestLocation: CLLocationCoordinate2D) {
-//        
-//        let request = MKDirectionsRequest()
-//        request.setSource(MKMapItem.mapItemForCurrentLocation())
-//        request.setDestination(destination(pointOfInterestLocation))
-//        request.requestsAlternateRoutes = false
-//        
-//        let directions = MKDirections(request: request)
-//        
-//        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-//            if error != nil {
-//                println("Error getting directions")
-//            } else {
-//                //self.showRoute(response)
-//                self.response = response
-//            }
-//        })
-//    }
-//    
-//    func routeDistance(response: MKDirectionsResponse) -> CLLocationDistance {
-//        var distance: CLLocationDistance!
-//                
-//        for route in response.routes as! [MKRoute] {
-//            distance = route.distance
-//        }
-//                
-//        return distance
-//    }
 }
