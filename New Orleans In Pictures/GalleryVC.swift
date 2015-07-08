@@ -40,6 +40,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
             reloadCollectionView()
         }
     }
+    
     var angleCalculator: AngleCalculator!
     //var routeDistanceCalculator: RouteDistanceCalculator!
     
@@ -189,7 +190,8 @@ extension GalleryVC {
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))//DistanceFormatter.formatted(routeDistances[point.name]!)
+        cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))
+        //DistanceFormatter.formatted(routeDistances[point.name]!)
             
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
@@ -220,7 +222,7 @@ extension GalleryVC {
 extension GalleryVC {
     override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
     {
-        var header: HeaderView?
+        var header: HeaderView!
         
         if UICollectionElementKindSectionHeader == kind
         {
@@ -234,7 +236,7 @@ extension GalleryVC {
             }
         }
         
-        return header!
+        return header
     }
     
     func setupHeader(inout header: HeaderView, inSection section: Int) {
@@ -256,7 +258,6 @@ extension GalleryVC {
         return size
     }
 }
-
 
 //MARK: animation
 

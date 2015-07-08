@@ -73,8 +73,11 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.view.addGestureRecognizer(popRecognizer)
         
         self.setupLocationTracker()
+        
+        //need to be refactored in one method
         self.setupTableViewBackground()
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
+        
         self.setupArrowImage()
         self.imageViewInitialize()
         self.mapViewSetup()
@@ -220,10 +223,10 @@ extension TableViewController {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.userLocation = userLocation
-        isUserInTheCity() ? setupMapView() : showSelectedSightAnnotation()
+        isUserInTheCity() ? adjustMapView() : showSelectedSightAnnotation()
     }
     
-    func setupMapView() {
+    func adjustMapView() {
         zoomToFitMapItems()
         getDirections()
     }
@@ -279,14 +282,8 @@ extension TableViewController {
     
     func zoomToFitMapItems() {
         
-        var topLeftCoord = CLLocationCoordinate2D()
-        var bottomRightCoord = CLLocationCoordinate2D()
-        
-        topLeftCoord.longitude = fmin(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue)
-        topLeftCoord.latitude = fmax(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue)
-        
-        bottomRightCoord.longitude = fmax(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue)
-        bottomRightCoord.latitude = fmin(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue)
+        var topLeftCoord = topLeftMapPoint()
+        var bottomRightCoord = bottomRightMapPoint()
         
         var region = MKCoordinateRegion()
         region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
@@ -297,6 +294,14 @@ extension TableViewController {
         
         region = mapView.regionThatFits(region)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func topLeftMapPoint() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: fmax(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue), longitude: fmin(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue))
+    }
+    
+    func bottomRightMapPoint() -> CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: fmin(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue), longitude: fmax(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue))
     }
 }
 
