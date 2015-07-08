@@ -281,16 +281,9 @@ extension TableViewController {
     }
     
     func zoomToFitMapItems() {
-        
-        var topLeftCoord = topLeftMapPoint()
-        var bottomRightCoord = bottomRightMapPoint()
-        
         var region = MKCoordinateRegion()
-        region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5
-        region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5
-        
-        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.2
-        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.2
+        setupRegionCenter(&region)
+        setupRegionSpan(&region)
         
         region = mapView.regionThatFits(region)
         mapView.setRegion(region, animated: true)
@@ -302,6 +295,16 @@ extension TableViewController {
     
     func bottomRightMapPoint() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: fmin(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue), longitude: fmax(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue))
+    }
+    
+    func setupRegionCenter(inout region: MKCoordinateRegion) {
+        region.center.latitude = topLeftMapPoint().latitude - (topLeftMapPoint().latitude - bottomRightMapPoint().latitude) * 0.5
+        region.center.longitude = topLeftMapPoint().longitude + (bottomRightMapPoint().longitude - topLeftMapPoint().longitude) * 0.5
+    }
+    
+    func setupRegionSpan(inout region: MKCoordinateRegion) {
+        region.span.latitudeDelta = fabs(topLeftMapPoint().latitude - bottomRightMapPoint().latitude) * 1.2
+        region.span.longitudeDelta = fabs(bottomRightMapPoint().longitude - topLeftMapPoint().longitude) * 1.2
     }
 }
 
