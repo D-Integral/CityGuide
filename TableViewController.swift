@@ -248,7 +248,7 @@ extension TableViewController {
         let directions = MKDirections(request: request)
         
         directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            error != nil ? println("Error getting directions") : self.showRoute(response)
+            error != nil ? println("Error getting directions!") : self.showRoute(response)
         })
     }
     

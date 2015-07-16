@@ -31,7 +31,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
     var compassAngles: [String : Double]!
-    //var routeDistances: [String : CLLocationDistance]!
+    var routeDistances: [String : CLLocationDistance]!
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     
@@ -42,15 +42,15 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     var angleCalculator: AngleCalculator!
-    //var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
+    var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
     
     func reloadCollectionView() {
         angleCalculator = AngleCalculator(locationTracker: locationTracker)
         compassAngles = angleCalculator.angles
         
-        //routeDistanceCalculator.locationTracker = self.locationTracker
-        //routeDistances = routeDistanceCalculator.routeDistancesToPointsOfInterestInCity(self.city)
-        
+        routeDistanceCalculator.locationTracker = self.locationTracker
+        routeDistances = routeDistanceCalculator.routeDistancesToPointsOfInterestInCity(self.city)
+
         sortItemsByStraightDistances()
         
         collectionView?.reloadData()
@@ -60,9 +60,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func sortItemsByStraightDistances() {
-        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        wantToSee = sorted(city.wantToSeeSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
+        alreadySeen = sorted(city.alreadySeenSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
+        unchecked = sorted(city.uncheckedSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
     }
     
     func retrievePointsOfInterest() {
@@ -71,8 +71,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         unchecked = city.uncheckedSights()
     }
     
-    func distanceToPOI (POI: PointOfInterest) -> CLLocationDistance {
+    func straightDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
         return locationTracker.distanceToLocation(POI.locationOnMap())
+    }
+    
+    func routeDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
+        return routeDistanceCalculator.routeDistanceTo(POI)
     }
     
     //MARK: - Lifecycle
@@ -194,8 +198,8 @@ extension GalleryVC {
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        cell.distanceLabel.text = DistanceFormatter.formatted(distanceToPOI(point))
-        //DistanceFormatter.formatted(routeDistances[point.name]!)
+        cell.distanceLabel.text = DistanceFormatter.formatted(routeDistances[point.name]!)
+        //DistanceFormatter.formatted(straightDistanceToPOI(point))
             
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }

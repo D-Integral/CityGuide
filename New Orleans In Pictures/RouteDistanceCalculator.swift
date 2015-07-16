@@ -24,6 +24,8 @@ class RouteDistanceCalculator {
         }
         return Static.instance!
     }
+    
+    var locationTracker: LocationTracker!
 
     func routeDistancesToPointsOfInterestInCity(city: City) -> [String : CLLocationDistance] {
         var returnDistances = [String : CLLocationDistance]()
@@ -37,32 +39,27 @@ class RouteDistanceCalculator {
     
     //MARK: private
     
-    var locationTracker: LocationTracker! {
-        didSet {
-            userLocation = convertCLLocationToMKMapItem(locationTracker.currentLocation!)
-        }
-    }
-    var userLocation: MKMapItem!
-    
-    func convertCLLocationToMKMapItem(location: CLLocation) -> MKMapItem {
+    func convertToMKMapItem(location: CLLocation) -> MKMapItem {
         return MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate, addressDictionary: nil))
     }
     
     func routeDistanceTo(pointOfInterest: PointOfInterest) -> CLLocationDistance {
         
-        var distance: CLLocationDistance!
+        var distance = CLLocationDistance()
         
-        let request = MKDirectionsRequest()
-        request.setSource(userLocation)
-        request.setDestination(convertCLLocationToMKMapItem(pointOfInterest.locationOnMap()))
-        request.requestsAlternateRoutes = false
+        if let userLocation = locationTracker.currentLocation {
+            let request = MKDirectionsRequest()
+            request.setSource(convertToMKMapItem(userLocation))
+            request.setDestination(convertToMKMapItem(pointOfInterest.locationOnMap()))
+            request.requestsAlternateRoutes = false
         
-        let directions = MKDirections(request: request)
+            let directions = MKDirections(request: request)
 
-        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            distance = error != nil ? self.errorRequestDirections() : self.successRequestDirections(response)
-        })
-                
+            directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
+                distance = error != nil ? self.errorRequestDirections() : self.successRequestDirections(response)
+            })
+        }
+        
         return distance
     }
     
