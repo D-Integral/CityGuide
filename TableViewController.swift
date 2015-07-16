@@ -223,10 +223,10 @@ extension TableViewController {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.userLocation = userLocation
-        isUserInTheCity() ? adjustMapView() : showSelectedSightAnnotation()
+        isUserInTheCity() ? showRouteInOptimalRegion() : showSelectedSightAnnotation()
     }
     
-    func adjustMapView() {
+    func showRouteInOptimalRegion() {
         zoomToFitMapItems()
         getDirections()
     }

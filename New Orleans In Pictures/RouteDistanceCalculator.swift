@@ -14,10 +14,21 @@ class RouteDistanceCalculator {
     
     //MARK: public
     
+//    class var sharedRouteDistanceCalculator: RouteDistanceCalculator {
+//        struct Static {
+//            static var onceToken: dispatch_once_t = 0
+//            static var instance: RouteDistanceCalculator? = nil
+//        }
+//        dispatch_once(&Static.onceToken) {
+//            Static.instance = RouteDistanceCalculator()
+//        }
+//        return Static.instance!
+//    }
+    
     var distances: [String : CLLocationDistance] {
         var returnDistances = [String : CLLocationDistance]()
         for pointOfInterest in city.pointsInCity() {
-            returnDistances[pointOfInterest.name] = distancetoPointOfInterest(pointOfInterest)
+            returnDistances[pointOfInterest.name] = distanceToPointOfInterest(pointOfInterest)
         }
         return returnDistances
     }
@@ -37,13 +48,17 @@ class RouteDistanceCalculator {
     var userLocation: MKMapItem!
     var destination: MKMapItem!
     
+    init() {
+        
+    }
+    
     init(locationTracker: LocationTracker) {
         self.locationTracker = locationTracker
     }
     
     //MARK: public
     
-    func distancetoPointOfInterest(pointOfInterest: PointOfInterest) -> CLLocationDistance {
+    func distanceToPointOfInterest(pointOfInterest: PointOfInterest) -> CLLocationDistance {
         var distance: CLLocationDistance!
         
         let directions = queryDirectionsToPointOfInterest(pointOfInterest)
