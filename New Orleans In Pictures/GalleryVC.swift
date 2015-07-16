@@ -45,24 +45,35 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
     
     func reloadCollectionView() {
-        angleCalculator = AngleCalculator(locationTracker: locationTracker)
-        compassAngles = angleCalculator.angles
-        
-        routeDistanceCalculator.locationTracker = self.locationTracker
-        routeDistances = routeDistanceCalculator.routeDistancesToPointsOfInterestInCity(self.city)
+        reloadAngleCalculator()
+        reloadRouteDistanceCalculator()
 
         sortItemsByStraightDistances()
         
         collectionView?.reloadData()
         
-        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
-        activityIndicator.stopAnimating()
+        animateCollectionView()
+    }
+    
+    func reloadAngleCalculator() {
+        angleCalculator = AngleCalculator(locationTracker: locationTracker)
+        compassAngles = angleCalculator.angles
+    }
+    
+    func reloadRouteDistanceCalculator() {
+        routeDistanceCalculator.locationTracker = self.locationTracker
+        routeDistances = routeDistanceCalculator.routeDistancesToPointsOfInterestInCity(self.city)
     }
     
     func sortItemsByStraightDistances() {
         wantToSee = sorted(city.wantToSeeSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
         alreadySeen = sorted(city.alreadySeenSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
         unchecked = sorted(city.uncheckedSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
+    }
+    
+    func animateCollectionView() {
+        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
+        activityIndicator.stopAnimating()
     }
     
     func retrievePointsOfInterest() {
