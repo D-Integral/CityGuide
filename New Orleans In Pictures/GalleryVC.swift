@@ -42,23 +42,27 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     var angleCalculator: AngleCalculator!
-    //var routeDistanceCalculator: RouteDistanceCalculator!
+    //var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
     
     func reloadCollectionView() {
         angleCalculator = AngleCalculator(locationTracker: locationTracker)
         compassAngles = angleCalculator.angles
         
-        //routeDistanceCalculator = RouteDistanceCalculator(locationTracker: locationTracker)
-        //routeDistances = routeDistanceCalculator.distances
+        //routeDistanceCalculator.locationTracker = self.locationTracker
+        //routeDistances = routeDistanceCalculator.routeDistancesToPointsOfInterestInCity(self.city)
         
-        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
-        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        sortItemsByStraightDistances()
         
         collectionView?.reloadData()
         
         UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
         activityIndicator.stopAnimating()
+    }
+    
+    func sortItemsByStraightDistances() {
+        wantToSee = sorted(city.wantToSeeSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        alreadySeen = sorted(city.alreadySeenSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
+        unchecked = sorted(city.uncheckedSights(), {self.distanceToPOI($0) < self.distanceToPOI($1)})
     }
     
     func retrievePointsOfInterest() {
