@@ -32,14 +32,11 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
     var compassAngles: [String : Double]!
-    
-    //var routeDistances: [String : CLLocationDistance]!
     var routesToPointsOfInterest: [String : MKRoute]!
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     
     var angleCalculator: AngleCalculator!
-    //var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker! {
         didSet {
@@ -49,8 +46,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     func reloadCollectionView() {
         reloadAngleCalculator()
-        
-        //reloadRouteDistanceCalculator()
         reloadRoutesReceiver()
         
         //sortItemsByStraightDistances()
@@ -64,12 +59,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         angleCalculator = AngleCalculator(locationTracker: locationTracker)
         compassAngles = angleCalculator.angles
     }
-    
-//    func reloadRouteDistanceCalculator() {
-//        routeDistanceCalculator.locationTracker = self.locationTracker
-//        routeDistanceCalculator.requestRouteDistancesToPointsOfInterestInCity(self.city)
-//        routeDistances = routeDistanceCalculator.routeDistances
-//    }
     
     func reloadRoutesReceiver() {
         routesReceiver.userLocation = locationTracker.currentLocation
@@ -97,11 +86,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     func straightDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
         return locationTracker.distanceToLocation(POI.locationOnMap())
     }
-    
-//    func routeDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
-//        routeDistanceCalculator.requestRouteDistanceTo(POI)
-//        return routeDistanceCalculator.routeDistances[POI.name]!
-//    }
     
     //MARK: - Lifecycle
     override func viewDidLoad()
