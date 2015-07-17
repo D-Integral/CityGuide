@@ -263,7 +263,6 @@ extension TableViewController {
     }
     
     func addDistanceToTitleLabel(distance: CLLocationDistance) {
-        self.setupTitleLabel()
         self.titleLabel.alpha = 0.0
         self.titleLabel.text = self.pointOfInterest.name + " : \(DistanceFormatter.formatted(distance))"
         
