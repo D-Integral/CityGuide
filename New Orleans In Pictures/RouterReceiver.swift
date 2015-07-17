@@ -47,16 +47,9 @@ class RoutesReceiver {
             
             let request = MKDirectionsRequest()
             request.setSource(convertToMKMapItem(location))
-            
-            //println("UserLocation.latitude: \(convertToMKMapItem(userLocation).placemark.coordinate.latitude)\n UserLocation.longitude: \(convertToMKMapItem(userLocation).placemark.coordinate.longitude)\n")
-            
             request.setDestination(convertToMKMapItem(pointOfInterest.locationOnMap()))
-            
-            //println("Destination.latitude: \(convertToMKMapItem(pointOfInterest.locationOnMap()).placemark.coordinate.latitude)\n Destination.longitude: \(convertToMKMapItem(pointOfInterest.locationOnMap()).placemark.coordinate.longitude)\n")
-            
             request.transportType = MKDirectionsTransportType.Walking
             request.requestsAlternateRoutes = false
-            
             
             let directions = MKDirections(request: request)
             
@@ -75,8 +68,6 @@ class RoutesReceiver {
         
         if routes.count < 25 {
             routes[pointOfInterest.name] = route
-            
-            //println("\(numberSuccess).\(routeDistances[pointOfInterest.name])")
         }
     }
 }
