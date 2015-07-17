@@ -44,19 +44,26 @@ class RoutesReceiver {
     func requestRouteTo(pointOfInterest: PointOfInterest) {
         
         if let location = userLocation {
-            
-            let request = MKDirectionsRequest()
-            request.setSource(convertToMKMapItem(location))
-            request.setDestination(convertToMKMapItem(pointOfInterest.locationOnMap()))
-            request.transportType = MKDirectionsTransportType.Walking
-            request.requestsAlternateRoutes = false
-            
+            let request = formedRequestFrom(location, toDestination: pointOfInterest.locationOnMap())
             let directions = MKDirections(request: request)
-            
-            directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-                error != nil ? self.errorRequestDirections() : self.successRequestDirections(response, forPointOfInterest: pointOfInterest)
-            })
+            calculate(directions, forPointOfInterest: pointOfInterest)
         }
+    }
+    
+    func formedRequestFrom(location: CLLocation, toDestination destination: CLLocation) -> MKDirectionsRequest {
+        let request = MKDirectionsRequest()
+        request.setSource(convertToMKMapItem(location))
+        request.setDestination(convertToMKMapItem(destination))
+        request.transportType = MKDirectionsTransportType.Walking
+        request.requestsAlternateRoutes = false
+        
+        return request
+    }
+    
+    func calculate(directions: MKDirections, forPointOfInterest pointOfInterest: PointOfInterest) {
+        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
+            error != nil ? self.errorRequestDirections() : self.successRequestDirections(response, forPointOfInterest: pointOfInterest)
+        })
     }
     
     func errorRequestDirections() {
