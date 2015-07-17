@@ -254,12 +254,9 @@ extension TableViewController {
     }
     
     func showRoute(response: MKDirectionsResponse) {
-        
-        for route in response.routes as! [MKRoute] {
-            mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
-            
-            addDistanceToTitleLabel(route.distance)
-        }
+        let route = response.routes[0] as! MKRoute
+        mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
+        addDistanceToTitleLabel(route.distance)
     }
     
     func addDistanceToTitleLabel(distance: CLLocationDistance) {
