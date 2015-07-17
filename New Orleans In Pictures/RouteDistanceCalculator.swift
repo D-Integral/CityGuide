@@ -69,12 +69,7 @@ class RouteDistanceCalculator {
     }
         
     func successRequestDirections(response: MKDirectionsResponse) -> CLLocationDistance {
-        var distance: CLLocationDistance!
-        
-        for route in response.routes as! [MKRoute] {
-            distance = route.distance
-        }
-                
-        return distance
+        let route = response.routes[0] as! MKRoute
+        return route.distance
     }
 }
