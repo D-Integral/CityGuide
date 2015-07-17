@@ -243,6 +243,7 @@ extension TableViewController {
         let request = MKDirectionsRequest()
         request.setSource(MKMapItem.mapItemForCurrentLocation())
         request.setDestination(destination!)
+        request.transportType = MKDirectionsTransportType.Walking
         request.requestsAlternateRoutes = false
         
         let directions = MKDirections(request: request)

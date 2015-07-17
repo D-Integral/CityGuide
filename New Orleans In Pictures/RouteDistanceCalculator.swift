@@ -64,7 +64,7 @@ class RouteDistanceCalculator {
     }
     
     func errorRequestDirections() -> CLLocationDistance {
-        println("Error getting directions")
+        println("Error getting directions!")
         return CLLocationDistance()
     }
         

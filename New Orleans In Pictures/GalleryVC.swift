@@ -46,7 +46,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     func reloadCollectionView() {
         reloadAngleCalculator()
-        reloadRouteDistanceCalculator()
+        
+        //reloadRouteDistanceCalculator()
 
         sortItemsByStraightDistances()
         
@@ -209,8 +210,8 @@ extension GalleryVC {
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        cell.distanceLabel.text = DistanceFormatter.formatted(routeDistances[point.name]!)
-        //DistanceFormatter.formatted(straightDistanceToPOI(point))
+        cell.distanceLabel.text = //DistanceFormatter.formatted(routeDistances[point.name]!)
+        DistanceFormatter.formatted(straightDistanceToPOI(point))
             
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
