@@ -28,6 +28,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var pointOfInterest: PointOfInterest!
     var angleToPointOfInterest: Double!
+    var routeToPointOfInterest: MKRoute!
     
     var image: UIImage = UIImage()
     var backgroundImage = "Texture_New_Orleans_1.png"
@@ -228,7 +229,15 @@ extension TableViewController {
     
     func showRouteInOptimalRegion() {
         zoomToFitMapItems()
-        getDirections()
+        //getDirections()
+        showRoute()
+    }
+    
+    func showRoute() {
+        if routeToPointOfInterest != nil {
+            mapView.addOverlay(routeToPointOfInterest.polyline, level: MKOverlayLevel.AboveRoads)
+            addDistanceToTitleLabel(routeToPointOfInterest.distance)
+        }
     }
     
     func isUserInTheCity() -> Bool {
@@ -238,26 +247,26 @@ extension TableViewController {
         return (userLongitude < Constants.cityEdges["right"] && userLongitude > Constants.cityEdges["left"] && userLatitude < Constants.cityEdges["top"] && userLatitude > Constants.cityEdges["bottom"]) ? true : false
     }
     
-    func getDirections() {
-        
-        let request = MKDirectionsRequest()
-        request.setSource(MKMapItem.mapItemForCurrentLocation())
-        request.setDestination(destination!)
-        request.transportType = MKDirectionsTransportType.Walking
-        request.requestsAlternateRoutes = false
-        
-        let directions = MKDirections(request: request)
-        
-        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            error != nil ? println("Error getting directions!") : self.showRoute(response)
-        })
-    }
-    
-    func showRoute(response: MKDirectionsResponse) {
-        let route = response.routes[0] as! MKRoute
-        mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
-        addDistanceToTitleLabel(route.distance)
-    }
+//    func getDirections() {
+//        
+//        let request = MKDirectionsRequest()
+//        request.setSource(MKMapItem.mapItemForCurrentLocation())
+//        request.setDestination(destination!)
+//        request.transportType = MKDirectionsTransportType.Automobile
+//        request.requestsAlternateRoutes = false
+//        
+//        let directions = MKDirections(request: request)
+//        
+//        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
+//            error != nil ? println("Error getting directions!") : self.showRoute(response)
+//        })
+//    }
+//    
+//    func showRoute(response: MKDirectionsResponse) {
+//        let route = response.routes[0] as! MKRoute
+//        mapView.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
+//        addDistanceToTitleLabel(route.distance)
+//    }
     
     func addDistanceToTitleLabel(distance: CLLocationDistance) {
         self.titleLabel.alpha = 0.0

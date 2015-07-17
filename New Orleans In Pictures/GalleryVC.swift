@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 import CityKit
+import MapKit
 
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
@@ -31,25 +32,28 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
     var compassAngles: [String : Double]!
-    var routeDistances: [String : CLLocationDistance]!
+    
+    //var routeDistances: [String : CLLocationDistance]!
+    var routesToPointsOfInterest: [String : MKRoute]!
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     
+    var angleCalculator: AngleCalculator!
+    //var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
+    var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker! {
         didSet {
             reloadCollectionView()
         }
     }
     
-    var angleCalculator: AngleCalculator!
-    var routeDistanceCalculator = RouteDistanceCalculator.sharedRouteDistanceCalculator
-    
     func reloadCollectionView() {
         reloadAngleCalculator()
         
         //reloadRouteDistanceCalculator()
-
-        sortItemsByStraightDistances()
+        reloadRoutesReceiver()
+        
+        //sortItemsByStraightDistances()
         
         collectionView?.reloadData()
         
@@ -61,9 +65,16 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         compassAngles = angleCalculator.angles
     }
     
-    func reloadRouteDistanceCalculator() {
-        routeDistanceCalculator.locationTracker = self.locationTracker
-        routeDistances = routeDistanceCalculator.routeDistancesToPointsOfInterestInCity(self.city)
+//    func reloadRouteDistanceCalculator() {
+//        routeDistanceCalculator.locationTracker = self.locationTracker
+//        routeDistanceCalculator.requestRouteDistancesToPointsOfInterestInCity(self.city)
+//        routeDistances = routeDistanceCalculator.routeDistances
+//    }
+    
+    func reloadRoutesReceiver() {
+        routesReceiver.userLocation = locationTracker.currentLocation
+        routesReceiver.requestRoutesToPointsOfInterestInCity(city)
+        routesToPointsOfInterest = routesReceiver.routes
     }
     
     func sortItemsByStraightDistances() {
@@ -87,9 +98,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         return locationTracker.distanceToLocation(POI.locationOnMap())
     }
     
-    func routeDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
-        return routeDistanceCalculator.routeDistanceTo(POI)
-    }
+//    func routeDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
+//        routeDistanceCalculator.requestRouteDistanceTo(POI)
+//        return routeDistanceCalculator.routeDistances[POI.name]!
+//    }
     
     //MARK: - Lifecycle
     override func viewDidLoad()
@@ -151,6 +163,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         tableVC.pointOfInterest = pointForIndexPath(indexPath)
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!
+        tableVC.routeToPointOfInterest = routesToPointsOfInterest[pointForIndexPath(indexPath).name]
     }
     
     func setBackgroundImage(image: UIImage) {
@@ -210,9 +223,10 @@ extension GalleryVC {
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        cell.distanceLabel.text = //DistanceFormatter.formatted(routeDistances[point.name]!)
-        DistanceFormatter.formatted(straightDistanceToPOI(point))
-            
+        if routesToPointsOfInterest[point.name] != nil {
+            cell.distanceLabel.text = DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance)
+            //DistanceFormatter.formatted(straightDistanceToPOI(point))
+        }
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
     

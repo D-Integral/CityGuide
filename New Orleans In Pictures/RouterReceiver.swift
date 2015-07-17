@@ -2,7 +2,7 @@
 //  File.swift
 //  New Orleans In Pictures
 //
-//  Created by Alexander Nuzhniy on 29.06.15.
+//  Created by Alexander Nuzhniy on 17.07.15.
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
@@ -10,28 +10,28 @@ import MapKit
 import CoreLocation
 import CityKit
 
-class RouteDistanceCalculator {
+class RoutesReceiver {
     
     //MARK: public
     
-    class var sharedRouteDistanceCalculator: RouteDistanceCalculator {
+    class var sharedRoutesReceiver: RoutesReceiver {
         struct Static {
             static var onceToken: dispatch_once_t = 0
-            static var instance: RouteDistanceCalculator? = nil
+            static var instance: RoutesReceiver? = nil
         }
         dispatch_once(&Static.onceToken) {
-            Static.instance = RouteDistanceCalculator()
+            Static.instance = RoutesReceiver()
         }
         return Static.instance!
     }
     
-    var routeDistances = [String : CLLocationDistance]()
+    var routes = [String : MKRoute]()
     
-    var locationTracker: LocationTracker!
+    var userLocation: CLLocation!
     
-    func requestRouteDistancesToPointsOfInterestInCity(city: City) {
+    func requestRoutesToPointsOfInterestInCity(city: City) {
         for pointOfInterest in city.pointsInCity() {
-            requestRouteDistanceTo(pointOfInterest)
+            requestRouteTo(pointOfInterest)
         }
     }
     
@@ -41,12 +41,12 @@ class RouteDistanceCalculator {
         return MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate, addressDictionary: nil))
     }
     
-    func requestRouteDistanceTo(pointOfInterest: PointOfInterest) {
+    func requestRouteTo(pointOfInterest: PointOfInterest) {
         
-        if let userLocation = locationTracker.currentLocation {
+        if let location = userLocation {
             
             let request = MKDirectionsRequest()
-            request.setSource(convertToMKMapItem(userLocation))
+            request.setSource(convertToMKMapItem(location))
             
             //println("UserLocation.latitude: \(convertToMKMapItem(userLocation).placemark.coordinate.latitude)\n UserLocation.longitude: \(convertToMKMapItem(userLocation).placemark.coordinate.longitude)\n")
             
@@ -54,7 +54,7 @@ class RouteDistanceCalculator {
             
             //println("Destination.latitude: \(convertToMKMapItem(pointOfInterest.locationOnMap()).placemark.coordinate.latitude)\n Destination.longitude: \(convertToMKMapItem(pointOfInterest.locationOnMap()).placemark.coordinate.longitude)\n")
             
-            request.transportType = MKDirectionsTransportType.Automobile
+            request.transportType = MKDirectionsTransportType.Walking
             request.requestsAlternateRoutes = false
             
             
@@ -73,10 +73,11 @@ class RouteDistanceCalculator {
     func successRequestDirections(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0] as! MKRoute
         
-        if routeDistances.count < 25 {
-            routeDistances[pointOfInterest.name] = route.distance
-        
+        if routes.count < 25 {
+            routes[pointOfInterest.name] = route
+            
             //println("\(numberSuccess).\(routeDistances[pointOfInterest.name])")
         }
     }
 }
+

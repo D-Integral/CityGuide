@@ -65,6 +65,9 @@
 		C077590C1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
 		C07820091B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
 		C078200A1B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
+		C095C0EE1B592EB300448FDC /* RouterReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RouterReceiver.swift */; };
+		C095C0EF1B592EB300448FDC /* RouterReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RouterReceiver.swift */; };
+		C095C0F01B592EB300448FDC /* RouterReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RouterReceiver.swift */; };
 		C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 		C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
 		C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
@@ -199,6 +202,7 @@
 		C07759071B15A4EF00F76ECA /* SightAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotation.swift; sourceTree = "<group>"; };
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
 		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
+		C095C0ED1B592EB300448FDC /* RouterReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterReceiver.swift; sourceTree = "<group>"; };
 		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
 		C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_1.png; sourceTree = "<group>"; };
 		C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_2.png; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				C04918251B26EC1200638F90 /* LocationTracker.swift */,
 				C048DFB41B41556A00735395 /* DistanceFormatter.swift */,
 				C048DFB71B418C5E00735395 /* RouteDistanceCalculator.swift */,
+				C095C0ED1B592EB300448FDC /* RouterReceiver.swift */,
 				C048DFBA1B418F4000735395 /* AngleCalculator.swift */,
 				8CE2CB0D1AEA5DF80032F74D /* View */,
 				8CE2CB081AEA5A0D0032F74D /* New Orleans Images */,
@@ -717,6 +722,7 @@
 				C07759081B15A4EF00F76ECA /* SightAnnotation.swift in Sources */,
 				C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
+				C095C0EE1B592EB300448FDC /* RouterReceiver.swift in Sources */,
 				C048DFB81B418C5E00735395 /* RouteDistanceCalculator.swift in Sources */,
 				C048DFAE1B41374800735395 /* Coordinate Converter.swift in Sources */,
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
@@ -733,6 +739,7 @@
 				9873DFF91B2853E5008FE5EF /* AppDelegate.swift in Sources */,
 				C078200A1B170486002C95CB /* TableViewController.swift in Sources */,
 				C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
+				C095C0EF1B592EB300448FDC /* RouterReceiver.swift in Sources */,
 				8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */,
 				C048DFB01B41430A00735395 /* Coordinate Converter.swift in Sources */,
 				8CE2CAF61AEA2BC60032F74D /* New_Orleans_In_PicturesTests.swift in Sources */,
@@ -765,6 +772,7 @@
 				9873DFB01B27AA4B008FE5EF /* CityManage.swift in Sources */,
 				9873DFF61B27CF49008FE5EF /* CoordinatesManage.swift in Sources */,
 				9873DFB31B27AA53008FE5EF /* New_Orleans_In_Pictures.xcdatamodeld in Sources */,
+				C095C0F01B592EB300448FDC /* RouterReceiver.swift in Sources */,
 				C048DFB31B41492800735395 /* Coordinate Converter.swift in Sources */,
 				9873E0031B288837008FE5EF /* PointOfInterest.swift in Sources */,
 				9873E0051B288837008FE5EF /* City.swift in Sources */,
