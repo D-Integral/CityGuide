@@ -15,7 +15,7 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate {
+class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverDelegate {
     
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 195.0)
@@ -35,7 +35,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var unchecked: [PointOfInterest]!
     
     var compassAngles: [String : Double]!
-    var routesToPointsOfInterest: [String : MKRoute]!
+    var routesToPointsOfInterest = [String : MKRoute]()
     
     var angleCalculator: AngleCalculator!
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
@@ -63,7 +63,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         routesReceiver.userLocation = locationTracker.currentLocation
         routesReceiver.city = self.city
         routesReceiver.requestRoutesToPointsOfInterest()
-        routesToPointsOfInterest = routesReceiver.routes
+        //routesToPointsOfInterest = routesReceiver.routes
     }
     
 //    func sortItemsByStraightDistances() {
@@ -96,6 +96,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         locationTracker = LocationTracker()
         locationTracker.delegate = self
+        
+        routesReceiver.delegate = self
     }
     
     func retrievePointsOfInterest() {
@@ -181,11 +183,20 @@ extension GalleryVC {
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
-        animateCollectionView()
     }
     
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+    }
+}
+
+//MARK: RoutesReceiverDelegate
+
+extension GalleryVC {
+    func routesReceived(routes: [String : MKRoute]) {
+        self.routesToPointsOfInterest = routes
+        reloadCollectionView()
+        animateCollectionView()
     }
 }
 
