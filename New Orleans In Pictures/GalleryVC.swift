@@ -41,47 +41,33 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     var angleCalculator = AngleCalculator()
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
-    var locationTracker: LocationTracker! {
-        didSet {
-            reloadCollectionView()
-        }
-    }
+    var locationTracker: LocationTracker!
     
-    func reloadCollectionView() {
-        reloadAngleCalculator()
-        reloadRoutesReceiver()
-        
-        //sortItemsByStraightDistances()
-        
-        collectionView?.reloadData()
-    }
-    
-    func reloadAngleCalculator() {
+    func reloadCompassAngles() {
         angleCalculator.locationTracker = locationTracker
         compassAngles = angleCalculator.angles
     }
     
-    func reloadRoutesReceiver() {
+    func reloadRoutesToPointsOfInterest() {
         routesReceiver.userLocation = locationTracker.currentLocation
         routesReceiver.city = self.city
         routesReceiver.requestRoutesToPointsOfInterest()
-        //routesToPointsOfInterest = routesReceiver.routes
     }
     
-//    func sortItemsByStraightDistances() {
-//        wantToSee = sorted(city.wantToSeeSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
-//        alreadySeen = sorted(city.alreadySeenSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
-//        unchecked = sorted(city.uncheckedSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
-//    }
+    func sortItemsByRouteDistances() {
+        wantToSee = sorted(city.wantToSeeSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
+        alreadySeen = sorted(city.alreadySeenSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
+        unchecked = sorted(city.uncheckedSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
+        }
+    
+    func routeDistanceToPointOfInterest(pointOFInterest: PointOfInterest) -> CLLocationDistance {
+        return routesToPointsOfInterest[pointOFInterest.name]!.distance
+    }
     
     func animateCollectionView() {
         UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
         activityIndicator.stopAnimating()
     }
-    
-//    func straightDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
-//        return locationTracker.distanceToLocation(POI.locationOnMap())
-//    }
     
     //MARK: - Lifecycle
     override func viewDidLoad()
@@ -100,6 +86,13 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         locationTracker.delegate = self
         
         routesReceiver.delegate = self
+        
+        angleCalculator.locationTracker = locationTracker
+        compassAngles = angleCalculator.angles
+        
+        routesReceiver.userLocation = locationTracker.currentLocation
+        routesReceiver.city = city
+        routesToPointsOfInterest = routesReceiver.routes
     }
     
     func retrievePointsOfInterest() {

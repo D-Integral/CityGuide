@@ -10,8 +10,10 @@ import MapKit
 
 extension GalleryVC {
     func routesReceived(routes: [String : MKRoute]) {
-        self.routesToPointsOfInterest = routes
-        reloadCollectionView()
+        routesToPointsOfInterest = routes
+        sortItemsByRouteDistances()
+        
+        collectionView?.reloadData()
         animateCollectionView()
     }
 }

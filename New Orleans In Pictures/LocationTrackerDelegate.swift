@@ -9,10 +9,17 @@
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+        
+        reloadRoutesToPointsOfInterest()
+        reloadCompassAngles()
+        collectionView?.reloadData()
     }
     
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+        
+        reloadCompassAngles()
+        collectionView?.reloadData()
     }
 }
 
