@@ -67,21 +67,17 @@ class RoutesReceiver {
     
     func calculate(directions: MKDirections, forPointOfInterest pointOfInterest: PointOfInterest) {
         directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            error != nil ? self.errorRequestRoute() : self.handle(response, forPointOfInterest: pointOfInterest)
+            error != nil ? println("Error getting directions!") : self.handle(response, forPointOfInterest: pointOfInterest)
         })
     }
     
-    func errorRequestRoute() {
-        println("Error getting directions!")
-    }
-    
-    var count: Int = 0
     func handle(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0] as! MKRoute
         
         routes.count != city.pointsInCity().count ? saveRoute(route, forPointOfInterest: pointOfInterest) : delegate?.routesReceived(self.routes)
     }
     
+    var count: Int = 0
     func saveRoute(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
         routes[pointOfInterest.name] = route
         
