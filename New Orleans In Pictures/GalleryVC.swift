@@ -22,6 +22,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         static let headerSize = CGSizeMake(50.0, 50.0)
     }
     
+    let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var city: City! {
@@ -31,10 +33,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
+    
     var compassAngles: [String : Double]!
     var routesToPointsOfInterest: [String : MKRoute]!
-    
-    let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
     
     var angleCalculator: AngleCalculator!
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
@@ -64,26 +65,20 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         routesToPointsOfInterest = routesReceiver.routes
     }
     
-    func sortItemsByStraightDistances() {
-        wantToSee = sorted(city.wantToSeeSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
-        alreadySeen = sorted(city.alreadySeenSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
-        unchecked = sorted(city.uncheckedSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
-    }
+//    func sortItemsByStraightDistances() {
+//        wantToSee = sorted(city.wantToSeeSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
+//        alreadySeen = sorted(city.alreadySeenSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
+//        unchecked = sorted(city.uncheckedSights(), {self.straightDistanceToPOI($0) < self.straightDistanceToPOI($1)})
+//    }
     
     func animateCollectionView() {
         UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
         activityIndicator.stopAnimating()
     }
     
-    func retrievePointsOfInterest() {
-        wantToSee = city.wantToSeeSights()
-        alreadySeen = city.alreadySeenSights()
-        unchecked = city.uncheckedSights()
-    }
-    
-    func straightDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
-        return locationTracker.distanceToLocation(POI.locationOnMap())
-    }
+//    func straightDistanceToPOI(POI: PointOfInterest) -> CLLocationDistance {
+//        return locationTracker.distanceToLocation(POI.locationOnMap())
+//    }
     
     //MARK: - Lifecycle
     override func viewDidLoad()
@@ -100,6 +95,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         locationTracker = LocationTracker()
         locationTracker.delegate = self
+    }
+    
+    func retrievePointsOfInterest() {
+        wantToSee = city.wantToSeeSights()
+        alreadySeen = city.alreadySeenSights()
+        unchecked = city.uncheckedSights()
     }
     
     override func viewDidAppear(animated: Bool) {
