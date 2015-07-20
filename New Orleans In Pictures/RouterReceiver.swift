@@ -79,14 +79,14 @@ class RoutesReceiver {
     func saveRouteFrom(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0] as! MKRoute
         
-        if routes.count != city.pointsInCity().count {
-            routes[pointOfInterest.name] = route
-            
-            count++
-            println("\(count). \(route.distance) for POI: \(pointOfInterest.name)")
-        } else {
-            delegate?.routesReceived(self.routes)
-        }
+        routes.count != city.pointsInCity().count ? addRoute(route, forPointOfInterest: pointOfInterest) : delegate?.routesReceived(self.routes)
+    }
+    
+    func addRoute(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
+        routes[pointOfInterest.name] = route
+        
+        count++
+        println("\(count). \(route.distance) for POI: \(pointOfInterest.name)")
     }
 }
 
