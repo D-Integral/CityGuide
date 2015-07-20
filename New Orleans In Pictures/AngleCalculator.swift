@@ -67,9 +67,4 @@ class AngleCalculator {
     var city: City {
         return City.fetchCity() != nil ? City.fetchCity()! : City.createCityWithName("New Orleans")
     }
-    
-    init(locationTracker: LocationTracker) {
-        self.locationTracker = locationTracker
-    }
-
 }

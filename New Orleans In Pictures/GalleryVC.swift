@@ -30,6 +30,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
     
+    //MARK: CollectionView source
+    
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
@@ -55,7 +57,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func reloadAngleCalculator() {
-        angleCalculator = AngleCalculator(locationTracker: locationTracker)
+        angleCalculator = AngleCalculator()
+        angleCalculator.locationTracker = locationTracker
         compassAngles = angleCalculator.angles
     }
     
