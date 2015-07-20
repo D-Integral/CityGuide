@@ -10,6 +10,10 @@ import MapKit
 import CoreLocation
 import CityKit
 
+protocol RoutesReceiverDelegate {
+    func routesReceived(routes: [String : MKRoute])
+}
+
 class RoutesReceiver {
     
     //MARK: public
@@ -26,10 +30,11 @@ class RoutesReceiver {
     }
     
     var routes = [String : MKRoute]()
-    
+    var city: City!
     var userLocation: CLLocation!
+    var delegate: RoutesReceiverDelegate?
     
-    func requestRoutesToPointsOfInterestInCity(city: City) {
+    func requestRoutesToPointsOfInterest() {
         for pointOfInterest in city.pointsInCity() {
             requestRouteTo(pointOfInterest)
         }
@@ -74,11 +79,13 @@ class RoutesReceiver {
     func saveRouteFrom(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0] as! MKRoute
         
-        if routes.count < 25 {
+        if routes.count != city.pointsInCity().count {
             routes[pointOfInterest.name] = route
             
             count++
             println("\(count). \(route.distance) for POI: \(pointOfInterest.name)")
+        } else {
+            delegate?.routesReceived(self.routes)
         }
     }
 }

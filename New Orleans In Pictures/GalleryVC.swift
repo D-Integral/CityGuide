@@ -61,7 +61,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     func reloadRoutesReceiver() {
         routesReceiver.userLocation = locationTracker.currentLocation
-        routesReceiver.requestRoutesToPointsOfInterestInCity(city)
+        routesReceiver.city = self.city
+        routesReceiver.requestRoutesToPointsOfInterest()
         routesToPointsOfInterest = routesReceiver.routes
     }
     
