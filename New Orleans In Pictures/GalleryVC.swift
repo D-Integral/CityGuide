@@ -51,8 +51,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         //sortItemsByStraightDistances()
         
         collectionView?.reloadData()
-        
-        animateCollectionView()
     }
     
     func reloadAngleCalculator() {
@@ -181,6 +179,7 @@ extension GalleryVC {
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+        animateCollectionView()
     }
     
     func headingUpdated(tracker: LocationTracker) {

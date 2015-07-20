@@ -70,11 +70,15 @@ class RoutesReceiver {
         println("Error getting directions!")
     }
     
+    var count: Int = 0
     func saveRouteFrom(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0] as! MKRoute
         
         if routes.count < 25 {
             routes[pointOfInterest.name] = route
+            
+            count++
+            println("\(count). \(route.distance) for POI: \(pointOfInterest.name)")
         }
     }
 }
