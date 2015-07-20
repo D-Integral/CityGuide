@@ -46,12 +46,16 @@ class RoutesReceiver {
         return MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate, addressDictionary: nil))
     }
     
+    func allRoutesReceived() -> Bool {
+        return routes.count >= city.pointsInCity().count ? true : false
+    }
+    
     func requestRouteTo(pointOfInterest: PointOfInterest) {
         
         if let location = userLocation {
             let request = formedRequestFrom(location, toDestination: pointOfInterest.locationOnMap())
             let directions = MKDirections(request: request)
-            calculate(directions, forPointOfInterest: pointOfInterest)
+            calculate(directions, toPointOfInterest: pointOfInterest)
         }
     }
     
@@ -65,24 +69,24 @@ class RoutesReceiver {
         return request
     }
     
-    func calculate(directions: MKDirections, forPointOfInterest pointOfInterest: PointOfInterest) {
+    func calculate(directions: MKDirections, toPointOfInterest pointOfInterest: PointOfInterest) {
         directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            error != nil ? println("Error getting directions!") : self.handle(response, forPointOfInterest: pointOfInterest)
+            error != nil ?  self.handleErrorResponse(): self.handleSuccessResponse(response, forPointOfInterest: pointOfInterest)
         })
     }
     
-    func handle(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
-        let route = response.routes[0] as! MKRoute
-        
-        routes.count != city.pointsInCity().count ? saveRoute(route, forPointOfInterest: pointOfInterest) : delegate?.routesReceived(self.routes)
+    func handleErrorResponse() {
+        println("Error getting directions!")
     }
     
-    var count: Int = 0
-    func saveRoute(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
-        routes[pointOfInterest.name] = route
+    func handleSuccessResponse(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
+        let route = response.routes[0] as! MKRoute
         
-        count++
-        println("\(count). \(route.distance) for POI: \(pointOfInterest.name)")
+        !allRoutesReceived() ? save(route, toPointOfInterest: pointOfInterest) : delegate?.routesReceived(routes)
+    }
+    
+    func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
+        routes[pointOfInterest.name] = route
     }
 }
 
