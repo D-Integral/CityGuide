@@ -39,7 +39,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var compassAngles: [String : Double]!
     var routesToPointsOfInterest = [String : MKRoute]()
     
-    var angleCalculator: AngleCalculator!
+    var angleCalculator = AngleCalculator()
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker! {
         didSet {
@@ -57,7 +57,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func reloadAngleCalculator() {
-        angleCalculator = AngleCalculator()
         angleCalculator.locationTracker = locationTracker
         compassAngles = angleCalculator.angles
     }
