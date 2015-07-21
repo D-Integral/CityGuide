@@ -15,7 +15,7 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverDelegate {
+class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverDelegate, TableViewControllerDelegate {
     
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 195.0)
@@ -126,6 +126,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
+        tableVC.delegate = self
         tableVC.pointOfInterest = pointForIndexPath(indexPath)
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!

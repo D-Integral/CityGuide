@@ -12,11 +12,20 @@ import CoreLocation
 import CoreData
 import CityKit
 
+protocol TableViewControllerDelegate {
+    func pointOfInterestStateDidChange()
+}
+
 class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate {
     
     struct Constants{
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
     }
+    
+    var delegate: TableViewControllerDelegate?
+    
+    var initialWantToSeeSwitchState: Bool!
+    var initialAlreadySeenSwitchState: Bool!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -35,6 +44,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var userLocation: MKUserLocation!
     
+    //create class ConverterToMKMapItem and make refactoring
     var destination: MKMapItem? {
         var placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
         return MKMapItem(placemark: placemark)
@@ -112,6 +122,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     func initialSwitchesSetup() {
         wantSeeSwitch.on = pointOfInterest.isPlanned() ? true : false
         seenSwitch.on = pointOfInterest.isSeen() ? true : false
+        
+        initialWantToSeeSwitchState = wantSeeSwitch.on
+        initialAlreadySeenSwitchState = seenSwitch.on
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -122,6 +135,19 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        if pointOfInterestStateDidChange() { notifyDelegate() }
+    }
+    
+    func pointOfInterestStateDidChange() -> Bool {
+        return initialWantToSeeSwitchState != pointOfInterest.planned || initialAlreadySeenSwitchState != pointOfInterest.seen
+    }
+    
+    func notifyDelegate() {
+        delegate?.pointOfInterestStateDidChange()
+        println("Delegate notified about changing POI state.")
     }
     
     @IBAction func wantToSee(sender: AnyObject) {
