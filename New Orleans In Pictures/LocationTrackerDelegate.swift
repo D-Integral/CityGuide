@@ -8,10 +8,9 @@
 
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
-        println("\nLocationTracker updated:")
+        println("LocationTracker updated:")
         println("New latitude: \(tracker.currentLocation?.coordinate.latitude)")
         println("New longitude: \(tracker.currentLocation?.coordinate.longitude)\n")
-        
         
         locationTracker = tracker
         
@@ -19,11 +18,13 @@ extension GalleryVC {
         compassAngles = angleCalculator.angles
         collectionView?.reloadData()
         
-        routesReceiver.removeAllRoutes()
+        loadRoutes()
+    }
+    
+    func loadRoutes() {
         routesReceiver.userLocation = locationTracker.currentLocation
         routesReceiver.city = city
         routesReceiver.requestRoutesToPointsOfInterest()
-        
     }
     
     func headingUpdated(tracker: LocationTracker) {

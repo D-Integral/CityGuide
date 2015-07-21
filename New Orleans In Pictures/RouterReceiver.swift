@@ -47,13 +47,13 @@ class RoutesReceiver {
     }
     
     func removeAllRoutes() {
-        routes = [:]
+        routes = [String : MKRoute]()
         
         println("Routes removed. Number of items: \(routes.count)")
     }
     
     func allRoutesReceived() -> Bool {
-        return routes.count >= city.pointsInCity().count ? true : false
+        return routes.count == city.pointsInCity().count ? true : false
     }
     
     func requestRouteTo(pointOfInterest: PointOfInterest) {
@@ -82,22 +82,27 @@ class RoutesReceiver {
     }
     
     func handleErrorResponse(pointOfInterest: PointOfInterest) {
-    
         println("Error getting directions for: \(pointOfInterest.name)")
     }
     
     func handleSuccessResponse(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0] as! MKRoute
         
-        !allRoutesReceived() ? save(route, toPointOfInterest: pointOfInterest) : delegate?.routesReceived(routes)
+        /*allRoutesReceived() ? notifyDelegate() : */
+        save(route, toPointOfInterest: pointOfInterest)
     }
     
-    var saves: Int = 0
     func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
         routes[pointOfInterest.name] = route
         
-        saves++
-        println("\(saves). Saved route distance: \(route.distance) for: \(pointOfInterest.name)")
+        println("\(routes.count). Saved route distance: \(route.distance) for: \(pointOfInterest.name)")
+        
+        if allRoutesReceived() { notifyDelegate() }
+    }
+    
+    func notifyDelegate() {
+        delegate?.routesReceived(routes)
+        println("Delegate notified.")
     }
 }
 

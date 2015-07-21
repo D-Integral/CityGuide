@@ -55,14 +55,23 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
+    func currentLocationDiffersFrom(newLocation: CLLocation) -> Bool {
+        return currentLocation?.coordinate.latitude != newLocation.coordinate.latitude || currentLocation?.coordinate.longitude != newLocation.coordinate.longitude ? true : false
+    }
+    
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        currentLocation = locations[locations.count - 1] as? CLLocation
         
-        println("\nLocation manager updated:")
-        println("New latitude: \(currentLocation?.coordinate.latitude)")
-        println("New longitude: \(currentLocation?.coordinate.longitude)\n")
+        let newLocation = locations[locations.count - 1] as? CLLocation
         
-        delegate?.locationUpdated(self)
+        if currentLocationDiffersFrom(newLocation!) {
+            currentLocation = newLocation
+        
+            println("\nLocation manager updated:")
+            println("New latitude: \(currentLocation?.coordinate.latitude)")
+            println("New longitude: \(currentLocation?.coordinate.longitude)\n")
+        
+            delegate?.locationUpdated(self)
+        }
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {

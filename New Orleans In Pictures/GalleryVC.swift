@@ -43,12 +43,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker!
     
-    func loadRoutesToPointsOfInterest() {
-        routesReceiver.userLocation = locationTracker.currentLocation
-        routesReceiver.city = city
-        routesReceiver.requestRoutesToPointsOfInterest()
-    }
-    
     func sortItemsByRouteDistances() {
         wantToSee = sorted(city.wantToSeeSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
         alreadySeen = sorted(city.alreadySeenSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
