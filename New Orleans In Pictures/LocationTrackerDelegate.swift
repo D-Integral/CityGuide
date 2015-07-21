@@ -22,6 +22,7 @@ extension GalleryVC {
     }
     
     func loadRoutes() {
+        routesReceiver.removeAllRoutes()
         routesReceiver.userLocation = locationTracker.currentLocation
         routesReceiver.city = city
         routesReceiver.requestRoutesToPointsOfInterest()
