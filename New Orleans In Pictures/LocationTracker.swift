@@ -57,6 +57,11 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         currentLocation = locations[locations.count - 1] as? CLLocation
+        
+        println("\nLocation manager updated:")
+        println("New latitude: \(currentLocation?.coordinate.latitude)")
+        println("New longitude: \(currentLocation?.coordinate.longitude)\n")
+        
         delegate?.locationUpdated(self)
     }
     

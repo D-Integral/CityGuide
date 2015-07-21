@@ -43,14 +43,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker!
     
-    func reloadCompassAngles() {
-        angleCalculator.locationTracker = locationTracker
-        compassAngles = angleCalculator.angles
-    }
-    
-    func reloadRoutesToPointsOfInterest() {
+    func loadRoutesToPointsOfInterest() {
         routesReceiver.userLocation = locationTracker.currentLocation
-        routesReceiver.city = self.city
+        routesReceiver.city = city
         routesReceiver.requestRoutesToPointsOfInterest()
     }
     
@@ -89,10 +84,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         angleCalculator.locationTracker = locationTracker
         compassAngles = angleCalculator.angles
-        
-        routesReceiver.userLocation = locationTracker.currentLocation
-        routesReceiver.city = city
-        routesToPointsOfInterest = routesReceiver.routes
     }
     
     func retrievePointsOfInterest() {

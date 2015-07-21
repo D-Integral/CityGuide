@@ -46,6 +46,12 @@ class RoutesReceiver {
         return MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate, addressDictionary: nil))
     }
     
+    func removeAllRoutes() {
+        routes = [:]
+        
+        println("Routes removed. Number of items: \(routes.count)")
+    }
+    
     func allRoutesReceived() -> Bool {
         return routes.count >= city.pointsInCity().count ? true : false
     }
@@ -71,12 +77,13 @@ class RoutesReceiver {
     
     func calculate(directions: MKDirections, toPointOfInterest pointOfInterest: PointOfInterest) {
         directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse!, error: NSError!) in
-            error != nil ?  self.handleErrorResponse(): self.handleSuccessResponse(response, forPointOfInterest: pointOfInterest)
+            error != nil ?  self.handleErrorResponse(pointOfInterest): self.handleSuccessResponse(response, forPointOfInterest: pointOfInterest)
         })
     }
     
-    func handleErrorResponse() {
-        println("Error getting directions!")
+    func handleErrorResponse(pointOfInterest: PointOfInterest) {
+    
+        println("Error getting directions for: \(pointOfInterest.name)")
     }
     
     func handleSuccessResponse(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
@@ -85,8 +92,12 @@ class RoutesReceiver {
         !allRoutesReceived() ? save(route, toPointOfInterest: pointOfInterest) : delegate?.routesReceived(routes)
     }
     
+    var saves: Int = 0
     func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
         routes[pointOfInterest.name] = route
+        
+        saves++
+        println("\(saves). Saved route distance: \(route.distance) for: \(pointOfInterest.name)")
     }
 }
 
