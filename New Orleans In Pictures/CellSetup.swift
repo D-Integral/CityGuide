@@ -29,7 +29,6 @@ extension GalleryVC {
         
         if routesToPointsOfInterest[point.name] != nil {
             cell.distanceLabel.text = DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance)
-            //DistanceFormatter.formatted(straightDistanceToPOI(point))
         } else {
             cell.distanceLabel.text = "Requesting..."
         }
@@ -42,19 +41,6 @@ extension GalleryVC {
         UIView.animateWithDuration(1, animations: {
             imageView.transform = CGAffineTransformMakeRotation(-CGFloat(self.compassAngles[point.name]!))
             }, completion: nil)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        var size: CGSize!
-        switch indexPath.section {
-        case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 1: size = (unchecked.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.sizeForCell
-        default: break
-        }
-        
-        return size
     }
 }
 
