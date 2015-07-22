@@ -12,9 +12,9 @@ extension GalleryVC {
         
         var size: CGSize!
         switch indexPath.section {
-        case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 1: size = (unchecked.count == 0) ? CGSizeZero : Constants.sizeForCell
-        case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.sizeForCell
+        case 0: size = (wantToSee.isEmpty) ? CGSizeZero : Constants.sizeForCell
+        case 1: size = (unchecked.isEmpty) ? CGSizeZero : Constants.sizeForCell
+        case 2: size = (alreadySeen.isEmpty) ? CGSizeZero : Constants.sizeForCell
         default: break
         }
         
