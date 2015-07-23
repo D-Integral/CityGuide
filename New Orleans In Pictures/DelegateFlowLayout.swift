@@ -17,7 +17,6 @@ extension GalleryVC {
         case 2: size = (alreadySeen.isEmpty) ? CGSizeZero : Constants.sizeForCell
         default: break
         }
-        
         return size
     }
 }
