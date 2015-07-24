@@ -63,8 +63,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
-        let myLayout = CustomFlowLayout()
-        self.collectionView?.collectionViewLayout = myLayout
+//        let myLayout = CustomFlowLayout()//StickyHeaderFlowLayout()
+//        self.collectionView?.collectionViewLayout = myLayout
         
         collectionView?.alpha = 0.5
         activityIndicator.startAnimating()

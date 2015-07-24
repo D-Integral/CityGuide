@@ -9,7 +9,11 @@
 import UIKit
 import Foundation
 
-class CustomFlowLayout: UICollectionViewLayout {
+class CustomFlowLayout: UICollectionViewFlowLayout {
+    
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        return true
+    }
     
     struct Constants {
         static let margin: CGFloat = 5.0
@@ -25,23 +29,26 @@ class CustomFlowLayout: UICollectionViewLayout {
     
     override func prepareLayout() {
         super.prepareLayout()
-        
-        for i in 0..<self.collectionView!.numberOfSections()  {
-            numberOfItemsInSection[i] = self.collectionView?.numberOfItemsInSection(i)
-        }
-        
-        //needs to be reviewed
-        viewSize = CGSizeMake(self.collectionView!.frame.size.width, self.collectionView!.frame.size.height * 2)
-        
-        setDefaultEdgesForItem()
-        
-        numberOfDoubleRow = 0
+        setDefaultValues()
     }
     
     override func collectionViewContentSize() -> CGSize {
         return viewSize
     }
     
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+        var attributes = [AnyObject]()
+        
+        for i in 0..<self.collectionView!.numberOfSections() {
+            for j in 0..<self.numberOfItemsInSection[i]! {
+                let indexPath = NSIndexPath(forItem: j, inSection: i)
+                attributes.append(self.layoutAttributesForItemAtIndexPath(indexPath))
+            }
+        }
+        
+        return attributes
+    }
+
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
@@ -73,17 +80,34 @@ class CustomFlowLayout: UICollectionViewLayout {
         return attributes
     }
     
+//    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+//    
+//        var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
+//    
+//        if elementKind == UICollectionElementKindSectionHeader {
+//            attributes.size = CGSizeMake(300, 100)
+//            attributes.center = CGPointMake(viewSize.width / 2, viewSize.height / 2)
+//            attributes.zIndex = 1
+//        }
+//    
+//        return attributes
+//    }
     
+    //MARK: Private helper methods
     
+    func setDefaultValues() {
+        for i in 0..<self.collectionView!.numberOfSections()  {
+            numberOfItemsInSection[i] = self.collectionView?.numberOfItemsInSection(i)
+        }
+        //needs to be reviewed
+        viewSize = CGSizeMake(self.collectionView!.frame.size.width, self.collectionView!.frame.size.height * 2)
+        setDefaultEdgesForItem()
+        numberOfDoubleRow = 0
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
+    func isSectionEmpty(section: Int) -> Bool {
+        return numberOfItemsInSection[section] == 0 ? true : false
+    }
     
     func isFirstItemInSectionAt(indexPath: NSIndexPath) -> Bool {
         return indexPath.row == 0 ? true : false
@@ -132,29 +156,12 @@ class CustomFlowLayout: UICollectionViewLayout {
         return number % 2 == 0 ? true : false
     }
     
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-        return true
-    }
-    
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        var attributes = [AnyObject]()
-        
-        for i in 0..<self.collectionView!.numberOfSections() {
-            for j in 0..<self.numberOfItemsInSection[i]! {
-                let indexPath = NSIndexPath(forItem: j, inSection: i)
-                attributes.append(self.layoutAttributesForItemAtIndexPath(indexPath))
-            }
-        }
-        
-        return attributes
-    }
-    
     //MARK: Animation
-//    override func initialLayoutAttributesForAppearingDecorationElementOfKind(elementKind: String, atIndexPath decorationIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-//        
-//    }
-//    
-//    override func finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-//        
-//    }
+    //    override func initialLayoutAttributesForAppearingDecorationElementOfKind(elementKind: String, atIndexPath decorationIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    //
+    //    }
+    //
+    //    override func finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    //        
+    //    }
 }
