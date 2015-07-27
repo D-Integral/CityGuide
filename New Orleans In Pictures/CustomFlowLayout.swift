@@ -16,8 +16,8 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
     
     struct Constants {
         static let margin: CGFloat = 5.0
-        static let sizeLarge = CGSizeMake(150, 195)
-        static let sizeSmall = CGSizeMake(Constants.sizeLarge.width / 2, (Constants.sizeLarge.height - Constants.margin) / 2)
+        static let itemSizeLarge = CGSizeMake(150, 195)
+        static let itemSizeSmall = CGSizeMake(Constants.itemSizeLarge.width / 2, (Constants.itemSizeLarge.height - Constants.margin) / 2)
     }
     
     var numberOfItemsInSection = [Int : Int]()
@@ -53,26 +53,26 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
         //MARK: size adjustment
-        attributes.size = indexPath.row == 0 ? Constants.sizeLarge : Constants.sizeSmall
+        attributes.size = indexPath.row == 0 ? Constants.itemSizeLarge : Constants.itemSizeSmall
         
         //MARK: center adjustment
         if isFirstItemInSectionAt(indexPath) {
             attributes.center = centerForLargeItemAt(indexPath)
-            moveLeftEdgeForItemWithPoints(Constants.sizeLarge.width + 2 * Constants.margin)
+            moveLeftEdgeForItemWithPoints(Constants.itemSizeLarge.width + 2 * Constants.margin)
         } else {
             if itemFitsWithinLine() {
                 if !isEven(indexPath.row) {
                     attributes.center = centerForNotEvenSmallItemAt(indexPath)
-                    moveTopEdgeForItemWithPoints(Constants.sizeSmall.height + Constants.margin)
+                    moveTopEdgeForItemWithPoints(Constants.itemSizeSmall.height + Constants.margin)
                 } else {
                     attributes.center = centerforEvenSmallItemAt(indexPath)
-                    moveTopEdgeForItemWithPoints(-(Constants.sizeSmall.height + Constants.margin))
-                    moveLeftEdgeForItemWithPoints(Constants.sizeSmall.width + Constants.margin)
+                    moveTopEdgeForItemWithPoints(-(Constants.itemSizeSmall.height + Constants.margin))
+                    moveLeftEdgeForItemWithPoints(Constants.itemSizeSmall.width + Constants.margin)
                 }
             } else {
                 moveToNextDoubleRow()
                 attributes.center = centerForNotEvenSmallItemAt(indexPath)
-                moveTopEdgeForItemWithPoints(Constants.sizeSmall.height + Constants.margin)
+                moveTopEdgeForItemWithPoints(Constants.itemSizeSmall.height + Constants.margin)
             }
         }
         
@@ -120,15 +120,15 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
     func moveToNextDoubleRow() {
         numberOfDoubleRow++
         setDefaultEdgesForItem()
-        moveTopEdgeForItemWithPoints((Constants.sizeLarge.height + 5 * Constants.margin) * CGFloat(numberOfDoubleRow))
+        moveTopEdgeForItemWithPoints((Constants.itemSizeLarge.height + 5 * Constants.margin) * CGFloat(numberOfDoubleRow))
     }
     
     func itemFitsWithinLine() -> Bool {
-        return (viewSize.width - leftEdgeForItem > Constants.sizeSmall.width + Constants.margin) ? true : false
+        return (viewSize.width - leftEdgeForItem > Constants.itemSizeSmall.width + Constants.margin) ? true : false
     }
     
     func centerForLargeItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return CGPointMake(Constants.sizeLarge.width / 2 + Constants.margin, Constants.sizeLarge.height / 2 + Constants.margin)
+        return CGPointMake(Constants.itemSizeLarge.width / 2 + Constants.margin, Constants.itemSizeLarge.height / 2 + Constants.margin)
     }
     
     func centerForSmallItemAt(indexPath: NSIndexPath) -> CGPoint {
@@ -136,11 +136,11 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
     }
     
     func centerForNotEvenSmallItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return CGPointMake(leftEdgeForItem + Constants.sizeSmall.width / 2, topEdgeForItem + Constants.sizeSmall.height / 2)
+        return CGPointMake(leftEdgeForItem + Constants.itemSizeSmall.width / 2, topEdgeForItem + Constants.itemSizeSmall.height / 2)
     }
     
     func centerforEvenSmallItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return CGPointMake(leftEdgeForItem + Constants.sizeSmall.width / 2, topEdgeForItem + Constants.sizeSmall.height / 2)
+        return CGPointMake(leftEdgeForItem + Constants.itemSizeSmall.width / 2, topEdgeForItem + Constants.itemSizeSmall.height / 2)
     }
     
     func moveLeftEdgeForItemWithPoints(points: CGFloat) {
