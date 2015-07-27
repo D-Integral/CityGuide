@@ -22,6 +22,7 @@ extension GalleryVC {
         
         return cell
     }
+
     
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()

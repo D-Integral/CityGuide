@@ -10,13 +10,6 @@ import UIKit
 extension GalleryVC {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        var size: CGSize!
-        switch indexPath.section {
-        case 0: size = (wantToSee.isEmpty) ? CGSizeZero : Constants.sizeForCell
-        case 1: size = (unchecked.isEmpty) ? CGSizeZero : Constants.sizeForCell
-        case 2: size = (alreadySeen.isEmpty) ? CGSizeZero : Constants.sizeForCell
-        default: break
-        }
-        return size
+        return Constants.sizeForCell
     }
 }

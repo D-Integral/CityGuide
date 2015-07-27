@@ -67,6 +67,8 @@
 		C077590C1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
 		C07820091B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
 		C078200A1B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
+		C07C8E331B6603700059D808 /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C8E321B6603700059D808 /* CustomCollectionViewLayout.swift */; };
+		C07C8E341B6603700059D808 /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07C8E321B6603700059D808 /* CustomCollectionViewLayout.swift */; };
 		C07EA87D1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */; };
 		C07EA87E1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */; };
 		C095C0EE1B592EB300448FDC /* RouterReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RouterReceiver.swift */; };
@@ -226,6 +228,7 @@
 		C07759071B15A4EF00F76ECA /* SightAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotation.swift; sourceTree = "<group>"; };
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
 		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
+		C07C8E321B6603700059D808 /* CustomCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewLayout.swift; sourceTree = "<group>"; };
 		C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C095C0ED1B592EB300448FDC /* RouterReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterReceiver.swift; sourceTree = "<group>"; };
 		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
@@ -491,6 +494,7 @@
 				C0B2E5A71B5D28BB005FCEE8 /* DataSource.swift */,
 				C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */,
 				C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */,
+				C07C8E321B6603700059D808 /* CustomCollectionViewLayout.swift */,
 				C01F5EE11B5FDEB300C8A0D3 /* CustomFlowLayout.swift */,
 				C0CFC6EA1B62CD3000C96CDE /* StickyHeaderFlowLayout.swift */,
 			);
@@ -805,6 +809,7 @@
 				C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				C0B2E5981B5D238E005FCEE8 /* RoutesReceiverDelegate.swift in Sources */,
+				C07C8E331B6603700059D808 /* CustomCollectionViewLayout.swift in Sources */,
 				8CE2CB0F1AEA800F0032F74D /* HeaderView.swift in Sources */,
 				C0B2E5A21B5D2725005FCEE8 /* Animation.swift in Sources */,
 				C0B2E5A51B5D277C005FCEE8 /* HeaderSetup.swift in Sources */,
@@ -858,6 +863,7 @@
 				C0B2E5AE1B5D2A7C005FCEE8 /* MapViewSetup.swift in Sources */,
 				8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				C01F5EE01B5F765C00C8A0D3 /* DelegateFlowLayout.swift in Sources */,
+				C07C8E341B6603700059D808 /* CustomCollectionViewLayout.swift in Sources */,
 				C0B2E5A31B5D2725005FCEE8 /* Animation.swift in Sources */,
 				C0B2E5A61B5D277C005FCEE8 /* HeaderSetup.swift in Sources */,
 				8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */,

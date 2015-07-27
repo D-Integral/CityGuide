@@ -1,15 +1,14 @@
 //
-//  CustomFlowLayout.swift
+//  CustomCollectionViewLayout.swift
 //  New Orleans In Pictures
 //
-//  Created by Alexander Nuzhniy on 22.07.15.
+//  Created by Alexander Nuzhniy on 27.07.15.
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
 import UIKit
-
-class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
     
+class CustomFlowLayout: UICollectionViewFlowLayout {
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
     }
@@ -47,7 +46,7 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
         
         return attributes
     }
-
+    
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
@@ -79,18 +78,18 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
         return attributes
     }
     
-//    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
-//    
-//        var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
-//    
-//        if elementKind == UICollectionElementKindSectionHeader {
-//            attributes.size = CGSizeMake(300, 100)
-//            attributes.center = CGPointMake(viewSize.width / 2, viewSize.height / 2)
-//            attributes.zIndex = 1
-//        }
-//    
-//        return attributes
-//    }
+        override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    
+            var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
+    
+            if elementKind == UICollectionElementKindSectionHeader {
+                attributes.size = CGSizeMake(300, 100)
+                attributes.center = CGPointMake(viewSize.width / 2, viewSize.height / 2)
+                attributes.zIndex = 1
+            }
+    
+            return attributes
+        }
     
     //MARK: Private helper methods
     
@@ -163,4 +162,5 @@ class CustomFlowLayoutExperinment: UICollectionViewFlowLayout {
     //    override func finalLayoutAttributesForDisappearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
     //        
     //    }
+
 }
