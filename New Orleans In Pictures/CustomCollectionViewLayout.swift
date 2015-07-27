@@ -17,6 +17,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         static let margin: CGFloat = 5.0
         static let itemSizeLarge = CGSizeMake(150, 195)
         static let itemSizeSmall = CGSizeMake(Constants.itemSizeLarge.width / 2, (Constants.itemSizeLarge.height - Constants.margin) / 2)
+        static let headerSize = CGSizeMake(50.0, 50.0)
     }
     
     var numberOfItemsInSection = [Int : Int]()
@@ -27,7 +28,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     override func prepareLayout() {
         super.prepareLayout()
-        setDefaultValues()
+        setInitialValues()
     }
     
     override func collectionViewContentSize() -> CGSize {
@@ -35,16 +36,25 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        var attributes = [AnyObject]()
+        var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as? [UICollectionViewLayoutAttributes]
+        if allElementsAttributes == nil { return nil }
         
-        for i in 0..<self.collectionView!.numberOfSections() {
-            for j in 0..<self.numberOfItemsInSection[i]! {
-                let indexPath = NSIndexPath(forItem: j, inSection: i)
-                attributes.append(self.layoutAttributesForItemAtIndexPath(indexPath))
+        for (index, layoutAttributes) in enumerate(allElementsAttributes!) {
+            switch layoutAttributes.representedElementCategory {
+            case .SupplementaryView:
+                if layoutAttributes.representedElementKind == UICollectionElementKindSectionHeader {
+                    let newLayoutAttributes = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)
+                    allElementsAttributes![index] = newLayoutAttributes
+                }
+                
+            case .Cell:
+                let newLayoutAttributes = layoutAttributesForItemAtIndexPath(layoutAttributes.indexPath)
+                allElementsAttributes![index] = newLayoutAttributes
+            case .DecorationView: break
             }
         }
         
-        return attributes
+        return allElementsAttributes
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
@@ -91,9 +101,31 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             return attributes
         }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //MARK: Private helper methods
     
-    func setDefaultValues() {
+    func setInitialValues() {
         for i in 0..<self.collectionView!.numberOfSections()  {
             numberOfItemsInSection[i] = self.collectionView?.numberOfItemsInSection(i)
         }
