@@ -12,7 +12,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     let itemSizeLarge = CGSizeMake(150, 195)
     let marginBetweenCells: CGFloat = 10.0
-    let headerSize = CGSizeMake(50.0, 50.0)
+    let headerSize = CGSizeMake(300.0, 50.0)
     
     var margin: CGFloat!
     var itemSizeSmall: CGSize!
@@ -92,10 +92,25 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
 //    }
 //    
 //    
-//    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
-//        
-//    }
-//    
+    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+        var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
+        
+        attributes.size = headerSize
+        if elementKind == UICollectionElementKindSectionHeader {
+            switch indexPath.section {
+            case 0:
+                attributes.center = CGPointMake(self.collectionView!.frame.size.width / 2, headerSize.height / 2)
+            case 1:
+                attributes.center = CGPointMake(self.collectionView!.frame.size.width / 2, heightOfSection[0]! + headerSize.height / 2)
+            case 2:
+                attributes.center = CGPointMake(self.collectionView!.frame.size.width / 2, heightOfSection[0]! + heightOfSection[1]! + headerSize.height / 2)
+            default: break
+            }
+        }
+            
+        return attributes
+    }
+    
     
     
     
