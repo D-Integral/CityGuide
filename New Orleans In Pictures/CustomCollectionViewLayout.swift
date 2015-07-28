@@ -9,31 +9,60 @@
 import UIKit
     
 class CustomFlowLayout: UICollectionViewFlowLayout {
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-        return true
-    }
     
-    struct Constants {
-        static let margin: CGFloat = 5.0
-        static let itemSizeLarge = CGSizeMake(150, 195)
-        static let itemSizeSmall = CGSizeMake(Constants.itemSizeLarge.width / 2, (Constants.itemSizeLarge.height - Constants.margin) / 2)
-        static let headerSize = CGSizeMake(50.0, 50.0)
-    }
+    let itemSizeLarge = CGSizeMake(150, 195)
+    let marginBetweenCells: CGFloat = 10.0
+    let headerSize = CGSizeMake(50.0, 50.0)
     
+    var margin: CGFloat!
+    var itemSizeSmall: CGSize!
+    var numberOfSections: Int!
     var numberOfItemsInSection = [Int : Int]()
-    var viewSize: CGSize!
-    var leftEdgeForItem: CGFloat!
-    var topEdgeForItem: CGFloat!
-    var numberOfDoubleRow: Int = 0
+    var numberOfItemsInRow: Int!
+    var heightOfSection = [Int : CGFloat]()
+    
     
     override func prepareLayout() {
         super.prepareLayout()
-        setInitialValues()
+        
+        margin = self.collectionView!.frame.size.width * 0.05
+        println("Screen width: \(self.collectionView!.frame.size.width), Screen margin: \(margin)")
+        itemSizeSmall = CGSizeMake((itemSizeLarge.width - marginBetweenCells) / 2, (itemSizeLarge.height - marginBetweenCells) / 2)
+        println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
+        
+        numberOfSections = self.collectionView!.numberOfSections()
+        println("Number of sections: \(numberOfSections)")
+        
+        for section in 0..<numberOfSections {
+            numberOfItemsInSection[section] = self.collectionView!.numberOfItemsInSection(section)
+            println("Number of items in section \(section): \(numberOfItemsInSection[section])")
+        }
+        
+        numberOfItemsInRow = Int((self.collectionView!.frame.size.width - 2 * margin) / (itemSizeSmall.width + marginBetweenCells))
+        println("Number of items in the row: \(numberOfItemsInRow)")
+        
+        for section in 0..<numberOfSections {
+            
+            //+3 need to consider the first large item
+            let numberOfDoubleRowsInSection: Int = Int((numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow))
+            
+            switch (numberOfItemsInSection[section]! + 3) % (2 * numberOfItemsInRow) {
+            case 0:
+                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenCells) * CGFloat(numberOfDoubleRowsInSection)
+            case 1:
+                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenCells) * CGFloat(numberOfDoubleRowsInSection) + itemSizeSmall.height + marginBetweenCells
+            default:
+                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenCells) * CGFloat(numberOfDoubleRowsInSection + 1)
+            }
+            
+            println("Section \(section) height: \(heightOfSection[section])")
+        }
     }
     
-    override func collectionViewContentSize() -> CGSize {
-        return viewSize
-    }
+//    override func collectionViewContentSize() -> CGSize {
+//        
+//        
+//    }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
         var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as? [UICollectionViewLayoutAttributes]
@@ -57,134 +86,84 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return allElementsAttributes
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
-        
-        var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-        
-        //MARK: size adjustment
-        attributes.size = indexPath.row == 0 ? Constants.itemSizeLarge : Constants.itemSizeSmall
-        
-        //MARK: center adjustment
-        if isFirstItemInSectionAt(indexPath) {
-            attributes.center = centerForLargeItemAt(indexPath)
-            moveLeftEdgeForItemWithPoints(Constants.itemSizeLarge.width + 2 * Constants.margin)
-        } else {
-            if itemFitsWithinLine() {
-                if !isEven(indexPath.row) {
-                    attributes.center = centerForNotEvenSmallItemAt(indexPath)
-                    moveTopEdgeForItemWithPoints(Constants.itemSizeSmall.height + Constants.margin)
-                } else {
-                    attributes.center = centerforEvenSmallItemAt(indexPath)
-                    moveTopEdgeForItemWithPoints(-(Constants.itemSizeSmall.height + Constants.margin))
-                    moveLeftEdgeForItemWithPoints(Constants.itemSizeSmall.width + Constants.margin)
-                }
-            } else {
-                moveToNextDoubleRow()
-                attributes.center = centerForNotEvenSmallItemAt(indexPath)
-                moveTopEdgeForItemWithPoints(Constants.itemSizeSmall.height + Constants.margin)
-            }
-        }
-        
-        return attributes
+    
+//    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+//        
+//        
+//    }
+//    
+//    
+//    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+//        
+//    }
+//    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        return true
     }
-    
-        override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
-    
-            var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
-    
-            if elementKind == UICollectionElementKindSectionHeader {
-                attributes.size = CGSizeMake(300, 100)
-                attributes.center = CGPointMake(viewSize.width / 2, viewSize.height / 2)
-                attributes.zIndex = 1
-            }
-    
-            return attributes
-        }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     //MARK: Private helper methods
     
-    func setInitialValues() {
-        for i in 0..<self.collectionView!.numberOfSections()  {
-            numberOfItemsInSection[i] = self.collectionView?.numberOfItemsInSection(i)
-        }
-        //needs to be reviewed
-        viewSize = CGSizeMake(self.collectionView!.frame.size.width, self.collectionView!.frame.size.height * 2)
-        setDefaultEdgesForItem()
-        numberOfDoubleRow = 0
-    }
     
-    func isSectionEmpty(section: Int) -> Bool {
-        return numberOfItemsInSection[section] == 0 ? true : false
-    }
     
-    func isFirstItemInSectionAt(indexPath: NSIndexPath) -> Bool {
-        return indexPath.row == 0 ? true : false
-    }
     
-    func setDefaultEdgesForItem() {
-        leftEdgeForItem = self.collectionView?.frame.origin.x
-        topEdgeForItem = self.collectionView?.frame.origin.y
-    }
     
-    func moveToNextDoubleRow() {
-        numberOfDoubleRow++
-        setDefaultEdgesForItem()
-        moveTopEdgeForItemWithPoints((Constants.itemSizeLarge.height + 5 * Constants.margin) * CGFloat(numberOfDoubleRow))
-    }
     
-    func itemFitsWithinLine() -> Bool {
-        return (viewSize.width - leftEdgeForItem > Constants.itemSizeSmall.width + Constants.margin) ? true : false
-    }
     
-    func centerForLargeItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return CGPointMake(Constants.itemSizeLarge.width / 2 + Constants.margin, Constants.itemSizeLarge.height / 2 + Constants.margin)
-    }
     
-    func centerForSmallItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return !isEven(indexPath.row) ? centerForNotEvenSmallItemAt(indexPath) : centerforEvenSmallItemAt(indexPath)
-    }
     
-    func centerForNotEvenSmallItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return CGPointMake(leftEdgeForItem + Constants.itemSizeSmall.width / 2, topEdgeForItem + Constants.itemSizeSmall.height / 2)
-    }
     
-    func centerforEvenSmallItemAt(indexPath: NSIndexPath) -> CGPoint {
-        return CGPointMake(leftEdgeForItem + Constants.itemSizeSmall.width / 2, topEdgeForItem + Constants.itemSizeSmall.height / 2)
-    }
     
-    func moveLeftEdgeForItemWithPoints(points: CGFloat) {
-        leftEdgeForItem = leftEdgeForItem + points
-    }
     
-    func moveTopEdgeForItemWithPoints(points: CGFloat) {
-        topEdgeForItem = topEdgeForItem + points
-    }
     
-    func isEven(number: Int) -> Bool {
-        return number % 2 == 0 ? true : false
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     //MARK: Animation
     //    override func initialLayoutAttributesForAppearingDecorationElementOfKind(elementKind: String, atIndexPath decorationIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {

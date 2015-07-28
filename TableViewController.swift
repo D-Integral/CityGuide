@@ -147,7 +147,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     func notifyDelegate() {
         delegate?.pointOfInterestStateDidChange()
-        println("Delegate notified about changing POI state.")
+        //println("Delegate notified about changing POI state.")
     }
     
     @IBAction func wantToSee(sender: AnyObject) {

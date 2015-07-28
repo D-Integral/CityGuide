@@ -8,7 +8,7 @@
 
 extension GalleryVC {
     func pointOfInterestStateDidChange() {
-        println("Notification from TableVC arrived.")
+        //println("Notification from TableVC arrived.")
         
         retrievePointsOfInterest()
         sortItemsByRouteDistances()

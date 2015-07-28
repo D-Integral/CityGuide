@@ -21,7 +21,8 @@ extension GalleryVC {
             
             header.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
             header.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_2.png")!)
-            header.headerLabel.text = headerTexts[indexPath.section]
+            header.headerLabel.text = headerTexts[indexPath.section].lastPathComponent
+            //header.backgroundColor = .blackColor()
             
             println("\nHeader in section: \(indexPath.section) assigned test: \(headerTexts[indexPath.section])\n")
         }

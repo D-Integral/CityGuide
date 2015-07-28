@@ -49,7 +49,7 @@ class RoutesReceiver {
     func removeAllRoutes() {
         routes = [String : MKRoute]()
         
-        println("Routes removed. Number of items: \(routes.count)")
+        //println("Routes removed. Number of items: \(routes.count)")
     }
     
     func allRoutesReceived() -> Bool {
@@ -95,14 +95,14 @@ class RoutesReceiver {
     func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
         routes[pointOfInterest.name] = route
         
-        println("\(routes.count). Saved route distance: \(route.distance) for: \(pointOfInterest.name)")
+        //println("\(routes.count). Saved route distance: \(route.distance) for: \(pointOfInterest.name)")
         
         if allRoutesReceived() { notifyDelegate() }
     }
     
     func notifyDelegate() {
         delegate?.routesReceived(routes)
-        println("Delegate notified.")
+        //println("Delegate notified.")
     }
 }
 
