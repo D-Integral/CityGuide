@@ -59,10 +59,9 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         }
     }
     
-//    override func collectionViewContentSize() -> CGSize {
-//        
-//        
-//    }
+    override func collectionViewContentSize() -> CGSize {
+        return contentSize()
+    }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
         var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as? [UICollectionViewLayoutAttributes]
@@ -131,7 +130,16 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     //MARK: Private helper methods
     
-    
+    func contentSize() -> CGSize {
+        var size = CGSizeZero
+        size.width = self.collectionView!.frame.size.width
+        for section in 0..<numberOfSections {
+            size.height += heightOfSection[section]!
+        }
+        
+        println("Content size: width \(size.width), height \(size.height)")
+        return size
+    }
     
     
     
