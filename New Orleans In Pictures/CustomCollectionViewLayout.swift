@@ -9,7 +9,7 @@
 import UIKit
     
 class CustomFlowLayout: UICollectionViewFlowLayout {
-    let cellSizeProportion: CGFloat = 195 / 150
+    let cellSizeProportion: CGFloat = 1.33
 
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
@@ -60,90 +60,17 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
         attributes.size = indexPath.row == 0 ? itemSizeLarge : itemSizeSmall
+        attributes.center = centerForCellAt(indexPath)
         
-        switch indexPath.section {
-        case 0:
-            if isFirstCellAt(indexPath) {
-                attributes.center = centerForLargeCell()
-                currentCellOrigin.x += itemSizeLarge.width + marginBetweenCells
-            } else {
-                if cellFitsWithinLine() {
-                    if !isRowEvenAt(indexPath) {
-                        attributes.center = centerForSmallCell()
-                        currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                    } else {
-                        attributes.center = centerForSmallCell()
-                        currentCellOrigin.x += itemSizeSmall.width + marginBetweenCells
-                        currentCellOrigin.y -= itemSizeSmall.height + marginBetweenCells
-                    }
-                } else {
-                    currentCellOrigin.x = margin
-                    currentCellOrigin.y += itemSizeLarge.height + marginBetweenCells
-                    
-                    attributes.center = centerForSmallCell()
-                    
-                    currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                }
-            }
+        if isCellLastInSectionAt(indexPath) {
+            currentCellOrigin.x = margin
             
-            if isCellLastInSectionAt(indexPath) {
-                currentCellOrigin.x = margin
-                currentCellOrigin.y = heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
-            }
-        case 1:
-            if isFirstCellAt(indexPath) {
-                attributes.center = centerForLargeCell()
-                currentCellOrigin.x += itemSizeLarge.width + marginBetweenCells
-            } else {
-                if cellFitsWithinLine() {
-                    if !isRowEvenAt(indexPath) {
-                        attributes.center = centerForSmallCell()
-                        currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                    } else {
-                        attributes.center = centerForSmallCell()
-                        currentCellOrigin.x += itemSizeSmall.width + marginBetweenCells
-                        currentCellOrigin.y -= itemSizeSmall.height + marginBetweenCells
-                    }
-                } else {
-                    currentCellOrigin.x = margin
-                    currentCellOrigin.y += itemSizeLarge.height + marginBetweenCells
-                    
-                    attributes.center = centerForSmallCell()
-                    
-                    currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                }
-            }
-            
-            if isCellLastInSectionAt(indexPath) {
-                currentCellOrigin.x = margin
+            switch indexPath.section {
+            case 0: currentCellOrigin.y = heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
+            case 1:
                 currentCellOrigin.y = heightOfSection[indexPath.section - 1]! + heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
+            default: break
             }
-
-        case 2:
-            if isFirstCellAt(indexPath) {
-                attributes.center = centerForLargeCell()
-                currentCellOrigin.x += itemSizeLarge.width + marginBetweenCells
-            } else {
-                if cellFitsWithinLine() {
-                    if !isRowEvenAt(indexPath) {
-                        attributes.center = centerForSmallCell()
-                        currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                    } else {
-                        attributes.center = centerForSmallCell()
-                        currentCellOrigin.x += itemSizeSmall.width + marginBetweenCells
-                        currentCellOrigin.y -= itemSizeSmall.height + marginBetweenCells
-                    }
-                } else {
-                    currentCellOrigin.x = margin
-                    currentCellOrigin.y += itemSizeLarge.height + marginBetweenCells
-                    
-                    attributes.center = centerForSmallCell()
-                    
-                    currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                }
-            }
-
-        default: break
         }
     
         //println("Cell attributes at indexpath: row \(indexPath.row), section \(indexPath.section)")
@@ -220,14 +147,11 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     func setInitialValuesForProperties() {
         screenWidth = self.collectionView!.frame.size.width
-        
         margin = 0
-        println("Screen width: \(self.collectionView!.frame.size.width), Screen margin: \(margin)")
+        println("Screen width: \(screenWidth), Screen margin: \(margin)")
         
         itemSizeSmall = CGSizeMake((screenWidth - 2 * marginBetweenCells) / 3, (screenWidth - 2 * marginBetweenCells) / 3 * cellSizeProportion)
-        
         itemSizeLarge = CGSizeMake(2 * itemSizeSmall.width + marginBetweenCells, (2 * itemSizeSmall.width + marginBetweenCells) * cellSizeProportion)
-        
         println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
         println("Size of large item: width \(itemSizeLarge.width), height: \(itemSizeLarge.height)")
         
@@ -242,7 +166,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         println("Number of items in the row: \(numberOfItemsInRow)")
         
         for section in 0..<numberOfSections {
-            
             //+3 need to consider the first large item
             let numberOfDoubleRowsInSection: Int = Int((numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow))
             
@@ -259,6 +182,35 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         }
         
         currentCellOrigin = CGPointMake(margin, headerSize.height + marginBetweenCells)
+    }
+    
+    func centerForCellAt(indexPath: NSIndexPath) -> CGPoint {
+        var center: CGPoint!
+        
+        if isFirstCellAt(indexPath) {
+            center = centerForLargeCell()
+            currentCellOrigin.x += itemSizeLarge.width + marginBetweenCells
+        } else {
+            if cellFitsWithinLine() {
+                if !isRowEvenAt(indexPath) {
+                    center = centerForSmallCell()
+                    currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
+                } else {
+                    center = centerForSmallCell()
+                    currentCellOrigin.x += itemSizeSmall.width + marginBetweenCells
+                    currentCellOrigin.y -= itemSizeSmall.height + marginBetweenCells
+                }
+            } else {
+                currentCellOrigin.x = margin
+                currentCellOrigin.y += itemSizeLarge.height + marginBetweenCells
+                
+                center = centerForSmallCell()
+                
+                currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
+            }
+        }
+        
+        return center
     }
     
     //MARK: Animation
