@@ -14,6 +14,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
     
+    var marginBetweenDoubleRows: CGFloat!
     var screenWidth: CGFloat!
     var itemSizeLarge: CGSize!
     var margin: CGFloat!
@@ -155,6 +156,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
         println("Size of large item: width \(itemSizeLarge.width), height: \(itemSizeLarge.height)")
         
+        marginBetweenDoubleRows = itemSizeSmall.height / 4
+        
         numberOfSections = self.collectionView!.numberOfSections()
         
         for section in 0..<numberOfSections {
@@ -171,17 +174,19 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             
             switch (numberOfItemsInSection[section]! + 3) % (2 * numberOfItemsInRow) {
             case 0:
-                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenCells) * CGFloat(numberOfDoubleRowsInSection)
+                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection)
             case 1:
-                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenCells) * CGFloat(numberOfDoubleRowsInSection) + itemSizeSmall.height + marginBetweenCells
+                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection) + itemSizeSmall.height + marginBetweenCells
             default:
-                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenCells) * CGFloat(numberOfDoubleRowsInSection + 1)
+                heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection + 1)
             }
             
             println("Section \(section) height: \(heightOfSection[section])")
         }
         
         currentCellOrigin = CGPointMake(margin, headerSize.height + marginBetweenCells)
+        
+    
     }
     
     func centerForCellAt(indexPath: NSIndexPath) -> CGPoint {
@@ -202,7 +207,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
                 }
             } else {
                 currentCellOrigin.x = margin
-                currentCellOrigin.y += itemSizeLarge.height + marginBetweenCells
+                currentCellOrigin.y += itemSizeLarge.height + marginBetweenDoubleRows
                 
                 center = centerForSmallCell()
                 
