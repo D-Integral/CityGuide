@@ -9,11 +9,12 @@
 import UIKit
     
 class CustomFlowLayout: UICollectionViewFlowLayout {
-    
-    let itemSizeLarge = CGSizeMake(150, 195)
+    let cellSizeProportion: CGFloat = 195 / 150
+
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
     
+    var itemSizeLarge: CGSize!
     var margin: CGFloat!
     var itemSizeSmall: CGSize!
     var numberOfSections: Int!
@@ -25,10 +26,15 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     override func prepareLayout() {
         super.prepareLayout()
+        let screenWidth = self.collectionView!.frame.size.width
         
-        margin = self.collectionView!.frame.size.width * 0.05
+        margin = 0
         println("Screen width: \(self.collectionView!.frame.size.width), Screen margin: \(margin)")
-        itemSizeSmall = CGSizeMake((itemSizeLarge.width - marginBetweenCells) / 2, (itemSizeLarge.height - marginBetweenCells) / 2)
+        
+        itemSizeSmall = CGSizeMake((screenWidth - 2 * marginBetweenCells) / 3, (screenWidth - 2 * marginBetweenCells) / 3 * cellSizeProportion)
+        
+        itemSizeLarge = CGSizeMake(2 * itemSizeSmall.width + marginBetweenCells, (2 * itemSizeSmall.width + marginBetweenCells) * cellSizeProportion)
+        
         println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
         
         numberOfSections = self.collectionView!.numberOfSections()
@@ -236,7 +242,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     func cellFitsWithinLine() -> Bool {
-        return self.collectionView!.frame.size.width - currentCellOrigin.x > itemSizeSmall.width + marginBetweenCells ? true : false
+        return self.collectionView!.frame.size.width - currentCellOrigin.x > itemSizeSmall.width /*+ marginBetweenCells*/ ? true : false
     }
     
     func isCellLastInSectionAt(indexPath: NSIndexPath) -> Bool {
