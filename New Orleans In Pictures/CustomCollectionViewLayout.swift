@@ -147,12 +147,12 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     func setInitialValuesForProperties() {
-        screenWidth = self.collectionView!.frame.size.width
+        screenWidth = currentScreenWidth()
         margin = 0
         println("Screen width: \(screenWidth), Screen margin: \(margin)")
         
-        itemSizeSmall = CGSizeMake((screenWidth - 2 * marginBetweenCells) / 3, (screenWidth - 2 * marginBetweenCells) / 3 * cellSizeProportion)
-        itemSizeLarge = CGSizeMake(2 * itemSizeSmall.width + marginBetweenCells, (2 * itemSizeSmall.width + marginBetweenCells) * cellSizeProportion)
+        itemSizeSmall = sizeForSmallItem()
+        itemSizeLarge = sizeForLargeitem()
         println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
         println("Size of large item: width \(itemSizeLarge.width), height: \(itemSizeLarge.height)")
         
@@ -160,18 +160,21 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         numberOfSections = self.collectionView!.numberOfSections()
         
-        for section in 0..<numberOfSections {
-            numberOfItemsInSection[section] = self.collectionView!.numberOfItemsInSection(section)
-            println("Number of items in section \(section): \(numberOfItemsInSection[section])")
-        }
+        calculateNumberOfItemsInSections()
         
-        numberOfItemsInRow = Int((screenWidth - 2 * margin) / itemSizeSmall.width)
+        numberOfItemsInRow = itemsInRow()
         println("Number of items in the row: \(numberOfItemsInRow)")
         
+        calculateSectionsHeights()
+        
+        currentCellOrigin = initialCellOrigin()
+    }
+    
+    func calculateSectionsHeights() {
         for section in 0..<numberOfSections {
             //+3 need to consider the first large item
-            let numberOfDoubleRowsInSection: Int = Int((numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow))
-            
+            let numberOfDoubleRowsInSection = (numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow)
+
             switch (numberOfItemsInSection[section]! + 3) % (2 * numberOfItemsInRow) {
             case 0:
                 heightOfSection[section] = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection)
@@ -183,10 +186,33 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             
             println("Section \(section) height: \(heightOfSection[section])")
         }
-        
-        currentCellOrigin = CGPointMake(margin, headerSize.height + marginBetweenCells)
-        
+    }
     
+    func initialCellOrigin() -> CGPoint {
+        return CGPointMake(margin, headerSize.height + marginBetweenCells)
+    }
+    
+    func itemsInRow() -> Int {
+        return Int((screenWidth - 2 * margin) / itemSizeSmall.width)
+    }
+    
+    func calculateNumberOfItemsInSections() {
+        for section in 0..<numberOfSections {
+            numberOfItemsInSection[section] = self.collectionView!.numberOfItemsInSection(section)
+            println("Number of items in section \(section): \(numberOfItemsInSection[section])")
+        }
+    }
+    
+    func currentScreenWidth() -> CGFloat {
+        return self.collectionView!.frame.size.width
+    }
+    
+    func sizeForSmallItem() -> CGSize {
+        return CGSizeMake((screenWidth - 2 * marginBetweenCells) / 3, (screenWidth - 2 * marginBetweenCells) / 3 * cellSizeProportion)
+    }
+    
+    func sizeForLargeitem() -> CGSize {
+        return CGSizeMake(2 * itemSizeSmall.width + marginBetweenCells, (2 * itemSizeSmall.width + marginBetweenCells) * cellSizeProportion)
     }
     
     func centerForCellAt(indexPath: NSIndexPath) -> CGPoint {
