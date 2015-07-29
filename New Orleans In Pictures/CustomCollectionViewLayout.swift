@@ -38,16 +38,16 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         itemSizeLarge = CGSizeMake(2 * itemSizeSmall.width + marginBetweenCells, (2 * itemSizeSmall.width + marginBetweenCells) * cellSizeProportion)
         
         println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
+        println("Size of large item: width \(itemSizeLarge.width), height: \(itemSizeLarge.height)")
         
         numberOfSections = self.collectionView!.numberOfSections()
-        println("Number of sections: \(numberOfSections)")
         
         for section in 0..<numberOfSections {
             numberOfItemsInSection[section] = self.collectionView!.numberOfItemsInSection(section)
             println("Number of items in section \(section): \(numberOfItemsInSection[section])")
         }
         
-        numberOfItemsInRow = Int((self.collectionView!.frame.size.width - 2 * margin) / (itemSizeSmall.width + marginBetweenCells))
+        numberOfItemsInRow = Int((screenWidth - 2 * margin) / itemSizeSmall.width)
         println("Number of items in the row: \(numberOfItemsInRow)")
         
         for section in 0..<numberOfSections {
@@ -211,12 +211,9 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         var center: CGPoint!
         
         switch indexPath.section {
-        case 0:
-            center = CGPointMake(screenWidth / 2, headerSize.height / 2)
-        case 1:
-            center = CGPointMake(screenWidth / 2, heightOfSection[0]! + headerSize.height / 2)
-        case 2:
-            center = CGPointMake(screenWidth, heightOfSection[0]! + heightOfSection[1]! + headerSize.height / 2)
+        case 0: center = CGPointMake(screenWidth / 2, headerSize.height / 2)
+        case 1: center = CGPointMake(screenWidth / 2, heightOfSection[0]! + headerSize.height / 2)
+        case 2: center = CGPointMake(screenWidth, heightOfSection[0]! + heightOfSection[1]! + headerSize.height / 2)
         default: break
         }
         
