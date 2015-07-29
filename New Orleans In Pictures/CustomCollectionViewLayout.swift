@@ -10,7 +10,6 @@ import UIKit
     
 class CustomFlowLayout: UICollectionViewFlowLayout {
     let cellSizeProportion: CGFloat = 1.33
-
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
     
@@ -25,6 +24,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     var heightOfSection = [Int : CGFloat]()
     
     var currentCellOrigin: CGPoint!
+    
+    //MARK: Main overriden mathods
     
     override func prepareLayout() {
         super.prepareLayout()
