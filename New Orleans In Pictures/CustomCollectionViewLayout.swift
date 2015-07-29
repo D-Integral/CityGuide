@@ -103,7 +103,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         switch indexPath.section {
         case 0: center = CGPointMake(screenWidth / 2, headerSize.height / 2)
         case 1: center = CGPointMake(screenWidth / 2, heightOfSection[0]! + headerSize.height / 2)
-        case 2: center = CGPointMake(screenWidth, heightOfSection[0]! + heightOfSection[1]! + headerSize.height / 2)
+        case 2: center = CGPointMake(screenWidth / 2, heightOfSection[0]! + heightOfSection[1]! + headerSize.height / 2)
         default: break
         }
         
