@@ -157,6 +157,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         marginBetweenDoubleRows = itemSizeSmall.height / 4
         
+        println("Margin between double rows: \(marginBetweenDoubleRows)")
+        
         numberOfSections = self.collectionView!.numberOfSections()
         
         calculateNumberOfItemsInSections()
@@ -183,15 +185,17 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         if numberOfItemsInSection[section]! == 0 {return 0.0}
         
         //+3 need to consider the first large item
-        let numberOfDoubleRowsInSection = (numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow)
+        let numberOfDoubleRowsInSection = Int((numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow))
+        
+        println("Number of double rows in section \(section): \(numberOfDoubleRowsInSection)")
         
         switch (numberOfItemsInSection[section]! + 3) % (2 * numberOfItemsInRow) {
         case 0:
-            height = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection)
+            height = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection) - marginBetweenDoubleRows + marginBetweenCells
         case 1:
             height = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection) + itemSizeSmall.height + marginBetweenCells
         default:
-            height = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection + 1)
+            height = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection + 1) - marginBetweenDoubleRows + marginBetweenCells
         }
         
         return height
