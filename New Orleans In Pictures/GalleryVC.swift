@@ -19,7 +19,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 195.0)
-        static let headerSize = CGSizeMake(50.0, 50.0)
+        static let headerSize = CGSizeMake(300.0, 50.0)
     }
     
     let headerTexts = ["I Want To See", "What To See In New Orlean", "Already Seen"]
