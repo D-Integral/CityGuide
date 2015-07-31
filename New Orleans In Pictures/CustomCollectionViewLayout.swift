@@ -14,6 +14,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
     
+    var prepareLayoutAlreadyCalled: Bool = false
     var marginBetweenDoubleRows: CGFloat!
     var screenWidth: CGFloat!
     var itemSizeLarge: CGSize!
@@ -31,7 +32,11 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     override func prepareLayout() {
         super.prepareLayout()
         
+        println("\nPREPARE LAYOUT CALLED...\n")
+        
         setInitialValuesForProperties()
+        
+        println("\nPREPARE LAYOUT FINISHED...\n")
     }
     
     override func collectionViewContentSize() -> CGSize {
@@ -39,6 +44,11 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+        
+        println("\nlayoutAttributesForElementsInRect CALLED...")
+        println("Rect: originX \(rect.origin.x), originY \(rect.origin.y)")
+        println("Rect: width \(rect.width), height \(rect.height)")
+        
         var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as? [UICollectionViewLayoutAttributes]
         if allElementsAttributes == nil { return nil }
         
@@ -57,7 +67,12 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return allElementsAttributes
     }
     
+
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+        
+        println("\nlayoutAttributesForItemAtIndexPath CALLED...")
+        println("Indexpath: row \(indexPath.row), section \(indexPath.section)")
+        
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
         attributes.size = indexPath.row == 0 ? itemSizeLarge : itemSizeSmall
@@ -73,30 +88,65 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             default: break
             }
         }
-    
-        //println("Cell attributes at indexpath: row \(indexPath.row), section \(indexPath.section)")
+        
         return attributes
     }
     
     override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+        
+        println("\nlayoutAttributesForSupplementaryViewOfKind CALLED...")
+        println("Header indexpath: row \(indexPath.row), section \(indexPath.section)\n")
+        
         var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
         
         if elementKind == UICollectionElementKindSectionHeader {
             attributes.size = headerSize
-            attributes.center = centerForHeaderAt(indexPath)
+            attributes.center = centerForHeaderAt(indexPath)!
         }
             
         return attributes
     }
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-        return true //CGSizeEqualToSize(newBounds.size, self.collectionView!.frame.size)//!CGRectIntersectsRect(newBounds, self.collectionView!.frame)//!CGSizeEqualToSize(newBounds.size, self.collectionView!.frame.size)
+        println("\nLAYOUT INVALIDATED\n")
+        return true
     }
 
     //MARK: Private helper methods
     
-    func centerForHeaderAt(indexPath: NSIndexPath) -> CGPoint {
+    func centerForCellAt(indexPath: NSIndexPath) -> CGPoint {
         var center: CGPoint!
+        
+        if isFirstCellAt(indexPath) {
+            center = centerForLargeCell()
+            currentCellOrigin.x += itemSizeLarge.width + marginBetweenCells
+        } else {
+            if cellFitsWithinLine() {
+                if !isRowEvenAt(indexPath) {
+                    center = centerForSmallCell()
+                    currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
+                } else {
+                    center = centerForSmallCell()
+                    currentCellOrigin.x += itemSizeSmall.width + marginBetweenCells
+                    currentCellOrigin.y -= itemSizeSmall.height + marginBetweenCells
+                }
+            } else {
+                currentCellOrigin.x = margin
+                currentCellOrigin.y += itemSizeLarge.height + marginBetweenDoubleRows
+                
+                center = centerForSmallCell()
+                
+                currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
+            }
+        }
+        
+        return center
+    }
+    
+    func centerForHeaderAt(indexPath: NSIndexPath) -> CGPoint? {
+        var center: CGPoint?
+        
+        if numberOfItemsInSection[indexPath.section]! == 0 { return nil }
         
         switch indexPath.section {
         case 0: center =  CGPointMake(screenWidth / 2, headerSize.height / 2)
@@ -105,7 +155,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         default: break
         }
         
-        return center
+        return center!
     }
     
     func contentSize() -> CGSize {
@@ -130,15 +180,21 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     func centerForLargeCell() -> CGPoint {
+        
+        println("Large cell origin: (\(currentCellOrigin.x),\(currentCellOrigin.y))")
+        
         return CGPointMake(currentCellOrigin.x + itemSizeLarge.width / 2, currentCellOrigin.y + itemSizeLarge.height / 2)
     }
     
     func centerForSmallCell() -> CGPoint {
+        
+        println("Small cell origin: (\(currentCellOrigin.x),\(currentCellOrigin.y))")
+        
         return CGPointMake(currentCellOrigin.x + itemSizeSmall.width / 2, currentCellOrigin.y + itemSizeSmall.height / 2)
     }
     
     func cellFitsWithinLine() -> Bool {
-        return self.collectionView!.frame.size.width - currentCellOrigin.x > itemSizeSmall.width /*+ marginBetweenCells*/ ? true : false
+        return screenWidth - currentCellOrigin.x > itemSizeSmall.width ? true : false
     }
     
     func isCellLastInSectionAt(indexPath: NSIndexPath) -> Bool {
@@ -187,8 +243,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         //+3 need to consider the first large item
         let numberOfDoubleRowsInSection = Int((numberOfItemsInSection[section]! + 3) / (2 * numberOfItemsInRow))
         
-        println("Number of double rows in section \(section): \(numberOfDoubleRowsInSection)")
-        
         switch (numberOfItemsInSection[section]! + 3) % (2 * numberOfItemsInRow) {
         case 0:
             height = headerSize.height + marginBetweenCells + (itemSizeLarge.height + marginBetweenDoubleRows) * CGFloat(numberOfDoubleRowsInSection) - marginBetweenDoubleRows + marginBetweenCells
@@ -221,8 +275,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     func sizeForSmallItem() -> CGSize {
-        let width = (screenWidth - 2 * marginBetweenCells) / 3
-        return CGSizeMake(width, width * cellSizeProportion)
+        let width = Int((screenWidth - 2 * marginBetweenCells) / 3)
+        return CGSizeMake(CGFloat(width), CGFloat(width) * cellSizeProportion)
     }
     
     func sizeForLargeitem() -> CGSize {
@@ -231,34 +285,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return CGSizeMake(width, height)
     }
     
-    func centerForCellAt(indexPath: NSIndexPath) -> CGPoint {
-        var center: CGPoint!
-        
-        if isFirstCellAt(indexPath) {
-            center = centerForLargeCell()
-            currentCellOrigin.x += itemSizeLarge.width + marginBetweenCells
-        } else {
-            if cellFitsWithinLine() {
-                if !isRowEvenAt(indexPath) {
-                    center = centerForSmallCell()
-                    currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-                } else {
-                    center = centerForSmallCell()
-                    currentCellOrigin.x += itemSizeSmall.width + marginBetweenCells
-                    currentCellOrigin.y -= itemSizeSmall.height + marginBetweenCells
-                }
-            } else {
-                currentCellOrigin.x = margin
-                currentCellOrigin.y += itemSizeLarge.height + marginBetweenDoubleRows
-                
-                center = centerForSmallCell()
-                
-                currentCellOrigin.y += itemSizeSmall.height + marginBetweenCells
-            }
-        }
-        
-        return center
-    }
     
     //MARK: Animation
     //    override func initialLayoutAttributesForAppearingDecorationElementOfKind(elementKind: String, atIndexPath decorationIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
