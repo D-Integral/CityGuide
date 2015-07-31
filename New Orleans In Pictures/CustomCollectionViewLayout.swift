@@ -14,7 +14,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
     
-    var prepareLayoutAlreadyCalled: Bool = false
     var marginBetweenDoubleRows: CGFloat!
     var screenWidth: CGFloat!
     var itemSizeLarge: CGSize!
@@ -25,6 +24,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     var numberOfItemsInRow: Int!
     var heightOfSection = [Int : CGFloat]()
     
+    var centerForCellAtIndexPath = [NSIndexPath : CGPoint]()
     var currentCellOrigin: CGPoint!
     
     //MARK: Main overriden mathods
@@ -76,18 +76,18 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
         attributes.size = indexPath.row == 0 ? itemSizeLarge : itemSizeSmall
-        attributes.center = centerForCellAt(indexPath)
+        attributes.center = centerForCellAtIndexPath[indexPath]!//centerForCellAt(indexPath)
         
-        if isCellLastInSectionAt(indexPath) {
-            currentCellOrigin.x = margin
-            
-            switch indexPath.section {
-            case 0: currentCellOrigin.y = heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
-            case 1:
-                currentCellOrigin.y = heightOfSection[indexPath.section - 1]! + heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
-            default: break
-            }
-        }
+//        if isCellLastInSectionAt(indexPath) {
+//            currentCellOrigin.x = margin
+//            
+//            switch indexPath.section {
+//            case 0: currentCellOrigin.y = heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
+//            case 1:
+//                currentCellOrigin.y = heightOfSection[indexPath.section - 1]! + heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
+//            default: break
+//            }
+//        }
         
         return attributes
     }
@@ -109,7 +109,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         println("\nLAYOUT INVALIDATED\n")
-        return true
+        return false//true//!CGSizeEqualToSize(newBounds.size, self.collectionView!.frame.size)//true
     }
 
     //MARK: Private helper methods
@@ -224,7 +224,9 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         calculateSectionsHeights()
         
-        currentCellOrigin = initialCellOrigin()
+        //currentCellOrigin = initialCellOrigin()
+        
+        calculateCentersForCells()
     }
     
     func calculateSectionsHeights() {
@@ -283,6 +285,30 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         let width = 2 * itemSizeSmall.width + marginBetweenCells
         let height = 2 * itemSizeSmall.height + marginBetweenCells
         return CGSizeMake(width, height)
+    }
+    
+    func calculateCentersForCells() {
+        /*var*/ currentCellOrigin = initialCellOrigin()
+        
+        for section in 0..<numberOfSections {
+            for item in 0..<numberOfItemsInSection[section]! {
+                let indexPath = NSIndexPath(forItem: item, inSection: section)
+                centerForCellAtIndexPath[indexPath] = centerForCellAt(indexPath)
+                
+                println("Item center at indexPath(\(indexPath.row),\(indexPath.section)) = (\(centerForCellAtIndexPath[indexPath]!.x),\(centerForCellAtIndexPath[indexPath]!.y)) ")
+                
+                if isCellLastInSectionAt(indexPath) {
+                    currentCellOrigin.x = margin
+                    
+                    switch indexPath.section {
+                    case 0: currentCellOrigin.y = heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
+                    case 1:
+                        currentCellOrigin.y = heightOfSection[indexPath.section - 1]! + heightOfSection[indexPath.section]! + headerSize.height + marginBetweenCells
+                    default: break
+                    }
+                }
+            }
+        }
     }
     
     
