@@ -10,6 +10,13 @@ import UIKit
 extension GalleryVC {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
+        return Constants.sizeForCell
+    }
+    
+    //MARK: for iPad layout
+    
+    /*func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
         //return Constants.sizeForCell
         return indexPath.row == 0 ? sizeForLargeitem() : sizeForSmallItem()
     }
@@ -28,17 +35,5 @@ extension GalleryVC {
         let width = 2 * sizeSmall.width + marginBetweenCells
         let height = 2 * sizeSmall.height + marginBetweenCells
         return CGSizeMake(width, height)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 10.0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 40.0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
+    }*/
 }

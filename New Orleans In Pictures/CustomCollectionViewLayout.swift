@@ -10,7 +10,7 @@ import UIKit
     
 class CustomFlowLayout: UICollectionViewFlowLayout {
     
-    let cellSizeProportion: CGFloat = 1.33
+    let cellSizeProportion: CGFloat = 1.3
     let marginBetweenCells: CGFloat = 10.0
     let headerSize = CGSizeMake(300.0, 50.0)
     
@@ -32,11 +32,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     override func prepareLayout() {
         super.prepareLayout()
         
-        println("\nPREPARE LAYOUT CALLED...\n")
-        
         setInitialValuesForProperties()
-        
-        println("\nPREPARE LAYOUT FINISHED...\n")
     }
     
     override func collectionViewContentSize() -> CGSize {
@@ -44,11 +40,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        
-        println("\nlayoutAttributesForElementsInRect CALLED...")
-        println("Rect: originX \(rect.origin.x), originY \(rect.origin.y)")
-        println("Rect: width \(rect.width), height \(rect.height)")
-        
         var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as? [UICollectionViewLayoutAttributes]
         if allElementsAttributes == nil { return nil }
         
