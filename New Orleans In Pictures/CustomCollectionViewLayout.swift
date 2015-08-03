@@ -70,8 +70,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
 
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         
-        println("\nlayoutAttributesForItemAtIndexPath CALLED...")
-        println("Indexpath: row \(indexPath.row), section \(indexPath.section)")
+//        println("\nlayoutAttributesForItemAtIndexPath CALLED...")
+//        println("Indexpath: row \(indexPath.row), section \(indexPath.section)")
         
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
@@ -94,8 +94,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         
-        println("\nlayoutAttributesForSupplementaryViewOfKind CALLED...")
-        println("Header indexpath: row \(indexPath.row), section \(indexPath.section)\n")
+//        println("\nlayoutAttributesForSupplementaryViewOfKind CALLED...")
+//        println("Header indexpath: row \(indexPath.row), section \(indexPath.section)\n")
         
         var attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: elementKind, withIndexPath: indexPath)
         
@@ -108,7 +108,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-        println("\nLAYOUT INVALIDATED\n")
+        //println("\nLAYOUT INVALIDATED\n")
         return false//true//!CGSizeEqualToSize(newBounds.size, self.collectionView!.frame.size)//true
     }
 
@@ -167,7 +167,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         size.height += marginBetweenCells
         
-        println("Content size: width \(size.width), height \(size.height)")
+        //println("Content size: width \(size.width), height \(size.height)")
         return size
     }
     

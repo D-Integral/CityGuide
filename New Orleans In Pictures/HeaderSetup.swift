@@ -24,7 +24,7 @@ extension GalleryVC {
             header.headerLabel.text = headerTexts[indexPath.section].lastPathComponent
             //header.backgroundColor = .blackColor()
             
-            println("\nHeader in section: \(indexPath.section) assigned test: \(headerTexts[indexPath.section])\n")
+            //println("\nHeader in section: \(indexPath.section) assigned test: \(headerTexts[indexPath.section])\n")
         }
         
         return header
