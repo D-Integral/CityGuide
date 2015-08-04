@@ -22,12 +22,12 @@ extension TableViewController {
         let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
         mapView.setRegion(region, animated: true)
         
-        self.setupTitleLabel()
+        self.setupDistanceLabel()
     }
     
-    func setupTitleLabel() {
-        titleLabel.font = UIFont.boldSystemFontOfSize(20.0)
-        titleLabel.text = pointOfInterest.name
+    func setupDistanceLabel() {
+        distanceLabel.font = UIFont.boldSystemFontOfSize(20.0)
+        //titleLabel.text = pointOfInterest.name
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
@@ -43,7 +43,7 @@ extension TableViewController {
     func showRoute() {
         if routeToPointOfInterest != nil {
             mapView.addOverlay(routeToPointOfInterest.polyline, level: MKOverlayLevel.AboveRoads)
-            addDistanceToTitleLabel(routeToPointOfInterest.distance)
+            addDistanceToDistanceLabel(routeToPointOfInterest.distance)
         }
     }
     
@@ -54,12 +54,12 @@ extension TableViewController {
         return (userLongitude < Constants.cityEdges["right"] && userLongitude > Constants.cityEdges["left"] && userLatitude < Constants.cityEdges["top"] && userLatitude > Constants.cityEdges["bottom"]) ? true : false
     }
     
-    func addDistanceToTitleLabel(distance: CLLocationDistance) {
-        self.titleLabel.alpha = 0.0
-        self.titleLabel.text = self.pointOfInterest.name + " : \(DistanceFormatter.formatted(distance))"
+    func addDistanceToDistanceLabel(distance: CLLocationDistance) {
+        self.distanceLabel.alpha = 0.0
+        self.distanceLabel.text = "\(DistanceFormatter.formatted(distance))"
         
         UIView.animateWithDuration(1, animations: {
-            self.titleLabel.alpha = 1.0
+            self.distanceLabel.alpha = 1.0
             }, completion: nil)
     }
     

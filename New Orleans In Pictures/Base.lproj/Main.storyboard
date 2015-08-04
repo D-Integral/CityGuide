@@ -304,9 +304,9 @@
                     <connections>
                         <outlet property="arrowImage" destination="LZ8-pe-aVG" id="nR7-3U-eRZ"/>
                         <outlet property="descriptionLabel" destination="sXT-WB-sch" id="m0d-js-rFa"/>
+                        <outlet property="distanceLabel" destination="CVe-JP-1ZB" id="GwO-70-Nnz"/>
                         <outlet property="mapView" destination="hhA-SS-Mpv" id="KcP-mr-1Qk"/>
                         <outlet property="seenSwitch" destination="XIk-PS-ezh" id="ZNP-N7-hQv"/>
-                        <outlet property="titleLabel" destination="CVe-JP-1ZB" id="K3X-OA-xbV"/>
                         <outlet property="wantSeeSwitch" destination="V0K-C4-hBB" id="Pbc-n2-sn1"/>
                     </connections>
                 </tableViewController>
