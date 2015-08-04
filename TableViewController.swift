@@ -84,6 +84,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
         
+        self.title = pointOfInterest.name
+        
         self.setupLocationTracker()
         
         //need to be refactored in one method
