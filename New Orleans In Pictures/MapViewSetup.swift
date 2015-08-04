@@ -96,6 +96,8 @@ extension TableViewController {
     }
     
     func zoomToFitMapItems() {
+        self.imageView.removeFromSuperview()
+        
         var region = MKCoordinateRegion()
         setupRegionCenter(&region)
         setupRegionSpan(&region)
