@@ -32,7 +32,7 @@ extension TableViewController {
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("sight")
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            annotationView.canShowCallout = false//true
+            annotationView.canShowCallout = false
         }
         else {
             annotationView.annotation = annotation
@@ -41,8 +41,8 @@ extension TableViewController {
         let sightAnnotation = annotation as! SightAnnotation
         
         annotationView.image = sightAnnotation.image
-        annotationView.frame.size.width = 40.0
-        annotationView.frame.size.height = 40.0
+        annotationView.frame.size.width = 60.0
+        annotationView.frame.size.height = 60.0
         
         println("Frame for annotation view: \(annotationView.frame)")
         
@@ -51,7 +51,6 @@ extension TableViewController {
     
     func setupDistanceLabel() {
         distanceLabel.font = UIFont.boldSystemFontOfSize(20.0)
-        //titleLabel.text = pointOfInterest.name
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
