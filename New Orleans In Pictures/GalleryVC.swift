@@ -22,7 +22,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
     
-    let headerTexts = ["I Want To See", "What To See In New Orleans", "Already Seen"]
+    let headerTexts = ["I Want To See", "What To See", "Already Seen"]
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
