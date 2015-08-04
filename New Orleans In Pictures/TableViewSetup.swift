@@ -14,7 +14,7 @@ extension TableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 2 ? 2 : 1
+        return section == 3 ? 2 : 1
     }
     
     func setupTableViewBackground() {
@@ -32,7 +32,7 @@ extension TableViewController {
         var cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: section))
         setupBackgroundForCell(&cell!)
         
-        if section == 2 {
+        if section == 3 {
             for i in 0...1 {
                 var cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: section))
                 setupBackgroundForCell(&cell!)
