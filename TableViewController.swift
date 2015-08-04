@@ -93,7 +93,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
         
         self.setupArrowImage()
-        self.imageViewInitialize()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
         self.initialSwitchesSetup()
@@ -130,6 +129,10 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         initialWantToSeeSwitchState = wantSeeSwitch.on
         initialAlreadySeenSwitchState = seenSwitch.on
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.imageViewInitialize()
     }
     
     override func viewDidAppear(animated: Bool) {

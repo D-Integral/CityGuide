@@ -45,6 +45,8 @@ extension TableViewController {
         annotationView.frame.size.height = 60.0
         
         println("Frame for annotation view: \(annotationView.frame)")
+        println("Center offset: \(annotationView.center)")
+        println("Center offset: \(annotationView.centerOffset)")
         
         return annotationView
     }
