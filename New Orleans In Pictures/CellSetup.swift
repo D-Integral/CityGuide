@@ -23,17 +23,10 @@ extension GalleryVC {
         return cell
     }
 
-    
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        
-        if routesToPointsOfInterest[point.name] != nil {
-            cell.distanceLabel.text = DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance)
-        } else {
-            cell.distanceLabel.text = "Requesting..."
-        }
-        
+        cell.distanceLabel.text = routesToPointsOfInterest[point.name] != nil ? DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance) : "Requesting..."
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
     }
     
