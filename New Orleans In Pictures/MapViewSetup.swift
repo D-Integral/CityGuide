@@ -15,14 +15,38 @@ extension TableViewController {
     }
     
     func showSelectedSightAnnotation() {
-        
-        let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate)
+    
+        let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: image)
         self.mapView.addAnnotation(annotation)
         
         let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
         mapView.setRegion(region, animated: true)
         
         self.setupDistanceLabel()
+    }
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if !(annotation is SightAnnotation) { return nil }
+        
+        let reuseId = "sight"
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("sight")
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            annotationView.canShowCallout = false//true
+        }
+        else {
+            annotationView.annotation = annotation
+        }
+        
+        let sightAnnotation = annotation as! SightAnnotation
+        
+        annotationView.image = sightAnnotation.image
+        annotationView.frame.size.width = 40.0
+        annotationView.frame.size.height = 40.0
+        
+        println("Frame for annotation view: \(annotationView.frame)")
+        
+        return annotationView
     }
     
     func setupDistanceLabel() {
