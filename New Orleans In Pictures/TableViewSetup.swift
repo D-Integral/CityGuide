@@ -43,5 +43,9 @@ extension TableViewController {
     func setupBackgroundForCell(inout cell: UITableViewCell) {
         cell.contentView.backgroundColor = UIColor(patternImage: UIImage(named: backgroundImage)!)
     }
+    
+    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
 }
 
