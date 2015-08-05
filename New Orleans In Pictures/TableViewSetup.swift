@@ -19,12 +19,7 @@ extension TableViewController {
     
     func setupTableViewBackground() {
         for section in 0..<tableView.numberOfSections(){
-            switch section {
-            case 0: setupBackgroundforCellInSection(section)
-            case 1: setupBackgroundforCellInSection(section)
-            case 2: setupBackgroundforCellInSection(section)
-            default: break
-            }
+            setupBackgroundforCellInSection(section)
         }
     }
     

@@ -128,8 +128,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     func setBackgroundImage(image: UIImage) {
         self.collectionView?.frame = self.view.frame
         self.collectionView?.backgroundColor = UIColor(patternImage: image)
-        
-        self.navigationController?.navigationBar.setBackgroundImage(image, forBarMetrics: .Default)
     }
 }
 

@@ -86,7 +86,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         self.title = pointOfInterest.name
         
-        
         self.setupLocationTracker()
         
         //need to be refactored in one method
