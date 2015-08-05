@@ -51,10 +51,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         return routesToPointsOfInterest[pointOFInterest.name]!.distance
     }
     
-    func animateCollectionView() {
-        UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
-    }
-    
     //MARK: - Lifecycle
     override func viewDidLoad()
     {
