@@ -24,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="-531" y="463"/>
         </scene>
-        <!--App name-->
+        <!--GalleryVC-->
         <scene sceneID="0O5-Es-xLP">
             <objects>
                 <collectionViewController id="0Ip-6T-BlW" customClass="GalleryVC" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
@@ -125,7 +125,7 @@
                             <outlet property="delegate" destination="0Ip-6T-BlW" id="Ntn-n8-E5d"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="App name" id="3u5-QG-6Pl"/>
+                    <navigationItem key="navigationItem" id="3u5-QG-6Pl"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="yLL-KC-aSf" kind="show" identifier="toTable" id="Op3-Rc-QMf"/>

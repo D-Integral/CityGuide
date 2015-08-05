@@ -56,6 +56,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
+        self.title = "New Orleans Compass"
+        
         retrievePointsOfInterest()
         
         self.clearsSelectionOnViewWillAppear = false
