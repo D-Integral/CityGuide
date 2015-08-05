@@ -14,7 +14,7 @@ extension GalleryVC {
         sortItemsByRouteDistances()
         
         collectionView?.reloadData()
-        animateCollectionView()
+        //animateCollectionView()
     }
 }
 

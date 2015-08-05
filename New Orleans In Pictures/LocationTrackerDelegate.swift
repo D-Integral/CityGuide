@@ -11,8 +11,6 @@ extension GalleryVC {
         println("LocationTracker updated:")
         println("New latitude: \(tracker.currentLocation?.coordinate.latitude)")
         println("New longitude: \(tracker.currentLocation?.coordinate.longitude)\n")
-        collectionView?.alpha = 0.5
-        activityIndicator.startAnimating()
         
         locationTracker = tracker
         

@@ -24,8 +24,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     let headerTexts = ["I Want To See", "What To See", "Already Seen"]
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     var city: City! {
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
@@ -55,16 +53,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     func animateCollectionView() {
         UIView.animateWithDuration(0.5, animations: {self.collectionView?.alpha = 1}, completion: nil)
-        activityIndicator.stopAnimating()
     }
     
     //MARK: - Lifecycle
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        collectionView?.alpha = 0.5
-        activityIndicator.startAnimating()
         
         retrievePointsOfInterest()
         
