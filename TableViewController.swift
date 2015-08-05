@@ -86,6 +86,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         self.title = pointOfInterest.name
         
+        
         self.setupLocationTracker()
         
         //need to be refactored in one method
@@ -177,7 +178,13 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     func seenSwitchOff() {
         pointOfInterest.seen = NSNumber(bool: false)
     }
+    
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
 }
+
+
 
 
 

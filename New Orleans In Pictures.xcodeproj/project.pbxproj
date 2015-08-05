@@ -47,6 +47,8 @@
 		C02D94A71B331A000010A05D /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D94A61B331A000010A05D /* arrow_up.png */; };
 		C03A69641B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */; };
 		C03A69651B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */; };
+		C0448EB91B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */; };
+		C0448EBA1B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */; };
 		C048DFAE1B41374800735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
 		C048DFB01B41430A00735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
 		C048DFB31B41492800735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
@@ -212,6 +214,7 @@
 		C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateFlowLayout.swift; sourceTree = "<group>"; };
 		C02D94A61B331A000010A05D /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
 		C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanEdges.plist; sourceTree = "<group>"; };
+		C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenOrientationsForVC.swift; sourceTree = "<group>"; };
 		C048DFAD1B41374800735395 /* Coordinate Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate Converter.swift"; path = "../New Orleans In Pictures/Coordinate Converter.swift"; sourceTree = "<group>"; };
 		C048DFB41B41556A00735395 /* DistanceFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
 		C048DFBA1B418F4000735395 /* AngleCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngleCalculator.swift; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 			children = (
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
 				C0B2E5931B5D22AE005FCEE8 /* LocationTrackerDelegate.swift */,
+				C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */,
 				C0B2E59A1B5D23BA005FCEE8 /* GalleryVC */,
 				C0B2E5AA1B5D2958005FCEE8 /* TableViewController */,
 				C0B2E5AB1B5D298F005FCEE8 /* Supporting Classes */,
@@ -806,6 +810,7 @@
 				C01F5EDF1B5F765C00C8A0D3 /* DelegateFlowLayout.swift in Sources */,
 				C0B2E5B01B5D2AEF005FCEE8 /* TableViewSetup.swift in Sources */,
 				C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
+				C0448EB91B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
 				C0B2E59F1B5D259C005FCEE8 /* CellSetup.swift in Sources */,
 				C0B2E5941B5D22AE005FCEE8 /* LocationTrackerDelegate.swift in Sources */,
@@ -826,6 +831,7 @@
 				C0B2E5A91B5D28BB005FCEE8 /* DataSource.swift in Sources */,
 				C048DFBC1B418F4000735395 /* AngleCalculator.swift in Sources */,
 				C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */,
+				C0448EBA1B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */,
 				9873DFF91B2853E5008FE5EF /* AppDelegate.swift in Sources */,
 				C078200A1B170486002C95CB /* TableViewController.swift in Sources */,
 				C07EA87E1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */,
