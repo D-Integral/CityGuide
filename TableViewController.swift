@@ -135,6 +135,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
+        self.imageView.removeFromSuperview()
     }
     
     override func viewWillDisappear(animated: Bool) {
