@@ -97,6 +97,10 @@
 		C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
 		C0D0984C1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
 		C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
+		C0F148F91B736F7E009DC2E8 /* ViewForLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F148F81B736F7E009DC2E8 /* ViewForLocationData.swift */; };
+		C0F148FA1B736F7E009DC2E8 /* ViewForLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F148F81B736F7E009DC2E8 /* ViewForLocationData.swift */; };
+		C0F148FC1B739BFB009DC2E8 /* ViewForLocationData.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F148FB1B739BFB009DC2E8 /* ViewForLocationData.xib */; };
+		C0F148FD1B739BFB009DC2E8 /* ViewForLocationData.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F148FB1B739BFB009DC2E8 /* ViewForLocationData.xib */; };
 		C0F84C271B2F0A3700A7B1B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -239,6 +243,8 @@
 		C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_1.png; sourceTree = "<group>"; };
 		C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_2.png; sourceTree = "<group>"; };
 		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
+		C0F148F81B736F7E009DC2E8 /* ViewForLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForLocationData.swift; sourceTree = "<group>"; };
+		C0F148FB1B739BFB009DC2E8 /* ViewForLocationData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewForLocationData.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +322,8 @@
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
 				C0B2E5931B5D22AE005FCEE8 /* LocationTrackerDelegate.swift */,
 				C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */,
+				C0F148F81B736F7E009DC2E8 /* ViewForLocationData.swift */,
+				C0F148FB1B739BFB009DC2E8 /* ViewForLocationData.xib */,
 				C0B2E59A1B5D23BA005FCEE8 /* GalleryVC */,
 				C0B2E5AA1B5D2958005FCEE8 /* TableViewController */,
 				C0B2E5AB1B5D298F005FCEE8 /* Supporting Classes */,
@@ -740,6 +748,7 @@
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
 				C03A69641B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */,
 				C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
+				C0F148FC1B739BFB009DC2E8 /* ViewForLocationData.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0D0984C1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */,
+				C0F148FD1B739BFB009DC2E8 /* ViewForLocationData.xib in Resources */,
 				8CE2CB071AEA5A090032F74D /* SightsList.plist in Resources */,
 				C0D0984A1B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
 			);
@@ -812,6 +822,7 @@
 				C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */,
 				C0448EB91B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
+				C0F148F91B736F7E009DC2E8 /* ViewForLocationData.swift in Sources */,
 				C0B2E59F1B5D259C005FCEE8 /* CellSetup.swift in Sources */,
 				C0B2E5941B5D22AE005FCEE8 /* LocationTrackerDelegate.swift in Sources */,
 				C095C0EE1B592EB300448FDC /* RoutesReceiver.swift in Sources */,
@@ -853,6 +864,7 @@
 				8CE2CB011AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				C01F5EE01B5F765C00C8A0D3 /* DelegateFlowLayout.swift in Sources */,
 				C0B2E5A31B5D2725005FCEE8 /* Animation.swift in Sources */,
+				C0F148FA1B736F7E009DC2E8 /* ViewForLocationData.swift in Sources */,
 				C0B2E5A61B5D277C005FCEE8 /* HeaderSetup.swift in Sources */,
 				8CE2CB041AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 			);

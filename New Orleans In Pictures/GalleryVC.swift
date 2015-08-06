@@ -18,7 +18,7 @@ let headerReuseIdentifier = "standardHeader"
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverDelegate, TableViewControllerDelegate {
     
     struct Constants {
-        static let sizeForCell = CGSizeMake(150.0, 195.0)
+        static let sizeForCell = CGSizeMake(150.0, 220.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
     
