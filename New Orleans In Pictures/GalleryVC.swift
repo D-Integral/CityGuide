@@ -126,8 +126,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     func setBackgroundImage(image: UIImage) {
-        self.collectionView?.frame = self.view.frame
-        self.collectionView?.backgroundColor = UIColor(patternImage: image)
+        self.collectionView?.backgroundView = UIView(frame: self.collectionView!.frame)
+        self.collectionView?.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_1.png")!)
     }
 }
 

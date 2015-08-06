@@ -69,8 +69,8 @@
 		C078200A1B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
 		C07EA87D1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */; };
 		C07EA87E1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */; };
-		C095C0EE1B592EB300448FDC /* RouterReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RouterReceiver.swift */; };
-		C095C0EF1B592EB300448FDC /* RouterReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RouterReceiver.swift */; };
+		C095C0EE1B592EB300448FDC /* RoutesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RoutesReceiver.swift */; };
+		C095C0EF1B592EB300448FDC /* RoutesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RoutesReceiver.swift */; };
 		C0A0A5231B134E060009E04A /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 		C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
 		C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */; };
@@ -225,7 +225,7 @@
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
 		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
 		C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDelegate.swift; sourceTree = "<group>"; };
-		C095C0ED1B592EB300448FDC /* RouterReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterReceiver.swift; sourceTree = "<group>"; };
+		C095C0ED1B592EB300448FDC /* RoutesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesReceiver.swift; sourceTree = "<group>"; };
 		C0A0A5241B1365810009E04A /* TransitionFromDetailToGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromDetailToGallery.swift; sourceTree = "<group>"; };
 		C0B2E5931B5D22AE005FCEE8 /* LocationTrackerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTrackerDelegate.swift; sourceTree = "<group>"; };
 		C0B2E5971B5D238E005FCEE8 /* RoutesReceiverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesReceiverDelegate.swift; sourceTree = "<group>"; };
@@ -527,7 +527,7 @@
 			children = (
 				C04918251B26EC1200638F90 /* LocationTracker.swift */,
 				C048DFB41B41556A00735395 /* DistanceFormatter.swift */,
-				C095C0ED1B592EB300448FDC /* RouterReceiver.swift */,
+				C095C0ED1B592EB300448FDC /* RoutesReceiver.swift */,
 				C048DFBA1B418F4000735395 /* AngleCalculator.swift */,
 			);
 			name = "Supporting Classes";
@@ -814,7 +814,7 @@
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
 				C0B2E59F1B5D259C005FCEE8 /* CellSetup.swift in Sources */,
 				C0B2E5941B5D22AE005FCEE8 /* LocationTrackerDelegate.swift in Sources */,
-				C095C0EE1B592EB300448FDC /* RouterReceiver.swift in Sources */,
+				C095C0EE1B592EB300448FDC /* RoutesReceiver.swift in Sources */,
 				C0B2E5AD1B5D2A7C005FCEE8 /* MapViewSetup.swift in Sources */,
 				C048DFAE1B41374800735395 /* Coordinate Converter.swift in Sources */,
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
@@ -837,7 +837,7 @@
 				C07EA87E1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */,
 				C0A0A5261B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				C0B2E5951B5D22AE005FCEE8 /* LocationTrackerDelegate.swift in Sources */,
-				C095C0EF1B592EB300448FDC /* RouterReceiver.swift in Sources */,
+				C095C0EF1B592EB300448FDC /* RoutesReceiver.swift in Sources */,
 				C0B2E5A01B5D259C005FCEE8 /* CellSetup.swift in Sources */,
 				8CE2CB101AEA800F0032F74D /* HeaderView.swift in Sources */,
 				C048DFB01B41430A00735395 /* Coordinate Converter.swift in Sources */,

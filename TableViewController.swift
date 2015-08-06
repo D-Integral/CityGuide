@@ -85,13 +85,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.view.addGestureRecognizer(popRecognizer)
         
         self.title = pointOfInterest.name
-        
         self.setupLocationTracker()
-        
-        //need to be refactored in one method
         self.setupTableViewBackground()
-        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!, forView: self.tableView)
-        
         self.setupArrowImage()
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
@@ -103,9 +98,12 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         locationTracker.delegate = self
     }
     
-    func setBackgroundImage(image: UIImage, forView view: UIView) {
-        self.view.backgroundColor = UIColor(patternImage: image)
-        view.backgroundColor = UIColor(patternImage: image)
+    func setupTableViewBackground() {
+        self.tableView.backgroundView = UIView(frame: self.tableView.frame)
+        self.tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_1.png")!)
+        self.tableView.sendSubviewToBack(self.tableView.backgroundView!)
+        self.tableView.opaque = false
+        self.tableView.backgroundColor = .clearColor()
     }
     
     func setupArrowImage() {
