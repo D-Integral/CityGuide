@@ -42,5 +42,19 @@ extension TableViewController {
     override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return false
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var height: CGFloat!
+        
+        switch indexPath.section {
+        case 0: height = self.tableView.frame.size.width
+        case 1: height = 50
+        case 2: height = 60
+        case 3: height = 45
+        default: break
+        }
+        
+        return height
+    }
 }
 

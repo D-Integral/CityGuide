@@ -27,8 +27,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var initialWantToSeeSwitchState: Bool!
     var initialAlreadySeenSwitchState: Bool!
     
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!

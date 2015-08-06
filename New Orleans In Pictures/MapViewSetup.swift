@@ -12,6 +12,8 @@ extension TableViewController {
     func mapViewSetup() {
         mapView.delegate = self
         mapView.showsUserLocation = true
+        mapView.frame.size.height = self.tableView.frame.size.width
+        mapView.frame.size.width = self.tableView.frame.size.width
     }
     
     func showSelectedSightAnnotation() {
