@@ -191,18 +191,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cpa-KM-vZe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                    <connections>
-                                                        <segue destination="TcB-HF-ueX" kind="embed" id="80R-bs-wUZ"/>
-                                                    </connections>
-                                                </containerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Cpa-KM-vZe" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="0ke-vQ-HHy"/>
-                                                <constraint firstAttribute="trailing" secondItem="Cpa-KM-vZe" secondAttribute="trailing" id="24R-YR-mHU"/>
-                                                <constraint firstAttribute="bottom" secondItem="Cpa-KM-vZe" secondAttribute="bottom" id="4CH-oy-sF2"/>
-                                                <constraint firstItem="Cpa-KM-vZe" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="WAG-9K-N6D"/>
                                                 <constraint firstAttribute="bottom" secondItem="LZ8-pe-aVG" secondAttribute="bottom" id="Yc4-KW-d8o"/>
                                                 <constraint firstAttribute="bottom" secondItem="CVe-JP-1ZB" secondAttribute="bottom" constant="8" id="bZD-q7-itj"/>
                                                 <constraint firstItem="LZ8-pe-aVG" firstAttribute="leading" secondItem="CVe-JP-1ZB" secondAttribute="trailing" constant="55" id="cWH-hy-jhn"/>
@@ -222,8 +212,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AhH-Uk-kbV" id="bjx-TY-rhi">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
+                                                    <string key="text">Here is a description for every point of interest, height of which is flexible according to its content. ecshcuahw dcjh awdh awd ajshf has dclas dcjh asdjv awjd jlawhd cljaw flj awjd awj cvljaw dcljvas dvjaw djc askjdc ajd</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -352,40 +343,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMn-gz-SR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="731.5" y="460.5"/>
-        </scene>
-        <!--Location Data View Controller-->
-        <scene sceneID="hdz-Ip-MLc">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TcB-HF-ueX" customClass="LocationDataViewController" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0hT-jA-utj"/>
-                        <viewControllerLayoutGuide type="bottom" id="wUu-Pc-7ob"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IM1-ud-891">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVL-nv-yxK" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="SVL-nv-yxK" firstAttribute="leading" secondItem="IM1-ud-891" secondAttribute="leading" id="Ijx-CV-aOG"/>
-                            <constraint firstItem="wUu-Pc-7ob" firstAttribute="top" secondItem="SVL-nv-yxK" secondAttribute="bottom" id="Yfv-gN-9wW"/>
-                            <constraint firstAttribute="trailing" secondItem="SVL-nv-yxK" secondAttribute="trailing" id="aqy-gQ-N0I"/>
-                            <constraint firstItem="SVL-nv-yxK" firstAttribute="top" secondItem="0hT-jA-utj" secondAttribute="bottom" id="ePe-IW-9Fy"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <connections>
-                        <outlet property="locationDataView" destination="SVL-nv-yxK" id="iqy-0B-Ov7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ijg-lU-vAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1213.5" y="463"/>
         </scene>
     </scenes>
 </document>

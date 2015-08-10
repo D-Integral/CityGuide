@@ -27,7 +27,12 @@ extension TableViewController {
         switch indexPath.section {
         case 0: height = self.tableView.frame.size.width
         case 1: height = 50
-        case 2: height = 60
+        case 2:
+            let contentSize = self.descriptionTextView.sizeThatFits(self.descriptionTextView.bounds.size)
+            var frame = self.descriptionTextView.frame
+            frame.size.height = contentSize.height
+            self.descriptionTextView.frame = frame
+            height = frame.size.height + 20
         case 3: height = 45
         default: break
         }
