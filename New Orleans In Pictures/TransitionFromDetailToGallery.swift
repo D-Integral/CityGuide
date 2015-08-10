@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitioning {
     
@@ -22,9 +23,10 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
         var containerView = transitionContext.containerView()
         var duration = self.transitionDuration(transitionContext)
         
-        var imageSnapshot: UIView = fromViewController.imageView!.snapshotViewAfterScreenUpdates(false)
-        imageSnapshot.frame = containerView.convertRect(fromViewController.imageView.frame, fromView: fromViewController.imageView.superview)
-        fromViewController.imageView.hidden = true
+        var annotation = fromViewController.currentAnnotation
+        var imageSnapshot: UIView = fromViewController.mapView.viewForAnnotation(annotation).snapshotViewAfterScreenUpdates(false)
+        imageSnapshot.frame = containerView.convertRect(fromViewController.mapView.viewForAnnotation(annotation).frame, fromView: fromViewController.mapView)
+        fromViewController.mapView.viewForAnnotation(annotation).hidden = true
         
         var cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
         cell.imageView.hidden = true

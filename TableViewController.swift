@@ -38,6 +38,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var pointOfInterest: PointOfInterest!
     var angleToPointOfInterest: Double!
     var routeToPointOfInterest: MKRoute!
+    var currentAnnotation: MKAnnotation!
     
     var image: UIImage = UIImage()
     var backgroundImage = "Texture_New_Orleans_1.png"
@@ -111,8 +112,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     }
     
     func imageViewInitialize() {
-//        let x: CGFloat = (self.view.frame.size.width - 150) / 2
-//        let frame = CGRectMake(x, 0, 150, 150)
         let x: CGFloat = (self.view.frame.size.width - 150) / 2
         let y: CGFloat = (self.mapView.frame.height - 150) / 2
         let frame = CGRectMake(x, y, 150, 150)

@@ -32,7 +32,7 @@ extension TableViewController {
             var frame = self.descriptionTextView.frame
             frame.size.height = contentSize.height
             self.descriptionTextView.frame = frame
-            height = frame.size.height + 20
+            height = frame.size.height + 10
         case 3: height = 45
         default: break
         }

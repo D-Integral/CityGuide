@@ -21,6 +21,8 @@ extension TableViewController {
         let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: image)
         self.mapView.addAnnotation(annotation)
         
+        currentAnnotation = annotation
+        
         let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
         mapView.setRegion(region, animated: true)
         

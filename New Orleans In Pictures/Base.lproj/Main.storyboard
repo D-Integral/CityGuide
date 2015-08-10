@@ -212,9 +212,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AhH-Uk-kbV" id="bjx-TY-rhi">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Here is a description for every point of interest, height of which is flexible according to its content. " textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
-                                                    <string key="text">Here is a description for every point of interest, height of which is flexible according to its content. ecshcuahw dcjh awdh awd ajshf has dclas dcjh asdjv awjd jlawhd cljaw flj awjd awj cvljaw dcljvas dvjaw djc askjdc ajd</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
