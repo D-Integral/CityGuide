@@ -23,7 +23,7 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
         var containerView = transitionContext.containerView()
         var duration = self.transitionDuration(transitionContext)
         
-        var annotation = fromViewController.currentAnnotation
+        var annotation = fromViewController.pointOfInterestAnnotation
         var imageSnapshot: UIView = fromViewController.mapView.viewForAnnotation(annotation).snapshotViewAfterScreenUpdates(false)
         imageSnapshot.frame = containerView.convertRect(fromViewController.mapView.viewForAnnotation(annotation).frame, fromView: fromViewController.mapView)
         fromViewController.mapView.viewForAnnotation(annotation).hidden = true

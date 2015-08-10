@@ -38,7 +38,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var pointOfInterest: PointOfInterest!
     var angleToPointOfInterest: Double!
     var routeToPointOfInterest: MKRoute!
-    var currentAnnotation: MKAnnotation!
+    var pointOfInterestAnnotation: MKAnnotation!
     
     var image: UIImage = UIImage()
     var backgroundImage = "Texture_New_Orleans_1.png"
@@ -130,10 +130,12 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     override func viewWillAppear(animated: Bool) {
         self.imageViewInitialize()
+        self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
+        self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = false
         self.imageView.removeFromSuperview()
     }
     
