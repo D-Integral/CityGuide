@@ -37,6 +37,11 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="20"/>
                         </collectionViewFlowLayout>
+                        <view key="backgroundView" contentMode="scaleToFill" id="NK5-lI-r7o">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="pictureCell" id="RnO-2m-dN0" customClass="PictureCell" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -186,8 +191,18 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cpa-KM-vZe">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                                    <connections>
+                                                        <segue destination="TcB-HF-ueX" kind="embed" id="80R-bs-wUZ"/>
+                                                    </connections>
+                                                </containerView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="Cpa-KM-vZe" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="0ke-vQ-HHy"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cpa-KM-vZe" secondAttribute="trailing" id="24R-YR-mHU"/>
+                                                <constraint firstAttribute="bottom" secondItem="Cpa-KM-vZe" secondAttribute="bottom" id="4CH-oy-sF2"/>
+                                                <constraint firstItem="Cpa-KM-vZe" firstAttribute="leading" secondItem="Y3p-Ah-gDv" secondAttribute="leading" id="WAG-9K-N6D"/>
                                                 <constraint firstAttribute="bottom" secondItem="LZ8-pe-aVG" secondAttribute="bottom" id="Yc4-KW-d8o"/>
                                                 <constraint firstAttribute="bottom" secondItem="CVe-JP-1ZB" secondAttribute="bottom" constant="8" id="bZD-q7-itj"/>
                                                 <constraint firstItem="LZ8-pe-aVG" firstAttribute="leading" secondItem="CVe-JP-1ZB" secondAttribute="trailing" constant="55" id="cWH-hy-jhn"/>
@@ -207,9 +222,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AhH-Uk-kbV" id="bjx-TY-rhi">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description." selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -231,7 +245,7 @@
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="ccX-qz-iOm" id="cXo-3Q-1fu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to see" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poG-of-ohT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To See" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poG-of-ohT">
                                                     <rect key="frame" x="8" y="12" width="147" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -260,7 +274,7 @@
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="Aw1-xb-KRV" id="p5V-1g-eYs">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already seen" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VG-84-trE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VG-84-trE">
                                                     <rect key="frame" x="8" y="12" width="147" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -306,6 +320,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tMn-gz-SR8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="731.5" y="460.5"/>
+        </scene>
+        <!--Location Data View Controller-->
+        <scene sceneID="hdz-Ip-MLc">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TcB-HF-ueX" customClass="LocationDataViewController" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0hT-jA-utj"/>
+                        <viewControllerLayoutGuide type="bottom" id="wUu-Pc-7ob"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="IM1-ud-891">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVL-nv-yxK" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SVL-nv-yxK" firstAttribute="leading" secondItem="IM1-ud-891" secondAttribute="leading" id="Ijx-CV-aOG"/>
+                            <constraint firstItem="wUu-Pc-7ob" firstAttribute="top" secondItem="SVL-nv-yxK" secondAttribute="bottom" id="Yfv-gN-9wW"/>
+                            <constraint firstAttribute="trailing" secondItem="SVL-nv-yxK" secondAttribute="trailing" id="aqy-gQ-N0I"/>
+                            <constraint firstItem="SVL-nv-yxK" firstAttribute="top" secondItem="0hT-jA-utj" secondAttribute="bottom" id="ePe-IW-9Fy"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="locationDataView" destination="SVL-nv-yxK" id="iqy-0B-Ov7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ijg-lU-vAT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1213.5" y="463"/>
         </scene>
     </scenes>
 </document>

@@ -28,6 +28,9 @@ extension GalleryVC {
         cell.nameLabel.text = point.name
         cell.distanceLabel.text = routesToPointsOfInterest[point.name] != nil ? DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance) : ""
         rotateCompassView(cell.compassImage, forPointOfInterest: point)
+        
+//        cell.locationDataView.backgroundColor = .clearColor()
+//        cell.locationDataView.view.backgroundColor = .clearColor()
     }
     
     func rotateCompassView(imageView: UIImageView, forPointOfInterest point: PointOfInterest) {
