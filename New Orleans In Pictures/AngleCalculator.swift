@@ -12,14 +12,6 @@ import CityKit
 class AngleCalculator {
     
     //MARK: public
-    var angles: [String : Double] {
-        var returnAngles = [String : Double]()
-        for pointOfInterest in city.pointsInCity() {
-            returnAngles[pointOfInterest.name] = angleToLocation(pointOfInterest)
-        }
-        return returnAngles
-    }
-
     func angleToLocation(pointOfInterest: PointOfInterest) -> Double {
         var angle: Double = 0.0
         
@@ -63,8 +55,4 @@ class AngleCalculator {
     
     //MARK: private
     var locationTracker: LocationTracker!
-    
-    var city: City {
-        return City.fetchCity() != nil ? City.fetchCity()! : City.createCityWithName("New Orleans")
-    }
 }

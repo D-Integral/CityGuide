@@ -8,14 +8,11 @@
 
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
-        println("LocationTracker updated:")
-        println("New latitude: \(tracker.currentLocation?.coordinate.latitude)")
-        println("New longitude: \(tracker.currentLocation?.coordinate.longitude)\n")
+//        println("LocationTracker updated:")
+//        println("New latitude: \(tracker.currentLocation?.coordinate.latitude)")
+//        println("New longitude: \(tracker.currentLocation?.coordinate.longitude)\n")
         
         locationTracker = tracker
-        
-        angleCalculator.locationTracker = locationTracker
-        compassAngles = angleCalculator.angles
         collectionView?.reloadData()
         
         loadRoutes()
@@ -31,26 +28,9 @@ extension GalleryVC {
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        angleCalculator.locationTracker = locationTracker
-        compassAngles = angleCalculator.angles
-        
         collectionView?.reloadData()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 extension TableViewController {
     func locationUpdated(tracker: LocationTracker) {

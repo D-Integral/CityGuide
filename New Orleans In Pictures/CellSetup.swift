@@ -26,18 +26,10 @@ extension GalleryVC {
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = point.name
-        cell.distanceLabel.text = routesToPointsOfInterest[point.name] != nil ? DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance) : ""
-        rotateCompassView(cell.compassImage, forPointOfInterest: point)
+//        cell.distanceLabel.text = routesToPointsOfInterest[point.name] != nil ? DistanceFormatter.formatted(routesToPointsOfInterest[point.name]!.distance) : ""
+//        rotateCompassView(cell.compassImage, forPointOfInterest: point)
         
-//        cell.locationDataView.backgroundColor = .clearColor()
-//        cell.locationDataView.view.backgroundColor = .clearColor()
-    }
-    
-    func rotateCompassView(imageView: UIImageView, forPointOfInterest point: PointOfInterest) {
-        imageView.image = UIImage(named: "arrow_up.png")
-        UIView.animateWithDuration(1, animations: {
-            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(self.compassAngles[point.name]!))
-            }, completion: nil)
+        locationDataVC.adjustLocationDataView(&cell.locationDataView!, forPointOfInterest: point, withLocationTracker: locationTracker)
     }
 }
 

@@ -14,4 +14,5 @@ class PictureCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var compassImage: UIImageView!
+    @IBOutlet weak var locationDataView: ViewForLocationData!
 }

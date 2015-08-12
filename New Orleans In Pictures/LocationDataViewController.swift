@@ -7,20 +7,23 @@
 //
 
 import UIKit
+import CityKit
 
 class LocationDataViewController: UIViewController {
-
-    @IBOutlet weak var locationDataView: ViewForLocationData!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func adjustLocationDataView(inout locationDataView: ViewForLocationData, forPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
-        self.view.backgroundColor = .clearColor()
-        locationDataView.backgroundColor = .clearColor()
         locationDataView.view.backgroundColor = .clearColor()
+        locationDataView.backgroundColor = .clearColor()
         
-        locationDataView.distanceLabel.text = "dvsvs"
-        locationDataView.distanceLabel.backgroundColor = .clearColor()
-
+        locationDataView.distanceLabel.textColor = .redColor()
+        locationDataView.distanceLabel.text = pointOfInterest.name
+        
+        var angleCalculator = AngleCalculator()
+        angleCalculator.locationTracker = locationTracker
+        let compassAngle = angleCalculator.angleToLocation(pointOfInterest)
+        UIView.animateWithDuration(1, animations: {
+            locationDataView.compassImageView.transform = CGAffineTransformMakeRotation(-CGFloat(compassAngle))
+            }, completion: nil)
     }
 }

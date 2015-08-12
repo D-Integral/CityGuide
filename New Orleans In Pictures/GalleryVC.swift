@@ -28,16 +28,16 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
     
+    var locationDataVC = LocationDataViewController()
+    
     //MARK: CollectionView source
     
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
     
-    var compassAngles: [String : Double]!
     var routesToPointsOfInterest = [String : MKRoute]()
     
-    var angleCalculator = AngleCalculator()
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker!
     
@@ -67,9 +67,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         locationTracker.delegate = self
         
         routesReceiver.delegate = self
-        
-        angleCalculator.locationTracker = locationTracker
-        compassAngles = angleCalculator.angles
     }
     
     func retrievePointsOfInterest() {
