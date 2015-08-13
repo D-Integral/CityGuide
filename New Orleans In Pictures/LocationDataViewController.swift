@@ -11,15 +11,26 @@ import CityKit
 
 class LocationDataViewController: UIViewController {
     
+    var angleCalculator = AngleCalculator()
+    
     func adjustLocationDataView(inout locationDataView: ViewForLocationData, forPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
-        locationDataView.view.backgroundColor = .clearColor()
-        locationDataView.backgroundColor = .clearColor()
+        setupBackgroundFor(locationDataView)
         
-        locationDataView.distanceLabel.textColor = .redColor()
         locationDataView.distanceLabel.text = pointOfInterest.name
         
-        var angleCalculator = AngleCalculator()
+        setupCompassImageViewFor(locationDataView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+    }
+    
+    //MARK: Private helper methods
+    
+    func setupBackgroundFor(locationDataView: ViewForLocationData) {
+        locationDataView.view.backgroundColor = .clearColor()
+        locationDataView.backgroundColor = .clearColor()
+    }
+    
+    func setupCompassImageViewFor(locationDataView: ViewForLocationData, toPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
+        
         angleCalculator.locationTracker = locationTracker
         let compassAngle = angleCalculator.angleToLocation(pointOfInterest)
         UIView.animateWithDuration(1, animations: {
