@@ -25,8 +25,6 @@ extension TableViewController {
         
         let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
         mapView.setRegion(region, animated: true)
-        
-        self.setupDistanceLabel()
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
@@ -51,10 +49,6 @@ extension TableViewController {
         return annotationView
     }
     
-    func setupDistanceLabel() {
-        distanceLabel.font = UIFont.boldSystemFontOfSize(20.0)
-    }
-    
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.userLocation = userLocation
         isUserInTheCity() ? showRouteInOptimalRegion() : showSelectedSightAnnotation()
@@ -68,7 +62,6 @@ extension TableViewController {
     func showRoute() {
         if routeToPointOfInterest != nil {
             mapView.addOverlay(routeToPointOfInterest.polyline, level: MKOverlayLevel.AboveRoads)
-            addDistanceToDistanceLabel(routeToPointOfInterest.distance)
         }
     }
     
@@ -77,15 +70,6 @@ extension TableViewController {
         let userLatitude = userLocation.location.coordinate.latitude
         
         return (userLongitude < Constants.cityEdges["right"] && userLongitude > Constants.cityEdges["left"] && userLatitude < Constants.cityEdges["top"] && userLatitude > Constants.cityEdges["bottom"]) ? true : false
-    }
-    
-    func addDistanceToDistanceLabel(distance: CLLocationDistance) {
-        self.distanceLabel.alpha = 0.0
-        self.distanceLabel.text = "\(DistanceFormatter.formatted(distance))"
-        
-        UIView.animateWithDuration(1, animations: {
-            self.distanceLabel.alpha = 1.0
-            }, completion: nil)
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {

@@ -16,18 +16,19 @@ class LocationDataViewController: NSObject, RoutesReceiverFetchedRouteDelegate {
     var angleCalculator = AngleCalculator()
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     
-    var routesToPointsOfInterest = [PointOfInterest : MKRoute]()
+    var routesToPointsOfInterest: [String : MKRoute]!
     
     override init() {
         super.init()
         routesReceiver.delegateForRoute = self
+        routesToPointsOfInterest = [String : MKRoute]()
     }
     
     func adjustLocationDataView(inout locationDataView: ViewForLocationData, forPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
         setupBackgroundFor(locationDataView)
         
-        if let distance = routesToPointsOfInterest[pointOfInterest]?.distance {
+        if let distance = routesReceiver.routes[pointOfInterest.name]?.distance {//routesToPointsOfInterest[pointOfInterest.name]?.distance {
             locationDataView.distanceLabel.text = DistanceFormatter.formatted(distance)
         }
         
@@ -50,9 +51,15 @@ class LocationDataViewController: NSObject, RoutesReceiverFetchedRouteDelegate {
             }, completion: nil)
     }
     
+    func removeAllSavedRoutes() {
+        routesToPointsOfInterest = [String : MKRoute]()
+    }
+    
     //MARK: RoutesReceiverDelegate
     
     func routeReceived(route: MKRoute, forPointOfIneterest pointOfInterest: PointOfInterest) {
-        routesToPointsOfInterest[pointOfInterest] = route
+        println("LocationDataViewController: received route \(route.distance) for \(pointOfInterest.name)")
+        routesToPointsOfInterest[pointOfInterest.name] = route
+        println("\(route.distance) saved: \(routesToPointsOfInterest[pointOfInterest.name]?.distance)\n")
     }
 }

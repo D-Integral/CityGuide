@@ -5,6 +5,7 @@
 //  Created by Alexander Nuzhniy on 20.07.15.
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
+import MapKit
 
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
@@ -15,6 +16,7 @@ extension GalleryVC {
     }
     
     func loadRoutes() {
+        locationDataVC.removeAllSavedRoutes()
         locationDataVC.routesReceiver.removeAllRoutes()
         locationDataVC.routesReceiver.userLocation = locationTracker.currentLocation
         locationDataVC.routesReceiver.city = city
@@ -31,6 +33,8 @@ extension GalleryVC {
 extension TableViewController {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+        
+        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
     }
     
     func headingUpdated(tracker: LocationTracker) {

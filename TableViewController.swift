@@ -27,12 +27,11 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var initialWantToSeeSwitchState: Bool!
     var initialAlreadySeenSwitchState: Bool!
     
+    @IBOutlet weak var locationDataView: ViewForLocationData!
     @IBOutlet weak var descriptionTextView: UITextView!
-    @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
-    @IBOutlet weak var arrowImage: UIImageView!
     var imageView: UIImageView!
     
     var pointOfInterest: PointOfInterest!
@@ -63,11 +62,12 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var angleCalculator: AngleCalculator!
     
+    var locationDataVC = LocationDataViewController()
+    
     func reloadData() {
         angleCalculator = AngleCalculator()
         angleCalculator.locationTracker = locationTracker
         angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest)
-        rotateCompassView(arrowImage)
     }
     
     func rotateCompassView(imageView: UIImageView) {
@@ -88,7 +88,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.title = pointOfInterest.name
         self.setupLocationTracker()
         self.setupTableViewBackground()
-        self.setupArrowImage()
+        
+        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+        
         self.mapViewSetup()
         self.showSelectedSightAnnotation()
         self.initialSwitchesSetup()
@@ -105,10 +107,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.tableView.sendSubviewToBack(self.tableView.backgroundView!)
         self.tableView.opaque = false
         self.tableView.backgroundColor = .clearColor()
-    }
-    
-    func setupArrowImage() {
-        arrowImage.image = UIImage(named: "arrow_up.png")
     }
     
     func imageViewInitialize() {
