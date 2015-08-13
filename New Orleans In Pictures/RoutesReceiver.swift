@@ -10,8 +10,12 @@ import MapKit
 import CoreLocation
 import CityKit
 
-protocol RoutesReceiverDelegate {
+protocol RoutesReceiverFetchedAllRoutesDelegate {
     func routesReceived(routes: [String : MKRoute])
+}
+
+protocol RoutesReceiverFetchedRouteDelegate {
+    func routeReceived(route: MKRoute, forPointOfIneterest pointOfInterest: PointOfInterest)
 }
 
 class RoutesReceiver {
@@ -32,7 +36,8 @@ class RoutesReceiver {
     var routes = [String : MKRoute]()
     var city: City!
     var userLocation: CLLocation!
-    var delegate: RoutesReceiverDelegate?
+    var delegateForAllRoutes: RoutesReceiverFetchedAllRoutesDelegate?
+    var delegateForRoute: RoutesReceiverFetchedRouteDelegate?
     
     func requestRoutesToPointsOfInterest() {
         for pointOfInterest in city.pointsInCity() {
@@ -89,19 +94,13 @@ class RoutesReceiver {
         let route = response.routes[0] as! MKRoute
         
         save(route, toPointOfInterest: pointOfInterest)
+        delegateForRoute?.routeReceived(route, forPointOfIneterest: pointOfInterest)
     }
     
     func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
         routes[pointOfInterest.name] = route
         
-        //println("\(routes.count). Saved route distance: \(route.distance) for: \(pointOfInterest.name)")
-        
-        if allRoutesReceived() { notifyDelegate() }
-    }
-    
-    func notifyDelegate() {
-        delegate?.routesReceived(routes)
-        //println("Delegate notified.")
+        if allRoutesReceived() { delegateForAllRoutes?.routesReceived(routes) }
     }
 }
 

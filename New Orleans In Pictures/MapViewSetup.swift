@@ -47,11 +47,7 @@ extension TableViewController {
         annotationView.image = sightAnnotation.image
         annotationView.frame.size.width = 150.0
         annotationView.frame.size.height = 150.0
-        
-        println("Frame for annotation view: \(annotationView.frame)")
-        println("Center offset: \(annotationView.center)")
-        println("Center offset: \(annotationView.centerOffset)")
-        
+     
         return annotationView
     }
     

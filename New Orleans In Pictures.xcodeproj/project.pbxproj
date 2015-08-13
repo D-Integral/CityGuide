@@ -295,8 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				8CE2CADC1AEA2BC60032F74D /* AppDelegate.swift */,
-				C0B2E5931B5D22AE005FCEE8 /* LocationTrackerDelegate.swift */,
 				C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */,
+				C0B2E5931B5D22AE005FCEE8 /* LocationTrackerDelegate.swift */,
 				C0B2E59A1B5D23BA005FCEE8 /* GalleryVC */,
 				C0B2E5AA1B5D2958005FCEE8 /* TableViewController */,
 				C0B2E5AB1B5D298F005FCEE8 /* Supporting Classes */,

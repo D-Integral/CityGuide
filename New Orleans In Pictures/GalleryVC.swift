@@ -15,7 +15,7 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverDelegate, TableViewControllerDelegate {
+class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, TableViewControllerDelegate {
     
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 220.0)
@@ -66,7 +66,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         locationTracker = LocationTracker()
         locationTracker.delegate = self
         
-        routesReceiver.delegate = self
+        routesReceiver.delegateForAllRoutes = self
     }
     
     func retrievePointsOfInterest() {

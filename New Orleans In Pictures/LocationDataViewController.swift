@@ -8,16 +8,28 @@
 
 import UIKit
 import CityKit
+import MapKit
 
-class LocationDataViewController: UIViewController {
+class LocationDataViewController: NSObject, RoutesReceiverFetchedRouteDelegate {
     
+    var locationTracker: LocationTracker!
     var angleCalculator = AngleCalculator()
+    var routesReceiver = RoutesReceiver.sharedRoutesReceiver
+    
+    var routesToPointsOfInterest = [PointOfInterest : MKRoute]()
+    
+    override init() {
+        super.init()
+        routesReceiver.delegateForRoute = self
+    }
     
     func adjustLocationDataView(inout locationDataView: ViewForLocationData, forPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
         setupBackgroundFor(locationDataView)
         
-        locationDataView.distanceLabel.text = pointOfInterest.name
+        if let distance = routesToPointsOfInterest[pointOfInterest]?.distance {
+            locationDataView.distanceLabel.text = DistanceFormatter.formatted(distance)
+        }
         
         setupCompassImageViewFor(locationDataView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
     }
@@ -36,5 +48,11 @@ class LocationDataViewController: UIViewController {
         UIView.animateWithDuration(1, animations: {
             locationDataView.compassImageView.transform = CGAffineTransformMakeRotation(-CGFloat(compassAngle))
             }, completion: nil)
+    }
+    
+    //MARK: RoutesReceiverDelegate
+    
+    func routeReceived(route: MKRoute, forPointOfIneterest pointOfInterest: PointOfInterest) {
+        routesToPointsOfInterest[pointOfInterest] = route
     }
 }
