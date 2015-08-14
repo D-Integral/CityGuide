@@ -119,7 +119,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         tableVC.pointOfInterest = pointForIndexPath(indexPath)
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!
-        tableVC.routeToPointOfInterest = routesToPointsOfInterest[pointForIndexPath(indexPath).name]
     }
     
     func setBackgroundImage(image: UIImage) {

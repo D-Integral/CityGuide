@@ -35,8 +35,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var imageView: UIImageView!
     
     var pointOfInterest: PointOfInterest!
-    var angleToPointOfInterest: Double!
-    var routeToPointOfInterest: MKRoute!
     var pointOfInterestAnnotation: MKAnnotation!
     
     var image: UIImage = UIImage()
@@ -65,15 +63,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     var locationDataVC = LocationDataViewController()
     
     func reloadData() {
-        angleCalculator = AngleCalculator()
-        angleCalculator.locationTracker = locationTracker
-        angleToPointOfInterest = angleCalculator.angleToLocation(pointOfInterest)
-    }
-    
-    func rotateCompassView(imageView: UIImageView) {
-        UIView.animateWithDuration(1, animations: {
-            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(self.angleToPointOfInterest))
-        }, completion: nil)
+        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
     }
     
     //MARK: Lifecycle

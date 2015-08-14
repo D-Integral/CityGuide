@@ -60,8 +60,9 @@ extension TableViewController {
     }
     
     func showRoute() {
-        if routeToPointOfInterest != nil {
-            mapView.addOverlay(routeToPointOfInterest.polyline, level: MKOverlayLevel.AboveRoads)
+        let route = locationDataVC.routesReceiver.routes[pointOfInterest.name]
+        if route != nil {
+            mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads)
         }
     }
     
