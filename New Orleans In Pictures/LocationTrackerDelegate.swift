@@ -10,7 +10,6 @@ import MapKit
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
-        collectionView?.reloadData()
         
         loadRoutes()
     }
