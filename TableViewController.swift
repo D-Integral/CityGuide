@@ -22,6 +22,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
     }
     
+    var shoudRotate = true
+    
     var delegate: TableViewControllerDelegate?
     
     var initialWantToSeeSwitchState: Bool!
@@ -71,6 +73,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
+        
         var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
@@ -119,12 +123,17 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     override func viewWillAppear(animated: Bool) {
         self.imageViewInitialize()
         self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = true
+        
+        UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
     }
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = false
         self.imageView.removeFromSuperview()
+        
+        UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
+        shoudRotate = !shoudRotate
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -167,7 +176,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     }
     
     override func shouldAutorotate() -> Bool {
-        return false
+        return shoudRotate
     }
 }
 
