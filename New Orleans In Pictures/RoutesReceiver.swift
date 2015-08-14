@@ -14,10 +14,6 @@ protocol RoutesReceiverFetchedAllRoutesDelegate {
     func routesReceived(routes: [String : MKRoute])
 }
 
-protocol RoutesReceiverFetchedRouteDelegate {
-    func routeReceived(route: MKRoute, forPointOfIneterest pointOfInterest: PointOfInterest)
-}
-
 class RoutesReceiver {
     
     //MARK: public
@@ -37,7 +33,6 @@ class RoutesReceiver {
     var city: City!
     var userLocation: CLLocation!
     var delegateForAllRoutes: RoutesReceiverFetchedAllRoutesDelegate?
-    var delegateForRoute: RoutesReceiverFetchedRouteDelegate?
     
     func requestRoutesToPointsOfInterest() {
         for pointOfInterest in city.pointsInCity() {
@@ -53,8 +48,6 @@ class RoutesReceiver {
     
     func removeAllRoutes() {
         routes = [String : MKRoute]()
-        
-        //println("Routes removed. Number of items: \(routes.count)")
     }
     
     func allRoutesReceived() -> Bool {
@@ -94,7 +87,6 @@ class RoutesReceiver {
         let route = response.routes[0] as! MKRoute
         
         save(route, toPointOfInterest: pointOfInterest)
-        delegateForRoute?.routeReceived(route, forPointOfIneterest: pointOfInterest)
     }
     
     func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
