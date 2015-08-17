@@ -11,6 +11,10 @@ extension GalleryVC {
         //println("Notification from TableVC arrived.")
         
         retrievePointsOfInterest()
+        if routesToPointsOfInterest.count == city.pointsInCity().count {
+            sortItemsByRouteDistances()
+        }
         collectionView?.reloadData()
+        
     }
 }
