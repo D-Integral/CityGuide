@@ -60,8 +60,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         }
     }
     
-    var angleCalculator: AngleCalculator!
-    
     var locationDataVC = LocationDataViewController()
     
     func reloadData() {

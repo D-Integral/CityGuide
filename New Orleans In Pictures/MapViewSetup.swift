@@ -43,8 +43,7 @@ extension TableViewController {
         let sightAnnotation = annotation as! SightAnnotation
         
         annotationView.image = sightAnnotation.image
-        annotationView.frame.size.width = 150.0
-        annotationView.frame.size.height = 150.0
+        annotationView.frame.size = CGSizeMake(150, 150)
      
         return annotationView
     }
