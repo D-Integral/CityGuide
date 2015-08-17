@@ -18,14 +18,11 @@ class LocationDataViewController: NSObject {
     
     func adjustLocationDataView(inout locationDataView: ViewForLocationData, forPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
+        setupBackgroundFor(locationDataView)
         if let distance = routesReceiver.routes[pointOfInterest.name]?.distance {
-            locationDataView.hidden = false
-            setupBackgroundFor(locationDataView)
             locationDataView.distanceLabel.text = DistanceFormatter.formatted(distance)
-            setupCompassImageViewFor(locationDataView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
-        } else {
-            locationDataView.hidden = true
         }
+        setupCompassImageViewFor(locationDataView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
     }
     
     //MARK: Private helper methods
