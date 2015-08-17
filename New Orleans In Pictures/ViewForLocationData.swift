@@ -13,6 +13,7 @@ import UIKit
     @IBOutlet weak var compassImageView: UIImageView!
     @IBOutlet weak var distanceLabel: UILabel!
     
+    @IBOutlet weak var singleCompassImageView: UIImageView!
     var view: UIView!
     
     override init(frame: CGRect) {

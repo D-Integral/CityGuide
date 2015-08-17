@@ -11,7 +11,6 @@ extension GalleryVC {
         //println("Notification from TableVC arrived.")
         
         retrievePointsOfInterest()
-        sortItemsByRouteDistances()
         collectionView?.reloadData()
     }
 }

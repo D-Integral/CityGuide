@@ -20,9 +20,30 @@ class LocationDataViewController: NSObject {
         
         setupBackgroundFor(locationDataView)
         if let distance = routesReceiver.routes[pointOfInterest.name]?.distance {
+            locationDataView.singleCompassImageView.hidden = true
+            locationDataView.distanceLabel.hidden = false
+            locationDataView.compassImageView.hidden = false
             locationDataView.distanceLabel.text = DistanceFormatter.formatted(distance)
+            rotateCompassImageView(locationDataView.compassImageView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+        } else {
+            locationDataView.singleCompassImageView.hidden = false
+            rotateCompassImageView(locationDataView.singleCompassImageView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+            locationDataView.distanceLabel.hidden = true
+            locationDataView.compassImageView.hidden = true
+    
         }
-        setupCompassImageViewFor(locationDataView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+        
+        
+        //setupBackgroundFor(locationDataView)
+        
+//        var distanceLabel = UILabel(frame: CGRectMake(locationDataView.bounds.origin.x, locationDataView.bounds.origin.y, locationDataView.bounds.width / 2, locationDataView.bounds.height))
+//        distanceLabel.backgroundColor = .blackColor()
+//        if let distance = routesReceiver.routes[pointOfInterest.name]?.distance {
+//            distanceLabel.text = DistanceFormatter.formatted(distance)
+//        }
+//        locationDataView.addSubview(distanceLabel)
+        
+        
     }
     
     //MARK: Private helper methods
@@ -32,12 +53,12 @@ class LocationDataViewController: NSObject {
         locationDataView.backgroundColor = .clearColor()
     }
     
-    func setupCompassImageViewFor(locationDataView: ViewForLocationData, toPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
+    func rotateCompassImageView(imageView: UIImageView, toPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
         angleCalculator.locationTracker = locationTracker
         let compassAngle = angleCalculator.angleToLocation(pointOfInterest)
         UIView.animateWithDuration(1, animations: {
-            locationDataView.compassImageView.transform = CGAffineTransformMakeRotation(-CGFloat(compassAngle))
+            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(compassAngle))
             }, completion: nil)
     }
 }

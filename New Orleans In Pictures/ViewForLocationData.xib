@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="compassImageView" destination="mzr-eD-Der" id="e3R-mC-mKt"/>
                 <outlet property="distanceLabel" destination="bzf-Em-bab" id="q40-6z-bgC"/>
+                <outlet property="singleCompassImageView" destination="bzi-K9-SY5" id="EqY-Kz-jyS"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,15 +25,22 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-K9-SY5">
+                    <rect key="frame" x="0.0" y="0.0" width="306" height="41"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="mzr-eD-Der" secondAttribute="trailing" id="7NQ-DG-lYQ"/>
                 <constraint firstItem="bzf-Em-bab" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MQh-Dm-5lr"/>
                 <constraint firstItem="mzr-eD-Der" firstAttribute="leading" secondItem="bzf-Em-bab" secondAttribute="trailing" id="Q9n-za-O7O"/>
+                <constraint firstAttribute="bottom" secondItem="bzi-K9-SY5" secondAttribute="bottom" id="Rpg-R8-vG9"/>
                 <constraint firstAttribute="bottom" secondItem="bzf-Em-bab" secondAttribute="bottom" id="Uun-ER-ege"/>
+                <constraint firstItem="bzi-K9-SY5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="c5V-dM-AYm"/>
                 <constraint firstAttribute="bottom" secondItem="mzr-eD-Der" secondAttribute="bottom" id="gZZ-8p-aTq"/>
+                <constraint firstAttribute="trailing" secondItem="bzi-K9-SY5" secondAttribute="trailing" id="mfG-9M-0vl"/>
                 <constraint firstItem="mzr-eD-Der" firstAttribute="width" secondItem="bzf-Em-bab" secondAttribute="width" id="pjp-7g-wVb"/>
+                <constraint firstItem="bzi-K9-SY5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sYk-RU-p59"/>
                 <constraint firstItem="bzf-Em-bab" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="siZ-D7-eTz"/>
                 <constraint firstItem="mzr-eD-Der" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zzl-D1-avU"/>
             </constraints>
