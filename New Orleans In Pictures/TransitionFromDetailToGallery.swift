@@ -11,6 +11,9 @@ import MapKit
 
 class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitioning {
     
+    var imageSnapshot: UIView!
+    var containerView: UIView!
+    
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         return 0.5
     }
@@ -20,13 +23,13 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! TableViewController
         var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! GalleryVC
         
-        var containerView = transitionContext.containerView()
+        containerView = transitionContext.containerView()
         var duration = self.transitionDuration(transitionContext)
         
         var annotation = fromViewController.pointOfInterestAnnotation
-        var imageSnapshot: UIView = fromViewController.mapView.viewForAnnotation(annotation).snapshotViewAfterScreenUpdates(false)
-        imageSnapshot.frame = containerView.convertRect(fromViewController.mapView.viewForAnnotation(annotation).frame, fromView: fromViewController.mapView)
-        fromViewController.mapView.viewForAnnotation(annotation).hidden = true
+        var viewForAnnotation = fromViewController.mapView.viewForAnnotation(annotation)
+        
+        viewForAnnotation == nil ? makeSnapshotFromView(fromViewController.imageView) : makeSnapshotFromView(viewForAnnotation)
         
         var cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
         cell.imageView.hidden = true
@@ -37,13 +40,24 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
         
         UIView.animateWithDuration(duration, animations: {
             fromViewController.view.alpha = 0.0
-            imageSnapshot.frame = containerView.convertRect(cell.imageView.frame, fromView: cell.imageView.superview)
+            self.imageSnapshot.frame = self.containerView.convertRect(cell.imageView.frame, fromView: cell.imageView.superview)
             }, completion: {(finished: Bool) in
-                imageSnapshot.removeFromSuperview()
+                self.imageSnapshot.removeFromSuperview()
                 fromViewController.imageView.hidden = false
                 cell.imageView.hidden = false
                 
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
         })
+    }
+    
+    func makeSnapshotFromView(view: UIView) {
+        if view is MKAnnotationView {
+            imageSnapshot = view.snapshotViewAfterScreenUpdates(false)
+        } else {
+            imageSnapshot = view.snapshotViewAfterScreenUpdates(true)
+        }
+        imageSnapshot.frame = containerView.convertRect(view.frame, fromView: view.superview)
+        view.hidden = true
+        view.removeFromSuperview()
     }
 }
