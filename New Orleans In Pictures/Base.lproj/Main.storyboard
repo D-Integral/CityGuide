@@ -168,15 +168,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqO-Ss-c2H" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
-                                                    <rect key="frame" x="115.5" y="0.0" width="144" height="50"/>
+                                                    <rect key="frame" x="74.5" y="0.0" width="230" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="144" id="3aA-7j-xqv"/>
+                                                        <constraint firstAttribute="width" constant="230" id="3aA-7j-xqv"/>
                                                         <constraint firstAttribute="height" constant="50" id="DwO-1T-UCf"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="rqO-Ss-c2H" secondAttribute="centerX" id="Ln9-3W-Ywl"/>
+                                                <constraint firstAttribute="centerX" secondItem="rqO-Ss-c2H" secondAttribute="centerX" constant="-2" id="Ln9-3W-Ywl"/>
                                                 <constraint firstAttribute="centerY" secondItem="rqO-Ss-c2H" secondAttribute="centerY" id="ynS-ib-a1h"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -222,7 +222,7 @@
                                                                 <constraint firstAttribute="width" constant="51" id="RR5-mj-wB7"/>
                                                                 <constraint firstAttribute="height" constant="31" id="vrE-El-Oii"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -268,7 +268,7 @@
                                                                 <constraint firstAttribute="height" constant="31" id="1sN-fX-D5L"/>
                                                                 <constraint firstAttribute="width" constant="51" id="MRI-EO-i9O"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

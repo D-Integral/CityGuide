@@ -15,6 +15,11 @@ extension GalleryVC {
             sortItemsByRouteDistances()
         }
         collectionView?.reloadData()
-        
     }
+    
+//    func userLocationChanged(tracker: LocationTracker) {
+//        locationTracker = tracker
+//        
+//        loadRoutes()
+//    }
 }

@@ -14,9 +14,10 @@ import CityKit
 
 protocol TableViewControllerDelegate {
     func pointOfInterestStateDidChange()
+    //func userLocationChanged(tracker: LocationTracker)
 }
 
-class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate {
+class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate/*, GalleryViewControllerDelegate*/ {
     
     struct Constants{
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
@@ -38,9 +39,9 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var pointOfInterest: PointOfInterest!
     var pointOfInterestAnnotation: MKAnnotation!
+    //var routeToPointOfInterest: MKRoute!
     
     var image: UIImage = UIImage()
-    var backgroundImage = "Texture_New_Orleans_1.png"
     
     var userLocation: MKUserLocation!
     
@@ -79,6 +80,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         self.setupLocationTracker()
         self.setupTableViewBackground()
         
+        locationDataView.distanceLabel.font = UIFont.boldSystemFontOfSize(22)
         locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
         
         self.mapViewSetup()
