@@ -13,8 +13,9 @@ extension GalleryVC {
     func routesReceived(routes: [String : MKRoute]) {
         routesToPointsOfInterest = routes
         sortItemsByRouteDistances()
-        
-        collectionView?.reloadData()
+        if navigationController?.visibleViewController == self {
+            collectionView?.reloadData()
+        }
     }
 }
 

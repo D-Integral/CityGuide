@@ -78,6 +78,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         
+        collectionView?.reloadData()
         locationTracker.startUpdating()
     }
     
