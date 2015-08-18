@@ -32,18 +32,6 @@ class LocationDataViewController: NSObject {
             locationDataView.compassImageView.hidden = true
     
         }
-        
-        
-        //setupBackgroundFor(locationDataView)
-        
-//        var distanceLabel = UILabel(frame: CGRectMake(locationDataView.bounds.origin.x, locationDataView.bounds.origin.y, locationDataView.bounds.width / 2, locationDataView.bounds.height))
-//        distanceLabel.backgroundColor = .blackColor()
-//        if let distance = routesReceiver.routes[pointOfInterest.name]?.distance {
-//            distanceLabel.text = DistanceFormatter.formatted(distance)
-//        }
-//        locationDataView.addSubview(distanceLabel)
-        
-        
     }
     
     //MARK: Private helper methods
@@ -58,7 +46,7 @@ class LocationDataViewController: NSObject {
         angleCalculator.locationTracker = locationTracker
         let compassAngle = angleCalculator.angleToLocation(pointOfInterest)
         UIView.animateWithDuration(1, animations: {
-            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(compassAngle))
+            imageView.transform = CGAffineTransformMakeRotation(/*-*/CGFloat(compassAngle))
             }, completion: nil)
     }
 }

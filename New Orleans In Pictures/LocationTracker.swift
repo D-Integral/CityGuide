@@ -78,6 +78,11 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         currentHeading = newHeading
         delegate?.headingUpdated(self)
     }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+        currentLocation = newLocation
+        delegate?.locationUpdated(self)
+    }
 }
 
 
