@@ -17,29 +17,28 @@ let headerReuseIdentifier = "standardHeader"
 
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, TableViewControllerDelegate {
     
+    //MARK: Constants
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 220.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
-    
     let headerTexts = ["I Want To See", "What To See", "Already Seen"]
+    
     
     var city: City! {
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
-    
-    var locationDataVC = LocationDataViewController()
     
     //MARK: CollectionView source
     
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
     var unchecked: [PointOfInterest]!
-    
     var routesToPointsOfInterest = [String : MKRoute]()
     
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
     var locationTracker: LocationTracker!
+    var locationDataVC = LocationDataViewController()
     
     func sortItemsByRouteDistances() {
         wantToSee = sorted(city.wantToSeeSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
@@ -118,6 +117,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
         tableVC.delegate = self
+        tableVC.city = self.city
         tableVC.pointOfInterest = pointForIndexPath(indexPath)
         tableVC.selectedCellIndexPath = indexPath
         tableVC.image = cell.imageView.image!

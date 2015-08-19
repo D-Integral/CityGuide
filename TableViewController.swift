@@ -22,6 +22,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
     }
     
+    var city: City!
+    
     var shoudRotate = true
     
     var delegate: TableViewControllerDelegate?
