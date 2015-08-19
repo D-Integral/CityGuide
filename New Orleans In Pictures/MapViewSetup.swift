@@ -59,6 +59,7 @@ extension TableViewController {
     }
     
     func showRoute() {
+        removePreviousRoute()
         let route = locationDataVC.routesReceiver.routes[pointOfInterest.name]
         if route != nil {
             mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads)
@@ -106,6 +107,11 @@ extension TableViewController {
     func setupRegionSpan(inout region: MKCoordinateRegion) {
         region.span.latitudeDelta = fabs(topLeftMapPoint().latitude - bottomRightMapPoint().latitude) * 1.7
         region.span.longitudeDelta = fabs(bottomRightMapPoint().longitude - topLeftMapPoint().longitude) * 1.7
+    }
+    
+    func removePreviousRoute() {
+        let overlays = mapView.overlays as? [MKOverlay]
+        mapView.removeOverlays(overlays)
     }
 }
 

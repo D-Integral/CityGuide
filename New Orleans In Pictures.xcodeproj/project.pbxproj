@@ -37,6 +37,7 @@
 		9873E0011B288836008FE5EF /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0001B288836008FE5EF /* Coordinates.swift */; };
 		9873E0031B288837008FE5EF /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0021B288837008FE5EF /* PointOfInterest.swift */; };
 		9873E0051B288837008FE5EF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0041B288837008FE5EF /* City.swift */; };
+		C00A51B91B84665F005A87F3 /* RoutesReceiverFetchedRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00A51B81B84665F005A87F3 /* RoutesReceiverFetchedRoute.swift */; };
 		C0166E0B1B749735004AE775 /* ViewForLocationData.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0166E0A1B749735004AE775 /* ViewForLocationData.xib */; };
 		C0166E0D1B7497B5004AE775 /* ViewForLocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0166E0C1B7497B5004AE775 /* ViewForLocationData.swift */; };
 		C0166E0E1B7498BD004AE775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE31AEA2BC60032F74D /* Main.storyboard */; };
@@ -75,7 +76,6 @@
 		C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
 		C0D0984C1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */; };
 		C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
-		C0F383651B83784A00CA9B48 /* GalleryViewContollerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F383641B83784A00CA9B48 /* GalleryViewContollerDelegate.swift */; };
 		C0F84C271B2F0A3700A7B1B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -190,6 +190,7 @@
 		9873E0021B288837008FE5EF /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		9873E0041B288837008FE5EF /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		98ECD7B91B272CF400FF8D3F /* New Orleans In Pictures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "New Orleans In Pictures.entitlements"; sourceTree = "<group>"; };
+		C00A51B81B84665F005A87F3 /* RoutesReceiverFetchedRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesReceiverFetchedRoute.swift; sourceTree = "<group>"; };
 		C0166E0A1B749735004AE775 /* ViewForLocationData.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewForLocationData.xib; sourceTree = "<group>"; };
 		C0166E0C1B7497B5004AE775 /* ViewForLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForLocationData.swift; sourceTree = "<group>"; };
 		C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateFlowLayout.swift; sourceTree = "<group>"; };
@@ -221,7 +222,6 @@
 		C0D098471B2178F600D379F1 /* Texture_New_Orleans_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_1.png; sourceTree = "<group>"; };
 		C0D098481B2178F600D379F1 /* Texture_New_Orleans_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Texture_New_Orleans_2.png; sourceTree = "<group>"; };
 		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
-		C0F383641B83784A00CA9B48 /* GalleryViewContollerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewContollerDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,7 +512,7 @@
 				C0B2E5B21B5D2B26005FCEE8 /* Animations.swift */,
 				C0B2E5AC1B5D2A7C005FCEE8 /* MapViewSetup.swift */,
 				C0B2E5AF1B5D2AEF005FCEE8 /* TableViewSetup.swift */,
-				C0F383641B83784A00CA9B48 /* GalleryViewContollerDelegate.swift */,
+				C00A51B81B84665F005A87F3 /* RoutesReceiverFetchedRoute.swift */,
 			);
 			name = TableViewController;
 			sourceTree = "<group>";
@@ -809,12 +809,12 @@
 				C0448EB91B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */,
 				8CE2CADD1AEA2BC60032F74D /* AppDelegate.swift in Sources */,
 				C0166E0D1B7497B5004AE775 /* ViewForLocationData.swift in Sources */,
-				C0F383651B83784A00CA9B48 /* GalleryViewContollerDelegate.swift in Sources */,
 				C0B2E59F1B5D259C005FCEE8 /* CellSetup.swift in Sources */,
 				C0B2E5941B5D22AE005FCEE8 /* LocationTrackerDelegate.swift in Sources */,
 				C095C0EE1B592EB300448FDC /* RoutesReceiver.swift in Sources */,
 				C0B2E5AD1B5D2A7C005FCEE8 /* MapViewSetup.swift in Sources */,
 				C048DFAE1B41374800735395 /* Coordinate Converter.swift in Sources */,
+				C00A51B91B84665F005A87F3 /* RoutesReceiverFetchedRoute.swift in Sources */,
 				8CE2CB001AEA2D6B0032F74D /* GalleryVC.swift in Sources */,
 				C0B2E5A81B5D28BB005FCEE8 /* DataSource.swift in Sources */,
 				C048DFBB1B418F4000735395 /* AngleCalculator.swift in Sources */,

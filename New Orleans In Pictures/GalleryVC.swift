@@ -15,10 +15,6 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-//protocol GalleryViewControllerDelegate {
-//    func routesReceived(routes: [String : MKRoute])
-//}
-
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, TableViewControllerDelegate {
     
     struct Constants {
@@ -31,8 +27,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var city: City! {
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
-    
-    //var delegate: GalleryViewControllerDelegate?
     
     var locationDataVC = LocationDataViewController()
     
@@ -58,6 +52,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     }
     
     //MARK: - Lifecycle
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

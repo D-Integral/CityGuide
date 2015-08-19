@@ -32,9 +32,8 @@ extension TableViewController {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        //delegate?.userLocationChanged(locationTracker)
-        
-        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+        routeReceiver.userLocation = locationTracker.currentLocation
+        routeReceiver.requestRouteTo(self.pointOfInterest)
     }
     
     func headingUpdated(tracker: LocationTracker) {

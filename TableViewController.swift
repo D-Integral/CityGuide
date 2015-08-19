@@ -14,10 +14,9 @@ import CityKit
 
 protocol TableViewControllerDelegate {
     func pointOfInterestStateDidChange()
-    //func userLocationChanged(tracker: LocationTracker)
 }
 
-class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate/*, GalleryViewControllerDelegate*/ {
+class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
     
     struct Constants{
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
@@ -39,7 +38,6 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var pointOfInterest: PointOfInterest!
     var pointOfInterestAnnotation: MKAnnotation!
-    //var routeToPointOfInterest: MKRoute!
     
     var image: UIImage = UIImage()
     
@@ -63,6 +61,8 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var locationDataVC = LocationDataViewController()
     
+    var routeReceiver = RoutesReceiver.sharedRoutesReceiver
+    
     func reloadData() {
         locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
     }
@@ -78,6 +78,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
         
         self.title = pointOfInterest.name
         self.setupLocationTracker()
+        routeReceiver.delegateForRoute = self
         self.setupTableViewBackground()
         
         locationDataView.distanceLabel.font = UIFont.boldSystemFontOfSize(22)

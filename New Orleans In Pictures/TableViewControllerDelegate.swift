@@ -16,10 +16,4 @@ extension GalleryVC {
         }
         collectionView?.reloadData()
     }
-    
-//    func userLocationChanged(tracker: LocationTracker) {
-//        locationTracker = tracker
-//        
-//        loadRoutes()
-//    }
 }

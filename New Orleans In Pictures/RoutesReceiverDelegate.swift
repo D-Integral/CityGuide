@@ -16,8 +16,6 @@ extension GalleryVC {
         if navigationController?.visibleViewController == self {
             collectionView?.reloadData()
         }
-        
-        //delegate?.routesReceived(routes)
     }
 }
 
