@@ -95,7 +95,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         locationTracker.stopUpdating()
     }
     
-    func pointForIndexPath(indexPath: NSIndexPath) -> PointOfInterest? {
+    func pointAtIndexPath(indexPath: NSIndexPath) -> PointOfInterest? {
         switch indexPath.section {
         case 0: return wantToSee[indexPath.row]
         case 1: return unchecked[indexPath.row]
@@ -108,13 +108,13 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         let detailVC = segue.destinationViewController as! DetailViewController
         var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
-        var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
-        var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
+        var selectedItemIndexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
+        var cell = self.collectionView?.cellForItemAtIndexPath(selectedItemIndexPath) as! PictureCell
         
         detailVC.delegate = self
         detailVC.city = self.city
-        detailVC.pointOfInterest = pointForIndexPath(indexPath)
-        detailVC.selectedCellIndexPath = indexPath
+        detailVC.pointOfInterest = pointAtIndexPath(selectedItemIndexPath)
+        detailVC.selectedCellIndexPath = selectedItemIndexPath
         detailVC.image = cell.imageView.image!
     }
     

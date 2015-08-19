@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="242.5" y="460.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="Xpf-Bf-1lv">
             <objects>
-                <tableViewController id="yLL-KC-aSf" customClass="TableViewController" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="yLL-KC-aSf" customClass="DetailViewController" customModule="New_Orleans_In_Pictures" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xnA-0c-ibR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
