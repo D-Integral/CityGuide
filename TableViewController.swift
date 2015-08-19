@@ -56,21 +56,29 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addPopRecognizer()
+        setupInterface()
+        
+        self.setupLocationTracker()
+        routeReceiver.delegateForRoute = self
+        
+        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
+        
+        mapViewSetup()
+        showSelectedSightAnnotation()
+    }
+    
+    func addPopRecognizer() {
         var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
-        
-        self.title = pointOfInterest.name
-        self.setupLocationTracker()
-        routeReceiver.delegateForRoute = self
-        self.setupTableViewBackground()
-        
+    }
+    
+    func setupInterface() {
+        title = pointOfInterest.name
+        setupTableViewBackground()
         locationDataView.distanceLabel.font = UIFont.boldSystemFontOfSize(22)
-        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
-        
-        self.mapViewSetup()
-        self.showSelectedSightAnnotation()
-        self.initialSwitchesSetup()
+        initialSwitchesSetup()
     }
     
     func setupLocationTracker() {
