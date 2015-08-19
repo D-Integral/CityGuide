@@ -29,7 +29,7 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
         var annotation = fromViewController.pointOfInterestAnnotation
         var viewForAnnotation = fromViewController.mapView.viewForAnnotation(annotation)
         
-        viewForAnnotation == nil ? makeSnapshotFromView(fromViewController.imageView) : makeSnapshotFromView(viewForAnnotation)
+        viewForAnnotation == nil ? makeSnapshotFromView(fromViewController.imageViewForAnimation) : makeSnapshotFromView(viewForAnnotation)
         
         var cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
         cell.imageView.hidden = true
@@ -43,7 +43,7 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
             self.imageSnapshot.frame = self.containerView.convertRect(cell.imageView.frame, fromView: cell.imageView.superview)
             }, completion: {(finished: Bool) in
                 self.imageSnapshot.removeFromSuperview()
-                fromViewController.imageView.hidden = false
+                fromViewController.imageViewForAnimation.hidden = false
                 cell.imageView.hidden = false
                 
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())

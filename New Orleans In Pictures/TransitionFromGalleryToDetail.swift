@@ -31,7 +31,7 @@ class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitio
         
         toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
         toViewController.view.alpha = 0
-        toViewController.imageView.hidden = true
+        toViewController.imageViewForAnimation.hidden = true
         
         containerView.addSubview(toViewController.view)
         containerView.addSubview(cellImageSnapshot)
@@ -41,12 +41,12 @@ class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitio
             toViewController.view.alpha = 1.0
             
             //move snapshot to DetailVC.imageView
-            var frame = containerView.convertRect(toViewController.imageView.frame, fromView: toViewController.view)
+            var frame = containerView.convertRect(toViewController.imageViewForAnimation.frame, fromView: toViewController.view)
             cellImageSnapshot.frame =  frame
             
             }, completion: {(finished: Bool) in
                 
-                toViewController.imageView.hidden = false
+                toViewController.imageViewForAnimation.hidden = false
                 cell.hidden = false
                 cellImageSnapshot.removeFromSuperview()
                 

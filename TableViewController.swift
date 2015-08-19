@@ -18,56 +18,38 @@ protocol DetailViewControllerDelegate {
 
 class DetailViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
     
+    //MARK: Data
     struct Constants{
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
     }
-    
     var city: City!
+    var pointOfInterest: PointOfInterest!
+    var pointOfInterestAnnotation: MKAnnotation!
+    var image: UIImage = UIImage()
+    var userLocation: MKUserLocation!
+    var selectedCellIndexPath: NSIndexPath!
+    var destination: MKMapItem? {
+        var placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
+        return MKMapItem(placemark: placemark)
+    }
+    var locationTracker: LocationTracker!
+    var locationDataVC = LocationDataViewController()
+    var routeReceiver = RoutesReceiver.sharedRoutesReceiver
     
+    //MARK: Interface
     var shoudRotate = true
-    
-    var delegate: DetailViewControllerDelegate?
-    
     var initialWantToSeeSwitchState: Bool!
     var initialAlreadySeenSwitchState: Bool!
-    
     @IBOutlet weak var locationDataView: ViewForLocationData!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var wantSeeSwitch: UISwitch!
     @IBOutlet weak var seenSwitch: UISwitch!
-    var imageView: UIImageView!
-    
-    var pointOfInterest: PointOfInterest!
-    var pointOfInterestAnnotation: MKAnnotation!
-    
-    var image: UIImage = UIImage()
-    
-    var userLocation: MKUserLocation!
-    
-    //create class ConverterToMKMapItem and make refactoring
-    var destination: MKMapItem? {
-        var placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
-        return MKMapItem(placemark: placemark)
-    }
+    var imageViewForAnimation: UIImageView!
     
     var interactivePopTransition: UIPercentDrivenInteractiveTransition!
     
-    var selectedCellIndexPath: NSIndexPath!
-    
-    var locationTracker: LocationTracker! {
-        didSet {
-            reloadData()
-        }
-    }
-    
-    var locationDataVC = LocationDataViewController()
-    
-    var routeReceiver = RoutesReceiver.sharedRoutesReceiver
-    
-    func reloadData() {
-        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
-    }
+    var delegate: DetailViewControllerDelegate?
     
     //MARK: Lifecycle
     
@@ -108,9 +90,9 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         let x: CGFloat = (self.view.frame.size.width - 150) / 2
         let y: CGFloat = (self.mapView.frame.height - 150) / 2
         let frame = CGRectMake(x, y, 150, 150)
-        imageView = UIImageView(frame: frame)
-        imageView.image = self.image
-        self.view.addSubview(imageView)
+        imageViewForAnimation = UIImageView(frame: frame)
+        imageViewForAnimation.image = self.image
+        self.view.addSubview(imageViewForAnimation)
     }
     
     func initialSwitchesSetup() {
@@ -132,7 +114,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = false
-        self.imageView.removeFromSuperview()
+        self.imageViewForAnimation.removeFromSuperview()
     }
     
     override func viewWillDisappear(animated: Bool) {
