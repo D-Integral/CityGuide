@@ -43,8 +43,8 @@
 		C0166E0E1B7498BD004AE775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE31AEA2BC60032F74D /* Main.storyboard */; };
 		C01F5EDF1B5F765C00C8A0D3 /* DelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */; };
 		C02D94A71B331A000010A05D /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D94A61B331A000010A05D /* arrow_up.png */; };
-		C03A69641B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */; };
-		C03A69651B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */; };
+		C03A69641B31B4E200DD2CD5 /* NewOrleansEdges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* NewOrleansEdges.plist */; };
+		C03A69651B31B4E200DD2CD5 /* NewOrleansEdges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* NewOrleansEdges.plist */; };
 		C0448EB91B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */; };
 		C048DFAE1B41374800735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
 		C048DFB01B41430A00735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
@@ -52,8 +52,8 @@
 		C048DFB51B41556A00735395 /* DistanceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFB41B41556A00735395 /* DistanceFormatter.swift */; };
 		C048DFBB1B418F4000735395 /* AngleCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFBA1B418F4000735395 /* AngleCalculator.swift */; };
 		C04918261B26EC1200638F90 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04918251B26EC1200638F90 /* LocationTracker.swift */; };
-		C064E6741B412064007CDFD3 /* NewOrleanData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C064E6731B412064007CDFD3 /* NewOrleanData.plist */; };
-		C064E6751B412064007CDFD3 /* NewOrleanData.plist in Resources */ = {isa = PBXBuildFile; fileRef = C064E6731B412064007CDFD3 /* NewOrleanData.plist */; };
+		C064E6741B412064007CDFD3 /* NewOrleansPointsOfInterest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C064E6731B412064007CDFD3 /* NewOrleansPointsOfInterest.plist */; };
+		C064E6751B412064007CDFD3 /* NewOrleansPointsOfInterest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C064E6731B412064007CDFD3 /* NewOrleansPointsOfInterest.plist */; };
 		C07759001B159FBA00F76ECA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07758FF1B159FBA00F76ECA /* MapKit.framework */; };
 		C07759081B15A4EF00F76ECA /* SightAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07759071B15A4EF00F76ECA /* SightAnnotation.swift */; };
 		C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
@@ -195,13 +195,13 @@
 		C0166E0C1B7497B5004AE775 /* ViewForLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForLocationData.swift; sourceTree = "<group>"; };
 		C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateFlowLayout.swift; sourceTree = "<group>"; };
 		C02D94A61B331A000010A05D /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
-		C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanEdges.plist; sourceTree = "<group>"; };
+		C03A69631B31B4E200DD2CD5 /* NewOrleansEdges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleansEdges.plist; sourceTree = "<group>"; };
 		C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenOrientationsForVC.swift; sourceTree = "<group>"; };
 		C048DFAD1B41374800735395 /* Coordinate Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate Converter.swift"; path = "../New Orleans In Pictures/Coordinate Converter.swift"; sourceTree = "<group>"; };
 		C048DFB41B41556A00735395 /* DistanceFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
 		C048DFBA1B418F4000735395 /* AngleCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngleCalculator.swift; sourceTree = "<group>"; };
 		C04918251B26EC1200638F90 /* LocationTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
-		C064E6731B412064007CDFD3 /* NewOrleanData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleanData.plist; sourceTree = "<group>"; };
+		C064E6731B412064007CDFD3 /* NewOrleansPointsOfInterest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewOrleansPointsOfInterest.plist; sourceTree = "<group>"; };
 		C07758FF1B159FBA00F76ECA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C07759071B15A4EF00F76ECA /* SightAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotation.swift; sourceTree = "<group>"; };
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
@@ -407,7 +407,8 @@
 				9873DFB61B27AA7E008FE5EF /* CoreDataStack.swift */,
 				9873DFF71B27D58C008FE5EF /* Objects */,
 				9873DFF81B27D5B9008FE5EF /* Managing Objects */,
-				C064E6731B412064007CDFD3 /* NewOrleanData.plist */,
+				C064E6731B412064007CDFD3 /* NewOrleansPointsOfInterest.plist */,
+				C03A69631B31B4E200DD2CD5 /* NewOrleansEdges.plist */,
 				9873DF8F1B27A9A3008FE5EF /* CityKit.h */,
 				9873DF8D1B27A9A3008FE5EF /* Supporting Files */,
 			);
@@ -418,7 +419,6 @@
 			isa = PBXGroup;
 			children = (
 				8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */,
-				C03A69631B31B4E200DD2CD5 /* NewOrleanEdges.plist */,
 				9873DF8E1B27A9A3008FE5EF /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -731,10 +731,10 @@
 				C0D0984B1B2178F600D379F1 /* Texture_New_Orleans_2.png in Resources */,
 				C0F84C271B2F0A3700A7B1B1 /* Images.xcassets in Resources */,
 				8CE2CAE51AEA2BC60032F74D /* Main.storyboard in Resources */,
-				C064E6741B412064007CDFD3 /* NewOrleanData.plist in Resources */,
+				C064E6741B412064007CDFD3 /* NewOrleansPointsOfInterest.plist in Resources */,
 				C0166E0B1B749735004AE775 /* ViewForLocationData.xib in Resources */,
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
-				C03A69641B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */,
+				C03A69641B31B4E200DD2CD5 /* NewOrleansEdges.plist in Resources */,
 				C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,9 +771,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C064E6751B412064007CDFD3 /* NewOrleanData.plist in Resources */,
+				C064E6751B412064007CDFD3 /* NewOrleansPointsOfInterest.plist in Resources */,
 				9873DFBA1B27B14B008FE5EF /* Images.xcassets in Resources */,
-				C03A69651B31B4E200DD2CD5 /* NewOrleanEdges.plist in Resources */,
+				C03A69651B31B4E200DD2CD5 /* NewOrleansEdges.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

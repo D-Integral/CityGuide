@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Aquarium</key>
+	<integer>123427588052636575</integer>
+	<key>Armstrong</key>
+	<integer>123441100019743609</integer>
+	<key>Audubon_Zoo</key>
+	<integer>123395478877064718</integer>
+	<key>Beauregard_House</key>
+	<integer>123438693764324514</integer>
+	<key>Besthoff</key>
+	<integer>123465417050807179</integer>
+	<key>Cabildo</key>
+	<integer>123435104245403897</integer>
+	<key>City_Park</key>
+	<integer>123486553658614949</integer>
+	<key>Fort_Pike</key>
+	<integer>123659083568991583</integer>
+	<key>French_Quater</key>
+	<integer>123435389860728327</integer>
+	<key>Garden_District</key>
+	<integer>123403869095723421</integer>
+	<key>Immaculate_Church</key>
+	<integer>123430582718575427</integer>
+	<key>Jackson_Square</key>
+	<integer>123434894865749168</integer>
+	<key>Jamie_Hayes_Gallery</key>
+	<integer>123434366584770416</integer>
+	<key>Jean_Lafitte</key>
+	<integer>123296317745866089</integer>
+	<key>Mardi_Gras</key>
+	<integer>123410206319991556</integer>
+	<key>Mississippi</key>
+	<integer>123414598997797718</integer>
+	<key>NOMA</key>
+	<integer>123466113909251369</integer>
+	<key>Preservation_Hall</key>
+	<integer>123435802177588045</integer>
+	<key>Saenger_Theatre</key>
+	<integer>123433389479702035</integer>
+	<key>Spotted_Cat</key>
+	<integer>123441957939472736</integer>
+	<key>St_Louis</key>
+	<integer>123435462875173259</integer>
+	<key>Streetcar</key>
+	<integer>123430235899967585</integer>
+	<key>Superdome</key>
+	<integer>123428031507991860</integer>
+	<key>Voodoo</key>
+	<integer>123437539491860801</integer>
+	<key>WWII_Museum</key>
+	<integer>123419434057218190</integer>
+</dict>
+</plist>
