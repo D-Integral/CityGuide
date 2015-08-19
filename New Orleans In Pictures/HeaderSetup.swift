@@ -18,7 +18,6 @@ extension GalleryVC {
         if UICollectionElementKindSectionHeader == kind
         {
             header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier, forIndexPath: indexPath) as? HeaderView
-            
             header.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
             header.backgroundColor = .clearColor()
             header.headerLabel.text = headerTexts[indexPath.section].lastPathComponent
@@ -28,15 +27,12 @@ extension GalleryVC {
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        var size: CGSize!
-        
+
         switch section {
-        case 0: size = (wantToSee.count == 0) ? CGSizeZero : Constants.headerSize
-        case 1: size = (unchecked.count == 0) ? CGSizeZero : Constants.headerSize
-        case 2: size = (alreadySeen.count == 0) ? CGSizeZero : Constants.headerSize
-        default: break
+        case 0: return (wantToSee.count == 0) ? CGSizeZero : Constants.headerSize
+        case 1: return (unchecked.count == 0) ? CGSizeZero : Constants.headerSize
+        case 2: return (alreadySeen.count == 0) ? CGSizeZero : Constants.headerSize
+        default: return CGSizeZero
         }
-        
-        return size
     }
 }
