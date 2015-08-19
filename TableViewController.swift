@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  DetailViewController.swift
 //  New Orleans In Pictures
 //
 //  Created by Alexander Nuzhniy on 28.05.15.
@@ -12,11 +12,11 @@ import CoreLocation
 import CoreData
 import CityKit
 
-protocol TableViewControllerDelegate {
+protocol DetailViewControllerDelegate {
     func pointOfInterestStateDidChange()
 }
 
-class TableViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
+class DetailViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
     
     struct Constants{
         static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
@@ -26,7 +26,7 @@ class TableViewController: UITableViewController, UINavigationControllerDelegate
     
     var shoudRotate = true
     
-    var delegate: TableViewControllerDelegate?
+    var delegate: DetailViewControllerDelegate?
     
     var initialWantToSeeSwitchState: Bool!
     var initialAlreadySeenSwitchState: Bool!

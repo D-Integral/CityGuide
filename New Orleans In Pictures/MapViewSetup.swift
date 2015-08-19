@@ -8,7 +8,7 @@
 
 import MapKit
 
-extension TableViewController {
+extension DetailViewController {
     func mapViewSetup() {
         mapView.delegate = self
         mapView.showsUserLocation = true

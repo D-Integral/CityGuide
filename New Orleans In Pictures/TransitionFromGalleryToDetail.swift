@@ -17,7 +17,7 @@ class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitio
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
         var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! GalleryVC
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! TableViewController
+        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! DetailViewController
         
         var containerView = transitionContext.containerView()
         var duration = self.transitionDuration(transitionContext)

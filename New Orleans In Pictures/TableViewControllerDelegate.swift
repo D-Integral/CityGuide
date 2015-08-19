@@ -1,5 +1,5 @@
 //
-//  TableViewControllerDelegate.swift
+//  DetailViewControllerDelegate.swift
 //  New Orleans In Pictures
 //
 //  Created by Alexander Nuzhniy on 21.07.15.

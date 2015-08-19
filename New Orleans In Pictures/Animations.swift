@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension TableViewController {
+extension DetailViewController {
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if fromVC === self && toVC.isKindOfClass(GalleryVC) {

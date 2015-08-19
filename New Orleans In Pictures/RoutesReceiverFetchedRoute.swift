@@ -8,7 +8,7 @@
 import MapKit
 import CityKit
 
-extension TableViewController {
+extension DetailViewController {
     func routeReceived(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
         
         println("From TableVC RouteDelegate.\nRoute received for \(pointOfInterest.name): \(route.distance)")

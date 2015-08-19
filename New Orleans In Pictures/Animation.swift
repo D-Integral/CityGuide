@@ -11,7 +11,7 @@ import UIKit
 extension GalleryVC {
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if fromVC == self && toVC.isKindOfClass(TableViewController) {
+        if fromVC == self && toVC.isKindOfClass(DetailViewController) {
             return TransitionFromGalleryToDetail()
         } else {
             return nil

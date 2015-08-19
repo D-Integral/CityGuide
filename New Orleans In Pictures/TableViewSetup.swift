@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension TableViewController {
+extension DetailViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
     }

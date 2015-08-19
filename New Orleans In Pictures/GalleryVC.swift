@@ -15,7 +15,7 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, TableViewControllerDelegate {
+class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, DetailViewControllerDelegate {
     
     //MARK: Constants
     let appName = "New Orleans Compass"
@@ -106,16 +106,16 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let tableVC = segue.destinationViewController as! TableViewController
+        let detailVC = segue.destinationViewController as! DetailViewController
         var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
         var indexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
         var cell = self.collectionView?.cellForItemAtIndexPath(indexPath) as! PictureCell
         
-        tableVC.delegate = self
-        tableVC.city = self.city
-        tableVC.pointOfInterest = pointForIndexPath(indexPath)
-        tableVC.selectedCellIndexPath = indexPath
-        tableVC.image = cell.imageView.image!
+        detailVC.delegate = self
+        detailVC.city = self.city
+        detailVC.pointOfInterest = pointForIndexPath(indexPath)
+        detailVC.selectedCellIndexPath = indexPath
+        detailVC.image = cell.imageView.image!
     }
     
     func setBackgroundImage(image: UIImage) {

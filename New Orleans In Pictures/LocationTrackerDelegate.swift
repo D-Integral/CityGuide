@@ -28,7 +28,7 @@ extension GalleryVC {
     }
 }
 
-extension TableViewController {
+extension DetailViewController {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
