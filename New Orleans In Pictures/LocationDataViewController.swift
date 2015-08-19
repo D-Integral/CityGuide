@@ -19,10 +19,12 @@ class LocationDataViewController: NSObject {
     func adjustLocationDataView(inout locationDataView: ViewForLocationData, forPointOfInterest pointOfInterest: PointOfInterest, withLocationTracker locationTracker: LocationTracker) {
         
         setupBackgroundFor(locationDataView)
+        
         if let distance = routesReceiver.routes[pointOfInterest.name]?.distance {
             locationDataView.singleCompassImageView.hidden = true
             locationDataView.distanceLabel.hidden = false
             locationDataView.compassImageView.hidden = false
+            
             locationDataView.distanceLabel.text = DistanceFormatter.formatted(distance)
             rotateCompassImageView(locationDataView.compassImageView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
         } else {
@@ -30,7 +32,6 @@ class LocationDataViewController: NSObject {
             rotateCompassImageView(locationDataView.singleCompassImageView, toPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
             locationDataView.distanceLabel.hidden = true
             locationDataView.compassImageView.hidden = true
-    
         }
     }
     

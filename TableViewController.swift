@@ -37,7 +37,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     var routeReceiver = RoutesReceiver.sharedRoutesReceiver
     
     //MARK: Interface
-    var shoudRotate = true
+    var shoudScreenRotate = true
     var initialWantToSeeSwitchState: Bool!
     var initialAlreadySeenSwitchState: Bool!
     @IBOutlet weak var locationDataView: ViewForLocationData!
@@ -113,7 +113,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
-        shoudRotate = !shoudRotate
+        shoudScreenRotate = !shoudScreenRotate
 
         self.imageViewInitialize()
         self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = true        
@@ -165,7 +165,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     override func shouldAutorotate() -> Bool {
-        return shoudRotate
+        return shoudScreenRotate
     }
 }
 

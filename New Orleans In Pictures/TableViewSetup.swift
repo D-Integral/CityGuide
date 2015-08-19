@@ -22,17 +22,14 @@ extension DetailViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var height: CGFloat!
         
         switch indexPath.section {
-        case 0: height = self.tableView.frame.size.width
-        case 1: height = 50
-        case 2: height = heightForDescription()
-        case 3: height = 45
-        default: break
+        case 0: return self.tableView.frame.size.width
+        case 1: return 50
+        case 2: return heightForDescription()
+        case 3: return 45
+        default: return 0.0
         }
-        
-        return height
     }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -46,7 +43,7 @@ extension DetailViewController {
         frame.size.height = contentSize.height
         self.descriptionTextView.frame = frame
         
-        return frame.size.height + 20
+        return frame.size.height
     }
 }
 
