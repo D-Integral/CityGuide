@@ -18,6 +18,7 @@ let headerReuseIdentifier = "standardHeader"
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, TableViewControllerDelegate {
     
     //MARK: Constants
+    let appName = "New Orleans Compass"
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 220.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
@@ -44,7 +45,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         wantToSee = sorted(city.wantToSeeSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
         alreadySeen = sorted(city.alreadySeenSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
         unchecked = sorted(city.uncheckedSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
-        }
+    }
     
     func routeDistanceToPointOfInterest(pointOFInterest: PointOfInterest) -> CLLocationDistance {
         return routesToPointsOfInterest[pointOFInterest.name]!.distance
@@ -56,10 +57,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
-        self.title = "New Orleans Compass"
-        
         retrievePointsOfInterest()
         
+        self.title = appName
         self.clearsSelectionOnViewWillAppear = false
         self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
         
@@ -95,18 +95,13 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         locationTracker.stopUpdating()
     }
     
-    func pointForIndexPath(indexPath: NSIndexPath) -> PointOfInterest {
-        
-        var selectedObject: PointOfInterest!
-        
+    func pointForIndexPath(indexPath: NSIndexPath) -> PointOfInterest? {
         switch indexPath.section {
-        case 0: selectedObject = wantToSee[indexPath.row]
-        case 1: selectedObject = unchecked[indexPath.row]
-        case 2: selectedObject = alreadySeen[indexPath.row]
-        default: break
+        case 0: return wantToSee[indexPath.row]
+        case 1: return unchecked[indexPath.row]
+        case 2: return alreadySeen[indexPath.row]
+        default: return nil
         }
-        
-        return selectedObject
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
