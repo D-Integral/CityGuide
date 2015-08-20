@@ -69,8 +69,9 @@ extension DetailViewController {
     func isUserInTheCity() -> Bool {
         let userLongitude = userLocation.location.coordinate.longitude
         let userLatitude = userLocation.location.coordinate.latitude
+        let cityEdges = city.edges
         
-        return (userLongitude < Constants.cityEdges["right"] && userLongitude > Constants.cityEdges["left"] && userLatitude < Constants.cityEdges["top"] && userLatitude > Constants.cityEdges["bottom"]) ? true : false
+        return (userLongitude < cityEdges["right"]?.doubleValue && userLongitude > cityEdges["left"]?.doubleValue && userLatitude < cityEdges["top"]?.doubleValue && userLatitude > cityEdges["bottom"]?.doubleValue) ? true : false
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {

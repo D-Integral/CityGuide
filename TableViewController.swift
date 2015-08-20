@@ -19,9 +19,6 @@ protocol DetailViewControllerDelegate {
 class DetailViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
     
     //MARK: Data
-    struct Constants{
-        static let cityEdges = ["right" : -89.90, "left" : -90.29, "top" : 30.08, "bottom" : 29.82]
-    }
     var city: City!
     var pointOfInterest: PointOfInterest!
     var pointOfInterestAnnotation: MKAnnotation!
@@ -115,6 +112,8 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
         shoudScreenRotate = !shoudScreenRotate
 
+        routeReceiver.delegateForRoute = self
+        
         self.imageViewInitialize()
         self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = true        
     }

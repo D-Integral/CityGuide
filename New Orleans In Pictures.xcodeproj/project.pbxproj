@@ -396,8 +396,6 @@
 				9873DFB61B27AA7E008FE5EF /* CoreDataStack.swift */,
 				9873DFF71B27D58C008FE5EF /* Objects */,
 				9873DFF81B27D5B9008FE5EF /* Managing Objects */,
-				C064E6731B412064007CDFD3 /* NewOrleansPointsOfInterest.plist */,
-				C03A69631B31B4E200DD2CD5 /* NewOrleansEdges.plist */,
 				9873DF8F1B27A9A3008FE5EF /* CityKit.h */,
 				9873DF8D1B27A9A3008FE5EF /* Supporting Files */,
 			);
@@ -409,6 +407,8 @@
 			children = (
 				8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */,
 				9873DF8E1B27A9A3008FE5EF /* Info.plist */,
+				C064E6731B412064007CDFD3 /* NewOrleansPointsOfInterest.plist */,
+				C03A69631B31B4E200DD2CD5 /* NewOrleansEdges.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
