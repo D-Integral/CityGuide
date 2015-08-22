@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  New Orleans In Pictures
+
+  Created by Dmytro Skorokhod on 8/22/15.
+  Copyright (c) 2015 D Integralas. All rights reserved.
+*/
+
+Aquarium = "Aquarium";
+Armstrong = "Armstrong";
+Audubon_Zoo = "Audubon Zoo";
+Beauregard_House = "Beauregard House";
+Besthoff = "Besthoff";
+Cabildo = "Cabildo";
+City_Park = "City Park";
+Fort_Pike = "Fort Pike";
+French_Quater = "French Quater";
+Garden_District = "Garden District";
+Immaculate_Church = "Immaculate Church";
+Jackson_Square = "Jackson Square";
+Jamie_Hayes_Gallery = "Jamie Hayes Gallery";
+Jean_Lafitte = "Jean Lafitte";
+Mardi_Gras = "Mardi Gras";
+Mississippi = "Mississippi";
+NOMA = "NOMA";
+Preservation_Hall = "Preservation Hall";
+Saenger_Theatre = "Saenger Theatre";
+Spotted_Cat = "Spotted Cat";
+St_Louis = "St Louis";
+Streetcar = "Streetcar";
+Superdome = "Superdome";
+Voodoo = "Voodoo";
+WWII_Museum = "WWII Museum";

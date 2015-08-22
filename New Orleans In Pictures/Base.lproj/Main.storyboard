@@ -78,7 +78,7 @@
                             <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Orleans In Pictures" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxg-BI-zpI">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="New Orleans In Pictures" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxg-BI-zpI">
                                     <rect key="frame" x="96" y="14" width="185" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -149,7 +149,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqO-Ss-c2H" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
-                                                    <rect key="frame" x="74.5" y="0.0" width="230" height="50"/>
+                                                    <rect key="frame" x="75" y="0.0" width="230" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="230" id="3aA-7j-xqv"/>
                                                         <constraint firstAttribute="height" constant="50" id="DwO-1T-UCf"/>
@@ -173,7 +173,6 @@
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roe-1z-G6A">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="265"/>
-                                                    <string key="text">Here is a description for every point of interest, height of which is flexible according to its content. wc h vcjhw jchw rvjh wrjv ejrv ejfr vjew rjvw rj wjr jebr vjbew rjvbw rj wjrb jw rvjw rjv </string>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -196,7 +195,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tnh-0O-Ufg">
-                                                    <rect key="frame" x="136.5" y="7" width="102" height="31"/>
+                                                    <rect key="frame" x="137" y="7" width="102" height="31"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To See" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poG-of-ohT">
                                                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
@@ -242,7 +241,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0e4-IM-fJI">
-                                                    <rect key="frame" x="136.5" y="7" width="102" height="31"/>
+                                                    <rect key="frame" x="137" y="7" width="102" height="31"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4VG-84-trE">
                                                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>

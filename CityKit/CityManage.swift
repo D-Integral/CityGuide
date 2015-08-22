@@ -60,7 +60,7 @@ extension City {
     }
     
     private class func cityEdges() -> [String : NSNumber] {
-        let filePath = cityKitBundle()?.pathForResource("NewOrleansEdges", ofType: "plist")
+        let filePath = cityKitBundle()?.pathForResource("Edges", ofType: "plist")
         let dictionary = NSDictionary(contentsOfFile: filePath!)
         
         var returnDictionary = [String : NSNumber]()
@@ -72,7 +72,7 @@ extension City {
     }
     
     private class func packedPointsOfInterest() -> [String : NSNumber] {
-        let filePath = cityKitBundle()?.pathForResource("NewOrleansPointsOfInterest", ofType: "plist")
+        let filePath = cityKitBundle()?.pathForResource("PointsOfInterest", ofType: "plist")
         let dictionary = NSDictionary(contentsOfFile: filePath!)
         return dictionary as! [String : NSNumber]
     }

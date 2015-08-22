@@ -25,7 +25,7 @@ extension GalleryVC {
 
     func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
-        cell.nameLabel.text = point.name
+        cell.nameLabel.text = NSLocalizedString(point.name, comment: point.name)
     
         locationDataVC.adjustLocationDataView(&cell.locationDataView!, forPointOfInterest: point, withLocationTracker: locationTracker)
     }
