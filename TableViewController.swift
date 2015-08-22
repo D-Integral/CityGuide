@@ -72,7 +72,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     func setupInterface() {
-        title = pointOfInterest.name
+        title = NSLocalizedString(pointOfInterest.name, comment: pointOfInterest.name)
         setupTableViewBackground()
         locationDataView.distanceLabel.font = UIFont.boldSystemFontOfSize(22)
         initialSwitchesSetup()
