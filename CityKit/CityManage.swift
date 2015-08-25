@@ -36,7 +36,6 @@ extension City {
         let newCity = City(entity: entityDescription!, insertIntoManagedObjectContext: context)
         newCity.name = name
         loadPointsOfInterestForCity(newCity)
-        loadEdgesForCity(newCity)
         CoreDataStack.sharedInstance.saveContext()
         return newCity
     }
@@ -53,22 +52,6 @@ extension City {
                 pointOfInterest.planned = NSNumber(bool: false)
             }
         }
-    }
-    
-    private class func loadEdgesForCity(city: City) {
-        city.edges = cityEdges()
-    }
-    
-    private class func cityEdges() -> [String : NSNumber] {
-        let filePath = cityKitBundle()?.pathForResource("Edges", ofType: "plist")
-        let dictionary = NSDictionary(contentsOfFile: filePath!)
-        
-        var returnDictionary = [String : NSNumber]()
-        for (key, value) in dictionary as! [String : String] {
-            returnDictionary[key] = NSNumber(double: (value as NSString).doubleValue)
-        }
-        
-        return returnDictionary
     }
     
     private class func packedPointsOfInterest() -> [String : NSNumber] {

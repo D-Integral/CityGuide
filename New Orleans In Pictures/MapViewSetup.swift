@@ -50,7 +50,9 @@ extension DetailViewController {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.userLocation = userLocation
-        isUserInTheCity() ? showRouteInOptimalRegion() : showSelectedSightAnnotation()
+        removePreviousRouteFrom(mapView)
+        removePreviousRouteFrom(self.mapView)
+        showRouteInOptimalRegion()
     }
     
     func showRouteInOptimalRegion() {
@@ -59,19 +61,11 @@ extension DetailViewController {
     }
     
     func showRoute() {
-        removePreviousRoute()
+        removePreviousRouteFrom(self.mapView)
         let route = locationDataVC.routesReceiver.routes[pointOfInterest.name]
         if route != nil {
             mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads)
         }
-    }
-    
-    func isUserInTheCity() -> Bool {
-        let userLongitude = userLocation.location.coordinate.longitude
-        let userLatitude = userLocation.location.coordinate.latitude
-        let cityEdges = city.edges
-        
-        return (userLongitude < cityEdges["right"]?.doubleValue && userLongitude > cityEdges["left"]?.doubleValue && userLatitude < cityEdges["top"]?.doubleValue && userLatitude > cityEdges["bottom"]?.doubleValue) ? true : false
     }
     
     func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
@@ -110,7 +104,7 @@ extension DetailViewController {
         region.span.longitudeDelta = fabs(bottomRightMapPoint().longitude - topLeftMapPoint().longitude) * 1.7
     }
     
-    func removePreviousRoute() {
+    func removePreviousRouteFrom(mapView: MKMapView) {
         let overlays = mapView.overlays as? [MKOverlay]
         mapView.removeOverlays(overlays)
     }

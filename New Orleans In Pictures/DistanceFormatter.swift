@@ -14,7 +14,7 @@ class DistanceFormatter {
     }
     
     private class func formattedInKilometers(distance: CLLocationDistance) -> String {
-        return distance < 99999 ? (String(format: "%.1f", distance / 1000) + " km") : "More 100 km"
+        return String(format: "%.1f", distance / 1000) + " km"
     }
     
     private class func formattedInMeters(distance: CLLocationDistance) -> String {

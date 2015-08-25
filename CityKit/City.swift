@@ -17,7 +17,6 @@ public class City: NSManagedObject {
     
     @NSManaged public var name: String
     @NSManaged public var pointsOfInterest: NSSet
-    @NSManaged public var edges: [String : NSNumber]
 }
 
 
