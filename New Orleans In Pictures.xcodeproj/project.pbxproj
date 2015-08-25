@@ -47,8 +47,6 @@
 		C0166E0E1B7498BD004AE775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE31AEA2BC60032F74D /* Main.storyboard */; };
 		C01F5EDF1B5F765C00C8A0D3 /* DelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */; };
 		C02D94A71B331A000010A05D /* arrow_up.png in Resources */ = {isa = PBXBuildFile; fileRef = C02D94A61B331A000010A05D /* arrow_up.png */; };
-		C03A69641B31B4E200DD2CD5 /* Edges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* Edges.plist */; };
-		C03A69651B31B4E200DD2CD5 /* Edges.plist in Resources */ = {isa = PBXBuildFile; fileRef = C03A69631B31B4E200DD2CD5 /* Edges.plist */; };
 		C0448EB91B7236A700496E62 /* ScreenOrientationsForVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */; };
 		C048DFAE1B41374800735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
 		C048DFB01B41430A00735395 /* Coordinate Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C048DFAD1B41374800735395 /* Coordinate Converter.swift */; };
@@ -185,7 +183,6 @@
 		C0166E0C1B7497B5004AE775 /* ViewForLocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewForLocationData.swift; sourceTree = "<group>"; };
 		C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateFlowLayout.swift; sourceTree = "<group>"; };
 		C02D94A61B331A000010A05D /* arrow_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_up.png; sourceTree = "<group>"; };
-		C03A69631B31B4E200DD2CD5 /* Edges.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Edges.plist; sourceTree = "<group>"; };
 		C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenOrientationsForVC.swift; sourceTree = "<group>"; };
 		C048DFAD1B41374800735395 /* Coordinate Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Coordinate Converter.swift"; path = "../New Orleans In Pictures/Coordinate Converter.swift"; sourceTree = "<group>"; };
 		C048DFB41B41556A00735395 /* DistanceFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceFormatter.swift; sourceTree = "<group>"; };
@@ -401,7 +398,6 @@
 				8CE2CADE1AEA2BC60032F74D /* New_Orleans_In_Pictures.xcdatamodeld */,
 				9873DF8E1B27A9A3008FE5EF /* Info.plist */,
 				C064E6731B412064007CDFD3 /* PointsOfInterest.plist */,
-				C03A69631B31B4E200DD2CD5 /* Edges.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -716,7 +712,6 @@
 				B7AEE4A71B88CEE500FAD115 /* Localizable.strings in Resources */,
 				C0166E0B1B749735004AE775 /* ViewForLocationData.xib in Resources */,
 				8CE2CAEA1AEA2BC60032F74D /* LaunchScreen.xib in Resources */,
-				C03A69641B31B4E200DD2CD5 /* Edges.plist in Resources */,
 				C0D098491B2178F600D379F1 /* Texture_New_Orleans_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,7 +754,6 @@
 				C064E6751B412064007CDFD3 /* PointsOfInterest.plist in Resources */,
 				B7AEE4AB1B88CEE500FAD115 /* Localizable.strings in Resources */,
 				9873DFBA1B27B14B008FE5EF /* Images.xcassets in Resources */,
-				C03A69651B31B4E200DD2CD5 /* Edges.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

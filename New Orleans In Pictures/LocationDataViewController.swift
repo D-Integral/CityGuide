@@ -46,8 +46,8 @@ class LocationDataViewController: NSObject {
         
         angleCalculator.locationTracker = locationTracker
         let compassAngle = angleCalculator.angleToLocation(pointOfInterest)
-        UIView.animateWithDuration(1, animations: {
-            imageView.transform = CGAffineTransformMakeRotation(/*-*/CGFloat(compassAngle))
+        UIView.animateWithDuration(0.3, animations: {
+            imageView.transform = CGAffineTransformMakeRotation(-CGFloat(compassAngle))
             }, completion: nil)
     }
 }
