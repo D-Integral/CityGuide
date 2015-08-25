@@ -34,6 +34,7 @@ extension DetailViewController {
         locationTracker = tracker
         
         routeReceiver.userLocation = locationTracker.currentLocation
+        routeReceiver.routes[self.pointOfInterest.name] = nil
         routeReceiver.requestRouteTo(self.pointOfInterest)
     }
     

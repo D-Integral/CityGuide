@@ -49,9 +49,8 @@ extension DetailViewController {
     }
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
-        self.userLocation = userLocation
         removePreviousRouteFrom(mapView)
-        removePreviousRouteFrom(self.mapView)
+        self.userLocation = userLocation
         showRouteInOptimalRegion()
     }
     
@@ -61,7 +60,6 @@ extension DetailViewController {
     }
     
     func showRoute() {
-        removePreviousRouteFrom(self.mapView)
         let route = locationDataVC.routesReceiver.routes[pointOfInterest.name]
         if route != nil {
             mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads)
