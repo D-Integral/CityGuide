@@ -39,8 +39,8 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     private func setupLocationManager() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 100.0
-        locationManager.headingFilter = 30
+        locationManager.distanceFilter = 10.0//100.0
+        locationManager.headingFilter = 1//30
         locationManager.delegate = self
         startUpdating()
     }
