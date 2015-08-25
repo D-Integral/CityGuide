@@ -25,7 +25,7 @@ extension GalleryVC {
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        collectionView?.reloadData()
+        //collectionView?.reloadData()
     }
 }
 
@@ -39,6 +39,8 @@ extension DetailViewController {
     
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
+        
+        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: self.pointOfInterest, withLocationTracker: locationTracker)
     }
 }
 
