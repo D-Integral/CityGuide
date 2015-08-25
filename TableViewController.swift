@@ -48,6 +48,8 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     var delegate: DetailViewControllerDelegate?
     
+    var afterGalleryVC: Bool!
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -111,6 +113,8 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     override func viewWillAppear(animated: Bool) {
         UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
         shoudScreenRotate = !shoudScreenRotate
+        afterGalleryVC = true
+        println("AfterGalleryVC = \(afterGalleryVC)")
 
         routeReceiver.delegateForRoute = self
         

@@ -33,9 +33,13 @@ extension DetailViewController {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        routeReceiver.userLocation = locationTracker.currentLocation
-        routeReceiver.routes[self.pointOfInterest.name] = nil
-        routeReceiver.requestRouteTo(self.pointOfInterest)
+        if afterGalleryVC == false || routeReceiver.routes[self.pointOfInterest.name] == nil {
+            routeReceiver.userLocation = locationTracker.currentLocation
+            routeReceiver.routes[self.pointOfInterest.name] = nil
+            routeReceiver.requestRouteTo(self.pointOfInterest)
+        }
+        afterGalleryVC = false
+        println("AfterGalleryVC = \(afterGalleryVC)")
     }
     
     func headingUpdated(tracker: LocationTracker) {
