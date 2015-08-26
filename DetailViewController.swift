@@ -86,7 +86,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     func setupTableViewBackground() {
         self.tableView.backgroundView = UIView(frame: self.tableView.frame)
-        self.tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "background_light.png")!)
+        self.tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
     }
     
     func imageViewInitialize() {

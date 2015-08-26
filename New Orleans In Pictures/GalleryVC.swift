@@ -61,7 +61,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         self.title = appName
         self.clearsSelectionOnViewWillAppear = false
-        self.setBackgroundImage(UIImage(named: "background_light.png")!)
+        self.setBackgroundImage(UIImage(named: "background.png")!)
         
         locationTracker = LocationTracker()
         locationTracker.delegate = self
