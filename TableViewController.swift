@@ -87,10 +87,10 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     func setupTableViewBackground() {
         self.tableView.backgroundView = UIView(frame: self.tableView.frame)
-        self.tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "Texture_New_Orleans_1.png")!)
-        self.tableView.sendSubviewToBack(self.tableView.backgroundView!)
-        self.tableView.opaque = false
-        self.tableView.backgroundColor = .clearColor()
+        self.tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "background_light.png")!)
+        //self.tableView.sendSubviewToBack(self.tableView.backgroundView!)
+        //self.tableView.opaque = false
+        //self.tableView.backgroundColor = .clearColor()
     }
     
     func imageViewInitialize() {
@@ -114,7 +114,6 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
         shoudScreenRotate = !shoudScreenRotate
         afterGalleryVC = true
-        println("AfterGalleryVC = \(afterGalleryVC)")
 
         routeReceiver.delegateForRoute = self
         
@@ -144,7 +143,6 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     func notifyDelegate() {
         delegate?.pointOfInterestStateDidChange()
-        //println("Delegate notified about changing POI state.")
     }
     
     @IBAction func wantToSee(sender: AnyObject) {
