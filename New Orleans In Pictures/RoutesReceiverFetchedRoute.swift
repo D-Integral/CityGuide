@@ -11,7 +11,9 @@ import CityKit
 extension DetailViewController {
     func routeReceived(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
         
-        showRoute()
-        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: self.pointOfInterest, withLocationTracker: locationTracker)
+        if pointOfInterest == self.pointOfInterest {
+            showRoute()
+            locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: self.pointOfInterest, withLocationTracker: locationTracker)
+        }
     }
 }

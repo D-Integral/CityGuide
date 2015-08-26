@@ -59,7 +59,7 @@
 		C07759001B159FBA00F76ECA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07758FF1B159FBA00F76ECA /* MapKit.framework */; };
 		C07759081B15A4EF00F76ECA /* SightAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07759071B15A4EF00F76ECA /* SightAnnotation.swift */; };
 		C077590B1B15A53700F76ECA /* SightAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C077590A1B15A53700F76ECA /* SightAnnotationView.swift */; };
-		C07820091B170486002C95CB /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* TableViewController.swift */; };
+		C07820091B170486002C95CB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07820081B170486002C95CB /* DetailViewController.swift */; };
 		C078285E1B7556620084826F /* LocationDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078285D1B7556620084826F /* LocationDataViewController.swift */; };
 		C07EA87D1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */; };
 		C095C0EE1B592EB300448FDC /* RoutesReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C095C0ED1B592EB300448FDC /* RoutesReceiver.swift */; };
@@ -192,7 +192,7 @@
 		C07758FF1B159FBA00F76ECA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C07759071B15A4EF00F76ECA /* SightAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotation.swift; sourceTree = "<group>"; };
 		C077590A1B15A53700F76ECA /* SightAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SightAnnotationView.swift; sourceTree = "<group>"; };
-		C07820081B170486002C95CB /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewController.swift; path = ../TableViewController.swift; sourceTree = "<group>"; };
+		C07820081B170486002C95CB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../DetailViewController.swift; sourceTree = "<group>"; };
 		C078285D1B7556620084826F /* LocationDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataViewController.swift; sourceTree = "<group>"; };
 		C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C095C0ED1B592EB300448FDC /* RoutesReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutesReceiver.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 				C0448EB81B7236A700496E62 /* ScreenOrientationsForVC.swift */,
 				C0B2E5931B5D22AE005FCEE8 /* LocationTrackerDelegate.swift */,
 				C0B2E59A1B5D23BA005FCEE8 /* GalleryVC */,
-				C0B2E5AA1B5D2958005FCEE8 /* TableViewController */,
+				C0B2E5AA1B5D2958005FCEE8 /* DetailViewController */,
 				C0B2E5AB1B5D298F005FCEE8 /* Supporting Classes */,
 				C0B2E59D1B5D2452005FCEE8 /* Animation */,
 				C0B2E59C1B5D242E005FCEE8 /* Annotation */,
@@ -483,16 +483,16 @@
 			name = Animation;
 			sourceTree = "<group>";
 		};
-		C0B2E5AA1B5D2958005FCEE8 /* TableViewController */ = {
+		C0B2E5AA1B5D2958005FCEE8 /* DetailViewController */ = {
 			isa = PBXGroup;
 			children = (
-				C07820081B170486002C95CB /* TableViewController.swift */,
+				C07820081B170486002C95CB /* DetailViewController.swift */,
 				C0B2E5B21B5D2B26005FCEE8 /* PopAnimations.swift */,
 				C0B2E5AC1B5D2A7C005FCEE8 /* MapViewSetup.swift */,
 				C0B2E5AF1B5D2AEF005FCEE8 /* TableViewSetup.swift */,
 				C00A51B81B84665F005A87F3 /* RoutesReceiverFetchedRoute.swift */,
 			);
-			name = TableViewController;
+			name = DetailViewController;
 			sourceTree = "<group>";
 		};
 		C0B2E5AB1B5D298F005FCEE8 /* Supporting Classes */ = {
@@ -774,7 +774,7 @@
 			files = (
 				C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */,
 				C048DFB51B41556A00735395 /* DistanceFormatter.swift in Sources */,
-				C07820091B170486002C95CB /* TableViewController.swift in Sources */,
+				C07820091B170486002C95CB /* DetailViewController.swift in Sources */,
 				C0A0A5251B1365810009E04A /* TransitionFromDetailToGallery.swift in Sources */,
 				8CE2CB031AEA2F7F0032F74D /* PictureCell.swift in Sources */,
 				C0B2E5981B5D238E005FCEE8 /* RoutesReceiverDelegate.swift in Sources */,

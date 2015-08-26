@@ -30,7 +30,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
     
-    //MARK: CollectionView source
+    //MARK: CollectionView datasource
     
     var wantToSee: [PointOfInterest]!
     var alreadySeen: [PointOfInterest]!
@@ -61,7 +61,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         self.title = appName
         self.clearsSelectionOnViewWillAppear = false
-        self.setBackgroundImage(UIImage(named: "Texture_New_Orleans_1.png")!)
+        self.setBackgroundImage(UIImage(named: "background_light.png")!)
         
         locationTracker = LocationTracker()
         locationTracker.delegate = self
@@ -108,19 +108,18 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         let detailVC = segue.destinationViewController as! DetailViewController
         var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
-        var selectedItemIndexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
-        var cell = self.collectionView?.cellForItemAtIndexPath(selectedItemIndexPath) as! PictureCell
+        var selectedCellIndexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
+        var cell = self.collectionView?.cellForItemAtIndexPath(selectedCellIndexPath) as! PictureCell
         
         detailVC.delegate = self
         detailVC.city = self.city
-        detailVC.pointOfInterest = pointAtIndexPath(selectedItemIndexPath)
-        detailVC.selectedCellIndexPath = selectedItemIndexPath
-        detailVC.image = cell.imageView.image!
+        detailVC.pointOfInterest = pointAtIndexPath(selectedCellIndexPath)
+        detailVC.selectedCellIndexPath = selectedCellIndexPath
     }
     
     func setBackgroundImage(image: UIImage) {
         self.collectionView?.backgroundView = UIView(frame: self.collectionView!.frame)
-        self.collectionView?.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "background_light.png")!)
+        self.collectionView?.backgroundView?.backgroundColor = UIColor(patternImage: image)
     }
 }
 

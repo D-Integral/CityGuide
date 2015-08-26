@@ -23,10 +23,6 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     var currentHeading: CLHeading?
     var delegate: LocationTrackerDelegate?
     
-    func distanceToLocation(aLocation: CLLocation) -> CLLocationDistance {
-        return currentLocation != nil ? aLocation.distanceFromLocation(currentLocation!) : CLLocationDistance()
-    }
-    
     // MARK: private
     
     var locationManager: CLLocationManager = CLLocationManager()
@@ -39,8 +35,8 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     private func setupLocationManager() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 10.0//100.0
-        locationManager.headingFilter = 1//30
+        locationManager.distanceFilter = 10.0
+        locationManager.headingFilter = 1
         locationManager.delegate = self
         startUpdating()
     }

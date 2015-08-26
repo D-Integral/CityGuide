@@ -11,10 +11,10 @@ extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        loadRoutes()
+        loadNewRoutes()
     }
     
-    func loadRoutes() {
+    func loadNewRoutes() {
         locationDataVC.routesReceiver.removeAllRoutes()
         collectionView?.reloadData()
         locationDataVC.routesReceiver.userLocation = locationTracker.currentLocation
@@ -34,6 +34,7 @@ extension DetailViewController {
         locationTracker = tracker
         
         if afterGalleryVC == false || routeReceiver.routes[self.pointOfInterest.name] == nil {
+            removePreviousRouteFrom(self.mapView)
             routeReceiver.userLocation = locationTracker.currentLocation
             routeReceiver.routes[self.pointOfInterest.name] = nil
             routeReceiver.requestRouteTo(self.pointOfInterest)

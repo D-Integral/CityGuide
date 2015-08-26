@@ -18,7 +18,8 @@ extension DetailViewController {
     
     func showSelectedSightAnnotation() {
     
-        let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: image)
+        let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: pointOfInterest.image())
+        pointOfInterest.image()
         self.mapView.addAnnotation(annotation)
         
         pointOfInterestAnnotation = annotation
@@ -50,6 +51,7 @@ extension DetailViewController {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         removePreviousRouteFrom(mapView)
+        removePreviousRouteFrom(self.mapView)
         self.userLocation = userLocation
         showRouteInOptimalRegion()
     }
