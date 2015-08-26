@@ -49,8 +49,7 @@ class AngleCalculator {
             var degrees = heading?.magneticHeading
             println("Heading: \(degrees)")
             var radians = (degrees! * M_PI / 180.0)
-            angle = angle + radians // + or - needs to be tested on the device
-            
+            angle = angle + radians
         }
         
         return angle

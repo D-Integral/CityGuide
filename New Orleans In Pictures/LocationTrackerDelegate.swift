@@ -39,6 +39,8 @@ extension DetailViewController {
             routeReceiver.requestRouteTo(self.pointOfInterest)
         }
         afterGalleryVC = false
+        
+        locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: self.pointOfInterest, withLocationTracker: locationTracker)
     }
     
     func headingUpdated(tracker: LocationTracker) {

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="306" height="41"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="mzr-eD-Der">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compass_arrow_dark" translatesAutoresizingMaskIntoConstraints="NO" id="mzr-eD-Der">
                     <rect key="frame" x="153" y="0.0" width="153" height="41"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-Em-bab">
@@ -25,7 +25,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-K9-SY5">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="compass_arrow_dark" translatesAutoresizingMaskIntoConstraints="NO" id="bzi-K9-SY5">
                     <rect key="frame" x="0.0" y="0.0" width="306" height="41"/>
                 </imageView>
             </subviews>
@@ -50,6 +50,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow_up.png" width="128" height="128"/>
+        <image name="compass_arrow_dark" width="90" height="90"/>
     </resources>
 </document>
