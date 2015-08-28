@@ -146,13 +146,13 @@
                             </tableViewSection>
                             <tableViewSection id="fX0-Pa-vnG">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="30" id="6wo-PE-sjo">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="40" id="6wo-PE-sjo">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6wo-PE-sjo" id="Y3p-Ah-gDv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqO-Ss-c2H" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
-                                                    <rect key="frame" x="117" y="0.0" width="141" height="30"/>
+                                                    <rect key="frame" x="117" y="5" width="141" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="5QG-Kz-kkc"/>
                                                         <constraint firstAttribute="width" constant="141" id="dFb-ke-fZS"/>
@@ -160,9 +160,9 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="rqO-Ss-c2H" secondAttribute="bottom" id="9yj-fj-ftM"/>
+                                                <constraint firstAttribute="bottom" secondItem="rqO-Ss-c2H" secondAttribute="bottom" constant="5" id="9yj-fj-ftM"/>
                                                 <constraint firstAttribute="centerX" secondItem="rqO-Ss-c2H" secondAttribute="centerX" id="e0N-9M-f7W"/>
-                                                <constraint firstItem="rqO-Ss-c2H" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" id="nBJ-fI-UOe"/>
+                                                <constraint firstItem="rqO-Ss-c2H" firstAttribute="top" secondItem="Y3p-Ah-gDv" secondAttribute="top" constant="5" id="nBJ-fI-UOe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
