@@ -11,7 +11,6 @@ import MapKit
 extension DetailViewController {
     func mapViewSetup() {
         mapView.delegate = self
-        mapView.showsUserLocation = true
         mapView.frame.size.height = self.tableView.frame.size.width
         mapView.frame.size.width = self.tableView.frame.size.width
     }
@@ -53,12 +52,26 @@ extension DetailViewController {
         removePreviousRouteFrom(mapView)
         removePreviousRouteFrom(self.mapView)
         self.userLocation = userLocation
-        showRouteInOptimalRegion()
+    }
+    
+    func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
+            showRouteInOptimalRegion()
+    }
+    
+    func mapViewDidFinishRenderingMap(mapView: MKMapView!, fullyRendered: Bool) {
+            showRouteInOptimalRegion()
+    }
+    
+    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+            showRouteInOptimalRegion()
     }
     
     func showRouteInOptimalRegion() {
-        zoomToFitMapItems()
-        showRoute()
+        if userLocation != nil && mapViewDidShowRoute == false {
+            zoomToFitMapItems()
+            showRoute()
+            mapViewDidShowRoute = true
+        }
     }
     
     func showRoute() {

@@ -49,6 +49,8 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     var afterGalleryVC: Bool!
     
+    var mapViewDidShowRoute: Bool!
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -107,9 +109,11 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
+        println("Detail viewWillAppear")
         UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
         shoudScreenRotate = !shoudScreenRotate
         afterGalleryVC = true
+        mapViewDidShowRoute = false
 
         routeReceiver.delegateForRoute = self
         
@@ -119,6 +123,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
+        mapView.showsUserLocation = true
         self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = false
         self.imageViewForAnimation.removeFromSuperview()
     }
