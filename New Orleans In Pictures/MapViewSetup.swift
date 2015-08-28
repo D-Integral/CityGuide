@@ -55,23 +55,27 @@ extension DetailViewController {
     }
     
     func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
+        if userLocation != nil && mapViewDidShowRoute == false {
             showRouteInOptimalRegion()
+        }
     }
     
     func mapViewDidFinishRenderingMap(mapView: MKMapView!, fullyRendered: Bool) {
+        if userLocation != nil && mapViewDidShowRoute == false {
             showRouteInOptimalRegion()
+        }
     }
     
     func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+        if userLocation != nil && mapViewDidShowRoute == false {
             showRouteInOptimalRegion()
+        }
     }
     
     func showRouteInOptimalRegion() {
-        if userLocation != nil && mapViewDidShowRoute == false {
             zoomToFitMapItems()
             showRoute()
             mapViewDidShowRoute = true
-        }
     }
     
     func showRoute() {
