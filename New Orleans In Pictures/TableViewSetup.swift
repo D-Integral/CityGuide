@@ -25,7 +25,7 @@ extension DetailViewController {
         
         switch indexPath.section {
         case 0: return self.tableView.frame.size.width
-        case 1: return 50
+        case 1: return 30
         case 2: return heightForDescription()
         case 3: return 45
         default: return 0.0

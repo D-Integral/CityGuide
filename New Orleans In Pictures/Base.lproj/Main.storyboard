@@ -47,7 +47,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="220"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="203"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suG-eb-rR7">
@@ -57,7 +57,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ryk-2p-uGW" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="173" width="150" height="47"/>
+                                            <rect key="frame" x="0.0" y="173" width="150" height="30"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="white_circle" translatesAutoresizingMaskIntoConstraints="NO" id="i8U-3C-tbt">
@@ -69,7 +69,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <size key="customSize" width="150" height="220"/>
+                                <size key="customSize" width="150" height="203"/>
                                 <connections>
                                     <outlet property="imageView" destination="G9l-US-Nzv" id="d5i-4V-aP0"/>
                                     <outlet property="locationDataView" destination="Ryk-2p-uGW" id="7mX-51-YB3"/>
@@ -146,16 +146,16 @@
                             </tableViewSection>
                             <tableViewSection id="fX0-Pa-vnG">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="6wo-PE-sjo">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="30" id="6wo-PE-sjo">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6wo-PE-sjo" id="Y3p-Ah-gDv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqO-Ss-c2H" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
-                                                    <rect key="frame" x="75" y="0.0" width="230" height="50"/>
+                                                    <rect key="frame" x="75" y="0.0" width="230" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="230" id="3aA-7j-xqv"/>
-                                                        <constraint firstAttribute="height" constant="50" id="DwO-1T-UCf"/>
+                                                        <constraint firstAttribute="height" constant="30" id="DwO-1T-UCf"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>

@@ -20,7 +20,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     //MARK: Constants
     let appName = "New Orleans Compass"
     struct Constants {
-        static let sizeForCell = CGSizeMake(150.0, 220.0)
+        static let sizeForCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
     let headerTexts = ["I Want To See", "What To See", "Already Seen"]
