@@ -35,6 +35,10 @@
 		9873E0011B288836008FE5EF /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0001B288836008FE5EF /* Coordinates.swift */; };
 		9873E0031B288837008FE5EF /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0021B288837008FE5EF /* PointOfInterest.swift */; };
 		9873E0051B288837008FE5EF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0041B288837008FE5EF /* City.swift */; };
+		B72351131BA04B05006854B0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351111BA04B05006854B0 /* Fabric.framework */; };
+		B72351141BA04B05006854B0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351111BA04B05006854B0 /* Fabric.framework */; };
+		B72351151BA04B05006854B0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351121BA04B05006854B0 /* Crashlytics.framework */; };
+		B72351161BA04B05006854B0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351121BA04B05006854B0 /* Crashlytics.framework */; };
 		B7AEE4A71B88CEE500FAD115 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AEE4AE1B88CEE500FAD115 /* Localizable.strings */; };
 		B7AEE4A81B88CEE500FAD115 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AEE4AE1B88CEE500FAD115 /* Localizable.strings */; };
 		B7AEE4A91B88CEE500FAD115 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AEE4AE1B88CEE500FAD115 /* Localizable.strings */; };
@@ -168,6 +172,8 @@
 		9873E0021B288837008FE5EF /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		9873E0041B288837008FE5EF /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		98ECD7B91B272CF400FF8D3F /* New Orleans In Pictures.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "New Orleans In Pictures.entitlements"; sourceTree = "<group>"; };
+		B72351111BA04B05006854B0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		B72351121BA04B05006854B0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		B7AEE49E1B88CE0100FAD115 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B7AEE49F1B88CE0100FAD115 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Interface.strings; sourceTree = "<group>"; };
 		B7AEE4AD1B88CEE500FAD115 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 			files = (
 				9873DFA21B27A9A3008FE5EF /* CityKit.framework in Frameworks */,
 				C07759001B159FBA00F76ECA /* MapKit.framework in Frameworks */,
+				B72351151BA04B05006854B0 /* Crashlytics.framework in Frameworks */,
+				B72351131BA04B05006854B0 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +225,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B72351161BA04B05006854B0 /* Crashlytics.framework in Frameworks */,
+				B72351141BA04B05006854B0 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +258,8 @@
 		8CE2CACE1AEA2BC60032F74D = {
 			isa = PBXGroup;
 			children = (
+				B72351111BA04B05006854B0 /* Fabric.framework */,
+				B72351121BA04B05006854B0 /* Crashlytics.framework */,
 				9873DF8C1B27A9A3008FE5EF /* CityKit */,
 				8CE2CAD91AEA2BC60032F74D /* New Orleans In Pictures */,
 				8CE2CAF21AEA2BC60032F74D /* New Orleans In PicturesTests */,
@@ -517,6 +529,7 @@
 				8CE2CAD41AEA2BC60032F74D /* Frameworks */,
 				8CE2CAD51AEA2BC60032F74D /* Resources */,
 				9873DFA71B27A9A3008FE5EF /* Embed Frameworks */,
+				B72351091BA0430A006854B0 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -750,6 +763,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B72351091BA0430A006854B0 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run cae12f879b7a3433c2310601b6771dcb7b197f71 e3d31f6de2427482e8756dfe99db94f3d3a167545af5e0f2b8d8acf3ae359ed0";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8CE2CAD31AEA2BC60032F74D /* Sources */ = {
@@ -992,6 +1022,10 @@
 				CODE_SIGN_ENTITLEMENTS = "New Orleans In Pictures/New Orleans In Pictures.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "New Orleans In Pictures/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1006,6 +1040,10 @@
 				CODE_SIGN_ENTITLEMENTS = "New Orleans In Pictures/New Orleans In Pictures.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "New Orleans In Pictures/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1020,6 +1058,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1039,6 +1078,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "New Orleans In PicturesTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

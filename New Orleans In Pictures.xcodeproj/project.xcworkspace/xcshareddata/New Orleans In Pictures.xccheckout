@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B0FCAB10-45CA-4AD2-A8D8-825BDAE9BA9B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>New Orleans In Pictures</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>633187E17D5D049C22FA7F18D9AC04B03E5EF77D</key>
+		<string>https://bitbucket.org/d-integral/new-orleans.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>New Orleans In Pictures.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>633187E17D5D049C22FA7F18D9AC04B03E5EF77D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/d-integral/new-orleans.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>633187E17D5D049C22FA7F18D9AC04B03E5EF77D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>633187E17D5D049C22FA7F18D9AC04B03E5EF77D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>new-orleans</string>
+		</dict>
+	</array>
+</dict>
+</plist>
