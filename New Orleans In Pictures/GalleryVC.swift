@@ -18,7 +18,7 @@ let headerReuseIdentifier = "standardHeader"
 class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, DetailViewControllerDelegate {
     
     //MARK: Constants
-    let appName = "New Orleans Compass"
+    let appName = "New Orleans Landmark"
     struct Constants {
         static let sizeForCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
