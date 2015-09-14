@@ -13,7 +13,7 @@ extension GalleryVC {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return indexPath.row == 0 ? sizeForLargeitem() : sizeForSmallItem()
+        return indexPath.row == 0 ? sizeForLargeItem() : sizeForSmallItem()
     }
     
     func sizeForSmallItem() -> CGSize {
@@ -26,7 +26,7 @@ extension GalleryVC {
         return CGSizeMake(CGFloat(width), CGFloat(width) * cellSizeProportion)
     }
     
-    func sizeForLargeitem() -> CGSize {
+    func sizeForLargeItem() -> CGSize {
         
         let sizeSmall = sizeForSmallItem()
         let marginBetweenCells: CGFloat = 10.0

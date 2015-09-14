@@ -57,8 +57,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
-        let customLayout = CustomFlowLayout()
-        collectionView?.collectionViewLayout = customLayout
+//        let customLayout = CustomFlowLayout()
+//        customLayout.estimatedItemSize = self.collectionView!.bounds.size
+//        collectionView?.collectionViewLayout = customLayout
+        
         
         retrievePointsOfInterest()
         

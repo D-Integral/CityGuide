@@ -204,7 +204,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         //println("Screen width: \(screenWidth), Screen margin: \(margin)")
         
         itemSizeSmall = sizeForSmallItem()
-        itemSizeLarge = sizeForLargeitem()
+        itemSizeLarge = sizeForLargeItem()
         
         //println("Size of small item: width \(itemSizeSmall.width), height: \(itemSizeSmall.height)")
         //println("Size of large item: width \(itemSizeLarge.width), height: \(itemSizeLarge.height)")
@@ -282,7 +282,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return CGSizeMake(CGFloat(width), CGFloat(width) * cellSizeProportion)
     }
     
-    func sizeForLargeitem() -> CGSize {
+    func sizeForLargeItem() -> CGSize {
         
         let width = 2 * itemSizeSmall.width + marginBetweenCells
         let height = 2 * itemSizeSmall.height + marginBetweenCells
