@@ -57,6 +57,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
+        let customLayout = CustomFlowLayout()
+        collectionView?.collectionViewLayout = customLayout
+        
         retrievePointsOfInterest()
         
         self.title = appName

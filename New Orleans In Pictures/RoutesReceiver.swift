@@ -65,7 +65,7 @@ class RoutesReceiver {
             let request = formedRequestFrom(location, toDestination: pointOfInterest.locationOnMap())
             let directions = MKDirections(request: request)
             calculate(directions, toPointOfInterest: pointOfInterest)
-            println("Requested route to \(pointOfInterest.name)...")
+            //println("Requested route to \(pointOfInterest.name)...")
         }
     }
     
@@ -86,7 +86,7 @@ class RoutesReceiver {
     }
     
     func handleErrorResponse(pointOfInterest: PointOfInterest) {
-        println("Error getting directions for: \(pointOfInterest.name)")
+        //println("Error getting directions for: \(pointOfInterest.name)")
     }
     
     func handleSuccessResponse(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
@@ -94,7 +94,7 @@ class RoutesReceiver {
         
         save(route, toPointOfInterest: pointOfInterest)
         delegateForRoute?.routeReceived(route, forPointOfInterest: pointOfInterest)
-        println("Received route for \(pointOfInterest.name): \(route.distance)")
+        //println("Received route for \(pointOfInterest.name): \(route.distance)")
     }
     
     func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {

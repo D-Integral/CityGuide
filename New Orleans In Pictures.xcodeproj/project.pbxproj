@@ -76,6 +76,7 @@
 		C0B2E5AD1B5D2A7C005FCEE8 /* MapViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2E5AC1B5D2A7C005FCEE8 /* MapViewSetup.swift */; };
 		C0B2E5B01B5D2AEF005FCEE8 /* TableViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2E5AF1B5D2AEF005FCEE8 /* TableViewSetup.swift */; };
 		C0B2E5B31B5D2B26005FCEE8 /* PopAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B2E5B21B5D2B26005FCEE8 /* PopAnimations.swift */; };
+		C0D4D6671BA1BF64007B44A9 /* CustomFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4D6661BA1BF64007B44A9 /* CustomFlowLayout.swift */; };
 		C0DCB7D31B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */; };
 		C0F84C271B2F0A3700A7B1B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2CAE61AEA2BC60032F74D /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -206,6 +207,7 @@
 		C0B2E5AC1B5D2A7C005FCEE8 /* MapViewSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewSetup.swift; sourceTree = "<group>"; };
 		C0B2E5AF1B5D2AEF005FCEE8 /* TableViewSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSetup.swift; sourceTree = "<group>"; };
 		C0B2E5B21B5D2B26005FCEE8 /* PopAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimations.swift; sourceTree = "<group>"; };
+		C0D4D6661BA1BF64007B44A9 /* CustomFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomFlowLayout.swift; sourceTree = "<group>"; };
 		C0DCB7D21B131C7300ED5DCF /* TransitionFromGalleryToDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionFromGalleryToDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -462,6 +464,7 @@
 				C0B2E5A71B5D28BB005FCEE8 /* DataSource.swift */,
 				C07EA87C1B5E8D3500C7FC80 /* TableViewControllerDelegate.swift */,
 				C01F5EDE1B5F765C00C8A0D3 /* DelegateFlowLayout.swift */,
+				C0D4D6661BA1BF64007B44A9 /* CustomFlowLayout.swift */,
 			);
 			name = GalleryVC;
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 		8CE2CACF1AEA2BC60032F74D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "D Integralas";
 				TargetAttributes = {
@@ -814,6 +818,7 @@
 				C0B2E5A81B5D28BB005FCEE8 /* DataSource.swift in Sources */,
 				C048DFBB1B418F4000735395 /* AngleCalculator.swift in Sources */,
 				C078285E1B7556620084826F /* LocationDataViewController.swift in Sources */,
+				C0D4D6671BA1BF64007B44A9 /* CustomFlowLayout.swift in Sources */,
 				C0B2E5B31B5D2B26005FCEE8 /* PopAnimations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

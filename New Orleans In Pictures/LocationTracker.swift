@@ -62,9 +62,9 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         if currentLocationDiffersFrom(newLocation!) {
             currentLocation = newLocation
         
-            println("\nLocation manager updated:")
-            println("New latitude: \(currentLocation?.coordinate.latitude)")
-            println("New longitude: \(currentLocation?.coordinate.longitude)\n")
+//            println("\nLocation manager updated:")
+//            println("New latitude: \(currentLocation?.coordinate.latitude)")
+//            println("New longitude: \(currentLocation?.coordinate.longitude)\n")
         
             delegate?.locationUpdated(self)
         }
