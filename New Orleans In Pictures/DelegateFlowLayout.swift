@@ -7,16 +7,6 @@
 //
 
 
-//import UIKit
-//
-//extension GalleryVC {
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        
-//        return Constants.sizeForCell
-//    }
-//}
-
-
 import UIKit
 
 extension GalleryVC {
