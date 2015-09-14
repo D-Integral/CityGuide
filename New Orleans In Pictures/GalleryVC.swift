@@ -58,7 +58,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         super.viewDidLoad()
         
 //        let customLayout = CustomFlowLayout()
-//        customLayout.estimatedItemSize = self.collectionView!.bounds.size
+//        //customLayout.estimatedItemSize = self.collectionView!.bounds.size
 //        collectionView?.collectionViewLayout = customLayout
         
         
