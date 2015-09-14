@@ -60,7 +60,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
                 if layoutAttributes.representedElementKind == UICollectionElementKindSectionHeader {
                     
                     allElementsAttributes![index] = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)
-                    
                 }
             case .Cell:
                 allElementsAttributes![index] = layoutAttributesForItemAtIndexPath(layoutAttributes.indexPath)
