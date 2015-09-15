@@ -13,7 +13,14 @@ extension GalleryVC {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return indexPath.row == 0 ? sizeForLargeItem() : sizeForSmallItem()
+        println("\nsizeForItemAtIndexPath CALLED...")
+        println("IndexPath: \(indexPath.row), \(indexPath.section)")
+        
+        let size = indexPath.row == 0 ? sizeForLargeItem() : sizeForSmallItem()
+
+        println("Size: \(size)")
+        
+        return size
     }
     
     func sizeForSmallItem() -> CGSize {
@@ -38,11 +45,11 @@ extension GalleryVC {
 
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
 //        
-//        let margin: CGFloat = 10.0
+//        let margin: CGFloat = 100.0
 //        
-//        return UIEdgeInsets(top: margin, left: 0.0, bottom: margin, right: 0.0)
+//        return UIEdgeInsets(top: margin, left: 100.0, bottom: margin, right: 100.0)
 //    }
-//    
+//
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
 //        return CGFloat(10.0)
 //    }

@@ -72,8 +72,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
 
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         
-        //        println("\nlayoutAttributesForItemAtIndexPath CALLED...")
-        //        println("Indexpath: row \(indexPath.row), section \(indexPath.section)")
+        println("\nlayoutAttributesForItemAtIndexPath CALLED...")
+        println("Indexpath: row \(indexPath.row), section \(indexPath.section)")
     
         var attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         attributes.size = indexPath.row == 0 ? itemSizeLarge : itemSizeSmall
