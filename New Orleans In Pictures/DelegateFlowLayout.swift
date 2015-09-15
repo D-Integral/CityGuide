@@ -16,7 +16,7 @@ extension GalleryVC {
         println("\nsizeForItemAtIndexPath CALLED...")
         println("IndexPath: \(indexPath.row), \(indexPath.section)")
         
-        let size = indexPath.row == 0 ? sizeForLargeItem() : sizeForSmallItem()
+        let size = indexPath.row == 0 ? CGSize(width: 300, height: 400)/*sizeForLargeItem()*/ : Constants.sizeForCell //sizeForSmallItem()
 
         println("Size: \(size)")
         
