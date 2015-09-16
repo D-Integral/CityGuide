@@ -20,7 +20,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     //MARK: Constants
     let appName = "New Orleans Landmark"
     struct Constants {
-        static let sizeForCell = CGSizeMake(150.0, 203.0)
+        static let sizeForLargeCell = CGSizeMake(310.0, 416.0)
+        static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
     let headerTexts = ["I Want To See", "What To See", "Already Seen"]
@@ -57,9 +58,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
-//        let customLayout = CustomFlowLayout()
-//        //customLayout.estimatedItemSize = self.collectionView!.bounds.size
-//        collectionView?.collectionViewLayout = customLayout
+        let customLayout = CustomFlowLayout()
+        collectionView?.collectionViewLayout = customLayout
         
         
         retrievePointsOfInterest()
