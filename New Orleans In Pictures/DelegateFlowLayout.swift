@@ -13,12 +13,7 @@ extension GalleryVC {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-//        println("\nsizeForItemAtIndexPath CALLED...")
-//        println("IndexPath: \(indexPath.row), \(indexPath.section)")
-        
         let size = indexPath.row == 0 ? /*Constants.sizeForLargeCell*/largeCellSize() : Constants.sizeForSmallCell
-
-        //println("Size: \(size)")
         
         return size
     }

@@ -21,7 +21,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     let appName = "New Orleans Landmark"
     
     struct Constants {
-        static let sizeForLargeCell = CGSizeMake(310.0, 416.0)
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
@@ -61,7 +60,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         let customLayout = CustomFlowLayout()
         collectionView?.collectionViewLayout = customLayout
-        
         
         retrievePointsOfInterest()
         

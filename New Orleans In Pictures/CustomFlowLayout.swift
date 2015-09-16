@@ -11,7 +11,6 @@ import UIKit
 class CustomFlowLayout: UICollectionViewFlowLayout {
     
     struct Constants {
-        //static let sizeForLargeCell = CGSizeMake(300.0, 400.0)
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
