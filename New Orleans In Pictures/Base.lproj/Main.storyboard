@@ -53,9 +53,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suG-eb-rR7">
                                             <rect key="frame" x="0.0" y="150" width="150" height="23"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="suG-eb-rR7" secondAttribute="height" multiplier="150:23" id="3OU-Uo-nRU"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -63,6 +60,9 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ryk-2p-uGW" customClass="ViewForLocationData" customModule="New_Orleans_In_Pictures" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="173" width="150" height="30"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="kIT-Zy-1ip"/>
+                                            </constraints>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="white_circle" translatesAutoresizingMaskIntoConstraints="NO" id="i8U-3C-tbt">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -82,16 +82,16 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="i8U-3C-tbt" secondAttribute="trailing" id="CCA-Pf-oWB"/>
                                     <constraint firstItem="G9l-US-Nzv" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="G7Q-29-hnH"/>
-                                    <constraint firstItem="Ryk-2p-uGW" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="GfT-8P-v1s"/>
-                                    <constraint firstItem="Ryk-2p-uGW" firstAttribute="top" secondItem="suG-eb-rR7" secondAttribute="bottom" id="I2a-tx-3tG"/>
+                                    <constraint firstItem="Ryk-2p-uGW" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="Miz-dV-ikE"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ryk-2p-uGW" secondAttribute="trailing" id="MtZ-7m-uRo"/>
                                     <constraint firstItem="i8U-3C-tbt" firstAttribute="top" secondItem="RnO-2m-dN0" secondAttribute="top" id="Oyy-E3-qOi"/>
                                     <constraint firstItem="G9l-US-Nzv" firstAttribute="top" secondItem="RnO-2m-dN0" secondAttribute="top" id="RyX-wf-BRf"/>
-                                    <constraint firstItem="suG-eb-rR7" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="Xa2-Eu-BdK"/>
+                                    <constraint firstAttribute="trailing" secondItem="suG-eb-rR7" secondAttribute="trailing" id="atW-Va-fXi"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ryk-2p-uGW" secondAttribute="bottom" id="eMJ-x1-GKg"/>
+                                    <constraint firstItem="suG-eb-rR7" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="fFN-qb-fdJ"/>
                                     <constraint firstItem="i8U-3C-tbt" firstAttribute="leading" secondItem="RnO-2m-dN0" secondAttribute="leading" id="jQo-sa-ThZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ryk-2p-uGW" secondAttribute="trailing" id="lpb-fv-rVM"/>
-                                    <constraint firstItem="suG-eb-rR7" firstAttribute="top" secondItem="G9l-US-Nzv" secondAttribute="bottom" id="rxb-ND-ntx"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ryk-2p-uGW" secondAttribute="bottom" id="xMs-Lg-Msa"/>
-                                    <constraint firstAttribute="trailing" secondItem="suG-eb-rR7" secondAttribute="trailing" id="ytO-YX-y93"/>
+                                    <constraint firstItem="suG-eb-rR7" firstAttribute="top" secondItem="G9l-US-Nzv" secondAttribute="bottom" id="oag-L0-uLl"/>
+                                    <constraint firstItem="Ryk-2p-uGW" firstAttribute="top" secondItem="suG-eb-rR7" secondAttribute="bottom" id="xsf-LQ-ihg"/>
                                     <constraint firstAttribute="trailing" secondItem="G9l-US-Nzv" secondAttribute="trailing" id="zwj-99-GRg"/>
                                 </constraints>
                                 <size key="customSize" width="150" height="203"/>
