@@ -19,13 +19,14 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     
     //MARK: Constants
     let appName = "New Orleans Landmark"
+    
     struct Constants {
         static let sizeForLargeCell = CGSizeMake(310.0, 416.0)
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
-    let headerTexts = ["I Want To See", "What To See", "Already Seen"]
     
+    let headerTexts = ["I Want To See", "What To See", "Already Seen"]
     
     var city: City! {
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
@@ -125,6 +126,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     func setBackgroundImage(image: UIImage) {
         self.collectionView?.backgroundView = UIView(frame: self.collectionView!.frame)
         self.collectionView?.backgroundView?.backgroundColor = UIColor(patternImage: image)
+    }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        self.collectionView?.collectionViewLayout.invalidateLayout()
     }
 }
 

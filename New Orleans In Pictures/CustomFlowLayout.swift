@@ -11,13 +11,18 @@ import UIKit
 class CustomFlowLayout: UICollectionViewFlowLayout {
     
     struct Constants {
-        static let sizeForLargeCell = CGSizeMake(300.0, 400.0)
+        //static let sizeForLargeCell = CGSizeMake(300.0, 400.0)
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
     
     var attributesForItemAtIndexPath = [NSIndexPath : UICollectionViewLayoutAttributes]()
     var isCurrentRowFirst: Bool!
+    var marginBetweenCells: CGFloat!
+    var marginBetweenRows: CGFloat!
+    var sectionInsetLeft: CGFloat!
+    var sectionInsetRight: CGFloat!
+    var sizeForLargeCell: CGSize!
     
     //MARK: Main overriden methods
     
@@ -25,8 +30,17 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         super.prepareLayout()
         
         //println("\nPREPARE LAYOUT CALLED...\n")
+        sectionInsetLeft = 5.0
+        sectionInsetRight = 5.0
+        marginBetweenRows = 10.0
         
         isCurrentRowFirst = true
+        marginBetweenCells = (currentScreenWidth() - sectionInsetLeft - sectionInsetRight - CGFloat(numberOfItemsInRow()) * Constants.sizeForSmallCell.width) / (CGFloat(numberOfItemsInRow()) - 1)
+        
+        println("MarginBetweenCells: \(marginBetweenCells)")
+        
+        
+        sizeForLargeCell = largeCellSize()
         
         //println("\nPREPARE LAYOUT FINISHED...\n")
     }
@@ -75,26 +89,30 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             let previousItemSize = previousItemAttributes!.size
             
             if isFirstCellAt(indexPathForPreviuosItem) {
-                attributes.center.x = previousItemCenter.x + previousItemSize.width / 2 + minimumInteritemSpacing + Constants.sizeForSmallCell.width / 2
-                attributes.center.y = previousItemCenter.y - minimumLineSpacing / 2 - Constants.sizeForSmallCell.height / 2
+                attributes.center.x = previousItemCenter.x + previousItemSize.width / 2 + marginBetweenCells + Constants.sizeForSmallCell.width / 2
+                attributes.center.y = previousItemCenter.y - marginBetweenRows / 2 - Constants.sizeForSmallCell.height / 2
             } else {
-                attributes.center.x = previousItemCenter.x + previousItemSize.width / 2 + minimumInteritemSpacing + Constants.sizeForSmallCell.width / 2
+                attributes.center.x = previousItemCenter.x + previousItemSize.width / 2 + marginBetweenCells + Constants.sizeForSmallCell.width / 2
                 attributes.center.y = previousItemCenter.y
                 
                 if !cellFitsWithinLineWithAttributes(attributes) {
                     if isCurrentRowFirst == true {
-                        attributes.center.x = sectionInset.left + Constants.sizeForLargeCell.width + minimumInteritemSpacing + Constants.sizeForSmallCell.width / 2
-                        attributes.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + minimumLineSpacing
+                        attributes.center.x = sectionInsetLeft + sizeForLargeCell.width + marginBetweenCells + Constants.sizeForSmallCell.width / 2
+                        attributes.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + marginBetweenRows
                         isCurrentRowFirst = false
                     } else {
-                        attributes.center.x = sectionInset.left + Constants.sizeForSmallCell.width / 2
-                        attributes.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + minimumLineSpacing
+                        attributes.center.x = sectionInsetLeft + Constants.sizeForSmallCell.width / 2
+                        attributes.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + marginBetweenRows
                     }
                 }
             }
         }
         
         attributesForItemAtIndexPath[indexPath] = attributes
+        
+        println("\nlayoutAttributesForItemAtIndexPath: indexPath(\(indexPath.row),\(indexPath.section))")
+        println("Size: width \(attributes.size.width), height \(attributes.size.height)")
+        println("Center: (\(attributes.center.x),\(attributes.center.y))")
         
         return attributes
     }
@@ -117,10 +135,14 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         //println("\nLAYOUT INVALIDATED\n")
         
-        return false//true
+        return true//false
     }
     
     //MARK: Private helper methods
+    
+    func largeCellSize() -> CGSize {
+        return CGSize(width: Constants.sizeForSmallCell.width * 2 + marginBetweenCells, height: Constants.sizeForSmallCell.height * 2 + marginBetweenRows)
+    }
   
     func isFirstCellAt(indexPath: NSIndexPath) -> Bool {
         return indexPath.row == 0 ? true : false
@@ -132,7 +154,11 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     func cellFitsWithinLineWithAttributes(attributes: UICollectionViewLayoutAttributes) -> Bool {
         
-        return currentScreenWidth() - attributes.center.x - sectionInset.right >= Constants.sizeForSmallCell.width / 2 ? true : false
+        return currentScreenWidth() - attributes.center.x - sectionInsetRight >= Constants.sizeForSmallCell.width / 2 ? true : false
+    }
+    
+    func numberOfItemsInRow() -> Int {
+        return Int((currentScreenWidth() - sectionInsetLeft - sectionInsetRight) / Constants.sizeForSmallCell.width)
     }
     
     func frameForSection(section: Int) -> CGRect? {
@@ -189,15 +215,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
 
 
-//
-//    func isRowEvenAt(indexPath: NSIndexPath) -> Bool {
-//        return indexPath.row % 2 == 0 ? true : false
-//    }
-//    
-//    func cellFitsWithinLine() -> Bool {
-//        return screenWidth - currentCellOrigin.x > itemSizeSmall.width ? true : false
-//    }
-//    
+
 
     
     
