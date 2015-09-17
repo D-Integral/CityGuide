@@ -29,6 +29,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         super.prepareLayout()
         
         //println("\nPREPARE LAYOUT CALLED...\n")
+        
         sectionInsetLeft = 5.0
         sectionInsetRight = 5.0
         marginBetweenRows = 10.0
@@ -38,15 +39,18 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         println("MarginBetweenCells: \(marginBetweenCells)")
         
-        
         sizeForLargeCell = largeCellSize()
+        
+        calculateAttributesForItems()
         
         //println("\nPREPARE LAYOUT FINISHED...\n")
     }
     
-//    override func collectionViewContentSize() -> CGSize {
-//        return contentSize()
-//    }
+    override func collectionViewContentSize() -> CGSize {
+        println("CollectionViewContentSizeCalled...")
+        
+        return contentSize()
+    }
     
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
         
@@ -65,7 +69,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
                     allElementsAttributes![index] = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)
                 }
             case .Cell:
-                allElementsAttributes![index] = layoutAttributesForItemAtIndexPath(layoutAttributes.indexPath)
+                allElementsAttributes![index] = attributesForItemAtIndexPath[layoutAttributes.indexPath]!
             case .DecorationView: break
             }
         }
@@ -75,8 +79,62 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
         
-//        println("\nlayoutAttributesForItemAtIndexPath CALLED...")
-//        println("Indexpath: row \(indexPath.row), section \(indexPath.section)")
+        return attributesForItemAtIndexPath[indexPath]
+    }
+    
+    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+        
+        //        println("\nlayoutAttributesForSupplementaryViewOfKind CALLED...")
+        //        println("Header indexpath: row \(indexPath.row), section \(indexPath.section)\n")
+        
+        var attributes = super.layoutAttributesForSupplementaryViewOfKind(elementKind, atIndexPath: indexPath)
+        
+        if elementKind == UICollectionElementKindSectionHeader {
+            attributes.size = Constants.headerSize
+        }
+        
+        return attributes
+    }
+    
+    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
+        
+        //println("\nLAYOUT INVALIDATED\n")
+        return false
+    }
+    
+    //MARK: Private helper methods
+    
+    func largeCellSize() -> CGSize {
+        return CGSize(width: Constants.sizeForSmallCell.width * 2 + marginBetweenCells, height: Constants.sizeForSmallCell.height * 2 + marginBetweenRows)
+    }
+  
+    func isFirstCellAt(indexPath: NSIndexPath) -> Bool {
+        return indexPath.row == 0 ? true : false
+    }
+    
+    func currentScreenWidth() -> CGFloat {
+        return self.collectionView!.frame.size.width
+    }
+    
+    func cellFitsWithinLineWithAttributes(attributes: UICollectionViewLayoutAttributes) -> Bool {
+        
+        return currentScreenWidth() - attributes.center.x - sectionInsetRight >= Constants.sizeForSmallCell.width / 2 ? true : false
+    }
+    
+    func numberOfItemsInRow() -> Int {
+        return Int((currentScreenWidth() - sectionInsetLeft - sectionInsetRight) / Constants.sizeForSmallCell.width)
+    }
+    
+    func calculateAttributesForItems() {
+        for section in 0..<self.collectionView!.numberOfSections() {
+            for row in 0..<self.collectionView!.numberOfItemsInSection(section) {
+                let indexPath = NSIndexPath(forRow: row, inSection: section)
+                attributesForItemAtIndexPath[indexPath] = attributesForItemWithIndexPath(indexPath)
+            }
+        }
+    }
+    
+    func attributesForItemWithIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
         
         var attributes = super.layoutAttributesForItemAtIndexPath(indexPath)
         
@@ -107,110 +165,43 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             }
         }
         
-        attributesForItemAtIndexPath[indexPath] = attributes
-        
-        println("\nlayoutAttributesForItemAtIndexPath: indexPath(\(indexPath.row),\(indexPath.section))")
-        println("Size: width \(attributes.size.width), height \(attributes.size.height)")
-        println("Center: (\(attributes.center.x),\(attributes.center.y))")
-        
         return attributes
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    func heightOfSection(section: Int) -> CGFloat? {
+        let numberOfItems = self.collectionView!.numberOfItemsInSection(section)
+        if numberOfItems == 0 { return nil }
         
-        //        println("\nlayoutAttributesForSupplementaryViewOfKind CALLED...")
-        //        println("Header indexpath: row \(indexPath.row), section \(indexPath.section)\n")
-        
-        var attributes = super.layoutAttributesForSupplementaryViewOfKind(elementKind, atIndexPath: indexPath)
-        
-        if elementKind == UICollectionElementKindSectionHeader {
-            attributes.size = Constants.headerSize
-        }
-        
-        return attributes
-    }
+        let firstCellIndexPath = NSIndexPath(forRow: 0, inSection: section)
+        let lastCellIndexPath = NSIndexPath(forRow: numberOfItems - 1, inSection: section)
+        let firstCellTop = attributesForItemAtIndexPath[firstCellIndexPath]!.frame.origin.y
+        let lastCellBottom = max(CGRectGetMaxY(attributesForItemAtIndexPath[lastCellIndexPath]!.frame), CGRectGetMaxY(attributesForItemAtIndexPath[firstCellIndexPath]!.frame))
     
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-        
-        //println("\nLAYOUT INVALIDATED\n")
-        
-        return true//false
-    }
-    
-    //MARK: Private helper methods
-    
-    func largeCellSize() -> CGSize {
-        return CGSize(width: Constants.sizeForSmallCell.width * 2 + marginBetweenCells, height: Constants.sizeForSmallCell.height * 2 + marginBetweenRows)
-    }
-  
-    func isFirstCellAt(indexPath: NSIndexPath) -> Bool {
-        return indexPath.row == 0 ? true : false
-    }
-    
-    func currentScreenWidth() -> CGFloat {
-        return self.collectionView!.frame.size.width
-    }
-    
-    func cellFitsWithinLineWithAttributes(attributes: UICollectionViewLayoutAttributes) -> Bool {
-        
-        return currentScreenWidth() - attributes.center.x - sectionInsetRight >= Constants.sizeForSmallCell.width / 2 ? true : false
-    }
-    
-    func numberOfItemsInRow() -> Int {
-        return Int((currentScreenWidth() - sectionInsetLeft - sectionInsetRight) / Constants.sizeForSmallCell.width)
-    }
-    
-    func frameForSection(section: Int) -> CGRect? {
-        
-        // Sanity check
-        let numberOfItems = collectionView!.numberOfItemsInSection(section)
-        if numberOfItems == 0 {
-            return nil
-        }
-        
-        // Get the index paths for the first and last cell in the section
-        let firstIndexPath = NSIndexPath(forRow: 0, inSection: section)
-        let lastIndexPath = numberOfItems == 0 ? firstIndexPath : NSIndexPath(forRow: numberOfItems - 1, inSection: section)
-        
-        // Work out the top of the first cell and bottom of the last cell
-        var firstCellTop = layoutAttributesForItemAtIndexPath(firstIndexPath).frame.origin.y
-        let lastCellBottom = CGRectGetMaxY(layoutAttributesForItemAtIndexPath(lastIndexPath).frame)
-        
-        // Build the frame for the section
-        var frame = CGRectZero
-        
-        frame.size.width = collectionView!.bounds.size.width
-        frame.origin.y = firstCellTop
-        frame.size.height = lastCellBottom - firstCellTop
-        
-        // Increase the frame to allow space for the header
-        frame.origin.y -= headerReferenceSize.height
-        frame.size.height += headerReferenceSize.height
-        
-        // Increase the frame to allow space for an section insets
-        frame.origin.y -= sectionInset.top
-        frame.size.height += sectionInset.top
-        
-        frame.size.height += sectionInset.bottom
-        
-        return frame
+        return Constants.headerSize.height + (lastCellBottom - firstCellTop)
     }
     
     func contentSize() -> CGSize {
-    
+        
         var size = CGSizeZero
         size.width = self.collectionView!.frame.size.width
         
         for section in 0..<self.collectionView!.numberOfSections() {
-            if self.collectionView?.numberOfItemsInSection(section) != 0 {
-                size.height += frameForSection(section)!.size.height
+            if heightOfSection(section) != nil {
+                size.height += heightOfSection(section)!
             }
         }
-    
+        
+        size.height += 10.0
+        
         println("Content size: width \(size.width), height \(size.height)")
-    
+        
         return size
     }
+    
+
+    
+  
+
     
 
 

@@ -13,5 +13,6 @@ extension GalleryVC {
             sortItemsByRouteDistances()
         }
         collectionView?.reloadData()
+        collectionView?.collectionViewLayout.invalidateLayout()
     }
 }
