@@ -13,9 +13,11 @@ extension GalleryVC {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let size = indexPath.row == 0 ? /*Constants.sizeForLargeCell*/largeCellSize() : Constants.sizeForSmallCell
-        
-        return size
+        if isCurrentDevicePad() {
+            return indexPath.row == 0 ? largeCellSize() : Constants.sizeForSmallCell
+        } else {
+            return Constants.sizeForSmallCell
+        }
     }
     
     func largeCellSize() -> CGSize {
@@ -30,7 +32,11 @@ extension GalleryVC {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
+        if isCurrentDevicePad() {
+            return UIEdgeInsets(top: 0.0, left: 5.0, bottom: 0.0, right: 5.0)
+        } else {
+            return UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+        }
     }
 //
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {

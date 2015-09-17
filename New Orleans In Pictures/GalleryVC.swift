@@ -58,8 +58,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     {
         super.viewDidLoad()
         
-        let customLayout = CustomFlowLayout()
-        collectionView?.collectionViewLayout = customLayout
+        if isCurrentDevicePad() {
+            let customLayout = CustomFlowLayout()
+            collectionView?.collectionViewLayout = customLayout
+        }
         
         retrievePointsOfInterest()
         
@@ -71,6 +73,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         locationTracker.delegate = self
         
         routesReceiver.delegateForAllRoutes = self
+    }
+    
+    func isCurrentDevicePad() -> Bool {
+        return UIDevice.currentDevice().userInterfaceIdiom == .Pad ? true : false
     }
     
     func retrievePointsOfInterest() {
