@@ -9,6 +9,7 @@
 import MapKit
 
 extension DetailViewController {
+    
     func mapViewSetup() {
         mapView.delegate = self
         mapView.frame.size.height = self.tableView.frame.size.width
@@ -27,40 +28,40 @@ extension DetailViewController {
         mapView.setRegion(region, animated: true)
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is SightAnnotation) { return nil }
         
         let reuseId = "sight"
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("sight")
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            annotationView.canShowCallout = false
+            annotationView!.canShowCallout = false
         }
         else {
-            annotationView.annotation = annotation
+            annotationView!.annotation = annotation
         }
         
         let sightAnnotation = annotation as! SightAnnotation
         
-        annotationView.image = sightAnnotation.image
-        annotationView.frame.size = CGSizeMake(150, 150)
+        annotationView!.image = sightAnnotation.image
+        annotationView!.frame.size = CGSizeMake(150, 150)
      
         return annotationView
     }
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         removePreviousRouteFrom(mapView)
         removePreviousRouteFrom(self.mapView)
         self.userLocation = userLocation
     }
     
-    func mapViewDidFinishLoadingMap(mapView: MKMapView!) {
+    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
         if userLocation != nil && mapViewDidShowRoute == false {
             showRouteInOptimalRegion()
         }
     }
     
-    func mapViewDidFinishRenderingMap(mapView: MKMapView!, fullyRendered: Bool) {
+    func mapViewDidFinishRenderingMap(mapView: MKMapView, fullyRendered: Bool) {
         if userLocation != nil && mapViewDidShowRoute == false {
             showRouteInOptimalRegion()
         }
@@ -85,7 +86,7 @@ extension DetailViewController {
         }
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
+    func mapView(mapView: MKMapView,rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = .blueColor()
@@ -122,7 +123,7 @@ extension DetailViewController {
     }
     
     func removePreviousRouteFrom(mapView: MKMapView) {
-        let overlays = mapView.overlays as? [MKOverlay]
+        let overlays = mapView.overlays
         mapView.removeOverlays(overlays)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 extension GalleryVC {
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 3
     }

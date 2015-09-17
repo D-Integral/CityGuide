@@ -55,27 +55,26 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         return currentLocation?.coordinate.latitude != newLocation.coordinate.latitude || currentLocation?.coordinate.longitude != newLocation.coordinate.longitude ? true : false
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let newLocation = locations[locations.count - 1]
         
-        let newLocation = locations[locations.count - 1] as? CLLocation
-        
-        if currentLocationDiffersFrom(newLocation!) {
+        if currentLocationDiffersFrom(newLocation) {
             currentLocation = newLocation
         
-//            println("\nLocation manager updated:")
-//            println("New latitude: \(currentLocation?.coordinate.latitude)")
-//            println("New longitude: \(currentLocation?.coordinate.longitude)\n")
+        //            println("\nLocation manager updated:")
+        //            println("New latitude: \(currentLocation?.coordinate.latitude)")
+        //            println("New longitude: \(currentLocation?.coordinate.longitude)\n")
         
             delegate?.locationUpdated(self)
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         currentHeading = newHeading
         delegate?.headingUpdated(self)
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!) {
+    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         currentLocation = newLocation
         delegate?.locationUpdated(self)
     }

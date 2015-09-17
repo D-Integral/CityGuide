@@ -25,7 +25,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     var userLocation: MKUserLocation!
     var selectedCellIndexPath: NSIndexPath!
     var destination: MKMapItem? {
-        var placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
+        let placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
         return MKMapItem(placemark: placemark)
     }
     var locationTracker: LocationTracker!
@@ -69,7 +69,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     func addPopRecognizer() {
-        var popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
+        let popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
         popRecognizer.edges = UIRectEdge.Left
         self.view.addGestureRecognizer(popRecognizer)
     }
@@ -109,7 +109,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
-        println("Detail viewWillAppear")
+        print("Detail viewWillAppear")
         
         if !isCurrentDevicePad() {
             UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
@@ -122,13 +122,13 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         routeReceiver.delegateForRoute = self
         
         self.imageViewInitialize()
-        self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = true        
+        self.mapView.viewForAnnotation(pointOfInterestAnnotation)!.hidden = true
     }
     
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         mapView.showsUserLocation = true
-        self.mapView.viewForAnnotation(pointOfInterestAnnotation).hidden = false
+        self.mapView.viewForAnnotation(pointOfInterestAnnotation)!.hidden != false
         self.imageViewForAnimation.removeFromSuperview()
     }
     

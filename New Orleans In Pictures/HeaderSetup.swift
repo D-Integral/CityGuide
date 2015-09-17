@@ -20,7 +20,7 @@ extension GalleryVC {
             header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier, forIndexPath: indexPath) as? HeaderView
             header.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
             header.backgroundColor = .clearColor()
-            header.headerLabel.text = headerTexts[indexPath.section].lastPathComponent
+            header.headerLabel.text = headerTexts[indexPath.section]//.lastPathComponent
         }
         
         return header

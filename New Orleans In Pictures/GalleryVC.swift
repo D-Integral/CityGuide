@@ -15,7 +15,7 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, DetailViewControllerDelegate {
+class GalleryVC: UICollectionViewController, /*UICollectionViewDataSource, UICollectionViewDelegate,*/ UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, DetailViewControllerDelegate {
     
     //MARK: Constants
     let appName = "New Orleans Landmark"
@@ -43,9 +43,9 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
     var locationDataVC = LocationDataViewController()
     
     func sortItemsByRouteDistances() {
-        wantToSee = sorted(city.wantToSeeSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
-        alreadySeen = sorted(city.alreadySeenSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
-        unchecked = sorted(city.uncheckedSights(), {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)})
+        wantToSee = city.wantToSeeSights().sort {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
+        alreadySeen = city.alreadySeenSights().sort {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
+        unchecked = city.uncheckedSights().sort {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
     }
     
     func routeDistanceToPointOfInterest(pointOFInterest: PointOfInterest) -> CLLocationDistance {
@@ -118,8 +118,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDataSource, UIColle
         
         let detailVC = segue.destinationViewController as! DetailViewController
         var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
-        var selectedCellIndexPath = (chosenCellIndexPaths as! [NSIndexPath])[0]
-        var cell = self.collectionView?.cellForItemAtIndexPath(selectedCellIndexPath) as! PictureCell
+        let selectedCellIndexPath = chosenCellIndexPaths![0]
         
         detailVC.delegate = self
         detailVC.city = self.city

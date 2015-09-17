@@ -15,15 +15,17 @@ extension City {
     
     public class func fetchCity() -> City? {
         let cityFetch = NSFetchRequest(entityName: "City")
-        var error: NSError?
+        //var error: NSError?
         let context = CoreDataStack.sharedInstance.managedObjectContext
         
         var city: City?
-        let results = context?.executeFetchRequest(cityFetch, error: &error) as! [City]
+        //let results = context?.executeFetchRequest(cityFetch), error: error) as! [City]
+        
+        let results = try! context?.executeFetchRequest(cityFetch) as! [City]
         if results.count == 0 {
             return nil
         } else {
-            city = results[0] as City
+            city = results[0] 
         }
         
         return city
@@ -44,7 +46,7 @@ extension City {
         
         if city.pointsOfInterest.count == 0 {
             for (name, coordinate) in packedPointsOfInterest() {
-                var pointOfInterest = PointOfInterest.newPointInCity(city)
+                let pointOfInterest = PointOfInterest.newPointInCity(city)
                 pointOfInterest.name = name
                 let unpackedCoordinates = CoordinateConverter.unpackCoordinate(coordinate.unsignedLongLongValue)
                 pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, coordinate: unpackedCoordinates)

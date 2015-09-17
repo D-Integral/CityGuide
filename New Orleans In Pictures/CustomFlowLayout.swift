@@ -37,7 +37,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         isCurrentRowFirst = true
         marginBetweenCells = (currentScreenWidth() - sectionInsetLeft - sectionInsetRight - CGFloat(numberOfItemsInRow()) * Constants.sizeForSmallCell.width) / (CGFloat(numberOfItemsInRow()) - 1)
         
-        println("MarginBetweenCells: \(marginBetweenCells)")
+        print("MarginBetweenCells: \(marginBetweenCells)")
         
         sizeForLargeCell = largeCellSize()
         
@@ -47,50 +47,49 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func collectionViewContentSize() -> CGSize {
-        println("CollectionViewContentSizeCalled...")
+        print("CollectionViewContentSizeCalled...")
         
         return contentSize()
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        print("\nlayoutAttributesForElementsInRect CALLED...")
+        print("Rect: originX \(rect.origin.x), originY \(rect.origin.y)")
+        print("Rect: width \(rect.width), height \(rect.height)")
         
-        println("\nlayoutAttributesForElementsInRect CALLED...")
-        println("Rect: originX \(rect.origin.x), originY \(rect.origin.y)")
-        println("Rect: width \(rect.width), height \(rect.height)")
-        
-        var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as? [UICollectionViewLayoutAttributes]
+        var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]?
         
         if allElementsAttributes == nil { return nil }
         
-        for (index, layoutAttributes) in enumerate(allElementsAttributes!) {
+        for (index, layoutAttributes) in allElementsAttributes!.enumerate() {
             switch layoutAttributes.representedElementCategory {
             case .SupplementaryView:
                 if layoutAttributes.representedElementKind == UICollectionElementKindSectionHeader {
-                    allElementsAttributes![index] = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)
+                    allElementsAttributes![index] = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)!
                 }
             case .Cell:
                 allElementsAttributes![index] = attributesForItemAtIndexPath[layoutAttributes.indexPath]!
             case .DecorationView: break
             }
         }
-        
+                
         return allElementsAttributes
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         
         return attributesForItemAtIndexPath[indexPath]
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         
         //        println("\nlayoutAttributesForSupplementaryViewOfKind CALLED...")
         //        println("Header indexpath: row \(indexPath.row), section \(indexPath.section)\n")
         
-        var attributes = super.layoutAttributesForSupplementaryViewOfKind(elementKind, atIndexPath: indexPath)
+        let attributes = super.layoutAttributesForSupplementaryViewOfKind(elementKind, atIndexPath: indexPath)
         
         if elementKind == UICollectionElementKindSectionHeader {
-            attributes.size = Constants.headerSize
+            attributes!.size = Constants.headerSize
         }
         
         return attributes
@@ -136,7 +135,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     func attributesForItemWithIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
         
-        var attributes = super.layoutAttributesForItemAtIndexPath(indexPath)
+       let attributes = super.layoutAttributesForItemAtIndexPath(indexPath)
         
         if !isFirstCellAt(indexPath) {
             
@@ -146,26 +145,26 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             let previousItemSize = previousItemAttributes!.size
             
             if isFirstCellAt(indexPathForPreviuosItem) {
-                attributes.center.x = previousItemCenter.x + previousItemSize.width / 2 + marginBetweenCells + Constants.sizeForSmallCell.width / 2
-                attributes.center.y = previousItemCenter.y - marginBetweenRows / 2 - Constants.sizeForSmallCell.height / 2
+                attributes!.center.x = previousItemCenter.x + previousItemSize.width / 2 + marginBetweenCells + Constants.sizeForSmallCell.width / 2
+                attributes!.center.y = previousItemCenter.y - marginBetweenRows / 2 - Constants.sizeForSmallCell.height / 2
             } else {
-                attributes.center.x = previousItemCenter.x + previousItemSize.width / 2 + marginBetweenCells + Constants.sizeForSmallCell.width / 2
-                attributes.center.y = previousItemCenter.y
+                attributes!.center.x = previousItemCenter.x + previousItemSize.width / 2 + marginBetweenCells + Constants.sizeForSmallCell.width / 2
+                attributes!.center.y = previousItemCenter.y
                 
-                if !cellFitsWithinLineWithAttributes(attributes) {
+                if !cellFitsWithinLineWithAttributes(attributes!) {
                     if isCurrentRowFirst == true {
-                        attributes.center.x = sectionInsetLeft + sizeForLargeCell.width + marginBetweenCells + Constants.sizeForSmallCell.width / 2
-                        attributes.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + marginBetweenRows
+                        attributes!.center.x = sectionInsetLeft + sizeForLargeCell.width + marginBetweenCells + Constants.sizeForSmallCell.width / 2
+                        attributes!.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + marginBetweenRows
                         isCurrentRowFirst = false
                     } else {
-                        attributes.center.x = sectionInsetLeft + Constants.sizeForSmallCell.width / 2
-                        attributes.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + marginBetweenRows
+                        attributes!.center.x = sectionInsetLeft + Constants.sizeForSmallCell.width / 2
+                        attributes!.center.y = previousItemCenter.y + Constants.sizeForSmallCell.height + marginBetweenRows
                     }
                 }
             }
         }
         
-        return attributes
+        return attributes!
     }
     
     func heightOfSection(section: Int) -> CGFloat? {
@@ -193,7 +192,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         size.height += 10.0
         
-        println("Content size: width \(size.width), height \(size.height)")
+        print("Content size: width \(size.width), height \(size.height)")
         
         return size
     }

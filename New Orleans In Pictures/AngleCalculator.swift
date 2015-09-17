@@ -46,9 +46,9 @@ class AngleCalculator {
                 angle = 2 * M_PI - acos((b*b + c*c - a*a) / (2*b*c))
             }
             
-            var degrees = heading?.magneticHeading
+            let degrees = heading?.magneticHeading
             //println("Heading: \(degrees)")
-            var radians = (degrees! * M_PI / 180.0)
+            let radians = (degrees! * M_PI / 180.0)
             angle = angle + radians
         }
         

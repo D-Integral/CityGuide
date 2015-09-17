@@ -26,14 +26,14 @@ import UIKit
     required init(coder aDecoder: NSCoder) {
         // 1. setup any properties here
         
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         xibSetup()
     }
     
     func xibSetup() {
         view = loadViewFromNib()
         view.frame = bounds
-        view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
+        view.autoresizingMask = [UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight]
         addSubview(view)
     }
     

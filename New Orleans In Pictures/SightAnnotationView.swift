@@ -12,14 +12,14 @@ import MapKit
 class SightAnnotationView: MKAnnotationView {
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    override init(annotation: MKAnnotation, reuseIdentifier: String) {
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
     }
 }

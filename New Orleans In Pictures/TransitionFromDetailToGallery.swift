@@ -14,24 +14,24 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
     var imageSnapshot: UIView!
     var containerView: UIView!
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return 0.5
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailViewController
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! GalleryVC
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailViewController
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! GalleryVC
         
         containerView = transitionContext.containerView()
-        var duration = self.transitionDuration(transitionContext)
+        let duration = self.transitionDuration(transitionContext)
         
-        var annotation = fromViewController.pointOfInterestAnnotation
-        var viewForAnnotation = fromViewController.mapView.viewForAnnotation(annotation)
+        let annotation = fromViewController.pointOfInterestAnnotation
+        let viewForAnnotation = fromViewController.mapView.viewForAnnotation(annotation)
         
-        viewForAnnotation == nil ? makeSnapshotFromView(fromViewController.imageViewForAnimation) : makeSnapshotFromView(viewForAnnotation)
+        viewForAnnotation == nil ? makeSnapshotFromView(fromViewController.imageViewForAnimation) : makeSnapshotFromView(viewForAnnotation!)
         
-        var cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
+        let cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
         cell.imageView.hidden = true
         
         toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
