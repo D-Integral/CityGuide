@@ -110,8 +110,12 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         println("Detail viewWillAppear")
-        UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
-        shoudScreenRotate = !shoudScreenRotate
+        
+        if !isCurrentDevicePad() {
+            UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
+            shoudScreenRotate = !shoudScreenRotate
+        }
+        
         afterGalleryVC = true
         mapViewDidShowRoute = false
 
@@ -136,6 +140,10 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     override func viewDidDisappear(animated: Bool) {
         if pointOfInterestStateDidChange() { notifyDelegate() }
+    }
+    
+    func isCurrentDevicePad() -> Bool {
+        return UIDevice.currentDevice().userInterfaceIdiom == .Pad ? true : false
     }
     
     func pointOfInterestStateDidChange() -> Bool {

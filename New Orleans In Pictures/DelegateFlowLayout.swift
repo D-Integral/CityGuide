@@ -38,12 +38,4 @@ extension GalleryVC {
             return UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
         }
     }
-//
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return CGFloat(10.0)
-//    }
-
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return CGFloat(10.0)
-//    }
 }
