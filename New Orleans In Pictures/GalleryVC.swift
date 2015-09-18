@@ -22,7 +22,7 @@ class GalleryVC: UICollectionViewController, /*UICollectionViewDataSource, UICol
     
     struct Constants {
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
-        static let headerSize = CGSizeMake(300.0, 50.0)
+        static let headerSize = CGSizeMake(300.0, 100.0)
     }
     
     let headerTexts = ["I Want To See", "What To See", "Already Seen"]
