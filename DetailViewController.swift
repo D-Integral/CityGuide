@@ -128,7 +128,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         mapView.showsUserLocation = true
-        self.mapView.viewForAnnotation(pointOfInterestAnnotation)!.hidden != false
+        self.mapView.viewForAnnotation(pointOfInterestAnnotation)!.hidden = false
         self.imageViewForAnimation.removeFromSuperview()
     }
     
