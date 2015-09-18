@@ -84,6 +84,10 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         return indexPath.row == 0 ? true : false
     }
     
+    func isCellLastInSectionAt(indexPath: NSIndexPath) -> Bool {
+        return indexPath.row == self.collectionView!.numberOfItemsInSection(indexPath.section) - 1 ? true : false
+    }
+    
     func currentScreenWidth() -> CGFloat {
         return self.collectionView!.frame.size.width
     }
@@ -144,6 +148,10 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             case 2: attributes!.center.y = heightOfSection(1) + heightOfSection(0) + Constants.headerSize.height + sizeForLargeCell.height / 2
             default: break
             }
+        }
+        
+        if isCellLastInSectionAt(indexPath) {
+            isCurrentRowFirst = true
         }
         
         return attributes!
