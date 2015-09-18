@@ -12,7 +12,5 @@ extension GalleryVC {
         if routesToPointsOfInterest.count == city.pointsInCity().count {
             sortItemsByRouteDistances()
         }
-        collectionView?.reloadData()
-        collectionView?.collectionViewLayout.invalidateLayout()
     }
 }

@@ -15,7 +15,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         static let headerSize = CGSizeMake(300.0, 50.0)
     }
     
-    var attributesForItemAtIndexPath = [NSIndexPath : UICollectionViewLayoutAttributes]()
+    var attributesForItemAtIndexPath: [NSIndexPath : UICollectionViewLayoutAttributes]!
     var isCurrentRowFirst: Bool!
     var marginBetweenCells: CGFloat!
     var marginBetweenRows: CGFloat!
@@ -29,6 +29,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         super.prepareLayout()
         
         //println("\nPREPARE LAYOUT CALLED...\n")
+        
+        attributesForItemAtIndexPath = [NSIndexPath : UICollectionViewLayoutAttributes]()
         
         sectionInsetLeft = 5.0
         sectionInsetRight = 5.0
@@ -57,6 +59,8 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         print("Rect: originX \(rect.origin.x), originY \(rect.origin.y)")
         print("Rect: width \(rect.width), height \(rect.height)")
         
+        var attributes = [UICollectionViewLayoutAttributes]()
+        
         var allElementsAttributes = super.layoutAttributesForElementsInRect(rect) as [UICollectionViewLayoutAttributes]?
         
         if allElementsAttributes == nil { return nil }
@@ -66,14 +70,15 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
             case .SupplementaryView:
                 if layoutAttributes.representedElementKind == UICollectionElementKindSectionHeader {
                     allElementsAttributes![index] = layoutAttributesForSupplementaryViewOfKind(UICollectionElementKindSectionHeader, atIndexPath: layoutAttributes.indexPath)!
+                    attributes.append(allElementsAttributes![index])
                 }
-            case .Cell:
-                allElementsAttributes![index] = attributesForItemAtIndexPath[layoutAttributes.indexPath]!
-            case .DecorationView: break
+            default: break
             }
         }
-                
-        return allElementsAttributes
+        
+        attributes += [UICollectionViewLayoutAttributes](attributesForItemAtIndexPath.values)
+        
+        return attributes
     }
     
     override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
@@ -98,7 +103,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         
         //println("\nLAYOUT INVALIDATED\n")
-        return false
+        return true//false
     }
     
     //MARK: Private helper methods
