@@ -15,11 +15,9 @@ extension City {
     
     public class func fetchCity() -> City? {
         let cityFetch = NSFetchRequest(entityName: "City")
-        //var error: NSError?
         let context = CoreDataStack.sharedInstance.managedObjectContext
         
         var city: City?
-        //let results = context?.executeFetchRequest(cityFetch), error: error) as! [City]
         
         let results = try! context?.executeFetchRequest(cityFetch) as! [City]
         if results.count == 0 {
