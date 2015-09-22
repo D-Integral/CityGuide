@@ -146,6 +146,14 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         return UIDevice.currentDevice().userInterfaceIdiom == .Pad ? true : false
     }
     
+    func isCurrentOrientationLandscape() -> Bool {
+        return UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? true : false
+    }
+    
+    func isCurrentDevicePadInLandscapeMode() -> Bool {
+        return isCurrentDevicePad() && isCurrentOrientationLandscape() ? true : false
+    }
+    
     func pointOfInterestStateDidChange() -> Bool {
         return initialWantToSeeSwitchState != pointOfInterest.planned || initialAlreadySeenSwitchState != pointOfInterest.seen
     }

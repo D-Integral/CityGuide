@@ -12,7 +12,7 @@ extension DetailViewController {
     
     func mapViewSetup() {
         mapView.delegate = self
-        mapView.frame.size.height = self.tableView.frame.size.width
+        mapView.frame.size.height = isCurrentDevicePadInLandscapeMode() ? heightForMapOnPadInLadscape() : self.tableView.frame.size.width
         mapView.frame.size.width = self.tableView.frame.size.width
     }
     

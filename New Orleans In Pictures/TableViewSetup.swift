@@ -24,7 +24,7 @@ extension DetailViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         switch indexPath.section {
-        case 0: return self.tableView.frame.size.width
+        case 0: return isCurrentDevicePadInLandscapeMode() ? heightForMapOnPadInLadscape() : self.tableView.frame.size.width
         case 1: return 40
         case 2: return heightForDescription()
         case 3: return 45
@@ -44,6 +44,10 @@ extension DetailViewController {
         self.descriptionTextView.frame = frame
         
         return frame.size.height
+    }
+    
+    func heightForMapOnPadInLadscape() -> CGFloat {
+        return UIScreen.mainScreen().bounds.size.height - 95.0 - (self.navigationController?.navigationBar.bounds.size.height)! - heightForDescription() - 55
     }
 }
 
