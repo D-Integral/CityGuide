@@ -50,9 +50,11 @@ extension DetailViewController {
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
-        removePreviousRouteFrom(mapView)
-        removePreviousRouteFrom(self.mapView)
         self.userLocation = userLocation
+        zoomToFitMapItems()
+        if userLocation.location?.distanceFromLocation(self.userLocation.location!) > 100.0 {
+            removePreviousRouteFrom(self.mapView)
+        }
     }
     
     func mapViewDidFinishLoadingMap(mapView: MKMapView) {

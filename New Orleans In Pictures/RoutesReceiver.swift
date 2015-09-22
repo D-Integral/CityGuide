@@ -56,7 +56,7 @@ class RoutesReceiver {
     }
     
     func allRoutesReceived() -> Bool {
-        return routes.count == city.pointsInCity().count ? true : false
+        return routes.count == city.pointsOfInterest.count ? true : false
     }
     
     func requestRouteTo(pointOfInterest: PointOfInterest) {

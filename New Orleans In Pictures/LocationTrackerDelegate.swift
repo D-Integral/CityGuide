@@ -9,9 +9,16 @@ import MapKit
 
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
-        locationTracker = tracker
-        
-        loadNewRoutes()
+        if firstLocationUpdated {
+            locationTracker = tracker
+            loadNewRoutes()
+            firstLocationUpdated = false
+        } else {
+            if tracker.currentLocation?.distanceFromLocation(self.locationTracker.currentLocation!) > 100.0 {
+                locationTracker = tracker
+                loadNewRoutes()
+            }
+        }
     }
     
     func loadNewRoutes() {

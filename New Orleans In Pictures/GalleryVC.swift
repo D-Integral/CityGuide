@@ -15,7 +15,7 @@ import MapKit
 let cellReuseIdentifier = "pictureCell"
 let headerReuseIdentifier = "standardHeader"
 
-class GalleryVC: UICollectionViewController, /*UICollectionViewDataSource, UICollectionViewDelegate,*/ UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, DetailViewControllerDelegate {
+class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout, UINavigationControllerDelegate, LocationTrackerDelegate, RoutesReceiverFetchedAllRoutesDelegate, DetailViewControllerDelegate {
     
     //MARK: Constants
     let appName = "New Orleans Landmark"
@@ -30,6 +30,8 @@ class GalleryVC: UICollectionViewController, /*UICollectionViewDataSource, UICol
     var city: City! {
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
+    
+    var firstLocationUpdated: Bool = true
     
     //MARK: CollectionView datasource
     
@@ -73,6 +75,7 @@ class GalleryVC: UICollectionViewController, /*UICollectionViewDataSource, UICol
         locationTracker.delegate = self
         
         routesReceiver.delegateForAllRoutes = self
+        routesReceiver.city = self.city
     }
     
     func isCurrentDevicePad() -> Bool {

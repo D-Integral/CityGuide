@@ -12,7 +12,7 @@ extension DetailViewController {
     func routeReceived(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
         
         if pointOfInterest == self.pointOfInterest {
-            showRouteInOptimalRegion()
+            showRoute()
             locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: self.pointOfInterest, withLocationTracker: locationTracker)
         }
     }
