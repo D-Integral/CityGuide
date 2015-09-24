@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 D Integralas. All rights reserved.
 //
 
+import CoreLocation
+
 extension GalleryVC {
     func pointOfInterestStateDidChange() {
         retrievePointsOfInterest()
@@ -14,5 +16,10 @@ extension GalleryVC {
         }
         
         collectionViewLayout.invalidateLayout()
+    }
+    
+    func userLocationDidChangeToLocation(location: CLLocation) {
+        locationTracker.currentLocation = location
+        loadNewRoutes()
     }
 }

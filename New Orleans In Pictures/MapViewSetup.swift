@@ -17,7 +17,7 @@ extension DetailViewController {
     }
     
     func showSelectedSightAnnotation() {
-    
+        
         let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: pointOfInterest.image())
         pointOfInterest.image()
         self.mapView.addAnnotation(annotation)
@@ -45,47 +45,26 @@ extension DetailViewController {
         
         annotationView!.image = sightAnnotation.image
         annotationView!.frame.size = CGSizeMake(150, 150)
-     
+        
         return annotationView
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         self.userLocation = userLocation
-        zoomToFitMapItems()
-        if userLocation.location?.distanceFromLocation(self.userLocation.location!) > 100.0 {
-            removePreviousRouteFrom(self.mapView)
-        }
-    }
-    
-    func mapViewDidFinishLoadingMap(mapView: MKMapView) {
-        if userLocation != nil && mapViewDidShowRoute == false {
-            showRouteInOptimalRegion()
-        }
-    }
-    
-    func mapViewDidFinishRenderingMap(mapView: MKMapView, fullyRendered: Bool) {
-        if userLocation != nil && mapViewDidShowRoute == false {
-            showRouteInOptimalRegion()
-        }
-    }
-    
-    func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
-        if userLocation != nil && mapViewDidShowRoute == false {
-            showRouteInOptimalRegion()
-        }
+        
+        showRouteInOptimalRegion()
     }
     
     func showRouteInOptimalRegion() {
-            zoomToFitMapItems()
-            showRoute()
-            mapViewDidShowRoute = true
+        zoomToFitMapItems()
+        showRoute()
+        mapViewDidShowRoute = true
     }
     
     func showRoute() {
-        let route = locationDataVC.routesReceiver.routes[pointOfInterest.name]
-        if route != nil {
-            mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads)
-        }
+        let route = routeReceiver.routes[pointOfInterest.name]
+        
+        route != nil ? mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads) : routeReceiver.requestRouteTo(self.pointOfInterest)
     }
     
     func mapView(mapView: MKMapView,rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {

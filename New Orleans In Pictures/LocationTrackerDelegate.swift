@@ -9,20 +9,20 @@ import MapKit
 
 extension GalleryVC {
     func locationUpdated(tracker: LocationTracker) {
-        if firstLocationUpdated {
-            locationTracker = tracker
+        locationTracker = tracker
+        
+        if formerUserLocation == nil {
+            formerUserLocation = locationTracker.currentLocation!
             loadNewRoutes()
-            firstLocationUpdated = false
         } else {
-            if tracker.currentLocation?.distanceFromLocation(self.locationTracker.currentLocation!) > 100.0 {
-                locationTracker = tracker
+            if locationTracker.currentLocation?.distanceFromLocation(formerUserLocation!) > 200.0 {
+                formerUserLocation = locationTracker.currentLocation!
                 loadNewRoutes()
             }
         }
     }
     
     func loadNewRoutes() {
-        locationDataVC.routesReceiver.removeAllRoutes()
         collectionView?.reloadData()
         locationDataVC.routesReceiver.userLocation = locationTracker.currentLocation
         locationDataVC.routesReceiver.city = city
@@ -31,22 +31,27 @@ extension GalleryVC {
     
     func headingUpdated(tracker: LocationTracker) {
         locationTracker = tracker
-        
-        //collectionView?.reloadData()
     }
 }
 
 extension DetailViewController {
+    
     func locationUpdated(tracker: LocationTracker) {
         locationTracker = tracker
         
-        if afterGalleryVC == false || routeReceiver.routes[self.pointOfInterest.name] == nil {
-            removePreviousRouteFrom(self.mapView)
+        if routeReceiver.routes[self.pointOfInterest.name] == nil {
             routeReceiver.userLocation = locationTracker.currentLocation
-            routeReceiver.routes[self.pointOfInterest.name] = nil
             routeReceiver.requestRouteTo(self.pointOfInterest)
         }
-        afterGalleryVC = false
+        
+        if formerUserLocation == nil {
+            formerUserLocation = locationTracker.currentLocation
+        } else {
+            if tracker.currentLocation?.distanceFromLocation(formerUserLocation!) > 200.0 {
+                routeReceiver.userLocation = locationTracker.currentLocation
+                routeReceiver.requestRouteTo(self.pointOfInterest)
+            }
+        }
         
         locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: self.pointOfInterest, withLocationTracker: locationTracker)
     }

@@ -14,6 +14,7 @@ import CityKit
 
 protocol DetailViewControllerDelegate {
     func pointOfInterestStateDidChange()
+    func userLocationDidChangeToLocation(location: CLLocation)
 }
 
 class DetailViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
@@ -28,7 +29,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         let placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
         return MKMapItem(placemark: placemark)
     }
-    var locationTracker: LocationTracker!
+    var locationTracker = LocationTracker.sharedLocationTracker
     var locationDataVC = LocationDataViewController()
     var routeReceiver = RoutesReceiver.sharedRoutesReceiver
     
@@ -51,6 +52,10 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     var mapViewDidShowRoute: Bool!
     
+    var formerUserLocation: CLLocation!
+    
+    var initialUserLocation: CLLocation!
+    
     //MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -59,13 +64,15 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         addPopRecognizer()
         setupInterface()
         
-        self.setupLocationTracker()
         routeReceiver.delegateForRoute = self
+        locationTracker.delegate = self
         
         locationDataVC.adjustLocationDataView(&locationDataView!, forPointOfInterest: pointOfInterest, withLocationTracker: locationTracker)
         
         mapViewSetup()
         showSelectedSightAnnotation()
+        
+        formerUserLocation = initialUserLocation
     }
     
     func addPopRecognizer() {
@@ -79,11 +86,6 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         setupTableViewBackground()
         locationDataView.distanceLabel.font = UIFont.boldSystemFontOfSize(22)
         initialSwitchesSetup()
-    }
-    
-    func setupLocationTracker() {
-        locationTracker = LocationTracker()
-        locationTracker.delegate = self
     }
     
     func setupTableViewBackground() {
@@ -109,8 +111,6 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("Detail viewWillAppear")
-        
         if !isCurrentDevicePad() {
             UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
             shoudScreenRotate = !shoudScreenRotate
@@ -118,7 +118,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         
         afterGalleryVC = true
         mapViewDidShowRoute = false
-
+        
         routeReceiver.delegateForRoute = self
         
         self.imageViewInitialize()
@@ -136,10 +136,14 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
+        
+        locationTracker.delegate = nil
     }
     
     override func viewDidDisappear(animated: Bool) {
-        if pointOfInterestStateDidChange() { notifyDelegate() }
+        if pointOfInterestStateDidChange() { delegate?.pointOfInterestStateDidChange() }
+        
+        if userLocationDidChange(){ delegate?.userLocationDidChangeToLocation(locationTracker.currentLocation!) }
     }
     
     func isCurrentDevicePad() -> Bool {
@@ -158,8 +162,9 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         return initialWantToSeeSwitchState != pointOfInterest.planned || initialAlreadySeenSwitchState != pointOfInterest.seen
     }
     
-    func notifyDelegate() {
-        delegate?.pointOfInterestStateDidChange()
+    func userLocationDidChange() -> Bool {
+        
+        return initialUserLocation != nil && locationTracker.currentLocation != nil && initialUserLocation.distanceFromLocation(locationTracker.currentLocation!) > 200.0 ? true : false
     }
     
     @IBAction func wantToSee(sender: AnyObject) {
@@ -186,7 +191,6 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         return shoudScreenRotate
     }
 }
-
 
 
 

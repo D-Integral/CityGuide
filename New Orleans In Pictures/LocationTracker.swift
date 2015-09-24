@@ -19,6 +19,18 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     
     // MARK: public
     
+    class var sharedLocationTracker: LocationTracker {
+        struct Static {
+            static var onceToken: dispatch_once_t = 0
+            static var instance: LocationTracker? = nil
+        }
+        dispatch_once(&Static.onceToken) {
+            Static.instance = LocationTracker()
+        }
+        return Static.instance!
+    }
+    
+    
     var currentLocation: CLLocation?
     var currentHeading: CLHeading?
     var delegate: LocationTrackerDelegate?
@@ -35,7 +47,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
     private func setupLocationManager() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 100.0
+        locationManager.distanceFilter = 10.0
         locationManager.headingFilter = 1
         locationManager.delegate = self
         startUpdating()
@@ -60,11 +72,11 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         
         if currentLocationDiffersFrom(newLocation) {
             currentLocation = newLocation
-        
-        //            println("\nLocation manager updated:")
-        //            println("New latitude: \(currentLocation?.coordinate.latitude)")
-        //            println("New longitude: \(currentLocation?.coordinate.longitude)\n")
-        
+            
+            print("\nLocation manager updated:")
+            print("New latitude: \(currentLocation?.coordinate.latitude)")
+            print("New longitude: \(currentLocation?.coordinate.longitude)\n")
+            
             delegate?.locationUpdated(self)
         }
     }
@@ -73,11 +85,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         currentHeading = newHeading
         delegate?.headingUpdated(self)
     }
-    
-    func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
-        currentLocation = newLocation
-        delegate?.locationUpdated(self)
-    }
 }
+
 
 

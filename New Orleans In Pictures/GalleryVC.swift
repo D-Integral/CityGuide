@@ -31,7 +31,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
     }
     
-    var firstLocationUpdated: Bool = true
+    var formerUserLocation: CLLocation?
     
     //MARK: CollectionView datasource
     
@@ -41,7 +41,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
     var routesToPointsOfInterest = [String : MKRoute]()
     
     var routesReceiver = RoutesReceiver.sharedRoutesReceiver
-    var locationTracker: LocationTracker!
+    var locationTracker = LocationTracker.sharedLocationTracker
     var locationDataVC = LocationDataViewController()
     
     func sortItemsByRouteDistances() {
@@ -71,9 +71,6 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         self.clearsSelectionOnViewWillAppear = false
         self.setBackgroundImage(UIImage(named: "background.png")!)
         
-        locationTracker = LocationTracker()
-        locationTracker.delegate = self
-        
         routesReceiver.delegateForAllRoutes = self
         routesReceiver.city = self.city
     }
@@ -88,24 +85,27 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         unchecked = city.uncheckedSights()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        locationTracker.delegate = self
+    }
+    
     override func viewDidAppear(animated: Bool) {
         self.navigationController?.delegate = self
         
         collectionView?.reloadData()
-        locationTracker.startUpdating()
     }
     
     override func viewWillDisappear(animated: Bool) {
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
+        
+        locationTracker.delegate = nil
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         self.performSegueWithIdentifier("toTable", sender: self)
-        
-        locationTracker.stopUpdating()
     }
     
     func pointAtIndexPath(indexPath: NSIndexPath) -> PointOfInterest? {
@@ -127,6 +127,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         detailVC.city = self.city
         detailVC.pointOfInterest = pointAtIndexPath(selectedCellIndexPath)
         detailVC.selectedCellIndexPath = selectedCellIndexPath
+        detailVC.initialUserLocation = locationTracker.currentLocation
     }
     
     func setBackgroundImage(image: UIImage) {

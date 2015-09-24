@@ -72,7 +72,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     func largeCellSize() -> CGSize {
         return CGSize(width: Constants.sizeForSmallCell.width * 2 + marginBetweenCells, height: Constants.sizeForSmallCell.height * 2 + Constants.marginBetweenRows)
     }
-  
+    
     func isFirstCellAt(indexPath: NSIndexPath) -> Bool {
         return indexPath.row == 0 ? true : false
     }
@@ -105,7 +105,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     func attributesForItemWithIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
         
-       let attributes = super.layoutAttributesForItemAtIndexPath(indexPath)
+        let attributes = super.layoutAttributesForItemAtIndexPath(indexPath)
         
         if !isFirstCellAt(indexPath) {
             
@@ -158,7 +158,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         let lastCellIndexPath = NSIndexPath(forRow: numberOfItems - 1, inSection: section)
         let firstCellTop = attributesForItemsAtIndexPath[firstCellIndexPath]!.frame.origin.y
         let lastCellBottom = max(CGRectGetMaxY(attributesForItemsAtIndexPath[lastCellIndexPath]!.frame), CGRectGetMaxY(attributesForItemsAtIndexPath[firstCellIndexPath]!.frame))
-    
+        
         return Constants.headerSize.height + (lastCellBottom - firstCellTop)
     }
     
@@ -173,8 +173,6 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         
         size.height += 10.0
         
-        print("Content size: width \(size.width), height \(size.height)")
-        
         return size
     }
     
@@ -186,9 +184,9 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     }
     
     func attributesForHeaderAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-    
+        
         let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: indexPath)
-    
+        
         if self.collectionView!.numberOfItemsInSection(indexPath.section) == 0 { return nil }
         
         attributes.size = Constants.headerSize
@@ -199,7 +197,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
         case 2: attributes.center = CGPointMake(currentScreenWidth() / 2, heightOfSection(0) + heightOfSection(1) + Constants.headerSize.height / 2)
         default: break
         }
-            
+        
         return attributes
     }
 }
