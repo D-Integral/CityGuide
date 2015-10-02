@@ -36,9 +36,7 @@
 		9873E0031B288837008FE5EF /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0021B288837008FE5EF /* PointOfInterest.swift */; };
 		9873E0051B288837008FE5EF /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873E0041B288837008FE5EF /* City.swift */; };
 		B72351131BA04B05006854B0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351111BA04B05006854B0 /* Fabric.framework */; };
-		B72351141BA04B05006854B0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351111BA04B05006854B0 /* Fabric.framework */; };
 		B72351151BA04B05006854B0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351121BA04B05006854B0 /* Crashlytics.framework */; };
-		B72351161BA04B05006854B0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B72351121BA04B05006854B0 /* Crashlytics.framework */; };
 		B7AEE4A71B88CEE500FAD115 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AEE4AE1B88CEE500FAD115 /* Localizable.strings */; };
 		B7AEE4A81B88CEE500FAD115 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AEE4AE1B88CEE500FAD115 /* Localizable.strings */; };
 		B7AEE4A91B88CEE500FAD115 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7AEE4AE1B88CEE500FAD115 /* Localizable.strings */; };
@@ -227,8 +225,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B72351161BA04B05006854B0 /* Crashlytics.framework in Frameworks */,
-				B72351141BA04B05006854B0 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

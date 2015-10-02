@@ -22,10 +22,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
     
     struct Constants {
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
-        static let headerSize = CGSizeMake(300.0, 100.0)
+        static let headerSize = CGSizeMake(300.0, 50.0)
     }
     
-    let headerTexts = ["I Want To See", "What To See", "Already Seen"]
+    let headerTexts = ["I Plan To See", "What To See", "Already Seen"]
     
     var city: City! {
         return City.fetchCity() != nil ? City.fetchCity() : City.createCityWithName("New Orleans")
@@ -60,11 +60,11 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
     {
         super.viewDidLoad()
         
-        if isCurrentDevicePad() {
-            let customLayout = CustomFlowLayout()
-            collectionView?.collectionViewLayout = customLayout
-        }
-        
+//        if isCurrentDevicePad() {
+//            let customLayout = CustomFlowLayout()
+//            collectionView?.collectionViewLayout = customLayout
+//        }
+		
         retrievePointsOfInterest()
         
         self.title = appName

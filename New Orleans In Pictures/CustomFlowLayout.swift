@@ -12,7 +12,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     struct Constants {
         static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
-        static let headerSize = CGSizeMake(300.0, 100.0)
+        static let headerSize = CGSizeMake(300.0, 50.0)
         static let marginBetweenRows: CGFloat = 10.0
         static let sectionInsetLeft: CGFloat = 5.0
         static let sectionInsetRight: CGFloat = 5.0
