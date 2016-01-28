@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.d-integral.New-Orleans-In-Pictures</string>
+	<string>com.d-integral.Riga-Guide</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>
