@@ -9,15 +9,15 @@
 import CoreLocation
 
 class DistanceFormatter {
-    class func formatted(distance: CLLocationDistance) -> String {
+    class func formatted(_ distance: CLLocationDistance) -> String {
         return distance > 999.0 ? formattedInKilometers(distance) : formattedInMeters(distance)
     }
     
-    private class func formattedInKilometers(distance: CLLocationDistance) -> String {
+    fileprivate class func formattedInKilometers(_ distance: CLLocationDistance) -> String {
         return String(format: "%.1f", distance / 1000) + " km"
     }
     
-    private class func formattedInMeters(distance: CLLocationDistance) -> String {
+    fileprivate class func formattedInMeters(_ distance: CLLocationDistance) -> String {
         return "\(Int(distance)) m"
     }
 }

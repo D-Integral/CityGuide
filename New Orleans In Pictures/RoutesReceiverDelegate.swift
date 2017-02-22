@@ -10,7 +10,7 @@ import MapKit
 import CityKit
 
 extension GalleryVC {
-    func routesReceived(routes: [String : MKRoute]) {
+    func routesReceived(_ routes: [String : MKRoute]) {
         routesToPointsOfInterest = routes
         sortItemsByRouteDistances()
         if navigationController?.visibleViewController == self {

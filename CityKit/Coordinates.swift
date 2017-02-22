@@ -11,10 +11,10 @@ import CoreData
 
 @objc(Coordinates)
 
-public class Coordinates: NSManagedObject {
+open class Coordinates: NSManagedObject {
     
-    @NSManaged public var longitude: NSNumber
-    @NSManaged public var latitude: NSNumber
-    @NSManaged public var pointOfInterest: PointOfInterest
+    @NSManaged open var longitude: NSNumber
+    @NSManaged open var latitude: NSNumber
+    @NSManaged open var pointOfInterest: PointOfInterest
     
 }

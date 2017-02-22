@@ -28,11 +28,11 @@ extension DetailViewController {
         mapView.setRegion(region, animated: true)
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !(annotation is SightAnnotation) { return nil }
         
         let reuseId = "sight"
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("sight")
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "sight")
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             annotationView!.canShowCallout = false
@@ -44,12 +44,12 @@ extension DetailViewController {
         let sightAnnotation = annotation as! SightAnnotation
         
         annotationView!.image = sightAnnotation.image
-        annotationView!.frame.size = CGSizeMake(150, 150)
+        annotationView!.frame.size = CGSize(width: 150, height: 150)
         
         return annotationView
     }
     
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         self.userLocation = userLocation
         
         showRouteInOptimalRegion()
@@ -64,13 +64,13 @@ extension DetailViewController {
     func showRoute() {
         let route = routeReceiver.routes[pointOfInterest.name]
         
-        route != nil ? mapView.addOverlay(route!.polyline, level: MKOverlayLevel.AboveRoads) : routeReceiver.requestRouteTo(self.pointOfInterest)
+        route != nil ? mapView.add(route!.polyline, level: MKOverlayLevel.aboveRoads) : routeReceiver.requestRouteTo(self.pointOfInterest)
     }
     
-    func mapView(mapView: MKMapView,rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .blueColor()
+        renderer.strokeColor = .blue
         renderer.lineWidth = 7.0
         
         return renderer
@@ -93,17 +93,17 @@ extension DetailViewController {
         return CLLocationCoordinate2D(latitude: fmin(userLocation.coordinate.latitude, pointOfInterest.coordinates.latitude.doubleValue), longitude: fmax(userLocation.coordinate.longitude, pointOfInterest.coordinates.longitude.doubleValue))
     }
     
-    func setupRegionCenter(inout region: MKCoordinateRegion) {
+    func setupRegionCenter(_ region: inout MKCoordinateRegion) {
         region.center.latitude = topLeftMapPoint().latitude - (topLeftMapPoint().latitude - bottomRightMapPoint().latitude) * 0.5
         region.center.longitude = topLeftMapPoint().longitude + (bottomRightMapPoint().longitude - topLeftMapPoint().longitude) * 0.5
     }
     
-    func setupRegionSpan(inout region: MKCoordinateRegion) {
+    func setupRegionSpan(_ region: inout MKCoordinateRegion) {
         region.span.latitudeDelta = fabs(topLeftMapPoint().latitude - bottomRightMapPoint().latitude) * 1.7
         region.span.longitudeDelta = fabs(bottomRightMapPoint().longitude - topLeftMapPoint().longitude) * 1.7
     }
     
-    func removePreviousRouteFrom(mapView: MKMapView) {
+    func removePreviousRouteFrom(_ mapView: MKMapView) {
         let overlays = mapView.overlays
         mapView.removeOverlays(overlays)
     }

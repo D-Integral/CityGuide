@@ -9,38 +9,38 @@
 import UIKit
 
 extension DetailViewController {
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if fromVC === self && toVC.isKindOfClass(GalleryVC) {
+        if fromVC === self && toVC.isKind(of: GalleryVC.self) {
             return TransitionFromDetailToGallery()
         } else {
             return nil
         }
     }
     
-    func handlePopRecognizer(recognizer: UIScreenEdgePanGestureRecognizer) {
+    func handlePopRecognizer(_ recognizer: UIScreenEdgePanGestureRecognizer) {
         
-        var progress = recognizer.translationInView(self.view).x / self.view.bounds.size.width * 1.0
+        var progress = recognizer.translation(in: self.view).x / self.view.bounds.size.width * 1.0
         progress = min(1.0, max(0.0, progress))
         
-        if recognizer.state == UIGestureRecognizerState.Began {
+        if recognizer.state == UIGestureRecognizerState.began {
             self.interactivePopTransition = UIPercentDrivenInteractiveTransition()
-            self.navigationController?.popViewControllerAnimated(true)
-        } else if recognizer.state == UIGestureRecognizerState.Changed {
-            self.interactivePopTransition.updateInteractiveTransition(progress)
-        } else if recognizer.state == UIGestureRecognizerState.Ended || recognizer.state == UIGestureRecognizerState.Cancelled {
+            self.navigationController?.popViewController(animated: true)
+        } else if recognizer.state == UIGestureRecognizerState.changed {
+            self.interactivePopTransition.update(progress)
+        } else if recognizer.state == UIGestureRecognizerState.ended || recognizer.state == UIGestureRecognizerState.cancelled {
             if progress > 0.5 {
-                self.interactivePopTransition.finishInteractiveTransition()
+                self.interactivePopTransition.finish()
             } else {
-                self.interactivePopTransition.cancelInteractiveTransition()
+                self.interactivePopTransition.cancel()
             }
             self.interactivePopTransition = nil
         }
     }
     
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         
-        if animationController.isKindOfClass(TransitionFromDetailToGallery) {
+        if animationController.isKind(of: TransitionFromDetailToGallery.self) {
             return self.interactivePopTransition
         } else {
             return nil

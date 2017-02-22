@@ -12,10 +12,10 @@ import CoreLocation
 
 extension PointOfInterest {
     
-    public class func newPointInCity(city: City) -> PointOfInterest {
+    public class func newPointInCity(_ city: City) -> PointOfInterest {
         
-        let entityDescription = NSEntityDescription.entityForName("PointOfInterest", inManagedObjectContext: city.managedObjectContext!)
-        let pointOfInterest = PointOfInterest(entity: entityDescription!, insertIntoManagedObjectContext: city.managedObjectContext!)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "PointOfInterest", in: city.managedObjectContext!)
+        let pointOfInterest = PointOfInterest(entity: entityDescription!, insertInto: city.managedObjectContext!)
         pointOfInterest.city = city
         
         CoreDataStack.sharedInstance.saveContext()

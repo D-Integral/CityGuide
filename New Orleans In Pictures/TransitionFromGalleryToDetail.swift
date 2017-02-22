@@ -10,47 +10,47 @@ import UIKit
 
 class TransitionFromGalleryToDetail: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! GalleryVC
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! DetailViewController
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! GalleryVC
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! DetailViewController
         
-        let containerView = transitionContext.containerView()
-        let duration = self.transitionDuration(transitionContext)
+        let containerView = transitionContext.containerView
+        let duration = self.transitionDuration(using: transitionContext)
         
-        var indexPaths = fromViewController.collectionView?.indexPathsForSelectedItems()
-        let cell = fromViewController.collectionView?.cellForItemAtIndexPath(indexPaths![0]) as! PictureCell
+        var indexPaths = fromViewController.collectionView?.indexPathsForSelectedItems
+        let cell = fromViewController.collectionView?.cellForItem(at: indexPaths![0]) as! PictureCell
         
-        let cellImageSnapshot: UIView = cell.imageView.snapshotViewAfterScreenUpdates(false)
-        cellImageSnapshot.frame = containerView!.convertRect(cell.imageView.frame, fromView: cell.imageView.superview)
-        cell.imageView.hidden = true
+        let cellImageSnapshot: UIView = cell.imageView.snapshotView(afterScreenUpdates: false)!
+        cellImageSnapshot.frame = containerView.convert(cell.imageView.frame, from: cell.imageView.superview)
+        cell.imageView.isHidden = true
         
-        toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
+        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
         toViewController.view.alpha = 0
-        toViewController.imageViewForAnimation.hidden = true
+        toViewController.imageViewForAnimation.isHidden = true
         
-        containerView!.addSubview(toViewController.view)
-        containerView!.addSubview(cellImageSnapshot)
+        containerView.addSubview(toViewController.view)
+        containerView.addSubview(cellImageSnapshot)
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             
             toViewController.view.alpha = 1.0
             
             //move snapshot to DetailVC.imageView
-            let frame = containerView!.convertRect(toViewController.imageViewForAnimation.frame, fromView: toViewController.view)
+            let frame = containerView.convert(toViewController.imageViewForAnimation.frame, from: toViewController.view)
             cellImageSnapshot.frame =  frame
             
             }, completion: {(finished: Bool) in
                 
-                toViewController.imageViewForAnimation.hidden = false
-                cell.hidden = false
+                toViewController.imageViewForAnimation.isHidden = false
+                cell.isHidden = false
                 cellImageSnapshot.removeFromSuperview()
                 
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
 }

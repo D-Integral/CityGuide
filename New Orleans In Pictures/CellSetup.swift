@@ -10,8 +10,8 @@ import UIKit
 import CityKit
 
 extension GalleryVC {
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! PictureCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! PictureCell
         
         switch indexPath.section {
         case 0: setupCell(&cell, forPoint: wantToSee[indexPath.row])
@@ -23,7 +23,7 @@ extension GalleryVC {
         return cell
     }
 
-    func setupCell(inout cell: PictureCell, forPoint point: PointOfInterest) {
+    func setupCell(_ cell: inout PictureCell, forPoint point: PointOfInterest) {
         cell.imageView.image = point.image()
         cell.nameLabel.text = NSLocalizedString(point.name, comment: point.name)
     

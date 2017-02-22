@@ -11,25 +11,27 @@ import CoreLocation
 import CityKit
 
 protocol RoutesReceiverFetchedAllRoutesDelegate {
-    func routesReceived(routes: [String : MKRoute])
+    func routesReceived(_ routes: [String : MKRoute])
 }
 
 protocol RoutesReceiverFetchedRoute {
-    func routeReceived(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest)
+    func routeReceived(_ route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest)
 }
 
 class RoutesReceiver {
+    
+    private static var __once: () = {
+            Static.instance = RoutesReceiver()
+        }()
     
     //MARK: public
     
     class var sharedRoutesReceiver: RoutesReceiver {
         struct Static {
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
             static var instance: RoutesReceiver? = nil
         }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = RoutesReceiver()
-        }
+        _ = RoutesReceiver.__once
         return Static.instance!
     }
     
@@ -47,7 +49,7 @@ class RoutesReceiver {
     
     //MARK: private
     
-    func convertToMKMapItem(location: CLLocation) -> MKMapItem {
+    func convertToMKMapItem(_ location: CLLocation) -> MKMapItem {
         return MKMapItem(placemark: MKPlacemark(coordinate: location.coordinate, addressDictionary: nil))
     }
     
@@ -59,7 +61,7 @@ class RoutesReceiver {
         return routes.count == city.pointsOfInterest.count ? true : false
     }
     
-    func requestRouteTo(pointOfInterest: PointOfInterest) {
+    func requestRouteTo(_ pointOfInterest: PointOfInterest) {
         
         if let location = userLocation {
             let request = formedRequestFrom(location, toDestination: pointOfInterest.locationOnMap())
@@ -69,28 +71,28 @@ class RoutesReceiver {
         }
     }
     
-    func formedRequestFrom(location: CLLocation, toDestination destination: CLLocation) -> MKDirectionsRequest {
+    func formedRequestFrom(_ location: CLLocation, toDestination destination: CLLocation) -> MKDirectionsRequest {
         let request = MKDirectionsRequest()
         request.source = convertToMKMapItem(location)
         request.destination = convertToMKMapItem(destination)
-        request.transportType = MKDirectionsTransportType.Walking
+        request.transportType = MKDirectionsTransportType.walking
         request.requestsAlternateRoutes = false
         
         return request
     }
     
-    func calculate(directions: MKDirections, toPointOfInterest pointOfInterest: PointOfInterest) {
+    func calculate(_ directions: MKDirections, toPointOfInterest pointOfInterest: PointOfInterest) {
         
-        directions.calculateDirectionsWithCompletionHandler({(response: MKDirectionsResponse?, error: NSError?) in
+        directions.calculate(completionHandler: {(response: MKDirectionsResponse?, error: NSError?) in
             error != nil ?  self.handleErrorResponse(pointOfInterest): self.handleSuccessResponse(response!, forPointOfInterest: pointOfInterest)
         })
     }
     
-    func handleErrorResponse(pointOfInterest: PointOfInterest) {
+    func handleErrorResponse(_ pointOfInterest: PointOfInterest) {
         //print("Error getting directions for: \(pointOfInterest.name)")
     }
     
-    func handleSuccessResponse(response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
+    func handleSuccessResponse(_ response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0]
         
         save(route, toPointOfInterest: pointOfInterest)
@@ -98,7 +100,7 @@ class RoutesReceiver {
         //print("Received route for \(pointOfInterest.name): \(route.distance)")
     }
     
-    func save(route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
+    func save(_ route: MKRoute, toPointOfInterest pointOfInterest: PointOfInterest) {
         routes.updateValue(route, forKey: pointOfInterest.name)
         
         if allRoutesReceived() { delegateForAllRoutes?.routesReceived(routes) }

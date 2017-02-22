@@ -13,10 +13,10 @@ import CoreData
 
 @objc(City)
 
-public class City: NSManagedObject {
+open class City: NSManagedObject {
     
-    @NSManaged public var name: String
-    @NSManaged public var pointsOfInterest: NSSet
+    @NSManaged open var name: String
+    @NSManaged open var pointsOfInterest: NSSet
 }
 
 

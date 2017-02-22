@@ -18,7 +18,7 @@ extension GalleryVC {
         collectionViewLayout.invalidateLayout()
     }
     
-    func userLocationDidChangeToLocation(location: CLLocation) {
+    func userLocationDidChangeToLocation(_ location: CLLocation) {
         locationTracker.currentLocation = location
         loadNewRoutes()
     }

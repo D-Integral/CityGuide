@@ -11,22 +11,24 @@ import CoreLocation
 import MapKit
 
 protocol LocationTrackerDelegate {
-    func locationUpdated(tracker: LocationTracker)
-    func headingUpdated(tracker: LocationTracker)
+    func locationUpdated(_ tracker: LocationTracker)
+    func headingUpdated(_ tracker: LocationTracker)
 }
 
 class LocationTracker: NSObject, CLLocationManagerDelegate {
+    
+    private static var __once: () = {
+            Static.instance = LocationTracker()
+        }()
     
     // MARK: public
     
     class var sharedLocationTracker: LocationTracker {
         struct Static {
-            static var onceToken: dispatch_once_t = 0
+            static var onceToken: Int = 0
             static var instance: LocationTracker? = nil
         }
-        dispatch_once(&Static.onceToken) {
-            Static.instance = LocationTracker()
-        }
+        _ = LocationTracker.__once
         return Static.instance!
     }
     
@@ -44,7 +46,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         self.setupLocationManager()
     }
     
-    private func setupLocationManager() {
+    fileprivate func setupLocationManager() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 10.0
@@ -63,11 +65,11 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    func currentLocationDiffersFrom(newLocation: CLLocation) -> Bool {
+    func currentLocationDiffersFrom(_ newLocation: CLLocation) -> Bool {
         return currentLocation?.coordinate.latitude != newLocation.coordinate.latitude || currentLocation?.coordinate.longitude != newLocation.coordinate.longitude ? true : false
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations[locations.count - 1]
         
         if currentLocationDiffersFrom(newLocation) {
@@ -81,7 +83,7 @@ class LocationTracker: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         currentHeading = newHeading
         delegate?.headingUpdated(self)
     }

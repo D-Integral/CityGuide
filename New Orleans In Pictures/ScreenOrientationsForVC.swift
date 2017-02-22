@@ -8,7 +8,7 @@
 import UIKit
 
 extension UINavigationController {
-    public override func shouldAutorotate() -> Bool {
-        return visibleViewController!.shouldAutorotate()
+    open override var shouldAutorotate : Bool {
+        return visibleViewController!.shouldAutorotate
     }
 }

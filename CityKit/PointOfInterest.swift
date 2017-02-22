@@ -11,13 +11,13 @@ import CoreData
 
 @objc(PointOfInterest)
 
-public class PointOfInterest: NSManagedObject {
+open class PointOfInterest: NSManagedObject {
     
-    @NSManaged public var name: String
-    @NSManaged public var planned: NSNumber
-    @NSManaged public var seen: NSNumber
-    @NSManaged public var city: City
-    @NSManaged public var coordinates: Coordinates
+    @NSManaged open var name: String
+    @NSManaged open var planned: NSNumber
+    @NSManaged open var seen: NSNumber
+    @NSManaged open var city: City
+    @NSManaged open var coordinates: Coordinates
     
 }
 

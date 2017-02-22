@@ -14,50 +14,50 @@ class TransitionFromDetailToGallery: NSObject, UIViewControllerAnimatedTransitio
     var imageSnapshot: UIView!
     var containerView: UIView!
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.5
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailViewController
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! GalleryVC
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! DetailViewController
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! GalleryVC
         
-        containerView = transitionContext.containerView()
-        let duration = self.transitionDuration(transitionContext)
+        containerView = transitionContext.containerView
+        let duration = self.transitionDuration(using: transitionContext)
         
         let annotation = fromViewController.pointOfInterestAnnotation
-        let viewForAnnotation = fromViewController.mapView.viewForAnnotation(annotation)
+        let viewForAnnotation = fromViewController.mapView.view(for: annotation!)
         
         viewForAnnotation == nil ? makeSnapshotFromView(fromViewController.imageViewForAnimation) : makeSnapshotFromView(viewForAnnotation!)
         
-        let cell = toViewController.collectionView?.cellForItemAtIndexPath(fromViewController.selectedCellIndexPath) as! PictureCell
-        cell.imageView.hidden = true
+        let cell = toViewController.collectionView?.cellForItem(at: fromViewController.selectedCellIndexPath as IndexPath) as! PictureCell
+        cell.imageView.isHidden = true
         
-        toViewController.view.frame = transitionContext.finalFrameForViewController(toViewController)
+        toViewController.view.frame = transitionContext.finalFrame(for: toViewController)
         containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
         containerView.addSubview(imageSnapshot)
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             fromViewController.view.alpha = 0.0
-            self.imageSnapshot.frame = self.containerView.convertRect(cell.imageView.frame, fromView: cell.imageView.superview)
+            self.imageSnapshot.frame = self.containerView.convert(cell.imageView.frame, from: cell.imageView.superview)
             }, completion: {(finished: Bool) in
                 self.imageSnapshot.removeFromSuperview()
-                fromViewController.imageViewForAnimation.hidden = false
-                cell.imageView.hidden = false
+                fromViewController.imageViewForAnimation.isHidden = false
+                cell.imageView.isHidden = false
                 
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
     }
     
-    func makeSnapshotFromView(view: UIView) {
+    func makeSnapshotFromView(_ view: UIView) {
         if view is MKAnnotationView {
-            imageSnapshot = view.snapshotViewAfterScreenUpdates(false)
+            imageSnapshot = view.snapshotView(afterScreenUpdates: false)
         } else {
-            imageSnapshot = view.snapshotViewAfterScreenUpdates(true)
+            imageSnapshot = view.snapshotView(afterScreenUpdates: true)
         }
-        imageSnapshot.frame = containerView.convertRect(view.frame, fromView: view.superview)
-        view.hidden = true
+        imageSnapshot.frame = containerView.convert(view.frame, from: view.superview)
+        view.isHidden = true
         view.removeFromSuperview()
     }
 }

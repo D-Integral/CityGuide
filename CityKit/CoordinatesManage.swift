@@ -12,13 +12,13 @@ import CoreLocation
 
 extension Coordinates {
     
-    public class func coordinatesForPoint(point: PointOfInterest, coordinate: CLLocationCoordinate2D) -> Coordinates {
-        let entityDescription = NSEntityDescription.entityForName("Coordinates", inManagedObjectContext: point.managedObjectContext!)
-        let coordinates = Coordinates(entity: entityDescription!, insertIntoManagedObjectContext: point.managedObjectContext!)
+    public class func coordinatesForPoint(_ point: PointOfInterest, coordinate: CLLocationCoordinate2D) -> Coordinates {
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Coordinates", in: point.managedObjectContext!)
+        let coordinates = Coordinates(entity: entityDescription!, insertInto: point.managedObjectContext!)
         
         coordinates.pointOfInterest = point
-        coordinates.latitude = coordinate.latitude
-        coordinates.longitude = coordinate.longitude
+        coordinates.latitude = NSNumber(coordinate.latitude)
+        coordinates.longitude = NSNumber(coordinate.longitude)
         CoreDataStack.sharedInstance.saveContext()
         
         return coordinates

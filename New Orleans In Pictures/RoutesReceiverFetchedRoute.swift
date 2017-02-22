@@ -9,7 +9,7 @@ import MapKit
 import CityKit
 
 extension DetailViewController {
-    func routeReceived(route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
+    func routeReceived(_ route: MKRoute, forPointOfInterest pointOfInterest: PointOfInterest) {
         
         if pointOfInterest == self.pointOfInterest {
             removePreviousRouteFrom(self.mapView)

@@ -9,19 +9,19 @@
 import UIKit
 
 extension DetailViewController {
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 3 ? 2 : 1
     }
     
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath.section {
         case 0: return isCurrentDevicePadInLandscapeMode() ? heightForMapOnPadInLadscape() : self.tableView.frame.size.width
@@ -32,8 +32,8 @@ extension DetailViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = .clearColor()
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = .clear
     }
     
     func heightForDescription() -> CGFloat {
@@ -47,7 +47,7 @@ extension DetailViewController {
     }
     
     func heightForMapOnPadInLadscape() -> CGFloat {
-        return UIScreen.mainScreen().bounds.size.height - 95.0 - (self.navigationController?.navigationBar.bounds.size.height)! - heightForDescription() - 55
+        return UIScreen.main.bounds.size.height - 95.0 - (self.navigationController?.navigationBar.bounds.size.height)! - heightForDescription() - 55
     }
 }
 

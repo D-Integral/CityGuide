@@ -14,7 +14,7 @@ import CityKit
 
 protocol DetailViewControllerDelegate {
     func pointOfInterestStateDidChange()
-    func userLocationDidChangeToLocation(location: CLLocation)
+    func userLocationDidChangeToLocation(_ location: CLLocation)
 }
 
 class DetailViewController: UITableViewController, UINavigationControllerDelegate, MKMapViewDelegate, LocationTrackerDelegate, RoutesReceiverFetchedRoute {
@@ -24,7 +24,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     var pointOfInterest: PointOfInterest!
     var pointOfInterestAnnotation: MKAnnotation!
     var userLocation: MKUserLocation!
-    var selectedCellIndexPath: NSIndexPath!
+    var selectedCellIndexPath: IndexPath!
     var destination: MKMapItem? {
         let placemark = MKPlacemark(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, addressDictionary: nil)
         return MKMapItem(placemark: placemark)
@@ -77,14 +77,14 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     func addPopRecognizer() {
         let popRecognizer: UIScreenEdgePanGestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "handlePopRecognizer:")
-        popRecognizer.edges = UIRectEdge.Left
+        popRecognizer.edges = UIRectEdge.left
         self.view.addGestureRecognizer(popRecognizer)
     }
     
     func setupInterface() {
         title = NSLocalizedString(pointOfInterest.name, comment: pointOfInterest.name)
         setupTableViewBackground()
-        locationDataView.distanceLabel.font = UIFont.boldSystemFontOfSize(22)
+        locationDataView.distanceLabel.font = UIFont.boldSystemFont(ofSize: 22)
         initialSwitchesSetup()
     }
     
@@ -96,23 +96,23 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     func imageViewInitialize() {
         let x: CGFloat = (self.view.frame.size.width - 150) / 2
         let y: CGFloat = (self.mapView.frame.height - 150) / 2
-        let frame = CGRectMake(x, y, 150, 150)
+        let frame = CGRect(x: x, y: y, width: 150, height: 150)
         imageViewForAnimation = UIImageView(frame: frame)
         imageViewForAnimation.image = pointOfInterest.image()
         self.view.addSubview(imageViewForAnimation)
     }
     
     func initialSwitchesSetup() {
-        wantSeeSwitch.on = pointOfInterest.isPlanned() ? true : false
-        seenSwitch.on = pointOfInterest.isSeen() ? true : false
+        wantSeeSwitch.isOn = pointOfInterest.isPlanned() ? true : false
+        seenSwitch.isOn = pointOfInterest.isSeen() ? true : false
         
-        initialWantToSeeSwitchState = wantSeeSwitch.on
-        initialAlreadySeenSwitchState = seenSwitch.on
+        initialWantToSeeSwitchState = wantSeeSwitch.isOn
+        initialAlreadySeenSwitchState = seenSwitch.isOn
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !isCurrentDevicePad() {
-            UIDevice.currentDevice().setValue(UIInterfaceOrientation.Portrait.rawValue, forKey: "orientation")
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
             shoudScreenRotate = !shoudScreenRotate
         }
         
@@ -122,17 +122,17 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         routeReceiver.delegateForRoute = self
         
         self.imageViewInitialize()
-        self.mapView.viewForAnnotation(pointOfInterestAnnotation)!.hidden = true
+        self.mapView.view(for: pointOfInterestAnnotation)!.isHidden = true
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.delegate = self
         mapView.showsUserLocation = true
-        self.mapView.viewForAnnotation(pointOfInterestAnnotation)!.hidden = false
+        self.mapView.view(for: pointOfInterestAnnotation)!.isHidden = false
         self.imageViewForAnimation.removeFromSuperview()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
@@ -140,18 +140,18 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
         locationTracker.delegate = nil
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         if pointOfInterestStateDidChange() { delegate?.pointOfInterestStateDidChange() }
         
         if userLocationDidChange(){ delegate?.userLocationDidChangeToLocation(locationTracker.currentLocation!) }
     }
     
     func isCurrentDevicePad() -> Bool {
-        return UIDevice.currentDevice().userInterfaceIdiom == .Pad ? true : false
+        return UIDevice.current.userInterfaceIdiom == .pad ? true : false
     }
     
     func isCurrentOrientationLandscape() -> Bool {
-        return UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) ? true : false
+        return UIDeviceOrientationIsLandscape(UIDevice.current.orientation) ? true : false
     }
     
     func isCurrentDevicePadInLandscapeMode() -> Bool {
@@ -164,30 +164,30 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     
     func userLocationDidChange() -> Bool {
         
-        return initialUserLocation != nil && locationTracker.currentLocation != nil && initialUserLocation.distanceFromLocation(locationTracker.currentLocation!) > 200.0 ? true : false
+        return initialUserLocation != nil && locationTracker.currentLocation != nil && initialUserLocation.distance(from: locationTracker.currentLocation!) > 200.0 ? true : false
     }
     
-    @IBAction func wantToSee(sender: AnyObject) {
-        pointOfInterest.planned = true == (sender as! UISwitch).on ? NSNumber(bool: true) : NSNumber(bool: false)
+    @IBAction func wantToSee(_ sender: AnyObject) {
+        pointOfInterest.planned = true == (sender as! UISwitch).isOn ? NSNumber(value: true as Bool) : NSNumber(value: false as Bool)
         CoreDataStack.sharedInstance.saveContext()
     }
     
-    @IBAction func alreadySeen(sender: AnyObject) {
-        true == (sender as! UISwitch).on ? seenSwitchOn() : seenSwitchOff()
+    @IBAction func alreadySeen(_ sender: AnyObject) {
+        true == (sender as! UISwitch).isOn ? seenSwitchOn() : seenSwitchOff()
         CoreDataStack.sharedInstance.saveContext()
     }
     
     func seenSwitchOn() {
-        wantSeeSwitch.on = false
-        pointOfInterest.planned = NSNumber(bool: false)
-        pointOfInterest.seen = NSNumber(bool: true)
+        wantSeeSwitch.isOn = false
+        pointOfInterest.planned = NSNumber(value: false as Bool)
+        pointOfInterest.seen = NSNumber(value: true as Bool)
     }
     
     func seenSwitchOff() {
-        pointOfInterest.seen = NSNumber(bool: false)
+        pointOfInterest.seen = NSNumber(value: false as Bool)
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return shoudScreenRotate
     }
 }

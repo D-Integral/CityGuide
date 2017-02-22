@@ -12,7 +12,7 @@ import CityKit
 class AngleCalculator {
     
     //MARK: public
-    func angleToLocation(pointOfInterest: PointOfInterest) -> Double {
+    func angleToLocation(_ pointOfInterest: PointOfInterest) -> Double {
         var angle: Double = 0.0
         
         let userLocation = locationTracker.currentLocation
@@ -58,7 +58,7 @@ class AngleCalculator {
     //MARK: private
     var locationTracker: LocationTracker!
     
-    func degreesToRadians(degrees: Double) -> Double {
+    func degreesToRadians(_ degrees: Double) -> Double {
         return degrees * M_PI / 180
     }
 }

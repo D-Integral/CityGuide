@@ -21,8 +21,8 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
     let appName = "New Orleans Guide"
     
     struct Constants {
-        static let sizeForSmallCell = CGSizeMake(150.0, 203.0)
-        static let headerSize = CGSizeMake(300.0, 50.0)
+        static let sizeForSmallCell = CGSize(width: 150.0, height: 203.0)
+        static let headerSize = CGSize(width: 300.0, height: 50.0)
     }
     
     let headerTexts = ["I Plan To See", "What To See", "Already Seen"]
@@ -45,12 +45,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
     var locationDataVC = LocationDataViewController()
     
     func sortItemsByRouteDistances() {
-        wantToSee = city.wantToSeeSights().sort {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
-        alreadySeen = city.alreadySeenSights().sort {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
-        unchecked = city.uncheckedSights().sort {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
+        wantToSee = city.wantToSeeSights().sorted {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
+        alreadySeen = city.alreadySeenSights().sorted {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
+        unchecked = city.uncheckedSights().sorted {self.routeDistanceToPointOfInterest($0) < self.routeDistanceToPointOfInterest($1)}
     }
     
-    func routeDistanceToPointOfInterest(pointOFInterest: PointOfInterest) -> CLLocationDistance {
+    func routeDistanceToPointOfInterest(_ pointOFInterest: PointOfInterest) -> CLLocationDistance {
         return routesToPointsOfInterest[pointOFInterest.name]!.distance
     }
     
@@ -76,7 +76,7 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
     }
     
     func isCurrentDevicePad() -> Bool {
-        return UIDevice.currentDevice().userInterfaceIdiom == .Pad ? true : false
+        return UIDevice.current.userInterfaceIdiom == .pad ? true : false
     }
     
     func retrievePointsOfInterest() {
@@ -85,17 +85,17 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         unchecked = city.uncheckedSights()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         locationTracker.delegate = self
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.delegate = self
         
         collectionView?.reloadData()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         if self.navigationController?.delegate === self {
             self.navigationController?.delegate = nil
         }
@@ -103,12 +103,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         locationTracker.delegate = nil
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        self.performSegueWithIdentifier("toTable", sender: self)
+        self.performSegue(withIdentifier: "toTable", sender: self)
     }
     
-    func pointAtIndexPath(indexPath: NSIndexPath) -> PointOfInterest? {
+    func pointAtIndexPath(_ indexPath: IndexPath) -> PointOfInterest? {
         switch indexPath.section {
         case 0: return wantToSee[indexPath.row]
         case 1: return unchecked[indexPath.row]
@@ -117,10 +117,10 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let detailVC = segue.destinationViewController as! DetailViewController
-        var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems()
+        let detailVC = segue.destination as! DetailViewController
+        var chosenCellIndexPaths = self.collectionView?.indexPathsForSelectedItems
         let selectedCellIndexPath = chosenCellIndexPaths![0]
         
         detailVC.delegate = self
@@ -130,12 +130,12 @@ class GalleryVC: UICollectionViewController, UICollectionViewDelegateFlowLayout,
         detailVC.initialUserLocation = locationTracker.currentLocation
     }
     
-    func setBackgroundImage(image: UIImage) {
+    func setBackgroundImage(_ image: UIImage) {
         self.collectionView?.backgroundView = UIView(frame: self.collectionView!.frame)
         self.collectionView?.backgroundView?.backgroundColor = UIColor(patternImage: image)
     }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         self.collectionView?.collectionViewLayout.invalidateLayout()
     }
 }

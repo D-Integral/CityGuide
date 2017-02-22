@@ -11,28 +11,28 @@
 import UIKit
 
 extension GalleryVC {
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView
     {
         var header: HeaderView!
         
         if UICollectionElementKindSectionHeader == kind
         {
-            header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: headerReuseIdentifier, forIndexPath: indexPath) as? HeaderView
-            header.headerLabel.font = UIFont.boldSystemFontOfSize(20.0)
-            header.backgroundColor = .clearColor()
+            header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as? HeaderView
+            header.headerLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+            header.backgroundColor = .clear
             header.headerLabel.text = headerTexts[indexPath.section]//.lastPathComponent
         }
         
         return header
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 
         switch section {
-        case 0: return (wantToSee.count == 0) ? CGSizeZero : Constants.headerSize
-        case 1: return (unchecked.count == 0) ? CGSizeZero : Constants.headerSize
-        case 2: return (alreadySeen.count == 0) ? CGSizeZero : Constants.headerSize
-        default: return CGSizeZero
+        case 0: return (wantToSee.count == 0) ? CGSize.zero : Constants.headerSize
+        case 1: return (unchecked.count == 0) ? CGSize.zero : Constants.headerSize
+        case 2: return (alreadySeen.count == 0) ? CGSize.zero : Constants.headerSize
+        default: return CGSize.zero
         }
     }
 }

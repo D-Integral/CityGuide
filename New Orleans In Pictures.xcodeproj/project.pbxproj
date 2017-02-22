@@ -641,6 +641,7 @@
 					8CE2CAD61AEA2BC60032F74D = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = EYWEP6YJP9;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -652,6 +653,7 @@
 					};
 					8CE2CAEE1AEA2BC60032F74D = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0820;
 						TestTargetID = 8CE2CAD61AEA2BC60032F74D;
 					};
 					9873DF531B276C1E008FE5EF = {
@@ -670,9 +672,11 @@
 					9873DF8A1B27A9A2008FE5EF = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = EYWEP6YJP9;
+						LastSwiftMigration = 0820;
 					};
 					9873DF941B27A9A3008FE5EF = {
 						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0820;
 						TestTargetID = 8CE2CAD61AEA2BC60032F74D;
 					};
 				};
@@ -1035,6 +1039,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1056,6 +1061,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1072,6 +1078,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/New Orleans In Pictures.app/New Orleans In Pictures";
 			};
 			name = Debug;
@@ -1085,6 +1092,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/New Orleans In Pictures.app/New Orleans In Pictures";
 			};
 			name = Release;
@@ -1186,6 +1194,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1209,6 +1218,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1226,6 +1236,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/New Orleans In Pictures.app/New Orleans In Pictures";
 			};
 			name = Debug;
@@ -1238,6 +1249,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "d-integral.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/New Orleans In Pictures.app/New Orleans In Pictures";
 			};
 			name = Release;

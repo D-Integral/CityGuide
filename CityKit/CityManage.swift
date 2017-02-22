@@ -14,12 +14,12 @@ import CoreData
 extension City {
     
     public class func fetchCity() -> City? {
-        let cityFetch = NSFetchRequest(entityName: "City")
+        let cityFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "City")
         let context = CoreDataStack.sharedInstance.managedObjectContext
         
         var city: City?
         
-        let results = try! context?.executeFetchRequest(cityFetch) as! [City]
+        let results = try! context?.fetch(cityFetch) as! [City]
         if results.count == 0 {
             return nil
         } else {
@@ -29,39 +29,39 @@ extension City {
         return city
     }
     
-    public class func createCityWithName(name: String) -> City {
+    public class func createCityWithName(_ name: String) -> City {
         
         let context = CoreDataStack.sharedInstance.managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("City", inManagedObjectContext: context)
-        let newCity = City(entity: entityDescription!, insertIntoManagedObjectContext: context)
+        let entityDescription = NSEntityDescription.entity(forEntityName: "City", in: context)
+        let newCity = City(entity: entityDescription!, insertInto: context)
         newCity.name = name
         loadPointsOfInterestForCity(newCity)
         CoreDataStack.sharedInstance.saveContext()
         return newCity
     }
 
-    private class func loadPointsOfInterestForCity(city: City) {
+    fileprivate class func loadPointsOfInterestForCity(_ city: City) {
         
         if city.pointsOfInterest.count == 0 {
             for (name, coordinate) in packedPointsOfInterest() {
                 let pointOfInterest = PointOfInterest.newPointInCity(city)
                 pointOfInterest.name = name
-                let unpackedCoordinates = CoordinateConverter.unpackCoordinate(coordinate.unsignedLongLongValue)
+                let unpackedCoordinates = CoordinateConverter.unpackCoordinate(coordinate.uint64Value)
                 pointOfInterest.coordinates = Coordinates.coordinatesForPoint(pointOfInterest, coordinate: unpackedCoordinates)
-                pointOfInterest.seen = NSNumber(bool: false)
-                pointOfInterest.planned = NSNumber(bool: false)
+                pointOfInterest.seen = NSNumber(value: false as Bool)
+                pointOfInterest.planned = NSNumber(value: false as Bool)
             }
         }
     }
     
-    private class func packedPointsOfInterest() -> [String : NSNumber] {
-        let filePath = cityKitBundle()?.pathForResource("PointsOfInterest", ofType: "plist")
+    fileprivate class func packedPointsOfInterest() -> [String : NSNumber] {
+        let filePath = cityKitBundle()?.path(forResource: "PointsOfInterest", ofType: "plist")
         let dictionary = NSDictionary(contentsOfFile: filePath!)
         return dictionary as! [String : NSNumber]
     }
     
-    private class func cityKitBundle() -> NSBundle? {
-        return NSBundle(identifier: "d-integral.CityKit")
+    fileprivate class func cityKitBundle() -> Bundle? {
+        return Bundle(identifier: "d-integral.CityKit")
     }
     
     public func pointsInCity() -> [PointOfInterest] {
