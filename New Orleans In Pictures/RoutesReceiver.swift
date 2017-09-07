@@ -20,20 +20,7 @@ protocol RoutesReceiverFetchedRoute {
 
 class RoutesReceiver {
     
-    private static var __once: () = {
-            Static.instance = RoutesReceiver()
-        }()
-    
-    //MARK: public
-    
-    class var sharedRoutesReceiver: RoutesReceiver {
-        struct Static {
-            static var onceToken: Int = 0
-            static var instance: RoutesReceiver? = nil
-        }
-        _ = RoutesReceiver.__once
-        return Static.instance!
-    }
+    static let sharedRoutesReceiver = RoutesReceiver()
     
     var routes = [String : MKRoute]()
     var city: City!
@@ -83,7 +70,7 @@ class RoutesReceiver {
     
     func calculate(_ directions: MKDirections, toPointOfInterest pointOfInterest: PointOfInterest) {
         
-        directions.calculate(completionHandler: {(response: MKDirectionsResponse?, error: NSError?) in
+        directions.calculate(completionHandler: {(response: MKDirectionsResponse?, error: Error?) in
             error != nil ?  self.handleErrorResponse(pointOfInterest): self.handleSuccessResponse(response!, forPointOfInterest: pointOfInterest)
         })
     }

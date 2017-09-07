@@ -159,7 +159,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     func pointOfInterestStateDidChange() -> Bool {
-        return initialWantToSeeSwitchState != pointOfInterest.planned || initialAlreadySeenSwitchState != pointOfInterest.seen
+        return initialWantToSeeSwitchState != pointOfInterest.planned.boolValue || initialAlreadySeenSwitchState != pointOfInterest.seen.boolValue
     }
     
     func userLocationDidChange() -> Bool {

@@ -17,21 +17,9 @@ protocol LocationTrackerDelegate {
 
 class LocationTracker: NSObject, CLLocationManagerDelegate {
     
-    private static var __once: () = {
-            Static.instance = LocationTracker()
-        }()
-    
     // MARK: public
     
-    class var sharedLocationTracker: LocationTracker {
-        struct Static {
-            static var onceToken: Int = 0
-            static var instance: LocationTracker? = nil
-        }
-        _ = LocationTracker.__once
-        return Static.instance!
-    }
-    
+    static let sharedLocationTracker = LocationTracker()
     
     var currentLocation: CLLocation?
     var currentHeading: CLHeading?

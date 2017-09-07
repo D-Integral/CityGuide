@@ -11,20 +11,9 @@ import CoreData
 
 open class CoreDataStack {
     
-    private static var __once: () = {
-            Static.instance = CoreDataStack()
-        }()
-    
     let sharedAppGroup: String = "group.com.d-integral.New-Orleans-In-Pictures.documents"
     
-    open class var sharedInstance: CoreDataStack {
-        struct Static {
-            static var onceToken : Int = 0
-            static var instance : CoreDataStack? = nil
-        }
-        _ = CoreDataStack.__once
-        return Static.instance!
-    }
+    open static let sharedInstance = CoreDataStack()
     
     open lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "self.sdfefgewrgqer" in the application's documents Application Support directory.

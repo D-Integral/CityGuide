@@ -17,8 +17,8 @@ extension Coordinates {
         let coordinates = Coordinates(entity: entityDescription!, insertInto: point.managedObjectContext!)
         
         coordinates.pointOfInterest = point
-        coordinates.latitude = NSNumber(coordinate.latitude)
-        coordinates.longitude = NSNumber(coordinate.longitude)
+        coordinates.latitude = NSNumber(value: coordinate.latitude)
+        coordinates.longitude = NSNumber(value: coordinate.longitude)
         CoreDataStack.sharedInstance.saveContext()
         
         return coordinates
