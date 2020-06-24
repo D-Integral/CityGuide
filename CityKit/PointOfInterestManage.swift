@@ -30,8 +30,13 @@ extension PointOfInterest {
         return seen.boolValue
     }
     
-    public func image() -> UIImage {
-        return UIImage(named: name)!
+    public func image() -> UIImage? {
+        
+        if let image = UIImage(named: name) {
+            return image
+        } else {
+            return nil
+        }
     }
     
     // Convenience method

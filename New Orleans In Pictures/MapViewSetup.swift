@@ -17,15 +17,15 @@ extension DetailViewController {
     }
     
     func showSelectedSightAnnotation() {
-        
-        let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: pointOfInterest.image())
-        pointOfInterest.image()
-        self.mapView.addAnnotation(annotation)
-        
-        pointOfInterestAnnotation = annotation
-        
-        let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 4000, 4000)
-        mapView.setRegion(region, animated: true)
+        if let image = pointOfInterest.image() {
+            let annotation = SightAnnotation(coordinate: pointOfInterest.coordinates.locationOnMap().coordinate, image: image)
+            self.mapView.addAnnotation(annotation)
+            
+            pointOfInterestAnnotation = annotation
+            
+            let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 4000, longitudinalMeters: 4000)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -64,7 +64,7 @@ extension DetailViewController {
     func showRoute() {
         let route = routeReceiver.routes[pointOfInterest.name]
         
-        route != nil ? mapView.add(route!.polyline, level: MKOverlayLevel.aboveRoads) : routeReceiver.requestRouteTo(self.pointOfInterest)
+        route != nil ? mapView.addOverlay(route!.polyline, level: MKOverlayLevel.aboveRoads) : routeReceiver.requestRouteTo(self.pointOfInterest)
     }
     
     func mapView(_ mapView: MKMapView,rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

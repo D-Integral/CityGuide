@@ -58,8 +58,8 @@ class RoutesReceiver {
         }
     }
     
-    func formedRequestFrom(_ location: CLLocation, toDestination destination: CLLocation) -> MKDirectionsRequest {
-        let request = MKDirectionsRequest()
+    func formedRequestFrom(_ location: CLLocation, toDestination destination: CLLocation) -> MKDirections.Request {
+        let request = MKDirections.Request()
         request.source = convertToMKMapItem(location)
         request.destination = convertToMKMapItem(destination)
         request.transportType = MKDirectionsTransportType.walking
@@ -70,7 +70,7 @@ class RoutesReceiver {
     
     func calculate(_ directions: MKDirections, toPointOfInterest pointOfInterest: PointOfInterest) {
         
-        directions.calculate(completionHandler: {(response: MKDirectionsResponse?, error: Error?) in
+        directions.calculate(completionHandler: {(response: MKDirections.Response?, error: Error?) in
             error != nil ?  self.handleErrorResponse(pointOfInterest): self.handleSuccessResponse(response!, forPointOfInterest: pointOfInterest)
         })
     }
@@ -79,7 +79,7 @@ class RoutesReceiver {
         //print("Error getting directions for: \(pointOfInterest.name)")
     }
     
-    func handleSuccessResponse(_ response: MKDirectionsResponse, forPointOfInterest pointOfInterest: PointOfInterest) {
+    func handleSuccessResponse(_ response: MKDirections.Response, forPointOfInterest pointOfInterest: PointOfInterest) {
         let route = response.routes[0]
         
         save(route, toPointOfInterest: pointOfInterest)

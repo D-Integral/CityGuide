@@ -15,7 +15,7 @@ extension GalleryVC {
     {
         var header: HeaderView!
         
-        if UICollectionElementKindSectionHeader == kind
+        if UICollectionView.elementKindSectionHeader == kind
         {
             header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as? HeaderView
             header.headerLabel.font = UIFont.boldSystemFont(ofSize: 20.0)

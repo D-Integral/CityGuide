@@ -13,7 +13,7 @@ open class CoreDataStack {
     
     let sharedAppGroup: String = "group.com.d-integral.New-Orleans-In-Pictures.documents"
     
-    open static let sharedInstance = CoreDataStack()
+    public static let sharedInstance = CoreDataStack()
     
     open lazy var applicationDocumentsDirectory: URL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "self.sdfefgewrgqer" in the application's documents Application Support directory.

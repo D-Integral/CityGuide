@@ -56,7 +56,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
-        return elementKind == UICollectionElementKindSectionHeader ? attributesForHeadersAtIndexPath[indexPath] : nil
+        return elementKind == UICollectionView.elementKindSectionHeader ? attributesForHeadersAtIndexPath[indexPath] : nil
     }
     
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
@@ -185,7 +185,7 @@ class CustomFlowLayout: UICollectionViewFlowLayout {
     
     func attributesForHeaderAtIndexPath(_ indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
-        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: indexPath)
+        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
         
         if self.collectionView!.numberOfItems(inSection: indexPath.section) == 0 { return nil }
         

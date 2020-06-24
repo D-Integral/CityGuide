@@ -151,7 +151,7 @@ class DetailViewController: UITableViewController, UINavigationControllerDelegat
     }
     
     func isCurrentOrientationLandscape() -> Bool {
-        return UIDeviceOrientationIsLandscape(UIDevice.current.orientation) ? true : false
+        return UIDevice.current.orientation.isLandscape ? true : false
     }
     
     func isCurrentDevicePadInLandscapeMode() -> Bool {

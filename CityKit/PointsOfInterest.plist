@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Academy-of-Sciences</key>
-	<integer>152410409732319074</integer>
 	<key>Alberta-Iela</key>
 	<integer>152427914945262432</integer>
 	<key>Art-Museum</key>
@@ -30,8 +28,6 @@
 	<integer>152421791395647341</integer>
 	<key>Open-Air-Museum</key>
 	<integer>152461757140240765</integer>
-	<key>Opera-House</key>
-	<integer>152417084111489043</integer>
 	<key>Reveal-Riga</key>
 	<integer>152418656069511699</integer>
 	<key>Skyline-Bar</key>
@@ -48,8 +44,6 @@
 	<integer>152418032225510075</integer>
 	<key>TV_Tower</key>
 	<integer>152389695105065668</integer>
-	<key>War-Museum</key>
-	<integer>152418933094904768</integer>
 	<key>World-of-Hat-Museum</key>
 	<integer>152428673006983290</integer>
 </dict>
